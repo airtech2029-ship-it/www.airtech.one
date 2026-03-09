@@ -1,274 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Customer Login | AirTech.One</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    body {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #0B2A4A 0%, #1B4A6B 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .login-container {
-      width: 100%;
-      max-width: 440px;
-    }
-
-    .login-card {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-radius: 24px;
-      padding: 45px 40px;
-      box-shadow: 0 30px 60px rgba(0, 20, 40, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .logo-section {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .logo {
-      font-size: 32px;
-      font-weight: 700;
-      color: #0B2A4A;
-      margin-bottom: 8px;
-    }
-
-    .logo span {
-      color: #FF6B35;
-    }
-
-    .tagline {
-      color: #5A6F7D;
-      font-size: 15px;
-    }
-
-    h2 {
-      color: #1A2F3F;
-      font-size: 28px;
-      font-weight: 600;
-      margin-bottom: 8px;
-      text-align: center;
-    }
-
-    .subtitle {
-      color: #5F7D95;
-      text-align: center;
-      margin-bottom: 35px;
-      font-size: 15px;
-    }
-
-    .input-group {
-      margin-bottom: 22px;
-    }
-
-    .input-group label {
-      display: block;
-      color: #2C4050;
-      font-weight: 500;
-      font-size: 14px;
-      margin-bottom: 6px;
-    }
-
-    .input-group input {
-      width: 100%;
-      padding: 15px 18px;
-      border: 2px solid #E1E9F0;
-      border-radius: 16px;
-      font-size: 15px;
-      transition: all 0.3s;
-      background: white;
-    }
-
-    .input-group input:focus {
-      border-color: #FF6B35;
-      outline: none;
-      box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.1);
-    }
-
-    .input-group input::placeholder {
-      color: #A0B8C9;
-    }
-
-    .password-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 6px;
-    }
-
-    .forgot-link {
-      color: #FF6B35;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 500;
-    }
-
-    .checkbox-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 20px 0 25px;
-    }
-
-    .checkbox-row input {
-      width: 18px;
-      height: 18px;
-      cursor: pointer;
-      accent-color: #FF6B35;
-    }
-
-    .checkbox-row label {
-      color: #405B6C;
-      font-size: 14px;
-      cursor: pointer;
-    }
-
-    .login-btn {
-      width: 100%;
-      padding: 16px;
-      background: #FF6B35;
-      color: white;
-      border: none;
-      border-radius: 16px;
-      font-size: 17px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
-      margin-bottom: 25px;
-      box-shadow: 0 8px 18px rgba(255, 107, 53, 0.3);
-    }
-
-    .login-btn:hover {
-      background: #E55A2B;
-      transform: translateY(-2px);
-      box-shadow: 0 12px 24px rgba(255, 107, 53, 0.4);
-    }
-
-    .signup-prompt {
-      text-align: center;
-      color: #5F7D95;
-      font-size: 15px;
-    }
-
-    .signup-prompt a {
-      color: #FF6B35;
-      text-decoration: none;
-      font-weight: 600;
-      margin-left: 5px;
-    }
-
-    .footer {
-      margin-top: 30px;
-      text-align: center;
-      color: #8A9BAB;
-      font-size: 13px;
-    }
-
-    .footer a {
-      color: #FF6B35;
-      text-decoration: none;
-    }
-
-    .demo-badge {
-      background: rgba(255, 107, 53, 0.1);
-      color: #FF6B35;
-      padding: 12px;
-      border-radius: 40px;
-      font-size: 13px;
-      text-align: center;
-      margin-top: 20px;
-      border: 1px dashed #FF6B35;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Login | AirTech.One</title>
+    
+    <!-- 🔥 FIREBASE ADD KAREIN - YEH PART 1 -->
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
+    
+    <!-- Firebase Config - YEH PART 2 -->
+    <script>
+        // Aapka Firebase Config
+        const firebaseConfig = {
+            apiKey: "AIzaSyBgCHdnJ4XvQbin_SWEeqyGjqM_jDd3RXs",
+            authDomain: "airtech-one-23985.firebaseapp.com",
+            projectId: "airtech-one-23985",
+            storageBucket: "airtech-one-23985.firebasestorage.app",
+            messagingSenderId: "132253722874",
+            appId: "1:132253722874:ios:839d4eeb100eda137d4143"
+        };
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+    </script>
+    
+    <!-- Aapka existing style yahan rahega -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0B2A4A 0%, #1B4A6B 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        /* Baki styles yahan continue */
+    </style>
 </head>
 <body>
-  <div class="login-container">
-    <div class="login-card">
-      
-      <div class="logo-section">
-        <div class="logo">Air<span>Tech</span>.One</div>
-        <div class="tagline">Your trusted technology partner</div>
-      </div>
-
-      <h2>Customer Login</h2>
-      <p class="subtitle">Welcome back! Please enter your details</p>
-
-      <!-- Login Form -->
-      <form id="loginForm" onsubmit="handleLogin(event)">
-        <div class="input-group">
-          <label>Email Address</label>
-          <input type="email" id="email" placeholder="customer@airtech.one" value="demo@airtech.one" required>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Login</div>
+                    <div class="panel-body">
+                        
+                        <!-- 🔥 FORM MEIN YEH BADLAV KAREIN -->
+                        <!-- onsubmit add karein aur action/method hataein -->
+                        <form onsubmit="handleLogin(event)">
+                            <div class="form-group">
+                                <label for="email">Email:</label>  <!-- username se change kiya -->
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </div>
+                            
+                            <!-- Signup link add karein -->
+                            <div style="text-align: center; margin-top: 15px;">
+                                Don't have an account? <a href="signup.html">Sign up here</a>
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="input-group">
-          <div class="password-header">
-            <label>Password</label>
-            <a href="#" class="forgot-link" onclick="alert('Password reset link sent to your email!')">Forgot?</a>
-          </div>
-          <input type="password" id="password" placeholder="••••••••" value="customer123" required>
-        </div>
-
-        <div class="checkbox-row">
-          <input type="checkbox" id="remember" checked>
-          <label for="remember">Remember this device for 30 days</label>
-        </div>
-
-        <button type="submit" class="login-btn">Sign in to Dashboard</button>
-
-        <div class="signup-prompt">
-          Don't have an account? <a href="#" onclick="alert('Signup page coming soon!')">Create free account</a>
-        </div>
-
-        <div class="demo-badge">
-          🔐 Demo Customer Access • Email: demo@airtech.one / Pass: customer123
-        </div>
-
-        <div class="footer">
-          <a href="#" onclick="alert('Terms of Service')">Terms</a> • 
-          <a href="#" onclick="alert('Privacy Policy')">Privacy</a> • 
-          <a href="#" onclick="alert('Contact support: support@airtech.one')">Support</a>
-          <br>
-          © 2026 AirTech.One. All rights reserved.
-        </div>
-      </form>
     </div>
-  </div>
-
-  <script>
-    function handleLogin(event) {
-      event.preventDefault();
-      
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-
-      // Demo credentials check
-      if (email === 'demo@airtech.one' && password === 'customer123') {
-        alert('✅ Login Successful! Welcome to AirTech.One Dashboard\n\nRedirecting to customer portal...');
-        // Redirect to dashboard (create later)
-        // window.location.href = '/dashboard.html';
-      } else {
-        alert('❌ Invalid credentials. Use demo@airtech.one / customer123');
-      }
-    }
-
-    // Auto-focus on email field
-    window.onload = function() {
-      document.getElementById('email').focus();
-    };
-  </script>
+    
+    <!-- 🔥 JAVASCRIPT ADD KAREIN - FORM KE BAAD -->
+    <script>
+        function handleLogin(event) {
+            event.preventDefault(); // Form ko submit hone se rokein
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Firebase se login
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Login successful
+                    alert('Login successful! Welcome back!');
+                    window.location.href = 'index.html'; // ya dashboard page
+                })
+                .catch((error) => {
+                    // Error handling
+                    let errorMessage = '';
+                    switch(error.code) {
+                        case 'auth/invalid-email':
+                            errorMessage = 'Invalid email address';
+                            break;
+                        case 'auth/user-not-found':
+                            errorMessage = 'No account found with this email';
+                            break;
+                        case 'auth/wrong-password':
+                            errorMessage = 'Incorrect password';
+                            break;
+                        default:
+                            errorMessage = error.message;
+                    }
+                    alert('Error: ' + errorMessage);
+                });
+        }
+    </script>
+    
 </body>
 </html>
