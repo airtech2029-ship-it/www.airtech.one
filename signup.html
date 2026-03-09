@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up | AirTech.One</title>
     
-    <!-- Firebase SDK -->
+    <!-- Firebase SDK - small f -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>  <!-- ✅ 0 (zero) fixed -->
-
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
+    
     <!-- Firebase Config + Initialize -->
     <script>
         const firebaseConfig = {
-            apiKey: "AIzaSyBgCHdnJ4XvQbin_SWEeqyGjqM_jDd3RXs",  // ✅ API key fixed
+            apiKey: "AIzaSyBgCHdnJ4XvQbin_SWEeqyGjqM_jDd3RXs",
             authDomain: "airtech-one-23985.firebaseapp.com",
             projectId: "airtech-one-23985",
             storageBucket: "airtech-one-23985.firebasestorage.app",
             messagingSenderId: "132253722874",
-            appId: "1:132253722874:ios:839d4eeb100eda137d4143"  // ✅ appId fixed
+            appId: "1:132253722874:ios:839d4eeb100eda137d4143"
         };
         
         // Initialize Firebase
@@ -206,7 +206,6 @@
             const confirmPassword = document.getElementById('confirmPassword').value;
             const errorDiv = document.getElementById('passwordError');
             
-            // Check if passwords match
             if (password !== confirmPassword) {
                 errorDiv.style.display = 'block';
                 return;
@@ -214,13 +213,11 @@
                 errorDiv.style.display = 'none';
             }
             
-            // Check password length
             if (password.length < 6) {
                 alert('Password must be at least 6 characters long');
                 return;
             }
             
-            // Firebase signup
             auth.createUserWithEmailAndPassword(email, password)
                 .then(() => {
                     alert('Account created successfully! Please login.');
