@@ -47,8 +47,8 @@
             width: 100%;
             padding: 12px 15px;
             margin-bottom: 20px;
-            border: 2px solid #e0e0e0;
             border-radius: 10px;
+            border: 2px solid #e0e0e0;
             font-size: 16px;
             transition: border-color 0.3s;
         }
@@ -143,9 +143,9 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 
     <script>
-        // 🔥 FIREBASE CONFIGURATION - FIXED API KEY
+        // 🔥 FIREBASE CONFIGURATION
         const firebaseConfig = {
-            apiKey: "AIzaSyCjzr_7pP_yuBOiowOpGNRdDO", // API key from your Firebase console
+            apiKey: "AIzaSyCjzr_7pP_yuBOiowOpGNRdDO",
             authDomain: "airtech-one-23985.firebaseapp.com",
             projectId: "airtech-one-23985",
             storageBucket: "airtech-one-23985.firebaseio.app",
@@ -154,12 +154,7 @@
         };
 
         // Initialize Firebase
-        try {
-            firebase.initializeApp(firebaseConfig);
-            console.log("✅ Firebase initialized");
-        } catch (error) {
-            console.error("❌ Firebase error:", error);
-        }
+        firebase.initializeApp(firebaseConfig);
 
         // Get elements
         const registerForm = document.getElementById('registerForm');
@@ -235,3 +230,4 @@
     </script>
 </body>
 </html>
+```
