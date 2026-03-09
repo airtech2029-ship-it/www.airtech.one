@@ -4,27 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up | AirTech.One</title>
-
+    
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script> <!-- ✅ 10.8.0 fixed -->
-
-    <!-- Firebase Config + Initialize -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
+    
+    <!-- Firebase Config + Initialize - SCRIPT KE ANDAR -->
     <script>
         const firebaseConfig = {
-            apiKey: "AIzaSyBgCHdnJ4XvQbin_SWEeqyGjqM_jDd3RXs",  // ✅ API key fixed
+            apiKey: "AIzaSyBgCHdnJ4XvQbin_SWEeqyGjqM_jDd3RXs",
             authDomain: "airtech-one-23985.firebaseapp.com",
             projectId: "airtech-one-23985",
-            storageBucket: "airtech-one-23985.firebasestorage.app",  // ✅ storageBucket fixed
+            storageBucket: "airtech-one-23985.firebasestorage.app",
             messagingSenderId: "132253722874",
-            appId: "1:132253722874:ios:839d4eeb100eda137d4143"  // ✅ appId fixed
+            appId: "1:132253722874:ios:839d4eeb100eda137d4143"
         };
-
-        // Initialize Firebase
+        
+        // Initialize Firebase - SCRIPT KE ANDAR
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
     </script>
-
+    
     <style>
         * {
             margin: 0;
@@ -65,7 +65,7 @@
             font-size: 36px;
             font-weight: 700;
             color: #0B2A44;
-            margin-bottom: 8px;  /* ✅ 80px → 8px */
+            margin-bottom: 8px;
         }
         
         .logo span {
