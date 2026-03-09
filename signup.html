@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up | AirTech.One</title>
     
-    <!-- Firebase SDK -->
+    <!-- Firebase SDK - LATEST VERSION -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
     
-    <!-- Firebase Config + Initialize - SCRIPT KE ANDAR -->
+    <!-- Firebase Config - EXACT VALUES -->
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyBgCHdnJ4XvQbin_SWEeqyGjqM_jDd3RXs",
@@ -20,7 +20,7 @@
             appId: "1:132253722874:ios:839d4eeb100eda137d4143"
         };
         
-        // Initialize Firebase - SCRIPT KE ANDAR
+        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
     </script>
@@ -206,6 +206,7 @@
             const confirmPassword = document.getElementById('confirmPassword').value;
             const errorDiv = document.getElementById('passwordError');
             
+            // Check if passwords match
             if (password !== confirmPassword) {
                 errorDiv.style.display = 'block';
                 return;
@@ -213,32 +214,48 @@
                 errorDiv.style.display = 'none';
             }
             
+            // Check password length
             if (password.length < 6) {
                 alert('Password must be at least 6 characters long');
                 return;
             }
             
+            // Show loading state
+            const btn = document.querySelector('.btn');
+            btn.textContent = 'Creating Account...';
+            btn.disabled = true;
+            
+            // Firebase signup
             auth.createUserWithEmailAndPassword(email, password)
-                .then(() => {
-                    alert('Account created successfully! Please login.');
-                    window.location.href = 'login.html';
+                .then((userCredential) => {
+                    // Optional: Save full name
+                    userCredential.user.updateProfile({
+                        displayName: document.getElementById('fullName').value
+                    }).then(() => {
+                        alert('✅ Account created successfully! Please login.');
+                        window.location.href = 'login.html';
+                    });
                 })
                 .catch((error) => {
+                    // Reset button
+                    btn.textContent = 'Sign Up';
+                    btn.disabled = false;
+                    
                     let errorMessage = '';
                     switch(error.code) {
                         case 'auth/email-already-in-use':
-                            errorMessage = 'Email already registered. Please login.';
+                            errorMessage = '❌ Email already registered. Please login.';
                             break;
                         case 'auth/invalid-email':
-                            errorMessage = 'Invalid email address';
+                            errorMessage = '❌ Invalid email address';
                             break;
                         case 'auth/weak-password':
-                            errorMessage = 'Password should be at least 6 characters';
+                            errorMessage = '❌ Password should be at least 6 characters';
                             break;
                         default:
-                            errorMessage = error.message;
+                            errorMessage = '❌ Error: ' + error.message;
                     }
-                    alert('Error: ' + errorMessage);
+                    alert(errorMessage);
                 });
         }
     </script>
