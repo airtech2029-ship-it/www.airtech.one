@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Signup | AirTech.One</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0B2A4A 0%, #1B4A6B 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .signup-container {
+      width: 100%;
+      max-width: 480px;
+    }
+    .signup-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 45px 40px;
+      box-shadow: 0 30px 60px rgba(0, 20, 40, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .logo-section {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .logo {
+      font-size: 32px;
+      font-weight: 700;
+      color: #0B2A4A;
+      margin-bottom: 8px;
+    }
+    .logo span {
+      color: #FF6B35;
+    }
+    h2 {
+      color: #1A2F3F;
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .subtitle {
+      color: #5F7D95;
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 15px;
+    }
+    .input-group {
+      margin-bottom: 18px;
+    }
+    .input-group label {
+      display: block;
+      color: #2C4050;
+      font-weight: 500;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 14px 18px;
+      border: 2px solid #E1E9F0;
+      border-radius: 16px;
+      font-size: 15px;
+      transition: all 0.3s;
+      background: white;
+    }
+    .input-group input:focus {
+      border-color: #FF6B35;
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.1);
+    }
+    .name-row {
+      display: flex;
+      gap: 15px;
+    }
+    .name-row .input-group {
+      flex: 1;
+    }
+    .terms-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin: 20px 0 25px;
+    }
+    .terms-row input {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: #FF6B35;
+    }
+    .terms-row label {
+      color: #405B6C;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .terms-row a {
+      color: #FF6B35;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .signup-btn {
+      width: 100%;
+      padding: 16px;
+      background: #FF6B35;
+      color: white;
+      border: none;
+      border-radius: 16px;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-bottom: 25px;
+      box-shadow: 0 8px 18px rgba(255, 107, 53, 0.3);
+    }
+    .signup-btn:hover {
+      background: #E55A2B;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(255, 107, 53, 0.4);
+    }
+    .login-prompt {
+      text-align: center;
+      color: #5F7D95;
+      font-size: 15px;
+    }
+    .login-prompt a {
+      color: #FF6B35;
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 5px;
+    }
+    .footer {
+      margin-top: 25px;
+      text-align: center;
+      color: #8A9BAB;
+      font-size: 13px;
+    }
+    .footer a {
+      color: #FF6B35;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="signup-container">
+    <div class="signup-card">
+      <div class="logo-section">
+        <div class="logo">Air<span>Tech</span>.One</div>
+      </div>
+      <h2>Create Account</h2>
+      <p class="subtitle">Join 10,000+ happy customers</p>
+      <form id="signupForm" onsubmit="handleSignup(event)">
+        <div class="name-row">
+          <div class="input-group">
+            <label>First Name</label>
+            <input type="text" id="firstName" placeholder="John" required>
+          </div>
+          <div class="input-group">
+            <label>Last Name</label>
+            <input type="text" id="lastName" placeholder="Doe" required>
+          </div>
+        </div>
+        <div class="input-group">
+          <label>Email Address</label>
+          <input type="email" id="email" placeholder="customer@airtech.one" required>
+        </div>
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" id="password" placeholder="Create password" required>
+        </div>
+        <div class="input-group">
+          <label>Confirm Password</label>
+          <input type="password" id="confirmPassword" placeholder="Re-enter password" required>
+        </div>
+        <div class="terms-row">
+          <input type="checkbox" id="terms" required>
+          <label for="terms">I agree to the <a href="#">Terms</a> and <a href="#">Privacy Policy</a></label>
+        </div>
+        <button type="submit" class="signup-btn">Create Free Account</button>
+        <div class="login-prompt">
+          Already have an account? <a href="login.html">Sign in</a>
+        </div>
+        <div class="footer">
+          © 2026 AirTech.One. All rights reserved.
+        </div>
+      </form>
+    </div>
+  </div>
+  <script>
+    function handleSignup(event) {
+      event.preventDefault();
+      const password = document.getElementById('password').value;
+      const confirm = document.getElementById('confirmPassword').value;
+      if(password !== confirm) {
+        alert('❌ Passwords do not match');
+        return;
+      }
+      alert('✅ Account created! Redirecting to login...');
+      setTimeout(() => window.location.href = 'login.html', 2000);
+    }
+  </script>
+</body>
+</html>
