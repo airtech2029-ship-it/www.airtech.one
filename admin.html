@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AirTech One — Admin Panel</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #f5a623;
+  --gold2: #e08800;
+  --dark: #1a0e00;
+  --dark2: #221200;
+  --dark3: #2a1800;
+  --dark4: #0d0800;
+  --text: #f5e6c8;
+  --text2: rgba(245,230,200,0.55);
+  --border: rgba(245,166,35,0.18);
+  --green: #22c55e;
+  --red: #ef4444;
+  --blue: #3b82f6;
+  --purple: #a855f7;
+  --sidebar-w: 240px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--dark4);color:var(--text);font-family:'Space Grotesk',sans-serif;display:flex;min-height:100vh;overflow-x:hidden;}
+
+/* ========= SIDEBAR ========= */
+#sidebar {
+  width:var(--sidebar-w);min-width:var(--sidebar-w);
+  background:linear-gradient(180deg,#1a0e00 0%,#0d0800 100%);
+  border-right:1px solid var(--border);
+  display:flex;flex-direction:column;
+  position:fixed;top:0;left:0;height:100vh;
+  z-index:200;transition:transform 0.3s;
+  overflow-y:auto;
+}
+.sb-logo {
+  padding:20px 20px 16px;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:10px;
+}
+.sb-logo-text {
+  font-family:'Orbitron',monospace;font-size:18px;font-weight:900;
+}
+.sb-logo-text span:first-child{
+  background:linear-gradient(135deg,#7a3500,#3a1500);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.sb-logo-text span:last-child{
+  background:linear-gradient(135deg,#fff,#ffe0a0);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.sb-badge {
+  font-size:9px;font-weight:800;color:#000;background:var(--gold);
+  padding:2px 7px;border-radius:4px;letter-spacing:1px;margin-top:2px;
+  display:block;
+}
+.sb-section {
+  font-size:10px;font-weight:700;letter-spacing:2px;color:var(--text2);
+  padding:18px 20px 6px;text-transform:uppercase;
+}
+.sb-item {
+  display:flex;align-items:center;gap:12px;
+  padding:11px 20px;cursor:pointer;
+  font-size:13px;font-weight:600;color:var(--text2);
+  border-left:3px solid transparent;
+  transition:all 0.2s;position:relative;
+}
+.sb-item:hover{color:var(--gold);background:rgba(245,166,35,0.06);}
+.sb-item.active{
+  color:var(--gold);background:rgba(245,166,35,0.1);
+  border-left-color:var(--gold);
+}
+.sb-icon{font-size:17px;width:22px;text-align:center;}
+.sb-count{
+  margin-left:auto;background:var(--red);color:#fff;
+  font-size:10px;font-weight:800;border-radius:10px;
+  padding:1px 7px;
+}
+.sb-footer{margin-top:auto;padding:16px 20px;border-top:1px solid var(--border);}
+.sb-footer-admin{font-size:12px;color:var(--text2);}
+.sb-footer-admin strong{color:var(--gold);display:block;font-size:13px;}
+
+/* ========= TOPBAR ========= */
+#topbar {
+  position:fixed;top:0;left:240px;right:0;
+  height:60px;background:linear-gradient(90deg,#1a0e00,#221200);
+  border-bottom:1px solid var(--border);z-index:100;
+  display:flex;align-items:center;padding:0 24px;gap:16px;
+}
+.tb-title{font-family:'Orbitron',monospace;font-size:15px;font-weight:700;color:var(--gold);flex:1;}
+.tb-search{
+  background:var(--dark3);border:1px solid var(--border);border-radius:8px;
+  padding:8px 14px;color:var(--text);font-family:'Space Grotesk',sans-serif;
+  font-size:13px;outline:none;width:220px;
+}
+.tb-search::placeholder{color:var(--text2);}
+.tb-btn{
+  background:var(--gold);color:#000;border:none;border-radius:7px;
+  padding:8px 16px;font-weight:700;font-size:12px;cursor:pointer;
+  font-family:'Space Grotesk',sans-serif;letter-spacing:0.5px;
+  transition:background 0.2s;
+}
+.tb-btn:hover{background:var(--gold2);}
+.tb-icon-btn{
+  background:var(--dark3);border:1px solid var(--border);border-radius:8px;
+  width:38px;height:38px;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:16px;transition:border-color 0.2s;
+}
+.tb-icon-btn:hover{border-color:var(--gold);}
+.notif-dot{
+  width:8px;height:8px;background:var(--red);border-radius:50%;
+  position:absolute;top:6px;right:6px;
+}
+
+/* ========= MAIN ========= */
+#main {
+  margin-left:var(--sidebar-w);
+  padding-top:60px;
+  flex:1;min-height:100vh;
+  background:linear-gradient(135deg,#1a0e00 0%,#0d0800 60%,#1a0e00 100%);
+}
+.page{display:none;padding:28px 28px;}
+.page.active{display:block;}
+
+/* ========= CARDS ========= */
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;}
+.stat-card{
+  background:linear-gradient(135deg,var(--dark3),var(--dark2));
+  border:1px solid var(--border);border-radius:14px;
+  padding:20px;position:relative;overflow:hidden;
+  transition:transform 0.2s,box-shadow 0.2s;cursor:default;
+}
+.stat-card:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(245,166,35,0.15);}
+.stat-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.stat-icon{font-size:26px;margin-bottom:10px;}
+.stat-val{font-family:'Orbitron',monospace;font-size:28px;font-weight:900;color:var(--gold);line-height:1;}
+.stat-lbl{font-size:11px;color:var(--text2);letter-spacing:1.5px;text-transform:uppercase;margin-top:6px;}
+.stat-chg{font-size:11px;font-weight:600;margin-top:4px;}
+.stat-chg.up{color:var(--green);}
+.stat-chg.down{color:var(--red);}
+.stat-card.blue::before{background:linear-gradient(90deg,transparent,var(--blue),transparent);}
+.stat-card.blue .stat-val{color:var(--blue);}
+.stat-card.green::before{background:linear-gradient(90deg,transparent,var(--green),transparent);}
+.stat-card.green .stat-val{color:var(--green);}
+.stat-card.purple::before{background:linear-gradient(90deg,transparent,var(--purple),transparent);}
+.stat-card.purple .stat-val{color:var(--purple);}
+
+/* ========= SECTION HEADER ========= */
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.sec-title{font-family:'Orbitron',monospace;font-size:14px;font-weight:700;color:#fff;}
+.sec-sub{font-size:12px;color:var(--text2);margin-top:2px;}
+
+/* ========= TABLE ========= */
+.tbl-wrap{background:var(--dark2);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+table{width:100%;border-collapse:collapse;}
+thead th{
+  background:var(--dark3);padding:12px 16px;
+  font-size:11px;letter-spacing:1.5px;color:var(--text2);
+  text-transform:uppercase;font-weight:700;text-align:left;
+  border-bottom:1px solid var(--border);
+}
+tbody tr{border-bottom:1px solid rgba(245,166,35,0.06);transition:background 0.15s;}
+tbody tr:last-child{border-bottom:none;}
+tbody tr:hover{background:rgba(245,166,35,0.04);}
+td{padding:13px 16px;font-size:13px;color:var(--text);}
+.td-name{font-weight:600;color:#fff;}
+.td-price{font-family:'Orbitron',monospace;font-size:12px;color:var(--gold);}
+.td-cat{
+  display:inline-block;font-size:10px;font-weight:700;
+  padding:3px 9px;border-radius:20px;letter-spacing:0.5px;
+}
+.cat-nvr{background:rgba(59,130,246,0.2);color:#60a5fa;}
+.cat-dvr{background:rgba(245,166,35,0.2);color:#f5a623;}
+.cat-camera{background:rgba(168,85,247,0.2);color:#c084fc;}
+.cat-packages{background:rgba(34,197,94,0.2);color:#4ade80;}
+.cat-accessories{background:rgba(239,68,68,0.2);color:#f87171;}
+.cat-networking{background:rgba(20,184,166,0.2);color:#2dd4bf;}
+
+/* ========= BADGES / STATUS ========= */
+.badge-status{
+  display:inline-block;font-size:10px;font-weight:800;
+  padding:3px 10px;border-radius:20px;letter-spacing:0.5px;
+}
+.s-pending{background:rgba(245,166,35,0.2);color:#f5a623;}
+.s-confirmed{background:rgba(59,130,246,0.2);color:#60a5fa;}
+.s-delivered{background:rgba(34,197,94,0.2);color:#4ade80;}
+.s-cancelled{background:rgba(239,68,68,0.2);color:#f87171;}
+
+/* ========= ACTION BTNS ========= */
+.act-btn{
+  background:transparent;border:1px solid var(--border);
+  border-radius:6px;padding:5px 10px;color:var(--text2);
+  font-size:11px;cursor:pointer;font-family:'Space Grotesk',sans-serif;
+  font-weight:600;transition:all 0.15s;margin-right:4px;
+}
+.act-btn:hover{border-color:var(--gold);color:var(--gold);}
+.act-btn.del:hover{border-color:var(--red);color:var(--red);}
+.act-btn.save{background:var(--gold);color:#000;border-color:var(--gold);}
+.act-btn.save:hover{background:var(--gold2);}
+
+/* ========= FORMS ========= */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-grid.cols3{grid-template-columns:1fr 1fr 1fr;}
+.form-group{display:flex;flex-direction:column;gap:6px;}
+.form-group.full{grid-column:1/-1;}
+label{font-size:11px;font-weight:700;color:var(--text2);letter-spacing:1px;text-transform:uppercase;}
+input,select,textarea{
+  background:var(--dark3);border:1px solid var(--border);border-radius:8px;
+  padding:10px 14px;color:var(--text);font-family:'Space Grotesk',sans-serif;
+  font-size:13px;outline:none;transition:border-color 0.2s;width:100%;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);}
+textarea{resize:vertical;min-height:80px;}
+select option{background:var(--dark2);}
+
+/* ========= MODAL ========= */
+#modal-overlay{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);
+  z-index:9000;align-items:center;justify-content:center;
+}
+#modal-overlay.open{display:flex;}
+.modal-box{
+  background:var(--dark2);border:1px solid var(--border);border-radius:18px;
+  width:90%;max-width:560px;max-height:85vh;overflow-y:auto;
+  padding:28px;animation:modalIn 0.25s ease;
+}
+@keyframes modalIn{from{opacity:0;transform:scale(0.93)}to{opacity:1;transform:scale(1)}}
+.modal-title{font-family:'Orbitron',monospace;font-size:16px;font-weight:700;color:var(--gold);margin-bottom:20px;}
+.modal-close{
+  background:var(--dark3);border:1px solid var(--border);border-radius:8px;
+  color:var(--text2);padding:6px 12px;cursor:pointer;font-size:13px;
+  font-family:'Space Grotesk',sans-serif;transition:all 0.15s;
+}
+.modal-close:hover{border-color:var(--red);color:var(--red);}
+
+/* ========= CHART PLACEHOLDER ========= */
+.chart-box{
+  background:var(--dark2);border:1px solid var(--border);border-radius:14px;
+  padding:20px;margin-bottom:24px;
+}
+.chart-bar-row{display:flex;align-items:flex-end;gap:8px;height:120px;margin-top:16px;}
+.chart-bar{
+  flex:1;background:linear-gradient(180deg,var(--gold),var(--gold2));
+  border-radius:4px 4px 0 0;min-width:0;
+  transition:opacity 0.2s;cursor:pointer;
+}
+.chart-bar:hover{opacity:0.8;}
+.chart-labels{display:flex;gap:8px;margin-top:6px;}
+.chart-label{flex:1;text-align:center;font-size:10px;color:var(--text2);}
+
+/* ========= NOTIFICATION TOAST ========= */
+#toast{
+  position:fixed;bottom:28px;right:28px;z-index:99999;
+  background:var(--dark3);border:1px solid var(--gold);border-radius:12px;
+  padding:14px 20px;font-size:13px;font-weight:600;color:var(--gold);
+  display:none;animation:toastIn 0.3s ease;box-shadow:0 8px 30px rgba(245,166,35,0.3);
+}
+@keyframes toastIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ========= RECENT ACTIVITY ========= */
+.activity-item{
+  display:flex;align-items:center;gap:14px;
+  padding:12px 0;border-bottom:1px solid rgba(245,166,35,0.06);
+}
+.activity-item:last-child{border-bottom:none;}
+.activity-icon{
+  width:36px;height:36px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+  flex-shrink:0;
+}
+.activity-text{flex:1;font-size:13px;color:var(--text);}
+.activity-text span{color:var(--gold);font-weight:700;}
+.activity-time{font-size:11px;color:var(--text2);}
+
+/* ========= RESPONSIVE ========= */
+@media(max-width:900px){
+  .stat-row{grid-template-columns:1fr 1fr;}
+  .form-grid{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  #sidebar{transform:translateX(-100%);}
+  #sidebar.open{transform:translateX(0);}
+  #main{margin-left:0;}
+  #topbar{left:0;}
+  .stat-row{grid-template-columns:1fr 1fr;}
+  .page{padding:16px;}
+}
+
+/* ========= SCROLLBAR ========= */
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:rgba(245,166,35,0.3);border-radius:3px;}
+
+/* ========= TOGGLE ========= */
+.toggle-wrap{display:flex;align-items:center;gap:10px;}
+.toggle{
+  position:relative;display:inline-block;
+  width:42px;height:24px;
+}
+.toggle input{display:none;}
+.toggle-slider{
+  position:absolute;inset:0;background:var(--dark3);
+  border-radius:12px;cursor:pointer;border:1px solid var(--border);
+  transition:0.3s;
+}
+.toggle-slider::before{
+  content:'';position:absolute;width:18px;height:18px;
+  background:var(--text2);border-radius:50%;bottom:2px;left:2px;
+  transition:0.3s;
+}
+.toggle input:checked + .toggle-slider{background:rgba(245,166,35,0.3);border-color:var(--gold);}
+.toggle input:checked + .toggle-slider::before{background:var(--gold);transform:translateX(18px);}
+</style>
+</head>
+<body>
+<!-- LOGIN GATE -->
+<div id="login-gate" style="position:fixed;inset:0;background:#0d0800;z-index:999999;display:flex;align-items:center;justify-content:center;">
+  <div style="background:#221200;border:1.5px solid #f5a623;border-radius:20px;padding:40px 32px;width:90%;max-width:360px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.8);">
+    <div style="font-family:'Orbitron',monospace;font-size:28px;font-weight:900;margin-bottom:4px;">
+      <span style="background:linear-gradient(135deg,#7a3500,#3a1500);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">AIR</span><span style="background:linear-gradient(135deg,#fff,#ffe0a0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">TECH</span>
+    </div>
+    <div style="font-size:11px;letter-spacing:3px;color:rgba(245,230,200,0.4);margin-bottom:32px;font-family:'Space Grotesk',sans-serif;">ADMIN PANEL</div>
+    <div style="text-align:left;margin-bottom:20px;">
+      <div style="font-size:10px;font-weight:700;color:rgba(245,230,200,0.5);letter-spacing:1.5px;margin-bottom:8px;font-family:'Space Grotesk',sans-serif;">PASSWORD</div>
+      <input id="gate-pass" type="password" placeholder="Enter password..." 
+        style="width:100%;background:#2a1800;border:1.5px solid rgba(245,166,35,0.3);border-radius:10px;padding:13px 16px;color:#f5e6c8;font-family:'Space Grotesk',sans-serif;font-size:15px;outline:none;box-sizing:border-box;transition:border-color 0.2s;"
+        onfocus="this.style.borderColor='#f5a623'" onblur="this.style.borderColor='rgba(245,166,35,0.3)'"
+        onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <div id="gate-err" style="font-size:12px;color:#ef4444;margin-bottom:12px;min-height:18px;font-family:'Space Grotesk',sans-serif;"></div>
+    <button onclick="doLogin()" style="width:100%;background:linear-gradient(90deg,#f5a623,#e08800);color:#000;border:none;border-radius:10px;padding:14px;font-family:'Orbitron',monospace;font-size:13px;font-weight:700;letter-spacing:2px;cursor:pointer;">
+      ENTER →
+    </button>
+    <div style="margin-top:16px;font-size:11px;color:rgba(245,230,200,0.25);font-family:'Space Grotesk',sans-serif;">AirTech One © 2025</div>
+  </div>
+</div>
+<script>
+function doLogin() {
+  var p = document.getElementById('gate-pass').value;
+  if(p === 'airtech2025') {
+    document.getElementById('login-gate').style.display = 'none';
+    if(typeof initDashboard === 'function') initDashboard();
+    if(typeof renderProductsTable === 'function') renderProductsTable();
+  } else {
+    document.getElementById('gate-err').textContent = '❌ Wrong password!';
+    document.getElementById('gate-pass').value = '';
+    document.getElementById('gate-pass').focus();
+  }
+}
+window.addEventListener('DOMContentLoaded', function(){
+  setTimeout(function(){ document.getElementById('gate-pass').focus(); }, 300);
+});
+</script>
+
+
+<!-- ========= SIDEBAR ========= -->
+<div id="admin-sidebar">
+  <div class="sb-logo">
+    <div>
+      <div class="sb-logo-text"><span>AIR</span><span>TECH</span></div>
+      <span class="sb-badge">ADMIN PANEL</span>
+    </div>
+  </div>
+
+  <div class="sb-section">Main</div>
+  <div class="sb-item active" onclick="showPage('dashboard',this)">
+    <span class="sb-icon">📊</span> Dashboard
+  </div>
+  <div class="sb-item" onclick="showPage('orders',this)">
+    <span class="sb-icon">🛒</span> Orders
+    <span class="sb-count">7</span>
+  </div>
+  <div class="sb-item" onclick="showPage('products',this)">
+    <span class="sb-icon">📦</span> Products
+  </div>
+
+  <div class="sb-section">Store</div>
+  <div class="sb-item" onclick="showPage('categories',this)">
+    <span class="sb-icon">📁</span> Categories
+  </div>
+  <div class="sb-item" onclick="showPage('slider',this)">
+    <span class="sb-icon">🎠</span> Banner Slider
+  </div>
+  <div class="sb-item" onclick="showPage('offers',this)">
+    <span class="sb-icon">🎁</span> Offers
+  </div>
+  <div class="sb-item" onclick="showPage('customers',this)">
+    <span class="sb-icon">👥</span> Customers
+  </div>
+
+  <div class="sb-section">Reports</div>
+  <div class="sb-item" onclick="showPage('analytics',this)">
+    <span class="sb-icon">📈</span> Analytics
+  </div>
+  <div class="sb-item" onclick="showPage('settings',this)">
+    <span class="sb-icon">⚙️</span> Settings
+  </div>
+
+  <div class="sb-footer">
+    <div class="sb-footer-admin">
+      Logged in as<strong>Admin • AirTech One</strong>
+    </div>
+  </div>
+</div>
+
+<div id="admin-overlay-bg" onclick="toggleSidebar()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:499;"></div>
+<!-- ========= TOPBAR ========= -->
+<div id="admin-topbar">
+  <button onclick="toggleSidebar()" style="background:none;border:none;color:var(--gold);font-size:20px;cursor:pointer;margin-right:8px;display:none;" id="admin-menu-btn">☰</button>
+  <div class="tb-title" id="tb-title">Dashboard</div>
+  <input class="tb-search" type="text" placeholder="🔍  Search products, orders...">
+  <div class="tb-icon-btn" style="position:relative;" title="Notifications">
+    🔔<div class="notif-dot"></div>
+  </div>
+  <div class="tb-icon-btn" title="WhatsApp" onclick="window.open('https://wa.me/966557978781','_blank')">💬</div>
+  <button class="tb-btn" onclick="showPage('products');openAddProduct()">+ Add Product</button>
+</div>
+
+<!-- ========= MAIN ========= -->
+<div id="admin-main">
+
+<!-- ===== DASHBOARD ===== -->
+<div class="page active" id="page-dashboard">
+  <!-- Stats -->
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="stat-icon">💰</div>
+      <div class="stat-val" id="stat-revenue">48,320</div>
+      <div class="stat-lbl">Total Revenue (SR)</div>
+      <div class="stat-chg up">↑ +12.4% this month</div>
+    </div>
+    <div class="stat-card blue">
+      <div class="stat-icon">🛒</div>
+      <div class="stat-val" id="stat-orders">143</div>
+      <div class="stat-lbl">Total Orders</div>
+      <div class="stat-chg up">↑ +8 today</div>
+    </div>
+    <div class="stat-card green">
+      <div class="stat-icon">📦</div>
+      <div class="stat-val" id="stat-products">87</div>
+      <div class="stat-lbl">Products Listed</div>
+      <div class="stat-chg up">↑ +3 new</div>
+    </div>
+    <div class="stat-card purple">
+      <div class="stat-icon">👥</div>
+      <div class="stat-val" id="stat-customers">612</div>
+      <div class="stat-lbl">Customers</div>
+      <div class="stat-chg up">↑ +21 this week</div>
+    </div>
+  </div>
+
+  <!-- Chart + Activity -->
+  <div style="display:grid;grid-template-columns:1fr 340px;gap:20px;margin-bottom:24px;">
+    <!-- Sales Chart -->
+    <div class="chart-box">
+      <div class="sec-hdr">
+        <div>
+          <div class="sec-title">Sales Overview</div>
+          <div class="sec-sub">Monthly revenue — 2025</div>
+        </div>
+        <select style="width:auto;font-size:11px;padding:5px 10px;">
+          <option>Last 7 Months</option>
+          <option>Last 12 Months</option>
+        </select>
+      </div>
+      <div class="chart-bar-row" id="salesChart"></div>
+      <div class="chart-labels" id="chartLabels"></div>
+    </div>
+    <!-- Activity -->
+    <div class="chart-box">
+      <div class="sec-title" style="margin-bottom:14px;">Recent Activity</div>
+      <div class="activity-item">
+        <div class="activity-icon" style="background:rgba(34,197,94,0.15);">✅</div>
+        <div class="activity-text">Order <span>#1043</span> delivered successfully</div>
+        <div class="activity-time">5m ago</div>
+      </div>
+      <div class="activity-item">
+        <div class="activity-icon" style="background:rgba(245,166,35,0.15);">🛒</div>
+        <div class="activity-text">New order <span>#1044</span> — 2 items, 680 SR</div>
+        <div class="activity-time">18m ago</div>
+      </div>
+      <div class="activity-item">
+        <div class="activity-icon" style="background:rgba(59,130,246,0.15);">📦</div>
+        <div class="activity-text"><span>DS-7208HTHI-K2</span> stock updated</div>
+        <div class="activity-time">1h ago</div>
+      </div>
+      <div class="activity-item">
+        <div class="activity-icon" style="background:rgba(168,85,247,0.15);">👤</div>
+        <div class="activity-text">New customer <span>Ahmed Al-Rashid</span> registered</div>
+        <div class="activity-time">2h ago</div>
+      </div>
+      <div class="activity-item">
+        <div class="activity-icon" style="background:rgba(239,68,68,0.15);">⚠️</div>
+        <div class="activity-text">Product <span>DS-96128NI</span> low stock alert</div>
+        <div class="activity-time">3h ago</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Orders -->
+  <div class="sec-hdr">
+    <div>
+      <div class="sec-title">Recent Orders</div>
+      <div class="sec-sub">Latest 5 orders</div>
+    </div>
+    <button class="act-btn" onclick="showPage('orders',document.querySelector('[onclick*=orders]'))">View All</button>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr>
+        <th>Order ID</th><th>Customer</th><th>Products</th><th>Total</th><th>Status</th><th>Date</th><th>Action</th>
+      </tr></thead>
+      <tbody id="recent-orders-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== ORDERS ===== -->
+<div class="page" id="page-orders">
+  <div class="sec-hdr" style="margin-bottom:18px;">
+    <div>
+      <div class="sec-title">All Orders</div>
+      <div class="sec-sub" id="orders-count">Loading...</div>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <select id="order-filter" onchange="renderOrdersTable()" style="width:auto;font-size:12px;padding:7px 12px;">
+        <option value="ALL">All Status</option>
+        <option value="Pending">Pending</option>
+        <option value="Confirmed">Confirmed</option>
+        <option value="Delivered">Delivered</option>
+        <option value="Cancelled">Cancelled</option>
+      </select>
+      <button class="tb-btn" onclick="exportOrders()">⬇ Export</button>
+    </div>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr>
+        <th>Order ID</th><th>Customer</th><th>Phone</th><th>Address</th><th>Items</th><th>Total</th><th>Payment</th><th>Status</th><th>Date</th><th>Action</th>
+      </tr></thead>
+      <tbody id="orders-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== PRODUCTS ===== -->
+<div class="page" id="page-products">
+  <div class="sec-hdr" style="margin-bottom:18px;">
+    <div>
+      <div class="sec-title">Products</div>
+      <div class="sec-sub" id="products-count">Loading...</div>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <select id="prod-filter" onchange="renderProductsTable()" style="width:auto;font-size:12px;padding:7px 12px;">
+        <option value="ALL">All Categories</option>
+        <option value="nvr">NVR</option>
+        <option value="dvr">DVR</option>
+        <option value="camera">Camera</option>
+        <option value="packages">Packages</option>
+        <option value="accessories">Accessories</option>
+        <option value="networking">Networking</option>
+      </select>
+      <button class="tb-btn" onclick="openAddProduct()">+ Add Product</button>
+    </div>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr>
+        <th>#</th><th>Product Name</th><th>Category</th><th>Price (SR)</th><th>Old Price</th><th>Badge</th><th>Stock</th><th>Actions</th>
+      </tr></thead>
+      <tbody id="products-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== CATEGORIES ===== -->
+<div class="page" id="page-categories">
+  <div class="sec-hdr" style="margin-bottom:18px;">
+    <div class="sec-title">Categories</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+    <div class="stat-card" style="cursor:pointer;" onclick="showPage('products',document.querySelector('[onclick*=products]'))">
+      <div class="stat-icon">📹</div>
+      <div class="stat-val" style="font-size:20px;">NVR</div>
+      <div class="stat-lbl">Network Video Recorders</div>
+      <div style="font-size:12px;color:var(--blue);margin-top:8px;">12 products →</div>
+    </div>
+    <div class="stat-card" style="cursor:pointer;">
+      <div class="stat-icon">📀</div>
+      <div class="stat-val" style="font-size:20px;">DVR</div>
+      <div class="stat-lbl">Digital Video Recorders</div>
+      <div style="font-size:12px;color:var(--gold);margin-top:8px;">10 products →</div>
+    </div>
+    <div class="stat-card" style="cursor:pointer;">
+      <div class="stat-icon">📷</div>
+      <div class="stat-val" style="font-size:20px;">Cameras</div>
+      <div class="stat-lbl">IP & Analog Cameras</div>
+      <div style="font-size:12px;color:var(--purple);margin-top:8px;">38 products →</div>
+    </div>
+    <div class="stat-card" style="cursor:pointer;">
+      <div class="stat-icon">📦</div>
+      <div class="stat-val" style="font-size:20px;">Packages</div>
+      <div class="stat-lbl">Complete CCTV Packages</div>
+      <div style="font-size:12px;color:var(--green);margin-top:8px;">14 products →</div>
+    </div>
+    <div class="stat-card" style="cursor:pointer;">
+      <div class="stat-icon">📡</div>
+      <div class="stat-val" style="font-size:20px;">Network</div>
+      <div class="stat-lbl">Networking Equipment</div>
+      <div style="font-size:12px;color:var(--blue);margin-top:8px;">8 products →</div>
+    </div>
+    <div class="stat-card" style="cursor:pointer;">
+      <div class="stat-icon">🔧</div>
+      <div class="stat-val" style="font-size:20px;">Access.</div>
+      <div class="stat-lbl">Accessories & More</div>
+      <div style="font-size:12px;color:var(--gold);margin-top:8px;">5 products →</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== BANNER SLIDER ===== -->
+<div class="page" id="page-slider">
+  <div class="sec-hdr" style="margin-bottom:18px;">
+    <div class="sec-title">Banner Slider Management</div>
+  </div>
+  <div id="slides-list"></div>
+  <button class="tb-btn" style="margin-top:16px;" onclick="openAddSlide()">+ Add Slide</button>
+</div>
+
+<!-- ===== OFFERS ===== -->
+<div class="page" id="page-offers">
+  <div class="sec-hdr" style="margin-bottom:18px;">
+    <div class="sec-title">Offers & Promo Codes</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
+    <div class="chart-box">
+      <div class="sec-title" style="margin-bottom:14px;">Active Offers</div>
+      <div style="display:flex;flex-direction:column;gap:10px;" id="offers-list">
+        <div style="background:var(--dark3);border-radius:10px;padding:14px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <div style="font-weight:700;color:#fff;">Flash Sale — 30% OFF</div>
+            <div style="font-size:12px;color:var(--text2);">All NVR products · Expires: 31 Mar</div>
+          </div>
+          <span class="badge-status s-confirmed">Active</span>
+        </div>
+        <div style="background:var(--dark3);border-radius:10px;padding:14px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <div style="font-weight:700;color:#fff;">Bank Transfer 10% OFF</div>
+            <div style="font-size:12px;color:var(--text2);">Code: BANK10 · Unlimited uses</div>
+          </div>
+          <span class="badge-status s-confirmed">Active</span>
+        </div>
+        <div style="background:var(--dark3);border-radius:10px;padding:14px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <div style="font-weight:700;color:#fff;">Free Delivery over 500 SR</div>
+            <div style="font-size:12px;color:var(--text2);">Auto-apply · Always on</div>
+          </div>
+          <span class="badge-status s-delivered">Running</span>
+        </div>
+      </div>
+    </div>
+    <div class="chart-box">
+      <div class="sec-title" style="margin-bottom:14px;">Add New Promo</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="form-group"><label>Promo Title</label><input placeholder="e.g. Ramadan Sale 20% OFF"></div>
+        <div class="form-group"><label>Promo Code</label><input placeholder="e.g. RAMADAN20"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div class="form-group"><label>Discount %</label><input type="number" placeholder="20"></div>
+          <div class="form-group"><label>Expiry Date</label><input type="date"></div>
+        </div>
+        <button class="tb-btn" style="margin-top:6px;" onclick="showToast('✅ Promo code added!')">Add Promo Code</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CUSTOMERS ===== -->
+<div class="page" id="page-customers">
+  <div class="sec-hdr" style="margin-bottom:18px;">
+    <div>
+      <div class="sec-title">Customers</div>
+      <div class="sec-sub">All registered customers</div>
+    </div>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr>
+        <th>#</th><th>Name</th><th>Phone</th><th>Address</th><th>Orders</th><th>Total Spent</th><th>Joined</th>
+      </tr></thead>
+      <tbody id="customers-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== ANALYTICS ===== -->
+<div class="page" id="page-analytics">
+  <div class="sec-title" style="margin-bottom:20px;">Analytics Overview</div>
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="stat-icon">📊</div>
+      <div class="stat-val">68%</div>
+      <div class="stat-lbl">Conversion Rate</div>
+    </div>
+    <div class="stat-card blue">
+      <div class="stat-icon">👁️</div>
+      <div class="stat-val">3.2K</div>
+      <div class="stat-lbl">Page Views / Day</div>
+    </div>
+    <div class="stat-card green">
+      <div class="stat-icon">🔁</div>
+      <div class="stat-val">42%</div>
+      <div class="stat-lbl">Returning Customers</div>
+    </div>
+    <div class="stat-card purple">
+      <div class="stat-icon">⭐</div>
+      <div class="stat-val">4.9</div>
+      <div class="stat-lbl">Avg Rating</div>
+    </div>
+  </div>
+  <div class="chart-box">
+    <div class="sec-title" style="margin-bottom:14px;">Top Selling Products</div>
+    <div id="top-products-bars"></div>
+  </div>
+</div>
+
+<!-- ===== SETTINGS ===== -->
+<div class="page" id="page-settings">
+  <div class="sec-title" style="margin-bottom:20px;">Store Settings</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+    <div class="chart-box">
+      <div class="sec-title" style="margin-bottom:16px;">Store Info</div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div class="form-group"><label>Store Name</label><input value="AirTech One"></div>
+        <div class="form-group"><label>Phone</label><input value="+966 557 978 781"></div>
+        <div class="form-group"><label>Email</label><input value="admin@airtech.one"></div>
+        <div class="form-group"><label>Address</label><input value="King Abdulaziz Road, Hafar Al-Batin"></div>
+        <div class="form-group"><label>WhatsApp</label><input value="966557978781"></div>
+        <button class="tb-btn" onclick="showToast('✅ Store info saved!')">Save Changes</button>
+      </div>
+    </div>
+    <div class="chart-box">
+      <div class="sec-title" style="margin-bottom:16px;">Store Options</div>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="toggle-wrap">
+          <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+          <span style="font-size:13px;">Free Delivery above 500 SR</span>
+        </div>
+        <div class="toggle-wrap">
+          <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+          <span style="font-size:13px;">Flash Sale Banner Active</span>
+        </div>
+        <div class="toggle-wrap">
+          <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+          <span style="font-size:13px;">Tabby & Tamara Payments</span>
+        </div>
+        <div class="toggle-wrap">
+          <label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label>
+          <span style="font-size:13px;">Maintenance Mode</span>
+        </div>
+        <div class="toggle-wrap">
+          <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+          <span style="font-size:13px;">Show Popup Ad Banner</span>
+        </div>
+        <div class="form-group" style="margin-top:4px;"><label>Free Delivery Threshold (SR)</label><input type="number" value="500"></div>
+        <button class="tb-btn" onclick="showToast('✅ Settings saved!')">Save Settings</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<!-- ========= ADD/EDIT PRODUCT MODAL ========= -->
+<div id="modal-overlay">
+  <div class="modal-box">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+      <div class="modal-title" id="modal-title">Add New Product</div>
+      <button class="modal-close" onclick="closeModal()">✕ Close</button>
+    </div>
+    <div class="form-grid">
+      <div class="form-group full"><label>Product Name *</label><input id="f-name" placeholder="e.g. Hikvision DS-2CD2343G2-I"></div>
+      <div class="form-group full"><label>Description</label><textarea id="f-desc" placeholder="Product description..."></textarea></div>
+      <div class="form-group"><label>Category *</label>
+        <select id="f-cat">
+          <option value="nvr">NVR</option>
+          <option value="dvr">DVR</option>
+          <option value="camera">Camera</option>
+          <option value="packages">Packages</option>
+          <option value="accessories">Accessories</option>
+          <option value="networking">Networking</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Badge</label>
+        <select id="f-badge">
+          <option value="">None</option>
+          <option value="NEW">NEW</option>
+          <option value="HOT">HOT</option>
+          <option value="SALE">SALE</option>
+          <option value="EXPRESS">EXPRESS</option>
+          <option value="LIMITED">LIMITED</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Price (SR) *</label><input id="f-price" type="number" placeholder="350"></div>
+      <div class="form-group"><label>Old Price (SR)</label><input id="f-oldprice" type="number" placeholder="420"></div>
+      <div class="form-group"><label>Stock Qty</label><input id="f-stock" type="number" placeholder="10" value="10"></div>
+      <div class="form-group"><label>Image URL</label><input id="f-img" placeholder="https://..."></div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:20px;justify-content:flex-end;">
+      <button class="act-btn" onclick="closeModal()">Cancel</button>
+      <button class="act-btn save" onclick="saveProduct()">💾 Save Product</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========= ORDER DETAIL MODAL ========= -->
+<div id="order-modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9000;align-items:center;justify-content:center;">
+  <div class="modal-box" style="max-width:520px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+      <div class="modal-title">Order Details</div>
+      <button class="modal-close" onclick="closeOrderModal()">✕ Close</button>
+    </div>
+    <div id="order-detail-body"></div>
+  </div>
+</div>
+
+<!-- ========= ADD SLIDE MODAL ========= -->
+<div id="slide-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9000;align-items:center;justify-content:center;">
+  <div class="modal-box">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+      <div class="modal-title">Add Banner Slide</div>
+      <button class="modal-close" onclick="document.getElementById('slide-modal').style.display='none'">✕</button>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="form-group"><label>Label (e.g. NEW ARRIVAL)</label><input id="sl-label" placeholder="NEW ARRIVAL"></div>
+      <div class="form-group"><label>Title</label><input id="sl-title" placeholder="DS-7616NXI-K2/16P"></div>
+      <div class="form-group"><label>Subtitle</label><input id="sl-sub" placeholder="16ch PoE 4K AcuSense NVR"></div>
+      <div class="form-group"><label>Price</label><input id="sl-price" placeholder="1,020 SR"></div>
+      <div class="form-group"><label>Background Color</label><input id="sl-bg" value="linear-gradient(135deg,#003d7a,#001e3d)"></div>
+      <button class="tb-btn" onclick="saveSlide()">Save Slide</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========= TOAST ========= -->
+<div id="toast"></div>
+
+<script>
+// ========= DATA =========
+var products = [
+  {id:1, name:'Hikvision DS-7616NI-Q2/16P', cat:'nvr', price:680, oldprice:800, badge:'NEW', stock:5, desc:'16ch PoE 4K NVR, H.265+, AcuSense'},
+  {id:2, name:'Hikvision DS-7208HTHI-K2', cat:'dvr', price:750, oldprice:900, badge:'HOT', stock:8, desc:'8MP Turbo HD DVR, 8-Channel, H.265+'},
+  {id:3, name:'Hikvision DS-2CD2343G2-I', cat:'camera', price:175, oldprice:210, badge:'NEW', stock:20, desc:'4MP AcuSense Fixed Dome, IR 40m'},
+  {id:4, name:'Dahua IPC-HDW2849H-S-IL', cat:'camera', price:160, oldprice:0, badge:'', stock:15, desc:'8MP Full-color Smart Dual Light'},
+  {id:5, name:'4 Camera Hikvision Package', cat:'packages', price:1200, oldprice:1500, badge:'SALE', stock:3, desc:'4x DS-2CD2T23G2 + DS-7604NI'},
+  {id:6, name:'Hikvision DS-96128NI-I24', cat:'nvr', price:9500, oldprice:0, badge:'', stock:1, desc:'Enterprise 128-Channel NVR'},
+  {id:7, name:'TP-Link TL-SF1024D Switch', cat:'networking', price:140, oldprice:0, badge:'', stock:12, desc:'24-Port 10/100Mbps Desktop Switch'},
+  {id:8, name:'CCTV Cable 100m Roll', cat:'accessories', price:55, oldprice:70, badge:'', stock:50, desc:'RG59 Coaxial Cable 100 Meter'},
+  {id:9, name:'Hikvision DS-2CD2T43G2-4I', cat:'camera', price:195, oldprice:240, badge:'EXPRESS', stock:18, desc:'4MP AcuSense Outdoor Bullet IR 80m'},
+  {id:10, name:'Dahua NVR4108HS-EI', cat:'nvr', price:320, oldprice:380, badge:'NEW', stock:7, desc:'8CH 1U Smart Detection NVR'},
+];
+
+var orders = [
+  {id:'#1044', customer:'Ahmed Al-Rashid', phone:'+966501234567', address:'Al-Nahda District, Hafar Al-Batin', items:'DS-2CD2343G2-I x2', total:350, payment:'STC Pay', status:'Pending', date:'09 Mar 2026'},
+  {id:'#1043', customer:'Mohammed Al-Qahtani', phone:'+966509876543', address:'King Fahd Rd, Hafar Al-Batin', items:'DS-7208HTHI-K2 x1', total:750, payment:'Cash', status:'Delivered', date:'08 Mar 2026'},
+  {id:'#1042', customer:'Khalid Ibrahim', phone:'+966551234567', address:'Al-Rawda, Hafar Al-Batin', items:'4 Cam Package x1', total:1200, payment:'Tabby', status:'Confirmed', date:'07 Mar 2026'},
+  {id:'#1041', customer:'Saad Al-Dosari', phone:'+966556789012', address:'Al-Salam District', items:'DS-7616NI-Q2 x1, Cable x2', total:790, payment:'Bank Transfer', status:'Delivered', date:'06 Mar 2026'},
+  {id:'#1040', customer:'Faisal Al-Harbi', phone:'+966503456789', address:'Al-Aziziyah, Hafar Al-Batin', items:'DS-2CD2T43G2 x4', total:780, payment:'Tamara', status:'Pending', date:'06 Mar 2026'},
+  {id:'#1039', customer:'Omar Bin Saleh', phone:'+966507654321', address:'Industrial Area, Hafar Al-Batin', items:'DS-96128NI-I24 x1', total:9500, payment:'Bank Transfer', status:'Confirmed', date:'05 Mar 2026'},
+  {id:'#1038', customer:'Ali Al-Mutairi', phone:'+966552345678', address:'Al-Faisaliyah, Hafar Al-Batin', items:'DS-2CD2343G2-I x6, Switch x1', total:1190, payment:'STC Pay', status:'Cancelled', date:'04 Mar 2026'},
+];
+
+var customers = [
+  {name:'Ahmed Al-Rashid', phone:'+966501234567', address:'Al-Nahda, Hafar Al-Batin', orders:3, spent:1450, joined:'Jan 2026'},
+  {name:'Mohammed Al-Qahtani', phone:'+966509876543', address:'King Fahd Rd, Hafar Al-Batin', orders:5, spent:3890, joined:'Nov 2025'},
+  {name:'Khalid Ibrahim', phone:'+966551234567', address:'Al-Rawda, Hafar Al-Batin', orders:2, spent:1950, joined:'Feb 2026'},
+  {name:'Saad Al-Dosari', phone:'+966556789012', address:'Al-Salam District', orders:7, spent:6200, joined:'Sep 2025'},
+  {name:'Faisal Al-Harbi', phone:'+966503456789', address:'Al-Aziziyah, Hafar Al-Batin', orders:1, spent:780, joined:'Mar 2026'},
+];
+
+var slides = [
+  {label:'🚀 BEST SELLER', title:'DS-7616NXI-K2/16P', sub:'16ch PoE 4K AcuSense NVR', price:'1,020 SR', bg:'linear-gradient(135deg,#003d7a,#001e3d)'},
+  {label:'💥 SPECIAL OFFER', title:'iDS-7216HUHI-M2', sub:'16-Channel AcuSense 4K DVR', price:'1,100 SR', bg:'linear-gradient(135deg,#4d004d,#260026)'},
+  {label:'🔥 HOT DEAL', title:'DS-2CD2347G2-LU', sub:'4MP ColorVu Night Vision Camera', price:'220 SR', bg:'linear-gradient(135deg,#1a3300,#0a1a00)'},
+];
+
+var editingProductId = null;
+
+// ========= NAVIGATION =========
+function showPage(name, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sb-item').forEach(s => s.classList.remove('active'));
+  var page = document.getElementById('page-' + name);
+  if(page) page.classList.add('active');
+  if(el) el.classList.add('active');
+  var titles = {dashboard:'Dashboard',orders:'Orders',products:'Products',categories:'Categories',slider:'Banner Slider',offers:'Offers',customers:'Customers',analytics:'Analytics',settings:'Settings'};
+  document.getElementById('tb-title').textContent = titles[name] || name;
+  if(name === 'orders') renderOrdersTable();
+  if(name === 'products') renderProductsTable();
+  if(name === 'customers') renderCustomers();
+  if(name === 'slider') renderSlides();
+  if(name === 'analytics') renderTopProducts();
+}
+
+// ========= DASHBOARD =========
+function initDashboard() {
+  // Sales chart
+  var months = ['Sep','Oct','Nov','Dec','Jan','Feb','Mar'];
+  var vals = [28000,35000,42000,38000,51000,44000,48320];
+  var max = Math.max(...vals);
+  var chart = document.getElementById('salesChart');
+  var labels = document.getElementById('chartLabels');
+  chart.innerHTML = '';
+  labels.innerHTML = '';
+  vals.forEach((v,i) => {
+    var bar = document.createElement('div');
+    bar.className = 'chart-bar';
+    bar.style.height = (v/max*100) + '%';
+    bar.title = months[i] + ': ' + v.toLocaleString() + ' SR';
+    chart.appendChild(bar);
+    var lbl = document.createElement('div');
+    lbl.className = 'chart-label';
+    lbl.textContent = months[i];
+    labels.appendChild(lbl);
+  });
+
+  // Recent orders
+  var tbody = document.getElementById('recent-orders-body');
+  tbody.innerHTML = '';
+  orders.slice(0,5).forEach(o => {
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td class="td-price">' + o.id + '</td>' +
+      '<td class="td-name">' + o.customer + '</td>' +
+      '<td style="font-size:12px;color:var(--text2);">' + o.items + '</td>' +
+      '<td class="td-price">' + o.total.toLocaleString() + ' SR</td>' +
+      '<td><span class="badge-status s-' + o.status.toLowerCase() + '">' + o.status + '</span></td>' +
+      '<td style="font-size:11px;color:var(--text2);">' + o.date + '</td>' +
+      '<td><button class="act-btn" onclick="openOrderDetail(' + orders.indexOf(o) + ')">View</button>' +
+      '<button class="act-btn" onclick="whatsappOrder(' + orders.indexOf(o) + ')">💬</button></td>';
+    tbody.appendChild(tr);
+  });
+}
+
+// ========= ORDERS =========
+function renderOrdersTable() {
+  var filter = document.getElementById('order-filter').value;
+  var filtered = filter === 'ALL' ? orders : orders.filter(o => o.status === filter);
+  document.getElementById('orders-count').textContent = filtered.length + ' orders found';
+  var tbody = document.getElementById('orders-body');
+  tbody.innerHTML = '';
+  filtered.forEach((o, i) => {
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td class="td-price">' + o.id + '</td>' +
+      '<td class="td-name">' + o.customer + '</td>' +
+      '<td style="font-size:12px;">' + o.phone + '</td>' +
+      '<td style="font-size:11px;color:var(--text2);max-width:140px;">' + o.address + '</td>' +
+      '<td style="font-size:12px;">' + o.items + '</td>' +
+      '<td class="td-price">' + o.total.toLocaleString() + ' SR</td>' +
+      '<td style="font-size:12px;">' + o.payment + '</td>' +
+      '<td><span class="badge-status s-' + o.status.toLowerCase() + '">' + o.status + '</span></td>' +
+      '<td style="font-size:11px;color:var(--text2);">' + o.date + '</td>' +
+      '<td>' +
+        '<button class="act-btn" onclick="openOrderDetail(' + orders.indexOf(o) + ')">📋</button>' +
+        '<button class="act-btn" onclick="whatsappOrder(' + orders.indexOf(o) + ')">💬</button>' +
+        '<button class="act-btn" onclick="updateOrderStatus(' + orders.indexOf(o) + ')">✏️</button>' +
+      '</td>';
+    tbody.appendChild(tr);
+  });
+}
+
+function openOrderDetail(idx) {
+  var o = orders[idx];
+  var statuses = ['Pending','Confirmed','Delivered','Cancelled'];
+  var body = document.getElementById('order-detail-body');
+  body.innerHTML = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">' +
+    '<div><div style="font-size:10px;color:var(--text2);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">Order ID</div><div style="font-weight:700;color:var(--gold);">' + o.id + '</div></div>' +
+    '<div><div style="font-size:10px;color:var(--text2);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">Date</div><div style="font-weight:600;">' + o.date + '</div></div>' +
+    '<div><div style="font-size:10px;color:var(--text2);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">Customer</div><div style="font-weight:600;">' + o.customer + '</div></div>' +
+    '<div><div style="font-size:10px;color:var(--text2);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">Phone</div><div style="font-weight:600;">' + o.phone + '</div></div>' +
+    '<div style="grid-column:1/-1;"><div style="font-size:10px;color:var(--text2);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">Address</div><div style="font-weight:600;">' + o.address + '</div></div>' +
+    '<div style="grid-column:1/-1;"><div style="font-size:10px;color:var(--text2);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">Items</div><div style="font-weight:600;">' + o.items + '</div></div>' +
+    '<div><div style="font-size:10px;color:var(--text2);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">Payment</div><div style="font-weight:600;">' + o.payment + '</div></div>' +
+    '<div><div style="font-size:10px;color:var(--text2);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">Total</div><div style="font-family:Orbitron,monospace;color:var(--gold);font-size:18px;font-weight:900;">' + o.total.toLocaleString() + ' SR</div></div>' +
+    '</div>' +
+    '<div style="margin-bottom:14px;"><div style="font-size:11px;color:var(--text2);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;">Update Status</div>' +
+    '<div style="display:flex;gap:8px;flex-wrap:wrap;">' +
+    statuses.map(s => '<button class="act-btn ' + (o.status===s?'save':'') + '" onclick="setStatus(' + idx + ',\'' + s + '\')">' + s + '</button>').join('') +
+    '</div></div>' +
+    '<div style="display:flex;gap:10px;">' +
+    '<button class="tb-btn" onclick="whatsappOrder(' + idx + ');closeOrderModal()">💬 WhatsApp Customer</button>' +
+    '</div>';
+  document.getElementById('order-modal-overlay').style.display = 'flex';
+}
+
+function closeOrderModal() {
+  document.getElementById('order-modal-overlay').style.display = 'none';
+}
+
+function setStatus(idx, status) {
+  orders[idx].status = status;
+  renderOrdersTable();
+  openOrderDetail(idx);
+  showToast('✅ Status updated to ' + status);
+}
+
+function updateOrderStatus(idx) {
+  openOrderDetail(idx);
+}
+
+function whatsappOrder(idx) {
+  var o = orders[idx];
+  var msg = encodeURIComponent('مرحباً ' + o.customer + '،\nشكراً لطلبكم من AirTech One!\nرقم الطلب: ' + o.id + '\nالمنتجات: ' + o.items + '\nالإجمالي: ' + o.total + ' SR\nالحالة: ' + o.status + '\n\nللاستفسار: +966 557 978 781');
+  window.open('https://wa.me/' + o.phone.replace(/\D/g,'') + '?text=' + msg, '_blank');
+}
+
+function exportOrders() {
+  var csv = 'Order ID,Customer,Phone,Address,Items,Total,Payment,Status,Date\n';
+  orders.forEach(o => {
+    csv += [o.id,o.customer,o.phone,'"'+o.address+'"','"'+o.items+'"',o.total,o.payment,o.status,o.date].join(',') + '\n';
+  });
+  var blob = new Blob([csv], {type:'text/csv'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'airtech-orders.csv';
+  a.click();
+  showToast('✅ Orders exported as CSV!');
+}
+
+// ========= PRODUCTS =========
+function renderProductsTable() {
+  var filter = document.getElementById('prod-filter').value;
+  var filtered = filter === 'ALL' ? products : products.filter(p => p.cat === filter);
+  document.getElementById('products-count').textContent = filtered.length + ' products';
+  var tbody = document.getElementById('products-body');
+  tbody.innerHTML = '';
+  filtered.forEach((p, i) => {
+    var tr = document.createElement('tr');
+    var catClasses = {nvr:'cat-nvr',dvr:'cat-dvr',camera:'cat-camera',packages:'cat-packages',accessories:'cat-accessories',networking:'cat-networking'};
+    tr.innerHTML = '<td style="color:var(--text2);font-size:12px;">' + (i+1) + '</td>' +
+      '<td class="td-name">' + p.name + '</td>' +
+      '<td><span class="td-cat ' + (catClasses[p.cat]||'') + '">' + p.cat.toUpperCase() + '</span></td>' +
+      '<td class="td-price">' + p.price.toLocaleString() + ' SR</td>' +
+      '<td style="font-size:12px;color:var(--text2);text-decoration:line-through;">' + (p.oldprice ? p.oldprice + ' SR' : '—') + '</td>' +
+      '<td>' + (p.badge ? '<span class="badge-status s-confirmed" style="font-size:10px;">' + p.badge + '</span>' : '—') + '</td>' +
+      '<td><span style="color:' + (p.stock < 3 ? 'var(--red)' : p.stock < 8 ? 'var(--gold)' : 'var(--green)') + ';font-weight:700;font-size:13px;">' + p.stock + '</span></td>' +
+      '<td>' +
+        '<button class="act-btn" onclick="openEditProduct(' + products.indexOf(p) + ')">✏️ Edit</button>' +
+        '<button class="act-btn del" onclick="deleteProduct(' + products.indexOf(p) + ')">🗑</button>' +
+      '</td>';
+    tbody.appendChild(tr);
+  });
+}
+
+function openAddProduct() {
+  editingProductId = null;
+  document.getElementById('modal-title').textContent = 'Add New Product';
+  document.getElementById('f-name').value = '';
+  document.getElementById('f-desc').value = '';
+  document.getElementById('f-cat').value = 'nvr';
+  document.getElementById('f-badge').value = '';
+  document.getElementById('f-price').value = '';
+  document.getElementById('f-oldprice').value = '';
+  document.getElementById('f-stock').value = '10';
+  document.getElementById('f-img').value = '';
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+function openEditProduct(idx) {
+  var p = products[idx];
+  editingProductId = idx;
+  document.getElementById('modal-title').textContent = 'Edit Product';
+  document.getElementById('f-name').value = p.name;
+  document.getElementById('f-desc').value = p.desc || '';
+  document.getElementById('f-cat').value = p.cat;
+  document.getElementById('f-badge').value = p.badge || '';
+  document.getElementById('f-price').value = p.price;
+  document.getElementById('f-oldprice').value = p.oldprice || '';
+  document.getElementById('f-stock').value = p.stock;
+  document.getElementById('f-img').value = p.img || '';
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+function saveProduct() {
+  var name = document.getElementById('f-name').value.trim();
+  var price = parseInt(document.getElementById('f-price').value);
+  if(!name || !price) { showToast('⚠️ Name and price are required!'); return; }
+  var prod = {
+    name: name,
+    desc: document.getElementById('f-desc').value,
+    cat: document.getElementById('f-cat').value,
+    badge: document.getElementById('f-badge').value,
+    price: price,
+    oldprice: parseInt(document.getElementById('f-oldprice').value) || 0,
+    stock: parseInt(document.getElementById('f-stock').value) || 10,
+    img: document.getElementById('f-img').value,
+  };
+  if(editingProductId !== null) {
+    prod.id = products[editingProductId].id;
+    products[editingProductId] = prod;
+    showToast('✅ Product updated!');
+  } else {
+    prod.id = products.length + 1;
+    products.push(prod);
+    showToast('✅ Product added!');
+  }
+  closeModal();
+  renderProductsTable();
+  document.getElementById('stat-products').textContent = products.length;
+}
+
+function deleteProduct(idx) {
+  if(confirm('Delete "' + products[idx].name + '"?')) {
+    products.splice(idx, 1);
+    renderProductsTable();
+    showToast('🗑 Product deleted');
+    document.getElementById('stat-products').textContent = products.length;
+  }
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+}
+
+// ========= CUSTOMERS =========
+function renderCustomers() {
+  var tbody = document.getElementById('customers-body');
+  tbody.innerHTML = '';
+  customers.forEach((c, i) => {
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td style="color:var(--text2);">' + (i+1) + '</td>' +
+      '<td class="td-name">' + c.name + '</td>' +
+      '<td style="font-size:12px;">' + c.phone + '</td>' +
+      '<td style="font-size:11px;color:var(--text2);">' + c.address + '</td>' +
+      '<td style="color:var(--blue);font-weight:700;">' + c.orders + '</td>' +
+      '<td class="td-price">' + c.spent.toLocaleString() + ' SR</td>' +
+      '<td style="font-size:11px;color:var(--text2);">' + c.joined + '</td>';
+    tbody.appendChild(tr);
+  });
+}
+
+// ========= SLIDES =========
+function renderSlides() {
+  var list = document.getElementById('slides-list');
+  list.innerHTML = '';
+  slides.forEach((s, i) => {
+    var div = document.createElement('div');
+    div.style.cssText = 'background:' + s.bg + ';border-radius:12px;padding:20px 24px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;border:1px solid var(--border);';
+    div.innerHTML = '<div>' +
+      '<div style="font-size:10px;font-weight:800;color:var(--gold);margin-bottom:4px;">' + s.label + '</div>' +
+      '<div style="font-family:Orbitron,monospace;font-size:16px;font-weight:700;color:#fff;">' + s.title + '</div>' +
+      '<div style="font-size:12px;color:rgba(255,255,255,0.6);">' + s.sub + '</div>' +
+      '<div style="font-size:22px;font-weight:900;color:var(--gold);margin-top:4px;">' + s.price + '</div>' +
+      '</div>' +
+      '<div style="display:flex;gap:8px;">' +
+      '<button class="act-btn" onclick="editSlide(' + i + ')">✏️ Edit</button>' +
+      '<button class="act-btn del" onclick="deleteSlide(' + i + ')">🗑</button>' +
+      '</div>';
+    list.appendChild(div);
+  });
+}
+
+function openAddSlide() {
+  document.getElementById('sl-label').value = '';
+  document.getElementById('sl-title').value = '';
+  document.getElementById('sl-sub').value = '';
+  document.getElementById('sl-price').value = '';
+  document.getElementById('sl-bg').value = 'linear-gradient(135deg,#003d7a,#001e3d)';
+  document.getElementById('slide-modal').style.display = 'flex';
+}
+
+function saveSlide() {
+  slides.push({
+    label: document.getElementById('sl-label').value || '🆕 NEW',
+    title: document.getElementById('sl-title').value,
+    sub: document.getElementById('sl-sub').value,
+    price: document.getElementById('sl-price').value,
+    bg: document.getElementById('sl-bg').value,
+  });
+  document.getElementById('slide-modal').style.display = 'none';
+  renderSlides();
+  showToast('✅ Slide added!');
+}
+
+function deleteSlide(i) {
+  if(confirm('Delete this slide?')) {
+    slides.splice(i,1);
+    renderSlides();
+    showToast('🗑 Slide removed');
+  }
+}
+
+function editSlide(i) {
+  var s = slides[i];
+  document.getElementById('sl-label').value = s.label;
+  document.getElementById('sl-title').value = s.title;
+  document.getElementById('sl-sub').value = s.sub;
+  document.getElementById('sl-price').value = s.price;
+  document.getElementById('sl-bg').value = s.bg;
+  document.getElementById('slide-modal').style.display = 'flex';
+}
+
+// ========= ANALYTICS =========
+function renderTopProducts() {
+  var topProds = [
+    {name:'Hikvision DS-2CD2343G2-I', sales:38},
+    {name:'4 Camera Package', sales:31},
+    {name:'DS-7208HTHI-K2 DVR', sales:24},
+    {name:'DS-7616NI-Q2/16P NVR', sales:19},
+    {name:'Dahua IPC-HDW2849H', sales:15},
+  ];
+  var max = Math.max(...topProds.map(p => p.sales));
+  var container = document.getElementById('top-products-bars');
+  container.innerHTML = '';
+  topProds.forEach(p => {
+    var pct = (p.sales / max * 100).toFixed(0);
+    var row = document.createElement('div');
+    row.style.cssText = 'display:flex;align-items:center;gap:12px;margin-bottom:14px;';
+    row.innerHTML = '<div style="font-size:12px;color:var(--text);width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + p.name + '</div>' +
+      '<div style="flex:1;background:var(--dark3);border-radius:4px;height:10px;overflow:hidden;">' +
+        '<div style="width:' + pct + '%;background:linear-gradient(90deg,var(--gold),var(--gold2));height:100%;border-radius:4px;"></div>' +
+      '</div>' +
+      '<div style="font-size:12px;font-weight:700;color:var(--gold);width:40px;text-align:right;">' + p.sales + '</div>';
+    container.appendChild(row);
+  });
+}
+
+// ========= TOAST =========
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.display = 'block';
+  setTimeout(() => { t.style.display = 'none'; }, 3000);
+}
+
+// ========= RESPONSIVE SIDEBAR =========
+function toggleSidebar() {
+  var sb = document.getElementById('admin-sidebar');
+  sb.classList.toggle('open');
+  var bg = document.getElementById('admin-overlay-bg');
+  if(bg) bg.style.display = sb.classList.contains('open') ? 'block' : 'none';
+}
+
+// ========= INIT =========
+window.onload = function() {
+  initDashboard();
+  renderProductsTable();
+  // Mobile: adjust topbar
+  function fixLayout() {
+    var tb = document.getElementById('admin-topbar');
+    var mn = document.getElementById('admin-main');
+    if(!tb || !mn) return;
+    if(window.innerWidth <= 768) {
+      tb.style.left = '0';
+      mn.style.marginLeft = '0';
+    } else {
+      tb.style.left = '240px';
+      mn.style.marginLeft = '240px';
+    }
+  }
+  fixLayout();
+  window.addEventListener('resize', fixLayout);
+};
+</script>
+</body>
+</html>
