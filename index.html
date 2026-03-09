@@ -1,756 +1,206 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- ===== SEO: Title & Description ===== -->
-<title>AirTech One | كاميرات مراقبة هايكفيجن داهوا - حفر الباطن السعودية | CCTV Hikvision Dahua Hafar Al-Batin</title>
-<meta name="description" content="AirTech One - #1 CCTV & Security Camera Store in Hafar Al-Batin, Saudi Arabia. Best prices on Hikvision, Dahua NVR, DVR, IP Cameras. Free delivery above 500 SR. Tabby & Tamara available. Call: +966 557 978 781">
-<meta name="keywords" content="CCTV Hafar Al-Batin, كاميرات مراقبة حفر الباطن, Hikvision Saudi Arabia, Dahua Saudi Arabia, NVR DVR Saudi Arabia, security cameras Hafar Al-Batin, كاميرات هايكفيجن, كاميرات داهوا, نظام مراقبة, AirTech One, airtech.one, CCTV Saudi Arabia, IP cameras Saudi Arabia, كاميرات مراقبة السعودية, حفر الباطن, هايكفيجن, داهوا">
-<meta name="author" content="AirTech One">
-<meta name="robots" content="index, follow">
-<meta name="language" content="Arabic, English">
-<meta name="geo.region" content="SA-04">
-<meta name="geo.placename" content="Hafar Al-Batin, Saudi Arabia">
-<meta name="geo.position" content="28.3310;45.9637">
-<meta name="ICBM" content="28.3310, 45.9637">
-
-<!-- ===== Open Graph (WhatsApp, Facebook, Twitter sharing) ===== -->
-<meta property="og:title" content="AirTech One | CCTV Cameras Hafar Al-Batin - كاميرات مراقبة حفر الباطن">
-<meta property="og:description" content="Best CCTV & Security Cameras in Hafar Al-Batin. Hikvision, Dahua NVR DVR. Free delivery above 500 SR. كاميرات هايكفيجن وداهوا - توصيل مجاني فوق 500 ريال">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://www.airtech.one">
-<meta property="og:site_name" content="AirTech One">
-<meta property="og:locale" content="ar_SA">
-
-<!-- ===== Google Business Schema ===== -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ElectronicsStore",
-  "name": "AirTech One",
-  "description": "Premium CCTV and Security Camera Store in Hafar Al-Batin, Saudi Arabia. Hikvision, Dahua NVR, DVR, IP Cameras.",
-  "url": "https://www.airtech.one",
-  "telephone": "+966557978781",
-  "email": "admin@airtech.one",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "King Abdulaziz Road",
-    "addressLocality": "Hafar Al-Batin",
-    "addressRegion": "Eastern Province",
-    "postalCode": "39996",
-    "addressCountry": "SA"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 28.3310,
-    "longitude": 45.9637
-  },
-  "openingHours": "Mo-Su 08:00-22:00",
-  "priceRange": "$$",
-  "currenciesAccepted": "SAR",
-  "paymentAccepted": "Cash, Credit Card, Tabby, Tamara, STC Pay",
-  "areaServed": "Saudi Arabia",
-  "sameAs": [
-    "https://wa.me/966557978781"
-  ]
-}
-</script>
-
-<link rel="manifest" href="manifest.json">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="style-mobile-web-app-title" content="AirTech One">
-<meta name="theme-color" content="#f5a623">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Syne:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --cyan: #f5a623;
-    --pink: #e08800;
-    --dark: #1a0e00;
-    --dark2: #221200;
-    --dark3: #2a1800;
-    --text: #f5e6c8;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: linear-gradient(135deg, #1a0e00 0%, #2d1a00 30%, #1a0e00 60%, #0d0800 100%);
-    color: var(--text);
-    font-family: 'Space Grotesk', 'Rajdhani', sans-serif;
-    overflow-x: hidden; padding-bottom: 70px;
-  }
-
-  /* NAVBAR */
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 24px;
-    background: linear-gradient(160deg, #ffb347 0%, #f5a623 40%, #e8820c 100%);
-    border-bottom: none;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    overflow: hidden;
-  }
-
-  .logo {
-    font-family: 'Orbitron', monospace;
-    font-size: 54px;
-    font-weight: 900;
-    letter-spacing: 3px;
-    white-space: nowrap;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    filter: none;
-  }
-  .logo span:first-child {
-    background: linear-gradient(135deg, #7a3500, #5a2500, #3a1500);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .logo span:last-child {
-    background: linear-gradient(135deg, #ffffff, #ffe0a0, #fff8e0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .cart-btn {
-    background: var(--cyan);
-    color: #000;
-    border: none;
-    padding: 10px 20px;
-    font-family: 'Space Grotesk', 'Rajdhani', sans-serif;
-    font-weight: 700;
-    font-size: 15px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-    letter-spacing: 1px;
-    transition: background 0.2s;
-  }
-  .cart-btn:hover { background: #e08800; }
-  .cart-count {
-    background: #22c55e;
-    color: #fff;
-    border-radius: 50%;
-    width: 22px;
-    height: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: 900;
-  }
-
-  /* HERO - Noon Style */
-  .hero {
-    background: linear-gradient(160deg, #ffb347 0%, #f5a623 30%, #e8820c 65%, #d4620a 100%);
-    padding: 60px 24px 80px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  /* Sky glow */
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -60px; left: 50%;
-    transform: translateX(-50%);
-    width: 700px; height: 400px;
-    background: radial-gradient(ellipse, rgba(255,220,100,0.45) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  /* Clouds */
-  .hero-cloud {
-    position: absolute;
-    background: rgba(255,255,255,0.22);
-    border-radius: 50px;
-    pointer-events: none;
-  }
-  .hero-cloud::before, .hero-cloud::after {
-    content: '';
-    position: absolute;
-    background: rgba(255,255,255,0.22);
-    border-radius: 50%;
-  }
-  .hero-cloud.c1 { width:160px;height:40px;top:18%;left:-20px;animation:cloudDrift 18s linear infinite; }
-  .hero-cloud.c1::before { width:70px;height:55px;top:-28px;left:20px; }
-  .hero-cloud.c1::after  { width:50px;height:45px;top:-20px;left:70px; }
-  .hero-cloud.c2 { width:120px;height:30px;top:40%;right:-10px;animation:cloudDrift2 22s linear infinite; }
-  .hero-cloud.c2::before { width:55px;height:45px;top:-22px;left:15px; }
-  .hero-cloud.c2::after  { width:40px;height:35px;top:-16px;left:55px; }
-  .hero-cloud.c3 { width:100px;height:25px;bottom:20%;left:10%;animation:cloudDrift 28s linear infinite 5s; }
-  .hero-cloud.c3::before { width:45px;height:38px;top:-18px;left:12px; }
-  .hero-cloud.c3::after  { width:35px;height:30px;top:-13px;left:45px; }
-
-  @keyframes cloudDrift  { from{transform:translateX(0)} to{transform:translateX(110vw)} }
-  @keyframes cloudDrift2 { from{transform:translateX(0)} to{transform:translateX(-110vw)} }
-
-  /* Lanterns */
-  .hero-lantern {
-    position: absolute;
-    font-size: 52px;
-    pointer-events: none;
-    filter: drop-shadow(0 0 10px rgba(255,180,0,0.6));
-    animation: lanternSway 4s ease-in-out infinite;
-    transform-origin: top center;
-    z-index: 0;
-    opacity: 0.75;
-  }
-  .hero-lantern.l1 { top: 0; right: 10%; animation-delay: 0s; font-size: 36px; }
-  .hero-lantern.l2 { top: 0; left: 5%;  animation-delay: 1.2s; font-size: 30px; }
-  .hero-lantern.l3 { top: 0; right: 38%; animation-delay: 0.6s; font-size: 24px; opacity:0.5; }
-
-  @keyframes lanternSway {
-    0%,100% { transform: rotate(-8deg); }
-    50%      { transform: rotate(8deg);  }
-  }
-
-  /* Adjust text colors for light background */
-  .hero .hero-title .line1 { color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,0.25); }
-  .hero .hero-title .line2 { color: #1a0900; text-shadow: 0 2px 8px rgba(255,200,80,0.4); }
-  .hero .hero-subtitle     { color: rgba(255,255,255,0.85); }
-  .hero .btn-secondary     { border-color: #fff; color: #fff; }
-  .hero .btn-secondary:hover { background: rgba(255,255,255,0.2); }
-  .hero-title {
-    font-family: 'Orbitron', monospace;
-    font-size: clamp(32px, 8vw, 64px);
-    font-weight: 900;
-    line-height: 1.1;
-    margin-bottom: 16px;
-  }
-  .hero-title .line1 { color: var(--cyan); }
-  .hero-title .line2 { color: #fff; }
-  .hero-subtitle {
-    font-size: 16px;
-    font-family: 'Space Grotesk', sans-serif;
-    color: rgba(255,255,255,0.55);
-    margin-bottom: 36px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    font-weight: 300;
-  }
-  .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-
-  .btn-primary {
-    background: var(--cyan);
-    color: #000;
-    border: none;
-    padding: 14px 36px;
-    font-family: 'Orbitron', monospace;
-    font-weight: 700;
-    font-size: 14px;
-    cursor: pointer;
-    letter-spacing: 2px;
-    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
-    transition: all 0.2s;
-    text-transform: uppercase;
-  }
-  .btn-primary:hover { background: #fff; transform: translateY(-2px); }
-
-  .btn-secondary {
-    background: transparent;
-    color: var(--cyan);
-    border: 1px solid var(--cyan);
-    padding: 14px 36px;
-    font-family: 'Orbitron', monospace;
-    font-weight: 700;
-    font-size: 14px;
-    cursor: pointer;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    transition: all 0.2s;
-  }
-  .btn-secondary:hover { background: rgba(245,166,35,0.15); transform: translateY(-2px); }
-
-  /* STATS - ULTRA STYLE */
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    padding: 32px 20px;
-    background: linear-gradient(160deg, #1a0e00 0%, #0d0800 100%);
-    border-top: 1px solid rgba(245,166,35,0.15);
-    border-bottom: 1px solid rgba(245,166,35,0.15);
-    position: relative;
-    overflow: hidden;
-  }
-  .stats::before {
-    content: '';
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 300px; height: 300px;
-    background: radial-gradient(ellipse, rgba(245,166,35,0.07) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .stat-item {
-    text-align: center;
-    background: linear-gradient(135deg, rgba(42,24,0,0.9) 0%, rgba(34,18,0,0.9) 100%);
-    border: 1px solid rgba(245,166,35,0.18);
-    border-radius: 18px;
-    padding: 24px 16px 20px;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: default;
-  }
-  .stat-item:hover {
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 12px 40px rgba(245,166,35,0.25);
-    border-color: rgba(245,166,35,0.5);
-  }
-  .stat-item::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #f5a623, transparent);
-    opacity: 0.7;
-  }
-  .stat-item::after {
-    content: '';
-    position: absolute;
-    bottom: -30px; right: -30px;
-    width: 80px; height: 80px;
-    background: radial-gradient(circle, rgba(245,166,35,0.1) 0%, transparent 70%);
-    border-radius: 50%;
-  }
-  .stat-icon {
-    font-size: 28px;
-    margin-bottom: 10px;
-    display: block;
-    filter: drop-shadow(0 0 8px rgba(245,166,35,0.5));
-  }
-  .stat-num {
-    font-family: 'Orbitron', monospace;
-    font-size: 38px;
-    font-weight: 900;
-    color: #f5a623;
-    line-height: 1;
-    text-shadow: 0 0 20px rgba(245,166,35,0.4);
-    letter-spacing: -1px;
-  }
-  .stat-label {
-    font-size: 10px;
-    font-family: 'Space Grotesk', sans-serif;
-    letter-spacing: 2.5px;
-    color: rgba(245,230,200,0.5);
-    text-transform: uppercase;
-    margin-top: 8px;
-    font-weight: 600;
-  }
-  @keyframes statPulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(245,166,35,0); }
-    50% { box-shadow: 0 0 0 6px rgba(245,166,35,0.08); }
-  }
-  .stat-item { animation: statPulse 3s ease-in-out infinite; }
-  .stat-item:nth-child(2) { animation-delay: 0.75s; }
-  .stat-item:nth-child(3) { animation-delay: 1.5s; }
-  .stat-item:nth-child(4) { animation-delay: 2.25s; }
-
-  /* SECTION HEADER */
-  .section-tag {
-    font-size: 12px;
-    letter-spacing: 4px;
-    color: var(--cyan);
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-  .section-tag::before { content: '// '; }
-  .section-title {
-    font-family: 'Orbitron', monospace;
-    font-size: clamp(28px, 6vw, 48px);
-    font-weight: 900;
-    color: #fff;
-    text-transform: uppercase;
-    margin-bottom: 40px;
-  }
-
-  /* PRODUCTS */
-  .products-section {
-    padding: 60px 24px;
-    background: var(--dark);
-  }
-  .products-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  @media(min-width:600px) {
-    .products-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  }
-  @media(min-width:900px) {
-    .products-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
-  }
-  .product-card {
-    background: var(--dark2);
-    border: 1px solid rgba(245,166,35,0.15);
-    border-radius: 12px;
-    padding: 0;
-    overflow: hidden;
-    transition: all 0.3s;
-    cursor: pointer;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-  }
-  .product-card:hover {
-    border-color: var(--cyan);
-    transform: translateY(-4px);
-    box-shadow: 0 8px 32px rgba(245,166,35,0.2);
-  }
-  .product-img {
-    width: 100%;
-    height: 160px;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom: 2px solid rgba(245,166,35,0.2);
-    padding: 0;
-    overflow: hidden;
-    flex-shrink: 0;
-  }
-  .product-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-    background: #fff;
-    padding: 8px;
-  }
-  .product-info {
-    padding: 14px 16px 16px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-  .product-name {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 5px;
-    letter-spacing: 0.3px;
-    line-height: 1.4;
-  }
-  .product-desc {
-    font-size: 11px;
-    font-family: 'Space Grotesk', sans-serif;
-    color: rgba(255,255,255,0.45);
-    margin-bottom: 10px;
-    line-height: 1.5;
-    flex: 1;
-  }
-  .product-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: auto;
-    gap: 6px;
-    flex-wrap: wrap;
-    overflow: hidden;
-  }
-  .product-price {
-    font-family: 'Orbitron', monospace;
-    font-size: 14px;
-    font-weight: 900;
-    color: var(--cyan);
-    white-space: nowrap;
-  }
-  .add-btn {
-    background: #f5a623;
-    color: #000;
-    border: none;
-    padding: 9px 0;
-    border-radius: 6px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: 11px;
-    cursor: pointer;
-    letter-spacing: 0.5px;
-    transition: background 0.2s;
-    white-space: nowrap;
-    width: 100%;
-    text-align: center;
-  }
-  .add-btn:hover { background: #e08800; }
-
-  /* NOON-STYLE PRODUCT ENHANCEMENTS */
-  .wish-btn {
-    position:absolute; top:10px; left:10px;
-    width:32px; height:32px; background:rgba(0,0,0,0.5);
-    border-radius:50%; display:flex; align-items:center; justify-content:center;
-    font-size:16px; cursor:pointer; z-index:5; border:none;
-    transition:all 0.2s; backdrop-filter:blur(4px);
-  }
-  .wish-btn:hover { background:rgba(245,166,35,0.3); transform:scale(1.1); }
-  .wish-btn.wishlisted { background:rgba(255,60,60,0.3); }
-  .prod-rating {
-    display:flex; align-items:center; gap:4px;
-    margin-bottom:8px;
-  }
-  .stars { color:#f5a623; font-size:12px; letter-spacing:-1px; }
-  .rating-count { font-size:11px; color:rgba(255,255,255,0.4); }
-  .express-tag {
-    background:#f5a623; color:#000; font-size:9px; font-weight:800;
-    padding:2px 7px; border-radius:3px; letter-spacing:0.5px;
-    display:inline-block; margin-bottom:4px;
-  }
-  .free-del-tag {
-    font-size:11px; color:#4ade80; font-weight:600;
-    display:flex; align-items:center; gap:3px; margin-bottom:6px;
-  }
-  .discount-pct {
-    background:#ff3b30; color:#fff; font-size:10px; font-weight:800;
-    padding:3px 7px; border-radius:4px; display:inline-block; margin-left:8px;
-  }
-  .old-price {
-    font-size:13px; color:rgba(255,255,255,0.35);
-    text-decoration:line-through; font-weight:400;
-  }
-  /* Product Detail Modal */
-  #prod-modal {
-    display:none; position:fixed; inset:0;
-    background:rgba(0,0,0,0.85); z-index:9000;
-    align-items:flex-end; justify-content:center;
-  }
-  #prod-modal.open { display:flex; }
-  .prod-modal-box {
-    background:#1a0e00; border-radius:24px 24px 0 0;
-    width:100%; max-width:520px; max-height:85vh;
-    overflow-y:auto; padding:20px; padding-bottom:40px;
-    animation:slideUpModal 0.3s ease;
-  }
-  @keyframes slideUpModal { from{transform:translateY(100%)} to{transform:translateY(0)} }
-  /* Recently Viewed */
-  .recently-section { background:#0d0800; padding:0 16px 16px; }
-  .recently-scroll { display:flex; gap:10px; overflow-x:auto; scrollbar-width:none; padding-bottom:4px; }
-  .recently-card {
-    min-width:110px; background:#221200; border-radius:12px;
-    padding:10px; flex-shrink:0; cursor:pointer;
-    border:1px solid rgba(245,166,35,0.15); text-align:center;
-  }
-  .recently-card:hover { border-color:#f5a623; }
-
-  /* FREE DELIVERY PROGRESS BAR IN CART */
-  .delivery-progress-wrap {
-    background:#221200; border-radius:12px; padding:14px 16px; margin:12px 0;
-    border:1px solid rgba(245,166,35,0.15);
-  }
-  .delivery-progress-bar {
-    background:rgba(245,166,35,0.2); border-radius:20px;
-    height:8px; overflow:hidden; margin-top:8px;
-  }
-  .delivery-progress-fill {
-    height:100%; background:linear-gradient(90deg,#f5a623,#e08800);
-    border-radius:20px; transition:width 0.5s ease;
-  }
-  .badge {
-    position: absolute;
-    top: 12px; right: 12px;
-    background: #f5a623;
-    color: #000;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    padding: 4px 10px;
-    text-transform: uppercase;
-  }
-
-  /* CONTACT */
-  .contact-section {
-    padding: 60px 24px;
-    background: var(--dark2);
-    border-top: 1px solid rgba(245,166,35,0.2);
-  }
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    max-width: 900px;
-  }
-  @media(max-width: 600px) { .contact-grid { grid-template-columns: 1fr; } }
-  .contact-info p {
-    font-size: 15px;
-    color: rgba(255,255,255,0.5);
-    line-height: 1.8;
-    margin-bottom: 24px;
-  }
-  .contact-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
-    font-size: 14px;
-    color: rgba(255,255,255,0.6);
-  }
-  .contact-icon {
-    width: 36px; height: 36px;
-    background: rgba(245,166,35,0.1);
-    border: 1px solid rgba(245,166,35,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    flex-shrink: 0;
-  }
-  .contact-form { display: flex; flex-direction: column; gap: 14px; }
-  .contact-form input,
-  .contact-form textarea {
-    background: var(--dark3);
-    border: 1px solid rgba(245,166,35,0.2);
-    color: #fff;
-    padding: 12px 16px;
-    font-family: 'Space Grotesk', 'Rajdhani', sans-serif;
-    font-size: 14px;
-    outline: none;
-    transition: border-color 0.2s;
-    resize: none;
-  }
-  .contact-form input:focus,
-  .contact-form textarea:focus {
-    border-color: var(--cyan);
-  }
-  .contact-form input::placeholder,
-  .contact-form textarea::placeholder { color: rgba(255,255,255,0.25); }
-  .submit-btn {
-    background: var(--cyan);
-    color: #000;
-    border: none;
-    padding: 14px;
-    font-family: 'Orbitron', monospace;
-    font-weight: 700;
-    font-size: 13px;
-    cursor: pointer;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    transition: background 0.2s;
-  }
-  .submit-btn:hover { background: #e08800; }
-
-  /* CHAT BUBBLE */
-  .chat-bubble {
-    position: fixed;
-    bottom: 24px; right: 24px;
-    width: 54px; height: 54px;
-    background: #22c55e;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    cursor: pointer;
-    box-shadow: 0 4px 20px rgba(34,197,94,0.4);
-    z-index: 999;
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%,100% { box-shadow: 0 4px 20px rgba(34,197,94,0.4); }
-    50% { box-shadow: 0 4px 32px rgba(34,197,94,0.8); }
-  }
-
-  /* FOOTER */
-  footer {
-    background: #0d0800;
-    padding: 24px;
-    text-align: center;
-    font-size: 13px;
-    color: rgba(245,166,35,0.4);
-    letter-spacing: 2px;
-    border-top: 1px solid rgba(245,166,35,0.1);
-  }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .hero-title { animation: fadeUp 0.8s ease both; }
-  .hero-subtitle { animation: fadeUp 0.8s 0.2s ease both; }
-  .hero-btns { animation: fadeUp 0.8s 0.4s ease both; }
-</style>
-</head>
-<body>
-
-<!-- TOP BAR -->
-<div style="background:#0d0800;border-bottom:1px solid rgba(245,166,35,0.15);padding:0;overflow:hidden;">
-  <div id="topbar-scroll" style="display:flex;white-space:nowrap;animation:topbarScroll 18s linear infinite;">
-    <span style="display:inline-block;padding:11px 20px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:rgba(245,166,35,0.9);letter-spacing:0.5px;">👋 Welcome to AirTech One! &nbsp;|&nbsp; 🇸🇦 Free Delivery Above 500 SR &nbsp;|&nbsp; 💳 Tabby & Tamara Available &nbsp;|&nbsp; 📞 +966 557 978 781 &nbsp;|&nbsp; 🛡️ Warranty on All Products &nbsp;|&nbsp; 🚚 COD Available &nbsp;|&nbsp; 👋 Welcome to AirTech One! &nbsp;|&nbsp; 🇸🇦 Free Delivery Above 500 SR &nbsp;|&nbsp; 💳 Tabby & Tamara Available &nbsp;|&nbsp; 📞 +966 557 978 781 &nbsp;|&nbsp; 🛡️ Warranty on All Products &nbsp;|&nbsp; 🚚 COD Available</span>
+<!-- ===== CUSTOMER LOGIN / REGISTER MODAL ===== -->
+<div id="auth-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 10000; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
+  <div style="background: linear-gradient(135deg, #1a0e00 0%, #2d1a00 100%); border: 2px solid #f5a623; border-radius: 24px; width: 90%; max-width: 420px; padding: 28px 20px; position: relative; box-shadow: 0 20px 60px rgba(245,166,35,0.3);">
+    
+    <!-- Close button -->
+    <div onclick="closeAuthModal()" style="position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 20px; color: #f5a623;">✕</div>
+    
+    <!-- Logo inside modal -->
+    <div style="text-align: center; margin-bottom: 24px;">
+      <div style="font-family: 'Orbitron', monospace; font-size: 28px; font-weight: 900; letter-spacing: 2px;">
+        <span style="background: linear-gradient(135deg, #7a3500, #5a2500); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Air</span><span style="background: linear-gradient(135deg, #ffffff, #ffe0a0); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Tech</span>
+      </div>
+      <div style="font-family: 'Space Grotesk', sans-serif; font-size: 12px; color: rgba(245,166,35,0.7); letter-spacing: 2px;">CUSTOMER PORTAL</div>
+    </div>
+    
+    <!-- Tab buttons -->
+    <div style="display: flex; gap: 8px; margin-bottom: 28px;">
+      <button id="login-tab-btn" onclick="switchAuthTab('login')" style="flex: 1; background: #f5a623; color: #000; border: none; padding: 12px; font-family: 'Orbitron', monospace; font-weight: 700; font-size: 14px; cursor: pointer; border-radius: 8px; letter-spacing: 1px;">LOGIN</button>
+      <button id="register-tab-btn" onclick="switchAuthTab('register')" style="flex: 1; background: transparent; color: #f5a623; border: 2px solid #f5a623; padding: 12px; font-family: 'Orbitron', monospace; font-weight: 700; font-size: 14px; cursor: pointer; border-radius: 8px; letter-spacing: 1px;">REGISTER</button>
+    </div>
+    
+    <!-- Login Form -->
+    <div id="login-form" style="display: block;">
+      <div style="margin-bottom: 20px;">
+        <div style="font-family: 'Space Grotesk', sans-serif; font-size: 12px; color: rgba(245,166,35,0.7); margin-bottom: 6px;">EMAIL</div>
+        <input type="email" id="login-email" placeholder="your@email.com" style="width: 100%; background: #221200; border: 1px solid rgba(245,166,35,0.3); color: #fff; padding: 14px; font-family: 'Space Grotesk', sans-serif; border-radius: 8px; outline: none; font-size: 14px;">
+      </div>
+      <div style="margin-bottom: 24px;">
+        <div style="font-family: 'Space Grotesk', sans-serif; font-size: 12px; color: rgba(245,166,35,0.7); margin-bottom: 6px;">PASSWORD</div>
+        <input type="password" id="login-password" placeholder="••••••••" style="width: 100%; background: #221200; border: 1px solid rgba(245,166,35,0.3); color: #fff; padding: 14px; font-family: 'Space Grotesk', sans-serif; border-radius: 8px; outline: none; font-size: 14px;">
+      </div>
+      <button onclick="doLogin()" style="width: 100%; background: #f5a623; color: #000; border: none; padding: 16px; font-family: 'Orbitron', monospace; font-weight: 700; font-size: 14px; cursor: pointer; border-radius: 8px; letter-spacing: 1px; margin-bottom: 16px;">LOGIN</button>
+      <div style="text-align: center; font-family: 'Space Grotesk', sans-serif; font-size: 12px; color: rgba(255,255,255,0.3);">
+        Don't have an account? <span onclick="switchAuthTab('register')" style="color: #f5a623; cursor: pointer; text-decoration: underline;">Register</span>
+      </div>
+    </div>
+    
+    <!-- Register Form -->
+    <div id="register-form" style="display: none;">
+      <div style="margin-bottom: 16px;">
+        <div style="font-family: 'Space Grotesk', sans-serif; font-size: 12px; color: rgba(245,166,35,0.7); margin-bottom: 6px;">FULL NAME</div>
+        <input type="text" id="reg-name" placeholder="John Doe" style="width: 100%; background: #221200; border: 1px solid rgba(245,166,35,0.3); color: #fff; padding: 14px; font-family: 'Space Grotesk', sans-serif; border-radius: 8px; outline: none; font-size: 14px;">
+      </div>
+      <div style="margin-bottom: 16px;">
+        <div style="font-family: 'Space Grotesk', sans-serif; font-size: 12px; color: rgba(245,166,35,0.7); margin-bottom: 6px;">EMAIL</div>
+        <input type="email" id="reg-email" placeholder="your@email.com" style="width: 100%; background: #221200; border: 1px solid rgba(245,166,35,0.3); color: #fff; padding: 14px; font-family: 'Space Grotesk', sans-serif; border-radius: 8px; outline: none; font-size: 14px;">
+      </div>
+      <div style="margin-bottom: 16px;">
+        <div style="font-family: 'Space Grotesk', sans-serif; font-size: 12px; color: rgba(245,166,35,0.7); margin-bottom: 6px;">PHONE</div>
+        <input type="tel" id="reg-phone" placeholder="+966 5X XXX XXXX" style="width: 100%; background: #221200; border: 1px solid rgba(245,166,35,0.3); color: #fff; padding: 14px; font-family: 'Space Grotesk', sans-serif; border-radius: 8px; outline: none; font-size: 14px;">
+      </div>
+      <div style="margin-bottom: 16px;">
+        <div style="font-family: 'Space Grotesk', sans-serif; font-size: 12px; color: rgba(245,166,35,0.7); margin-bottom: 6px;">PASSWORD</div>
+        <input type="password" id="reg-password" placeholder="••••••••" style="width: 100%; background: #221200; border: 1px solid rgba(245,166,35,0.3); color: #fff; padding: 14px; font-family: 'Space Grotesk', sans-serif; border-radius: 8px; outline: none; font-size: 14px;">
+      </div>
+      <div style="margin-bottom: 24px;">
+        <div style="font-family: 'Space Grotesk', sans-serif; font-size: 12px; color: rgba(245,166,35,0.7); margin-bottom: 6px;">CONFIRM PASSWORD</div>
+        <input type="password" id="reg-confirm" placeholder="••••••••" style="width: 100%; background: #221200; border: 1px solid rgba(245,166,35,0.3); color: #fff; padding: 14px; font-family: 'Space Grotesk', sans-serif; border-radius: 8px; outline: none; font-size: 14px;">
+      </div>
+      <button onclick="doRegister()" style="width: 100%; background: #f5a623; color: #000; border: none; padding: 16px; font-family: 'Orbitron', monospace; font-weight: 700; font-size: 14px; cursor: pointer; border-radius: 8px; letter-spacing: 1px; margin-bottom: 16px;">CREATE ACCOUNT</button>
+      <div style="text-align: center; font-family: 'Space Grotesk', sans-serif; font-size: 12px; color: rgba(255,255,255,0.3);">
+        Already have an account? <span onclick="switchAuthTab('login')" style="color: #f5a623; cursor: pointer; text-decoration: underline;">Login</span>
+      </div>
+    </div>
   </div>
 </div>
-<style>
-@keyframes topbarScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-</style>
 
-<!-- NOON STYLE TOP BOXES -->
-<div style="position:relative;overflow:hidden;padding:8px 10px 12px;background:linear-gradient(160deg,#f5a030 0%,#e8820a 35%,#c96800 65%,#f0a020 100%);">
+<!-- ===== CUSTOMER LOGIN FUNCTIONS ===== -->
+<script>
+// User database in localStorage
+if (!localStorage.getItem('users')) {
+  localStorage.setItem('users', JSON.stringify([]));
+}
 
-  <!-- Animated background: floating particles & glow -->
-  <div style="position:absolute;inset:0;pointer-events:none;">
-    <!-- Big soft glow center -->
-    <div style="position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:300px;height:200px;background:radial-gradient(ellipse,rgba(255,220,100,0.35),transparent 70%);"></div>
-    <!-- Stars -->
-    <div style="position:absolute;top:10px;left:18%;width:3px;height:3px;background:#fff;border-radius:50%;animation:twk 2s infinite;opacity:0.8;"></div>
-    <div style="position:absolute;top:16px;left:50%;width:2px;height:2px;background:#fff;border-radius:50%;animation:twk 2.8s 0.4s infinite;opacity:0.7;"></div>
-    <div style="position:absolute;top:8px;right:22%;width:3px;height:3px;background:#ffe066;border-radius:50%;animation:twk 1.9s 0.9s infinite;opacity:0.9;"></div>
-    <div style="position:absolute;top:22px;left:70%;width:2px;height:2px;background:#fff;border-radius:50%;animation:twk 3s 0.2s infinite;opacity:0.6;"></div>
-    <div style="position:absolute;top:5px;left:38%;width:2px;height:2px;background:#ffe066;border-radius:50%;animation:twk 2.3s 1.1s infinite;opacity:0.8;"></div>
-    <!-- Crescent moon top center -->
-    <div style="position:absolute;top:4px;left:50%;transform:translateX(-50%);animation:mglow 3s ease-in-out infinite;">
-      <svg width="22" height="22" viewBox="0 0 30 30"><path d="M20,5 Q8,8 8,15 Q8,22 20,25 Q10,24 10,15 Q10,6 20,5Z" fill="rgba(255,240,150,0.9)"/></svg>
-    </div>
-    <!-- Lantern left swinging -->
-    <div style="position:absolute;top:0;left:6px;animation:swng 4s ease-in-out infinite;transform-origin:top center;">
-      <svg width="22" height="48" viewBox="0 0 28 55">
-        <line x1="14" y1="0" x2="14" y2="8" stroke="rgba(255,220,100,0.8)" stroke-width="1.5"/>
-        <polygon points="14,8 21,14 21,37 14,43 7,37 7,14" fill="rgba(255,200,50,0.25)" stroke="rgba(255,220,100,0.8)" stroke-width="1.5"/>
-        <line x1="7" y1="21" x2="21" y2="21" stroke="rgba(255,220,100,0.6)" stroke-width="1"/>
-        <line x1="7" y1="30" x2="21" y2="30" stroke="rgba(255,220,100,0.6)" stroke-width="1"/>
-        <ellipse cx="14" cy="26" rx="4" ry="4" fill="rgba(255,220,80,0.5)"/>
-        <line x1="11" y1="43" x2="17" y2="43" stroke="rgba(255,220,100,0.8)" stroke-width="1.2"/>
-        <line x1="14" y1="43" x2="14" y2="50" stroke="rgba(255,220,100,0.8)" stroke-width="1.2"/>
-      </svg>
-    </div>
-    <!-- Lantern right -->
-    <div style="position:absolute;top:0;right:6px;animation:swng 3.5s 0.7s ease-in-out infinite;transform-origin:top center;">
-      <svg width="22" height="44" viewBox="0 0 28 55">
-        <line x1="14" y1="0" x2="14" y2="8" stroke="rgba(255,200,80,0.8)" stroke-width="1.5"/>
-        <polygon points="14,8 21,14 21,37 14,43 7,37 7,14" fill="rgba(255,180,30,0.2)" stroke="rgba(255,200,80,0.8)" stroke-width="1.5"/>
-        <line x1="7" y1="21" x2="21" y2="21" stroke="rgba(255,200,80,0.6)" stroke-width="1"/>
-        <line x1="7" y1="30" x2="21" y2="30" stroke="rgba(255,200,80,0.6)" stroke-width="1"/>
-        <ellipse cx="14" cy="26" rx="4" ry="4" fill="rgba(255,200,60,0.4)"/>
-        <line x1="11" y1="43" x2="17" y2="43" stroke="rgba(255,200,80,0.8)" stroke-width="1.2"/>
-        <line x1="14" y1="43" x2="14" y2="50" stroke="rgba(255,200,80,0.8)" stroke-width="1.2"/>
-      </svg>
-    </div>
-  </div>
+// Current logged in user
+let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
 
-  <!-- 3 BOXES exactly like Noon -->
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;position:relative;z-index:2;margin-top:8px;max-width:280px;margin-left:auto;margin-right:auto;">
+function openAuthModal(tab) {
+  document.getElementById('auth-modal').style.display = 'flex';
+  switchAuthTab(tab);
+}
 
-    <!-- Box 1: Hikvision -->
-    <a href="#products" style="text-decoration:none;">
-      <div style="background:#fff;border-radius:10px;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px;box-shadow:0 2px 8px rgba(0,0,0,0.2);overflow:hidden;">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABDgAAAP0CAYAAABPnYzOAAABMmlDQ1BJQ0MgUHJvZmlsZQAAeJx9kD9Lw0AYxn+Wgn+og+jokLGLUhW6qEsVi05SI1id0jRJhbaGJKUIbn4BP4Tg7ChCZwcFQXAUP4I4uMYnCZIu9T3eu98993B37wuFGRTFCvT6UdCo14yT5qkx/cmURhqWHfpMDrl+3jPv28o/vkkx23ZCW+uXsh3ocV1pipe8jDsJtzK+SngY+ZH4JuHAbOyIb8Vlb4xbY2z7QeJ/Fm/1ugM7/zclp398pHVPucwu54T4dLG4xOCQDc117XoMiMRDOSI6opCGTmoik0COvhQXR0zSv+yJ6w/YHsVx/JhrByO4r8LcQ66VN2GhBE8vuZb31LcCK5WKyoLrwvcdzDdh8VX3nP01ckJtRlpbnQsNT7U5Uvb1X5tV0ToV1qj+AiCUTfu+YhZyAAEAAElEQVR4nOz9Z5cjR7Imfj7mHgBSZ5Zikd1strx37syePfv9v8ac3Zn/Fd2XbKoiS6QWAMLd9oW5e3gEAplZipUgn1+f6lQQgRAg3NzcTFRVQURERERERES0wdyn3gAiIiIiIiIioveFwI0bN27cuHHjxo0bN27cuHHLfQMA4P+zAdy4cePGjRs3bty4cePGjRu33+MG/g8AHY5wLw4k7DQAAAAASUVORK5CYII=" style="width:90%;height:70%;object-fit:contain;">
-        <div style="font-family:'Rajdhani',sans-serif;font-size:8px;font-weight:700;color:#333;margin-top:4px;text-align:center;letter-spacing:1px;">HIKVISION</div>
-      </div>
-    </a>
+function closeAuthModal() {
+  document.getElementById('auth-modal').style.display = 'none';
+}
 
-    <!-- Box 2: Dahua -->
-    <a href="#products" style="text-decoration:none;">
-      <div style="background:#fff;border-radius:10px;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px;box-shadow:0 2px 8px rgba(0,0,0,0.2);overflow:hidden;">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEsCAYAAAB5fY51AAAqwklEQVR4nO3debwkZX3v8c8sMAswDNMMzNJQBdUsKoFBEQFBwQU1yFXjepW4xIVc43LdTeI1GONCTDQaJXrjEoPKJdHEBVGQTTZR9n3rhu6hWWagYZiV2c65f3yfntOcOV1dXdV95qDf9+t1XsqcPt3V3VW/epbf83vAzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMz
+function switchAuthTab(tab) {
+  if (tab === 'login') {
+    document.getElementById('login-form').style.display = 'block';
+    document.getElementById('register-form').style.display = 'none';
+    document.getElementById('login-tab-btn').style.background = '#f5a623';
+    document.getElementById('login-tab-btn').style.color = '#000';
+    document.getElementById('register-tab-btn').style.background = 'transparent';
+    document.getElementById('register-tab-btn').style.color = '#f5a623';
+  } else {
+    document.getElementById('login-form').style.display = 'none';
+    document.getElementById('register-form').style.display = 'block';
+    document.getElementById('login-tab-btn').style.background = 'transparent';
+    document.getElementById('login-tab-btn').style.color = '#f5a623';
+    document.getElementById('register-tab-btn').style.background = '#f5a623';
+    document.getElementById('register-tab-btn').style.color = '#000';
+  }
+}
+
+function doRegister() {
+  let name = document.getElementById('reg-name').value.trim();
+  let email = document.getElementById('reg-email').value.trim();
+  let phone = document.getElementById('reg-phone').value.trim();
+  let pass = document.getElementById('reg-password').value;
+  let confirm = document.getElementById('reg-confirm').value;
+  
+  if (!name || !email || !phone || !pass || !confirm) {
+    alert('Please fill in all fields');
+    return;
+  }
+  
+  if (pass !== confirm) {
+    alert('Passwords do not match');
+    return;
+  }
+  
+  if (pass.length < 6) {
+    alert('Password must be at least 6 characters');
+    return;
+  }
+  
+  let users = JSON.parse(localStorage.getItem('users'));
+  
+  if (users.find(u => u.email === email)) {
+    alert('Email already registered');
+    return;
+  }
+  
+  let newUser = {
+    id: Date.now(),
+    name: name,
+    email: email,
+    phone: phone,
+    password: pass // In real app, hash this!
+  };
+  
+  users.push(newUser);
+  localStorage.setItem('users', JSON.stringify(users));
+  
+  // Auto login
+  localStorage.setItem('currentUser', JSON.stringify(newUser));
+  currentUser = newUser;
+  
+  closeAuthModal();
+  updateAuthUI();
+  
+  alert('Registration successful! Welcome ' + name);
+}
+
+function doLogin() {
+  let email = document.getElementById('login-email').value.trim();
+  let pass = document.getElementById('login-password').value;
+  
+  if (!email || !pass) {
+    alert('Please enter email and password');
+    return;
+  }
+  
+  let users = JSON.parse(localStorage.getItem('users'));
+  let user = users.find(u => u.email === email && u.password === pass);
+  
+  if (!user) {
+    alert('Invalid email or password');
+    return;
+  }
+  
+  localStorage.setItem('currentUser', JSON.stringify(user));
+  currentUser = user;
+  
+  closeAuthModal();
+  updateAuthUI();
+  
+  alert('Welcome back, ' + user.name + '!');
+}
+
+function doLogout() {
+  localStorage.removeItem('currentUser');
+  currentUser = null;
+  updateAuthUI();
+}
+
+function updateAuthUI() {
+  let loggedOutDiv = document.getElementById('auth-logged-out');
+  let loggedInDiv = document.getElementById('auth-logged-in');
+  let userNameSpan = document.getElementById('auth-user-name');
+  let avatar = document.getElementById('auth-avatar');
+  
+  if (currentUser) {
+    loggedOutDiv.style.display = 'none';
+    loggedInDiv.style.display = 'flex';
+    userNameSpan.textContent = currentUser.name.split(' ')[0];
+    avatar.textContent = currentUser.name.charAt(0).toUpperCase();
+  } else {
+    loggedOutDiv.style.display = 'flex';
+    loggedInDiv.style.display = 'none';
+  }
+}
+
+// Initialize UI on page load
+updateAuthUI();
+</script>
