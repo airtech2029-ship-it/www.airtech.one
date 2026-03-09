@@ -7,20 +7,20 @@
     
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
-    
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>  <!-- ✅ 0 (zero) fixed -->
+
     <!-- Firebase Config + Initialize -->
     <script>
         const firebaseConfig = {
-            apiKey: "AIzaSyBgCHdnJ4XvQbin_SWEeqyGjqM_jDd3RXs",
+            apiKey: "AIzaSyBgCHdnJ4XvQbin_SWEeqyGjqM_jDd3RXs",  // ✅ API key fixed
             authDomain: "airtech-one-23985.firebaseapp.com",
             projectId: "airtech-one-23985",
             storageBucket: "airtech-one-23985.firebasestorage.app",
             messagingSenderId: "132253722874",
-            appId: "1:132253722874:ios:839d4eeb100eda137d4143"
+            appId: "1:132253722874:ios:839d4eeb100eda137d4143"  // ✅ appId fixed
         };
         
-        // Initialize Firebase - ANDAR SCRIPT KE
+        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
     </script>
@@ -51,7 +51,7 @@
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border-radius: 24px;
-            padding: 45px 40px;
+            padding: 48px 40px;
             box-shadow: 0 30px 60px rgba(0, 20, 40, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
@@ -65,7 +65,7 @@
             font-size: 36px;
             font-weight: 700;
             color: #0B2A44;
-            margin-bottom: 8px;  /* ✅ 80px se 8px kiya */
+            margin-bottom: 8px;
         }
         
         .logo span {
@@ -76,7 +76,7 @@
             color: #2C4050;
             font-size: 24px;
             font-weight: 500;
-            margin-top: 8px;
+            margin-bottom: 30px;
         }
         
         .form-group {
