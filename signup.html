@@ -1,6 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
+<head><!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | AirTech.One</title>
+    
+    <!-- 🔥 FIREBASE ADD KAREIN - Head section mein -->
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
+    
+    <!-- Firebase Config -->
+    <script>
+        // Aapka Firebase Config (same as login page)
+        const firebaseConfig = {
+            apiKey: "AIzaSyBgCHdnJ4XvQbin_SWEeqyGjqM_jDd3RXs",
+            authDomain: "airtech-one-23985.firebaseapp.com",
+            projectId: "airtech-one-23985",
+            storageBucket: "airtech-one-23985.firebasestorage.app",
+            messagingSenderId: "132253722874",
+            appId: "1:132253722874:ios:839d4eeb100eda137d4143"
+        };
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0B2A4A 0%, #1B4A6B 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 440px;
+        }
+        .panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 45px 40px;
+            box-shadow: 0 30px 60px rgba(0, 20, 40, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .panel-heading {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 600;
+            color: #0B2A4A;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+        .form-control:focus {
+            border-color: #0B2A4A;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(11, 42, 74, 0.1);
+        }
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #0B2A4A, #1B4A6B);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(11, 42, 74, 0.2);
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 25px;
+            color: #666;
+        }
+        .login-link a {
+            color: #0B2A4A;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        .error-message {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="panel">
+            <div class="panel-heading">Create Account</div>
+            <div class="panel-body">
+                
+                <!-- 🔥 SIGNUP FORM - YEH ADD KAREIN -->
+                <form onsubmit="handleSignup(event)">
+                    <!-- Email Field -->
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" class="form-control" id="email" 
+                               placeholder="Enter your email" required>
+                    </div>
+                    
+                    <!-- Password Field -->
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" 
+                               placeholder="Create a password" required>
+                        <small style="color: #666;">Minimum 6 characters</small>
+                    </div>
+                    
+                    <!-- Confirm Password Field -->
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmPassword" 
+                               placeholder="Re-enter your password" required>
+                        <div id="passwordError" class="error-message">Passwords do not match</div>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn">Sign Up</button>
+                    
+                    <!-- Login Link -->
+                    <div class="login-link">
+                        Already have an account? <a href="login.html">Login here</a>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+    
+    <!-- 🔥 JAVASCRIPT - FORM KE BAAD ADD KAREIN -->
+    <script>
+        function handleSignup(event) {
+            event.preventDefault();
+            
+            // Get values
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const errorDiv = document.getElementById('passwordError');
+            
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                errorDiv.style.display = 'block';
+                return;
+            } else {
+                errorDiv.style.display = 'none';
+            }
+            
+            // Check password length
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long');
+                return;
+            }
+            
+            // Firebase signup
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Signup successful
+                    alert('Account created successfully! Please login.');
+                    window.location.href = 'login.html';
+                })
+                .catch((error) => {
+                    // Handle errors
+                    let errorMessage = '';
+                    switch(error.code) {
+                        case 'auth/email-already-in-use':
+                            errorMessage = 'Email already registered. Please login.';
+                            break;
+                        case 'auth/invalid-email':
+                            errorMessage = 'Invalid email address';
+                            break;
+                        case 'auth/weak-password':
+                            errorMessage = 'Password should be at least 6 characters';
+                            break;
+                        default:
+                            errorMessage = error.message;
+                    }
+                    alert('Error: ' + errorMessage);
+                });
+        }
+    </script>
+    
+</body>
+</html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Customer Signup | AirTech.One</title>
