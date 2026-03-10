@@ -5,18 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AirTech One - Register</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-        body { min-height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; padding: 20px; }
-        .container { background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); width: 100%; max-width: 450px; padding: 40px; }
-        h2 { color: #333; font-size: 28px; margin-bottom: 30px; text-align: center; }
-        form { display: flex; flex-direction: column; }
-        label { margin-bottom: 5px; color: #555; font-weight: 500; }
-        input { width: 100%; padding: 12px 15px; margin-bottom: 20px; border-radius: 10px; border: 2px solid #e0e0e0; font-size: 16px; }
-        input:focus { outline: none; border-color: #667eea; }
-        button { width: 100%; padding: 14px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer; margin-bottom: 15px; }
-        button:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4); }
-        .google-btn { background: white; color: #444; border: 2px solid #e0e0e0; }
-        .error-message { background: #fee; color: #c33; padding: 10px; border-radius: 8px; margin-bottom: 20px; display: none; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { background: #4158D0; background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .container { background: white; padding: 40px; border-radius: 20px; width: 100%; max-width: 400px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        h2 { text-align: center; color: #333; margin-bottom: 30px; }
+        input { width: 100%; padding: 12px; margin: 10px 0 20px; border: 2px solid #ddd; border-radius: 8px; }
+        button { width: 100%; padding: 14px; background: #667eea; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin: 10px 0; }
+        .google-btn { background: white; color: #444; border: 2px solid #ddd; }
+        .error-message { background: #ffebee; color: #c62828; padding: 10px; border-radius: 8px; margin-bottom: 20px; display: none; }
         .success-message { background: #e8f5e8; color: #2e7d32; padding: 10px; border-radius: 8px; margin-bottom: 20px; display: none; }
     </style>
 </head>
@@ -27,17 +23,17 @@
         <div id="successMessage" class="success-message"></div>
         
         <form id="registerForm">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" placeholder="Full name" required>
+            <label>Name:</label>
+            <input type="text" id="name" placeholder="Full name" required>
             
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Email address" required>
+            <label>Email:</label>
+            <input type="email" id="email" placeholder="Email address" required>
             
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Password (min 6 characters)" required minlength="6">
+            <label>Password:</label>
+            <input type="password" id="password" placeholder="Password (min 6 chars)" required minlength="6">
             
-            <label for="confirm_password">Confirm Password:</label>
-            <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm password" required>
+            <label>Confirm Password:</label>
+            <input type="password" id="confirm_password" placeholder="Confirm password" required>
             
             <button type="submit" id="registerBtn">Register</button>
         </form>
@@ -58,12 +54,8 @@
         appId: "1:132253722874:web:34fe348d24fec8757d4143"
     };
 
-    try {
-        firebase.initializeApp(firebaseConfig);
-        console.log("✅ Firebase initialized");
-    } catch (error) {
-        console.error("❌ Firebase error:", error);
-    }
+    firebase.initializeApp(firebaseConfig);
+    console.log("Firebase OK");
 
     const registerForm = document.getElementById('registerForm');
     const googleBtn = document.getElementById('googleLoginBtn');
@@ -71,76 +63,41 @@
     const successDiv = document.getElementById('successMessage');
     const registerBtn = document.getElementById('registerBtn');
 
-    function showError(msg) {
-        errorDiv.style.display = 'block';
-        errorDiv.textContent = msg;
-        successDiv.style.display = 'none';
-    }
-
-    function showSuccess(msg) {
-        successDiv.style.display = 'block';
-        successDiv.textContent = msg;
-        errorDiv.style.display = 'none';
-    }
-
     registerForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
-        const confirmPassword = document.getElementById('confirm_password').value;
+        const confirm = document.getElementById('confirm_password').value;
 
-        if (!name || !email || !password || !confirmPassword) {
-            showError("All fields required!");
+        if(password !== confirm) {
+            errorDiv.style.display = 'block';
+            errorDiv.textContent = "Passwords don't match!";
             return;
         }
-
-        if (password !== confirmPassword) {
-            showError("Passwords don't match!");
-            return;
-        }
-
-        if (password.length < 6) {
-            showError("Password min 6 chars!");
-            return;
-        }
-
-        registerBtn.disabled = true;
-        registerBtn.textContent = "Creating...";
 
         try {
-            const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
-            await userCredential.user.updateProfile({ displayName: name });
-            showSuccess("✅ Welcome " + name);
-            registerForm.reset();
+            const user = await firebase.auth().createUserWithEmailAndPassword(email, password);
+            await user.user.updateProfile({ displayName: name });
+            successDiv.style.display = 'block';
+            successDiv.textContent = "✅ Welcome " + name;
+            errorDiv.style.display = 'none';
         } catch (error) {
-            let msg = "Failed: ";
-            switch(error.code) {
-                case 'auth/email-already-in-use': msg += "Email already registered"; break;
-                case 'auth/weak-password': msg += "Password too weak"; break;
-                default: msg += error.message;
-            }
-            showError(msg);
-        } finally {
-            registerBtn.disabled = false;
-            registerBtn.textContent = "Register";
+            errorDiv.style.display = 'block';
+            errorDiv.textContent = error.message;
         }
     });
 
     googleBtn.addEventListener('click', async () => {
         try {
-            const provider = new firebase.auth.GoogleAuthProvider();
-            await firebase.auth().signInWithPopup(provider);
-            showSuccess("✅ Google login successful!");
+            await firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider());
+            successDiv.style.display = 'block';
+            successDiv.textContent = "✅ Google login successful!";
+            errorDiv.style.display = 'none';
         } catch (error) {
-            let msg = "Google failed: ";
-            if (error.code === 'auth/popup-closed-by-user') {
-                msg = "Login cancelled";
-            } else {
-                msg += error.message;
-            }
-            showError(msg);
+            errorDiv.style.display = 'block';
+            errorDiv.textContent = error.message;
         }
     });
     </script>
