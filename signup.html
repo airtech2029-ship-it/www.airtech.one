@@ -129,8 +129,8 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" placeholder="Enter password (min 6 chars)" required minlength="6">
 
-            <label for="confirm-password">Confirm Password:</label>
-            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm password" required>
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm password" required>
 
             <button type="submit" id="registerBtn">Register</button>
         </form>
@@ -143,9 +143,9 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 
     <script>
-        // 🔥 FIREBASE CONFIGURATION
+        // Firebase config
         const firebaseConfig = {
-            apiKey: "AIzaSyCjzr_7pP_yuBOiowOpGNRdDO",
+            apiKey: "AIzaSyCjzr_7pP_yuBoiowOpGNRdDO",
             authDomain: "airtech-one-23985.firebaseapp.com",
             projectId: "airtech-one-23985",
             storageBucket: "airtech-one-23985.firebaseio.app",
@@ -155,6 +155,7 @@
 
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
 
         // Get elements
         const registerForm = document.getElementById('registerForm');
@@ -182,24 +183,34 @@
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirm-password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
 
+            // Check if passwords match
             if (password !== confirmPassword) {
                 showError("Passwords don't match!");
                 return;
             }
 
+            // Disable button
             registerBtn.disabled = true;
             registerBtn.textContent = "Creating Account...";
 
             try {
-                const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
-                await userCredential.user.updateProfile({ displayName: name });
+                // Create user
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
                 
+                // Update profile with name
+                await userCredential.user.updateProfile({
+                    displayName: name
+                });
+
                 showSuccess("Registration successful! Welcome " + name);
                 registerForm.reset();
+                
             } catch (error) {
+                console.log(error);
                 let msg = "Registration failed: ";
+                
                 switch(error.code) {
                     case 'auth/email-already-in-use':
                         msg += "Email already registered";
@@ -207,11 +218,15 @@
                     case 'auth/weak-password':
                         msg += "Password too weak (min 6 chars)";
                         break;
+                    case 'auth/invalid-email':
+                        msg += "Invalid email address";
+                        break;
                     default:
                         msg += error.message;
                 }
                 showError(msg);
             } finally {
+                // Re-enable button
                 registerBtn.disabled = false;
                 registerBtn.textContent = "Register";
             }
@@ -221,13 +236,13 @@
         googleBtn.addEventListener('click', async () => {
             try {
                 const provider = new firebase.auth.GoogleAuthProvider();
-                await firebase.auth().signInWithPopup(provider);
+                await auth.signInWithPopup(provider);
                 showSuccess("Google login successful!");
             } catch (error) {
+                console.log(error);
                 showError("Google login failed: " + error.message);
             }
         });
     </script>
 </body>
 </html>
-```
