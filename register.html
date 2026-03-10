@@ -143,12 +143,12 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 
     <script>
-        // 🔥 FIREBASE CONFIGURATION - DIRECTLY FROM YOUR FIREBASE CONSOLE
+        // FIREBASE CONFIGURATION - EXACT FROM YOUR CONSOLE
         const firebaseConfig = {
             apiKey: "AIzaSyCjz_7pP_yuBOiwOpGNRdDO",
             authDomain: "airtech-one-23985.firebaseapp.com",
             projectId: "airtech-one-23985",
-            storageBucket: "airtech-one-23985.firebaseio.app",
+            storageBucket: "airtech-one-23985.firebasestorage.app",
             messagingSenderId: "132253722874",
             appId: "1:132253722874:web:34fe348d24fec8757d4143",
             measurementId: "G-QW7BV7NFRD"
@@ -158,7 +158,8 @@
         try {
             firebase.initializeApp(firebaseConfig);
             console.log("✅ Firebase initialized successfully!");
-        } catch
+        } catch (error) {
+            console.error("❌ Firebase init error:", error);
         }
 
         // Get elements
@@ -189,7 +190,6 @@
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirm_password').value;
 
-            // Validation
             if (!name || !email || !password) {
                 showError("All fields are required!");
                 return;
@@ -205,19 +205,13 @@
                 return;
             }
 
-            // Disable button
             registerBtn.disabled = true;
             registerBtn.textContent = "Creating Account...";
 
             try {
-                // Create user
                 const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+                await userCredential.user.updateProfile({ displayName: name });
                 
-                // Add display name
-                await userCredential.user.updateProfile({
-                    displayName: name
-                });
-
                 showSuccess("✅ Registration successful! Welcome " + name);
                 registerForm.reset();
                 
@@ -234,9 +228,6 @@
                         break;
                     case 'auth/weak-password':
                         msg += "Password should be at least 6 characters";
-                        break;
-                    case 'auth/network-request-failed':
-                        msg += "Network error. Check your internet connection";
                         break;
                     default:
                         msg += error.message;
