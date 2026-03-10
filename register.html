@@ -1,122 +1,281 @@
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-
-<script>
-    // Firebase CONFIGURATION
-    const firebaseConfig = {
-        apiKey: "AIzaSyCjz_7pP_yuBOiwOpGNRdDO",
-        authDomain: "airtech-one-23985.firebaseapp.com",
-        projectId: "airtech-one-23985",
-        storageBucket: "airtech-one-23985.firebasestorage.app",
-        messagingSenderId: "132253722874",
-        appId: "1:132253722874:web:34fe348d24fec8757d4143",
-        measurementId: "G-QW7BV7NFRD"
-    };
-
-    // Initialize Firebase
-    try {
-        firebase.initializeApp(firebaseConfig);
-        console.log("✅ Firebase initialized successfully!");
-    } catch (error) {
-        console.error("❌ Firebase init error:", error);
-    }
-
-    // Get elements
-    const registerForm = document.getElementById('registerForm');
-    const googleBtn = document.getElementById('googleLoginBtn');
-    const errorDiv = document.getElementById('errorMessage');
-    const successDiv = document.getElementById('successMessage');
-    const registerBtn = document.getElementById('registerBtn');
-
-    function showError(msg) {
-        errorDiv.textContent = msg;
-        errorDiv.classList.add('show');
-        successDiv.classList.remove('show');
-    }
-
-    function showSuccess(msg) {
-        successDiv.textContent = msg;
-        successDiv.classList.add('show');
-        errorDiv.classList.remove('show');
-    }
-
-    // Email/Password Registration
-    registerForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirTech One - Register</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 450px;
+            padding: 40px;
+        }
+        h1 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 15px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+        .google-btn {
+            background: white;
+            color: #444;
+            border: 2px solid #e0e0e0;
+            margin-top: 10px;
+        }
+        .google-btn:hover {
+            background: #f5f5f5;
+            box-shadow: none;
+            transform: none;
+        }
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+        .error-message.show {
+            display: block;
+        }
+        .success-message {
+            background: #e8f5e8;
+            color: #2e7d32;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+        .success-message.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Register</h1>
         
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        const confirmPassword = document.getElementById('confirm_password').value;
+        <!-- Messages -->
+        <div id="errorMessage" class="error-message"></div>
+        <div id="successMessage" class="success-message"></div>
 
-        if (!name || !email || !password) {
-            showError("All fields are required!");
-            return;
-        }
+        <!-- Registration Form -->
+        <form id="registerForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
 
-        if (password !== confirmPassword) {
-            showError("Passwords don't match!");
-            return;
-        }
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
-        if (password.length < 6) {
-            showError("Password must be at least 6 characters!");
-            return;
-        }
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter password (min 6 chars)" required minlength="6">
 
-        registerBtn.disabled = true;
-        registerBtn.textContent = "Creating Account...";
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm password" required>
 
+            <button type="submit" id="registerBtn">Register</button>
+        </form>
+
+        <button class="google-btn" id="googleLoginBtn">Login with Google</button>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+
+    <script>
+        // FIREBASE CONFIGURATION - EXACT FROM YOUR CONSOLE
+        const firebaseConfig = {
+            apiKey: "AIzaSyCjz_7pP_yuBOiwOpGNRdDO",
+            authDomain: "airtech-one-23985.firebaseapp.com",
+            projectId: "airtech-one-23985",
+            storageBucket: "airtech-one-23985.firebasestorage.app",
+            messagingSenderId: "132253722874",
+            appId: "1:132253722874:web:34fe348d24fec8757d4143",
+            measurementId: "G-QW7BV7NFRD"
+        };
+
+        // Initialize Firebase
         try {
-            const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
-            await userCredential.user.updateProfile({ displayName: name });
-            
-            showSuccess("✅ Registration successful! Welcome " + name);
-            registerForm.reset();
-            
+            firebase.initializeApp(firebaseConfig);
+            console.log("✅ Firebase initialized successfully!");
         } catch (error) {
-            console.error("Registration error:", error);
+            console.error("❌ Firebase init error:", error);
+        }
+
+        // Get elements
+        const registerForm = document.getElementById('registerForm');
+        const googleBtn = document.getElementById('googleLoginBtn');
+        const errorDiv = document.getElementById('errorMessage');
+        const successDiv = document.getElementById('successMessage');
+        const registerBtn = document.getElementById('registerBtn');
+
+        function showError(msg) {
+            errorDiv.textContent = msg;
+            errorDiv.classList.add('show');
+            successDiv.classList.remove('show');
+        }
+
+        function showSuccess(msg) {
+            successDiv.textContent = msg;
+            successDiv.classList.add('show');
+            errorDiv.classList.remove('show');
+        }
+
+        // Email/Password Registration
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
             
-            let msg = "Registration failed: ";
-            switch(error.code) {
-                case 'auth/email-already-in-use':
-                    msg += "This email is already registered";
-                    break;
-                case 'auth/invalid-email':
-                    msg += "Invalid email address";
-                    break;
-                case 'auth/weak-password':
-                    msg += "Password should be at least 6 characters";
-                    break;
-                default:
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+
+            // Validation
+            if (!name || !email || !password) {
+                showError("All fields are required!");
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showError("Passwords don't match!");
+                return;
+            }
+
+            if (password.length < 6) {
+                showError("Password must be at least 6 characters!");
+                return;
+            }
+
+            // Disable button
+            registerBtn.disabled = true;
+            registerBtn.textContent = "Creating Account...";
+
+            try {
+                // Create user
+                const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+                
+                // Add display name
+                await userCredential.user.updateProfile({
+                    displayName: name
+                });
+
+                showSuccess("✅ Registration successful! Welcome " + name);
+                registerForm.reset();
+                
+            } catch (error) {
+                console.error("Registration error:", error);
+                
+                let msg = "Registration failed: ";
+                switch(error.code) {
+                    case 'auth/email-already-in-use':
+                        msg += "This email is already registered";
+                        break;
+                    case 'auth/invalid-email':
+                        msg += "Invalid email address";
+                        break;
+                    case 'auth/weak-password':
+                        msg += "Password should be at least 6 characters";
+                        break;
+                    case 'auth/network-request-failed':
+                        msg += "Network error. Check your internet connection";
+                        break;
+                    default:
+                        msg += error.message;
+                }
+                showError(msg);
+            } finally {
+                registerBtn.disabled = false;
+                registerBtn.textContent = "Register";
+            }
+        });
+
+        // Google Sign-In
+        googleBtn.addEventListener('click', async () => {
+            try {
+                const provider = new firebase.auth.GoogleAuthProvider();
+                await firebase.auth().signInWithPopup(provider);
+                showSuccess("✅ Google login successful!");
+            } catch (error) {
+                console.error("Google login error:", error);
+                
+                let msg = "Google login failed: ";
+                if (error.code === 'auth/popup-closed-by-user') {
+                    msg = "Login cancelled. Please try again.";
+                } else if (error.code === 'auth/popup-blocked') {
+                    msg = "Popup blocked. Please allow popups for this site.";
+                } else {
                     msg += error.message;
+                }
+                showError(msg);
             }
-            showError(msg);
-        } finally {
-            registerBtn.disabled = false;
-            registerBtn.textContent = "Register";
-        }
-    });
+        });
 
-    // Google Sign-In
-    googleBtn.addEventListener('click', async () => {
-        try {
-            const provider = new firebase.auth.GoogleAuthProvider();
-            await firebase.auth().signInWithPopup(provider);
-            showSuccess("✅ Google login successful!");
-        } catch (error) {
-            console.error("Google login error:", error);
-            
-            let msg = "Google login failed: ";
-            if (error.code === 'auth/popup-closed-by-user') {
-                msg = "Login cancelled. Please try again.";
-            } else if (error.code === 'auth/popup-blocked') {
-                msg = "Popup blocked. Please allow popups for this site.";
-            } else {
-                msg += error.message;
+        // Check auth state
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                console.log("User logged in:", user.email);
             }
-            showError(msg);
-        }
-    });
-</script>
+        });
+    </script>
+</body>
+</html>
