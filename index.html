@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirTech One | CCTV</title>
+    <style><script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+
+        :root { --gold: #c9a050; --bg: #0b0b0b; --white: #ffffff; }
+        body { background: var(--bg); color: var(--white); font-family: sans-serif; margin: 0; text-align: center; }
+        .nav { padding: 15px; border-bottom: 1px solid #222; display: flex; justify-content: space-between; align-items: center; }
+        .btn-gold { background: var(--gold); border: none; padding: 10px 20px; border-radius: 5px; font-weight: bold; cursor: pointer; color: #000; }
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 9999; }
+        .box { background: #151515; padding: 25px; border: 1px solid var(--gold); border-radius: 12px; width: 85%; max-width: 350px; }
+        input { width: 100%; padding: 12px; margin: 8px 0; background: #222; border: 1px solid #333; color: #fff; border-radius: 6px; box-sizing: border-box; }
+        .error { color: #ff4d4d; font-size: 13px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <div style="color:var(--gold); font-weight:bold; font-size:20px;">AIRTECH ONE</div>
+    <div id="auth-status">
+        <button class="btn-gold" onclick="openModal()">LOGIN / REGISTER</button>
+    </div>
+</nav>
+
+<div id="authModal" class="modal">
+    <div class="box">
+        <h2 id="m-title" style="color:var(--gold)">REGISTER</h2>
+        <div id="m-error" class="error"></div>
+        <input type="text" id="i-name" placeholder="Full Name">
+        <input type="email" id="i-email" placeholder="Email Address">
+        <input type="password" id="i-pass" placeholder="Password (6+ chars)">
+        <button class="btn-gold" style="width:100%; height:45px; margin-top:10px;" onclick="handleSubmit()">SUBMIT</button>
+        <p onclick="toggleUI()" style="color:var(--gold); cursor:pointer; margin-top:15px; font-size:14px;">Switch Login/Register</p>
+        <button onclick="closeModal()" style="background:none; border:none; color:#555; margin-top:10px;">Close</button>
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    // AAPKI REAL FIREBASE CONFIG
+    const firebaseConfig = {
+        apiKey: "AIzaSyCjr_7pP_yuBOIowOpGNRdD0B9yG-865618f089606869400870",
+        authDomain: "airtech-one-23985.firebaseapp.com",
+        projectId: "airtech-one-23985",
+        storageBucket: "airtech-one-23985.firebasestorage.app",
+        messagingSenderId: "132253722874",
+        appId: "1:132253722874:web:34fe348d24fec8757d4143",
+        measurementId: "G-QW7BV7NFRD"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    let isLogin = false;
+
+    window.openModal = () => document.getElementById('authModal').style.display = 'flex';
+    window.closeModal = () => document.getElementById('authModal').style.display = 'none';
+    window.toggleUI = () => {
+        isLogin = !isLogin;
+        document.getElementById('m-title').innerText = isLogin ? "LOGIN" : "REGISTER";
+        document.getElementById('i-name').style.display = isLogin ? "none" : "block";
+    };
+
+    window.handleSubmit = async () => {
+        const e = document.getElementById('i-email').value;
+        const p = document.getElementById('i-pass').value;
+        const n = document.getElementById('i-name').value;
+        const err = document.getElementById('m-error');
+        err.innerText = "";
+        try {
+            if (isLogin) { await signInWithEmailAndPassword(auth, e, p); } 
+            else { 
+                const res = await createUserWithEmailAndPassword(auth, e, p);
+                await updateProfile(res.user, { displayName: n });
+            }
+            alert("Success! System Connected.");
+            closeModal();
+        } catch (error) { err.innerText = error.message.replace("Firebase: ", ""); }
+    };
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) { document.getElementById('auth-status').innerHTML = `<span style="color:var(--gold); font-weight:bold;">Hi, ${user.displayName || 'User'}</span>`; }
+    });
+</script>
+</body>
+</html>
