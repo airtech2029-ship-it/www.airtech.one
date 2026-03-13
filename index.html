@@ -3,147 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AirTech VIP Catalog | Saudi Pro POS</title>
+    <title>AIRTECH ONE | MASTER CATALOG</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background-color: #020617; color: #cbd5e1; font-family: 'Inter', sans-serif; overflow-x: hidden; }
-        .gold-text { color: #fbbf24; }
-        .vip-card { background: linear-gradient(145deg, #0f172a, #020617); border: 1px solid #1e293b; transition: 0.3s; }
-        .vip-card:hover { border-color: #fbbf24; transform: translateY(-5px); }
-        .submenu { display: none; transition: all 0.3s ease; }
-        .submenu.active { display: block; }
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-thumb { background: #fbbf24; border-radius: 10px; }
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Inter:wght@400;900&display=swap');
+        body { background-color: #05070a; color: #ffffff; font-family: 'Inter', sans-serif; }
+        #sidebar { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1000; background: #0a0f1d; }
+        .menu-hidden { transform: translateX(-100%); }
+        .product-card { background: #0f172a; border-radius: 2.5rem; border: 1px solid #1e293b; padding: 25px; transition: 0.3s; }
+        .product-card:hover { border-color: #3b82f6; transform: translateY(-5px); }
+        .title-glow { font-family: 'Orbitron', sans-serif; text-transform: uppercase; letter-spacing: -1px; }
+        /* Brand Themes */
+        .hik-theme { color: #3b82f6; text-shadow: 0 0 10px rgba(59, 130, 246, 0.4); }
+        .dah-theme { color: #f97316; text-shadow: 0 0 10px rgba(249, 115, 22, 0.4); }
+        .sandisk-theme { color: #ef4444; }
+        .storage-theme { color: #a855f7; }
+        .tp-theme { color: #ec4899; }
     </style>
 </head>
 <body>
 
-    <div class="fixed inset-y-0 left-0 w-72 bg-slate-950 border-r border-slate-800 z-50 flex flex-col">
-        <div class="p-6 border-b border-slate-800">
-            <h1 class="text-xl font-black italic tracking-tighter text-blue-500">AIRTECH <span class="gold-text">VIP</span></h1>
-            <p class="text-[10px] text-slate-500 uppercase tracking-widest">Hafar Al Batin Branch</p>
+    <header class="p-5 flex justify-between items-center bg-[#0a0f1d] border-b border-slate-900 sticky top-0 z-50">
+        <button onclick="toggleMenu()" class="p-3 bg-slate-900 rounded-xl border border-slate-800">
+            <i class="fas fa-bars text-blue-500"></i>
+        </button>
+        <div class="text-center italic font-black text-2xl tracking-tighter uppercase">
+            AIRTECH <span class="text-blue-600">ONE</span>
+        </div>
+        <div class="flex gap-2">
+            <button class="text-[10px] bg-slate-900 px-3 py-2 rounded-lg border border-slate-800 text-slate-400 font-bold uppercase">العربية</button>
+        </div>
+    </header>
+
+    <div id="sidebar" class="fixed inset-y-0 left-0 w-80 p-6 menu-hidden shadow-2xl overflow-y-auto border-r border-slate-800">
+        <div class="flex justify-between items-center mb-8 border-b border-slate-800 pb-4">
+            <h2 class="text-blue-500 font-black italic text-xl uppercase tracking-tighter">AIRTECH MENU</h2>
+            <button onclick="toggleMenu()" class="text-slate-500 text-3xl">&times;</button>
         </div>
 
-        <div class="flex-1 overflow-y-auto p-4 space-y-2">
-            <button onclick="toggleAccordion('hik-menu')" class="w-full flex items-center justify-between p-4 bg-slate-900/50 rounded-xl border border-slate-800 hover:border-blue-500 transition">
-                <span class="text-[11px] font-black text-blue-400 uppercase tracking-widest">HIKVISION DS-SERIES</span>
-                <i class="fas fa-chevron-down text-[10px]"></i>
+        <div class="space-y-4">
+            <div class="bg-slate-900/40 p-5 rounded-3xl border border-slate-800">
+                <p class="text-[9px] font-black text-blue-500 uppercase tracking-widest mb-3">Hikvision Solutions</p>
+                <button onclick="render('hik')" class="block w-full text-left py-2 text-sm font-bold text-slate-300">HIKVISION DVR/NVR</button>
+                <button onclick="render('ezviz')" class="block w-full text-left py-2 text-sm font-bold text-blue-400 italic">EZVIZ WI-FI CAMERA</button>
+            </div>
+
+            <div class="bg-slate-900/40 p-5 rounded-3xl border border-slate-800">
+                <p class="text-[9px] font-black text-orange-500 uppercase tracking-widest mb-3">Dahua Technology</p>
+                <button onclick="render('dah')" class="block w-full text-left py-2 text-sm font-bold text-slate-300">DAHUA DVR/NVR</button>
+                <button onclick="render('imou')" class="block w-full text-left py-2 text-sm font-bold text-orange-400 italic uppercase">IMOU WI-FI CAMERA</button>
+            </div>
+
+            <div class="bg-slate-900/40 p-5 rounded-3xl border border-slate-800">
+                <p class="text-[9px] font-black text-purple-500 uppercase tracking-widest mb-3">Storage & Network</p>
+                <button onclick="render('hdd')" class="block w-full text-left py-2 text-sm font-bold text-slate-300">TOSHIBA / WD PURPLE</button>
+                <button onclick="render('sandisk')" class="block w-full text-left py-2 text-sm font-bold text-slate-300 uppercase">SanDisk Memory</button>
+                <button onclick="render('tp')" class="block w-full text-left py-2 text-sm font-bold text-purple-400 italic">TP-LINK ROUTERS</button>
+            </div>
+
+            <button onclick="render('bill')" class="w-full p-5 bg-blue-600/10 rounded-2xl border border-blue-500/20 flex items-center justify-center gap-3 mt-6 hover:bg-blue-600/20 transition">
+                <i class="fas fa-crown text-blue-500"></i>
+                <span class="text-xs font-black text-blue-400 uppercase tracking-widest">BillZest VIP POS</span>
             </button>
-            <div id="hik-menu" class="submenu pl-4 space-y-1">
-                <a href="#" onclick="render('hikNvr')" class="block p-2 text-[10px] font-bold text-slate-400 hover:text-white">• NVR SYSTEM</a>
-                <a href="#" onclick="render('hikDvr')" class="block p-2 text-[10px] font-bold text-slate-400 hover:text-white">• DVR SYSTEM</a>
-                <a href="#" onclick="render('hikIpIn')" class="block p-2 text-[10px] font-bold text-slate-400 hover:text-white">• IP CAMERAS</a>
-                <a href="#" onclick="render('hikAnaIn')" class="block p-2 text-[10px] font-bold text-slate-400 hover:text-white">• ANALOG CAMERAS</a>
-            </div>
-
-            <button onclick="toggleAccordion('dahua-menu')" class="w-full flex items-center justify-between p-4 bg-slate-900/50 rounded-xl border border-slate-800 hover:border-orange-500 transition">
-                <span class="text-[11px] font-black text-orange-400 uppercase tracking-widest">DAHUA WIZSENSE</span>
-                <i class="fas fa-chevron-down text-[10px]"></i>
-            </button>
-            <div id="dahua-menu" class="submenu pl-4 space-y-1">
-                <a href="#" onclick="render('dahuaNvr')" class="block p-2 text-[10px] font-bold text-slate-400 hover:text-white">• NVR MODELS</a>
-                <a href="#" onclick="render('dahuaDvr')" class="block p-2 text-[10px] font-bold text-slate-400 hover:text-white">• XVR MODELS</a>
-            </div>
-
-            <div class="pt-4 pb-2 text-[9px] font-bold text-slate-600 uppercase tracking-[0.2em] px-4">Wireless & Storage</div>
-            <a href="#" onclick="render('ezviz')" class="flex items-center gap-3 p-3 text-[11px] font-bold text-slate-400 hover:bg-slate-900 rounded-lg transition"><i class="fas fa-wifi text-emerald-500 w-4"></i> EZVIZ WIFI</a>
-            <a href="#" onclick="render('imou')" class="flex items-center gap-3 p-3 text-[11px] font-bold text-slate-400 hover:bg-slate-900 rounded-lg transition"><i class="fas fa-video text-orange-400 w-4"></i> IMOU WIFI</a>
-            <a href="#" onclick="render('wdHdd')" class="flex items-center gap-3 p-3 text-[11px] font-bold text-slate-400 hover:bg-slate-900 rounded-lg transition"><i class="fas fa-hdd text-purple-500 w-4"></i> HDD STORE</a>
-            <a href="#" onclick="render('sandisk')" class="flex items-center gap-3 p-3 text-[11px] font-bold text-slate-400 hover:bg-slate-900 rounded-lg transition"><i class="fas fa-sd-card text-red-500 w-4"></i> SANDISK MEMORY</a>
-            <a href="#" onclick="render('tpLink')" class="flex items-center gap-3 p-3 text-[11px] font-bold text-slate-400 hover:bg-slate-900 rounded-lg transition"><i class="fas fa-network-wired text-pink-500 w-4"></i> NETWORK STORE</a>
-
-            <div class="pt-10">
-                <div onclick="render('billzest')" class="flex items-center justify-center gap-2 p-4 bg-yellow-500/10 rounded-2xl border border-yellow-500/30 cursor-pointer group">
-                    <i class="fas fa-crown gold-text group-hover:scale-125 transition"></i>
-                    <span class="text-[12px] font-black gold-text uppercase tracking-widest">BillZest VIP</span>
-                </div>
-            </div>
         </div>
     </div>
 
-    <main class="ml-72 p-10">
-        <header class="mb-10 flex justify-between items-end">
-            <div>
-                <h2 id="cat-title" class="text-3xl font-black text-white uppercase italic">SELECT CATEGORY</h2>
-                <p class="text-slate-500 text-xs tracking-widest mt-1 uppercase">Ready to dispatch from Hafar Al Batin</p>
-            </div>
-            <div class="text-right">
-                <span class="block text-[10px] text-slate-500 font-bold uppercase tracking-widest">System Status</span>
-                <span class="gold-text font-black">EN | AR ACTIVE</span>
-            </div>
-        </header>
+    <main class="p-6">
+        <div id="hero" class="py-24 text-center">
+            <h1 class="text-7xl font-black italic tracking-tighter leading-none mb-4">AIRTECH<br><span class="text-blue-600">ONE</span></h1>
+            <p class="text-slate-500 text-xs tracking-[0.4em] uppercase font-black">Hafar Al Batin Specialist</p>
+        </div>
 
-        <div id="grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            </div>
+        <div id="grid" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
+
+        <footer class="mt-20 py-10 text-center border-t border-slate-900">
+            <p class="text-[10px] text-slate-600 uppercase tracking-[0.3em] font-black italic">Hafar Al Batin | Saudi Arabia | 2026</p>
+        </footer>
     </main>
 
     <script>
-        const catalog = {
-            hikNvr: { title: "HIKVISION DS-NVR", items: [
-                { name: 'DS-7604NI-K1', model: '4-CH 4K', price: '345', img: 'https://www.hikvision.com/content/dam/hikvision/en/marketing-material/product-photos/nvr/7600/7604NI-K1.png' },
-                { name: 'DS-7608NI-K2', model: '8-CH 4K', price: '590', img: 'https://www.hikvision.com/content/dam/hikvision/en/marketing-material/product-photos/nvr/7600/7608NI-K2.png' },
-                { name: 'DS-7716NI-K4', model: '16-CH 4K', price: '1150', img: 'https://www.hikvision.com/content/dam/hikvision/en/marketing-material/product-photos/nvr/7700/7716NI-K4.png' }
+        const stock = {
+            hik: { t: 'HIKVISION PRO', c: 'hik-theme', items: [
+                { n: 'DS-7604NI-K1', m: '4-CH 4K NVR', p: '345', i: 'https://www.hikvision.com/content/dam/hikvision/en/marketing-material/product-photos/nvr/7600/7604NI-K1.png' },
+                { n: 'DS-7208HUHI-K1', m: '8-CH 5MP DVR', p: '545', i: 'https://www.hikvision.com/content/dam/hikvision/en/marketing-material/product-photos/dvr/7200/7208HUHI-K1.png' }
             ]},
-            hikDvr: { title: "HIKVISION DS-DVR", items: [
-                { name: 'DS-7204HGHI-K1 (S)', model: '4-CH Audio', price: '195', img: 'https://www.hikvision.com/content/dam/hikvision/en/marketing-material/product-photos/dvr/7200/7204HGHI-K1.png' },
-                { name: 'DS-7208HUHI-K1', model: '8-CH 5MP', price: '545', img: 'https://www.hikvision.com/content/dam/hikvision/en/marketing-material/product-photos/dvr/7200/7208HUHI-K1.png' }
+            dah: { t: 'DAHUA WIZSENSE', c: 'dah-theme', items: [
+                { n: 'NVR4104HS-I', m: '4-CH WizSense NVR', p: '320', i: 'https://www.dahuasecurity.com/asset/upload/product/20191024/NVR4104HS-I.png' },
+                { n: 'XVR5108HS-I3', m: '8-CH AI XVR', p: '480', i: 'https://www.dahuasecurity.com/asset/upload/product/20210203/XVR5108HS-I3.png' }
             ]},
-            dahuaNvr: { title: "DAHUA NVR WIZSENSE", items: [
-                { name: 'NVR4104HS-I', model: '4-CH WizSense', price: '320', img: 'https://www.dahuasecurity.com/asset/upload/product/20191024/NVR4104HS-I.png' },
-                { name: 'NVR4216-4KS2', model: '16-CH 4K Pro', price: '720', img: 'https://www.dahuasecurity.com/asset/upload/product/20180521/NVR4216-4KS2.png' }
+            ezviz: { t: 'EZVIZ WIFI', c: 'hik-theme', items: [
+                { n: 'C6N 1080P', m: 'Smart Indoor PT', p: '145', i: 'https://m.media-amazon.com/images/I/51uI4W7e+BL._AC_SL1000_.jpg' },
+                { n: 'C8C 360', m: 'Outdoor PTZ Camera', p: '320', i: 'https://m.media-amazon.com/images/I/51Hk8y683RL._AC_SL1000_.jpg' }
             ]},
-            ezviz: { title: "EZVIZ WIFI CAMERAS", items: [
-                { name: 'Ezviz C6N 1080P', model: 'Indoor PT', price: '145', img: 'https://m.media-amazon.com/images/I/51uI4W7e+BL._AC_SL1000_.jpg' },
-                { name: 'Ezviz C8C 360', model: 'Outdoor PTZ', price: '320', img: 'https://m.media-amazon.com/images/I/51Hk8y683RL._AC_SL1000_.jpg' }
+            imou: { t: 'IMOU LIFE', c: 'dah-theme', items: [
+                { n: 'Ranger 2', m: '4MP Indoor 360', p: '175', i: 'https://m.media-amazon.com/images/I/51r7H5eLpSL._AC_SL1000_.jpg' },
+                { n: 'Cruiser 2', m: '4MP Outdoor PTZ', p: '340', i: 'https://m.media-amazon.com/images/I/51BfK8-j9TL._AC_SL1000_.jpg' }
             ]},
-            imou: { title: "IMOU WIFI CAMERAS", items: [
-                { name: 'Imou Ranger 2', model: 'Indoor 360', price: '125', img: 'https://m.media-amazon.com/images/I/51r7H5eLpSL._AC_SL1000_.jpg' },
-                { name: 'Imou Cruiser 2', model: '4MP PTZ', price: '340', img: 'https://m.media-amazon.com/images/I/51BfK8-j9TL._AC_SL1000_.jpg' }
+            hdd: { t: 'HDD STORAGE', c: 'storage-theme', items: [
+                { n: 'WD Purple 4TB', m: 'Surveillance Grade', p: '425', i: 'https://m.media-amazon.com/images/I/81S88mBvSML._AC_SL1500_.jpg' },
+                { n: 'Toshiba 1TB', m: 'Surveillance HDD', p: '165', i: 'https://m.media-amazon.com/images/I/718vHn+R76L._AC_SL1500_.jpg' },
+                { n: 'WD Purple 10TB', m: 'Surveillance Grade', p: '1280', i: 'https://m.media-amazon.com/images/I/81S88mBvSML._AC_SL1500_.jpg' }
             ]},
-            wdHdd: { title: "SURVEILLANCE HDD STORE", items: [
-                { name: 'WD Purple 2TB', model: 'Surveillance', price: '265', img: 'https://m.media-amazon.com/images/I/81S88mBvSML._AC_SL1500_.jpg' },
-                { name: 'WD Purple 10TB', model: 'Surveillance', price: '1280', img: 'https://m.media-amazon.com/images/I/81S88mBvSML._AC_SL1500_.jpg' },
-                { name: 'Toshiba 4TB', model: 'Surveillance', price: '385', img: 'https://m.media-amazon.com/images/I/718vHn+R76L._AC_SL1500_.jpg' }
+            sandisk: { t: 'SANDISK MEMORY', c: 'sandisk-theme', items: [
+                { n: 'Ultra 64GB', m: 'MicroSD XC', p: '40', i: 'https://m.media-amazon.com/images/I/617NnxA9dtL._AC_SL1500_.jpg' },
+                { n: 'High Endurance 128GB', m: 'CCTV Spec', p: '110', i: 'https://m.media-amazon.com/images/I/61dYvI7vVpL._AC_SL1500_.jpg' }
             ]},
-            sandisk: { title: "SANDISK STORAGE", items: [
-                { name: 'SanDisk Ultra 128GB', model: 'Micro SD', price: '75', img: 'https://m.media-amazon.com/images/I/617NnxA9dtL._AC_SL1500_.jpg' },
-                { name: 'SanDisk 64GB HE', model: 'High Endurance', price: '65', img: 'https://m.media-amazon.com/images/I/61dYvI7vVpL._AC_SL1500_.jpg' }
+            tp: { t: 'TP-LINK NETWORK', c: 'tp-theme', items: [
+                { n: 'Archer AX10', m: 'WiFi 6 Router', p: '290', i: 'https://m.media-amazon.com/images/I/51oGclD0XPL._AC_SL1500_.jpg' },
+                { n: 'Deco M4', m: 'Mesh System', p: '380', i: 'https://m.media-amazon.com/images/I/51Z9q7y+fTL._AC_SL1500_.jpg' }
             ]},
-            tpLink: { title: "TP-LINK NETWORK", items: [
-                { name: 'Archer C6', model: 'AC1200 Gigabit', price: '165', img: 'https://m.media-amazon.com/images/I/51M3fA68uCL._AC_SL1000_.jpg' },
-                { name: 'TL-SG1008P', model: '8-Port POE+', price: '320', img: 'https://m.media-amazon.com/images/I/61r5f7H3bPL._AC_SL1500_.jpg' }
-            ]},
-            billzest: { title: "BILLZEST VIP POS", items: [
-                { name: 'BillZest Pro', model: 'Video Integrated', price: 'CALL', img: 'https://cdn-icons-png.flaticon.com/512/5662/5662359.png' }
+            bill: { t: 'BILLZEST VIP', c: 'hik-theme', items: [
+                { n: 'BillZest Pro', m: 'Video POS System', p: 'CALL', i: 'https://cdn-icons-png.flaticon.com/512/5662/5662359.png' }
             ]}
         };
 
-        function toggleAccordion(id) {
-            document.querySelectorAll('.submenu').forEach(m => { if(m.id !== id) m.classList.remove('active'); });
-            document.getElementById(id).classList.toggle('active');
+        function toggleMenu() {
+            document.getElementById('sidebar').classList.toggle('menu-hidden');
         }
 
         function render(key) {
-            const data = catalog[key];
-            if(!data) return;
-            document.getElementById('cat-title').innerText = data.title;
+            toggleMenu();
+            const data = stock[key];
+            document.getElementById('hero').style.display = 'none';
             const grid = document.getElementById('grid');
             grid.innerHTML = data.items.map(item => `
-                <div class="vip-card rounded-3xl p-6 text-center group">
-                    <img src="${item.img}" class="h-40 mx-auto mb-6 object-contain group-hover:scale-110 transition duration-500">
-                    <h3 class="text-white font-black text-lg mb-1">${item.name}</h3>
-                    <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-4">${item.model}</p>
-                    <div class="flex justify-between items-center bg-slate-900/80 p-3 rounded-2xl border border-slate-800">
-                        <span class="text-xs font-bold text-slate-400 uppercase">SAR</span>
-                        <span class="gold-text font-black text-xl">${item.price}</span>
+                <div class="product-card">
+                    <img src="${item.i}" class="h-44 mx-auto mb-6 object-contain">
+                    <h2 class="text-2xl font-black title-glow ${data.c}">${item.n}</h2>
+                    <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-6">${item.m}</p>
+                    <div class="flex justify-between items-center bg-black/40 p-4 rounded-3xl border border-slate-800">
+                        <span class="text-2xl font-black text-blue-500 tracking-tighter"><span class="text-[10px] text-slate-500 mr-1 italic">SAR</span>${item.p}</span>
+                        <span class="text-[10px] font-black uppercase text-blue-400 italic">Official Stock</span>
                     </div>
                 </div>
             `).join('');
+            window.scrollTo(0,0);
         }
-
-        // Default Load
-        render('hikNvr');
     </script>
 </body>
 </html>
