@@ -3,103 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AirTech One | Hafar Al Batin Tech Solutions</title>
+    <title>AirTech One | Hafar Al Batin</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-        body { font-family: 'Poppins', sans-serif; }
-        .hero-section { background: #0f172a; position: relative; overflow: hidden; }
-        .service-card:hover { border-color: #3b82f6; transform: translateY(-5px); transition: all 0.3s; }
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@400;700;900&display=swap');
+        body { font-family: 'Poppins', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+        
+        /* SIDEBAR STYLE (MATCHES PHOTO 1000067990) */
+        #sidebar { 
+            background: #0a101f; width: 320px; height: 100vh; position: fixed; 
+            left: -320px; top: 0; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+            z-index: 1000; padding: 20px; border-right: 1px solid #161f32; overflow-y: auto;
+        }
+        #sidebar.active { left: 0; }
+        #overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 999; }
+        #overlay.active { display: block; }
+
+        .category-box { background: rgba(22, 31, 50, 0.4); border: 1px solid #1e293b; border-radius: 1rem; margin-bottom: 12px; }
+        .sub-menu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .sub-menu.open { max-height: 600px; padding-bottom: 10px; }
+        
+        .sub-item { 
+            display: block; width: 100%; text-align: left; padding: 12px 25px; 
+            font-size: 11px; font-weight: 700; color: #94a3b8; 
+            border-bottom: 1px solid #161f32; text-transform: uppercase; 
+        }
+        .sub-item:active { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
+        
+        .vip-btn { 
+            background: rgba(30, 41, 59, 0.5); border: 1px solid #1e293b; 
+            border-radius: 1rem; padding: 15px; width: 100%; margin-top: 15px;
+            color: #3b82f6; font-weight: 900; font-size: 11px; display: flex; align-items: center;
+        }
     </style>
 </head>
 <body class="bg-slate-50">
 
+    <div id="overlay" onclick="toggleSidebar()"></div>
+
+    <div id="sidebar">
+        <div class="flex justify-between items-center mb-10 px-2">
+            <div class="italic font-black text-blue-500 text-xl tracking-tighter uppercase">AirTech Menu</div>
+            <button onclick="toggleSidebar()" class="text-slate-500 text-3xl">&times;</button>
+        </div>
+
+        <div class="category-box">
+            <div class="p-4 flex justify-between items-center cursor-pointer" onclick="toggleAcc('hik')">
+                <span class="text-[10px] font-black text-blue-500 tracking-widest uppercase">Hikvision Solutions</span>
+                <i class="fas fa-chevron-down text-[10px] text-slate-600"></i>
+            </div>
+            <div id="hik" class="sub-menu">
+                <button class="sub-item" onclick="showProducts('HIK NVR')">NVR Systems</button>
+                <button class="sub-item" onclick="showProducts('HIK DVR')">DVR Recorders</button>
+                <button class="sub-item" onclick="showProducts('HIK IP IN')">IP Camera Indoor</button>
+                <button class="sub-item" onclick="showProducts('HIK IP OUT')">IP Camera Outdoor</button>
+                <button class="sub-item" onclick="showProducts('HIK AN IN')">Analog Camera Indoor</button>
+                <button class="sub-item" onclick="showProducts('HIK AN OUT')">Analog Camera Outdoor</button>
+                <button class="sub-item text-blue-400 font-black" onclick="showProducts('EZVIZ')">Ezviz Wi-Fi Camera</button>
+            </div>
+        </div>
+
+        <div class="category-box">
+            <div class="p-4 flex justify-between items-center cursor-pointer" onclick="toggleAcc('dah')">
+                <span class="text-[10px] font-black text-orange-500 tracking-widest uppercase">Dahua Technology</span>
+                <i class="fas fa-chevron-down text-[10px] text-slate-600"></i>
+            </div>
+            <div id="dah" class="sub-menu">
+                <button class="sub-item" onclick="showProducts('DAHUA NVR')">NVR System</button>
+                <button class="sub-item" onclick="showProducts('DAHUA DVR')">DVR System</button>
+                <button class="sub-item" onclick="showProducts('DAHUA IP IN')">IP Camera Indoor</button>
+                <button class="sub-item" onclick="showProducts('DAHUA IP OUT')">IP Camera Outdoor</button>
+                <button class="sub-item" onclick="showProducts('DAHUA AN IN')">Analog Camera Indoor</button>
+                <button class="sub-item" onclick="showProducts('DAHUA AN OUT')">Analog Camera Outdoor</button>
+                <button class="sub-item text-orange-400 font-black" onclick="showProducts('IMOU')">Imou Wi-Fi Camera</button>
+            </div>
+        </div>
+
+        <div class="category-box">
+            <div class="p-4 flex justify-between items-center cursor-pointer" onclick="toggleAcc('st')">
+                <span class="text-[10px] font-black text-purple-500 tracking-widest uppercase">Storage Store</span>
+                <i class="fas fa-chevron-down text-[10px] text-slate-600"></i>
+            </div>
+            <div id="st" class="sub-menu">
+                <button class="sub-item" onclick="showProducts('TOSHIBA')">Toshiba HDD</button>
+                <button class="sub-item" onclick="showProducts('WD PURPLE')">WD Purple HDD</button>
+                <button class="sub-item" onclick="showProducts('TP-LINK')">TP-Link Routers</button>
+                <button class="sub-item text-purple-400 font-black" onclick="showProducts('TAPO')">Tapo Smart Home</button>
+            </div>
+        </div>
+
+        <button class="vip-btn" onclick="showProducts('BILLZEST VIP')">
+            <i class="fas fa-crown mr-3"></i> BILLZEST VIP POS
+        </button>
+    </div>
+
     <nav class="bg-white border-b border-slate-200 p-5 sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
-            <div class="text-2xl font-bold tracking-tighter text-blue-900">
-                AIRTECH <span class="text-blue-500 font-light">ONE</span>
+            <div class="flex items-center gap-4">
+                <button onclick="toggleSidebar()" class="text-blue-900 text-xl focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="text-2xl font-bold text-blue-900">AIRTECH <span class="text-blue-500 font-light">ONE</span></div>
             </div>
-            <div class="hidden md:flex space-x-8 font-semibold text-slate-600">
-                <a href="#services" class="hover:text-blue-600">Services</a>
-                <a href="#solutions" class="hover:text-blue-600">Solutions</a>
-                <a href="#contact" class="hover:text-blue-600">Contact</a>
-            </div>
-            <a href="https://wa.me/966500000000" class="bg-blue-600 text-white px-6 py-2 rounded-md font-bold">
-                Consult Now
-            </a>
+            <a href="https://wa.me/966500000000" class="bg-blue-600 text-white px-6 py-2 rounded-md font-bold text-sm">Consult Now</a>
         </div>
     </nav>
 
-    <header class="hero-section text-white py-32 px-6">
-        <div class="container mx-auto text-center relative z-10">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6">Innovative Tech for Modern Business</h1>
-            <p class="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">Providing Hafar Al Batin with Premium CCTV Security Systems and BillZest VIP POS Management Software.</p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#services" class="bg-blue-600 px-8 py-3 rounded-md font-bold hover:bg-blue-700">Explore Services</a>
-                <a href="https://wa.me/966500000000" class="bg-transparent border border-slate-500 px-8 py-3 rounded-md font-bold hover:bg-white hover:text-black">Request Quote</a>
+    <div id="main-content">
+        <header class="hero-section text-white py-24 px-6 bg-[#0f172a]">
+            <div class="container mx-auto text-center">
+                <h1 class="text-5xl font-bold mb-4">Innovative Tech for Modern Business</h1>
+                <p class="text-slate-400 mb-8 max-w-xl mx-auto">Providing Hafar Al Batin with Premium CCTV Security Systems and BillZest VIP POS Management Software.</p>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <section id="services" class="py-24 container mx-auto px-6">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl font-bold text-slate-900">Professional Solutions</h2>
-            <div class="w-20 h-1 bg-blue-600 mx-auto mt-4"></div>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-12">
-            <div class="service-card bg-white p-10 rounded-xl border border-slate-200 shadow-sm">
-                <div class="text-blue-600 text-4xl mb-6"><i class="fas fa-shield-alt"></i></div>
-                <h3 class="text-2xl font-bold mb-4">CCTV Surveillance</h3>
-                <p class="text-slate-600 mb-6 leading-relaxed">High-definition security cameras with AI motion detection, remote mobile access, and 24/7 cloud recording features.</p>
-                <div class="text-blue-900 font-bold mb-6 text-lg">Standard Setup: SAR 250</div>
-                <ul class="space-y-3 text-sm text-slate-500">
-                    <li><i class="fas fa-check text-blue-600 mr-2"></i> Ultra HD 4K Cameras</li>
-                    <li><i class="fas fa-check text-blue-600 mr-2"></i> Professional Installation</li>
-                    <li><i class="fas fa-check text-blue-600 mr-2"></i> 1 Year Warranty</li>
-                </ul>
-            </div>
-
-            <div class="service-card bg-white p-10 rounded-xl border border-slate-200 shadow-sm">
-                <div class="text-blue-600 text-4xl mb-6"><i class="fas fa-chart-line"></i></div>
-                <h3 class="text-2xl font-bold mb-2 text-slate-800">BillZest VIP POS</h3>
-                <p class="text-slate-600 mb-6 leading-relaxed">Complete Retail & Restaurant management system with inventory tracking, employee logs, and bilingual invoice generation.</p>
-                <div class="text-blue-900 font-bold mb-6 text-lg">Monthly License: SAR 135</div>
-                <ul class="space-y-3 text-sm text-slate-500">
-                    <li><i class="fas fa-check text-blue-600 mr-2"></i> Arabic & English Interface</li>
-                    <li><i class="fas fa-check text-blue-600 mr-2"></i> WhatsApp Bill Integration</li>
-                    <li><i class="fas fa-check text-blue-600 mr-2"></i> Cloud Data Backup</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="solutions" class="bg-slate-100 py-20 px-6">
-        <div class="container mx-auto text-center">
-            <h3 class="text-3xl font-bold mb-6 text-slate-800 italic underline underline-offset-8 decoration-blue-500">AI Monthly Intelligence</h3>
-            <p class="text-slate-600 mb-12 max-w-2xl mx-auto">Hamara AI system aapke business data ko analyze karta hai aur har mahine aapke WhatsApp par detail growth report bhejta hai.</p>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h5 class="font-bold text-blue-900">Sales Prediction</h5>
+        <section class="py-16 container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="product-display">
+                <div class="bg-white p-8 rounded-xl border border-slate-200 shadow-sm">
+                    <h3 class="text-2xl font-bold mb-4">CCTV Surveillance</h3>
+                    <p class="text-slate-600 mb-6 text-sm">High-definition security cameras with AI motion detection.</p>
+                    <div class="text-blue-900 font-bold mb-4 text-lg">Standard Setup: SAR 250</div>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h5 class="font-bold text-blue-900">Inventory Alerts</h5>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h5 class="font-bold text-blue-900">Profit Analytics</h5>
+                <div class="bg-white p-8 rounded-xl border border-slate-200 shadow-sm">
+                    <h3 class="text-2xl font-bold mb-4 text-slate-800">BillZest VIP POS</h3>
+                    <p class="text-slate-600 mb-6 text-sm">Complete Retail & Restaurant management system.</p>
+                    <div class="text-blue-900 font-bold mb-4 text-lg">Monthly License: SAR 135</div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <footer id="contact" class="bg-white py-12 border-t text-center">
-        <div class="mb-6">
-            <h4 class="text-xl font-bold">AirTech One</h4>
-            <p class="text-slate-400">Hafar Al Batin, Saudi Arabia</p>
-        </div>
-        <p class="text-sm text-slate-500">© 2026 Professional Tech Solutions</p>
-    </footer>
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('overlay').classList.toggle('active');
+        }
 
+        function toggleAcc(id) {
+            const el = document.getElementById(id);
+            const all = document.querySelectorAll('.sub-menu');
+            all.forEach(item => { if(item.id !== id) item.classList.remove('open'); });
+            el.classList.toggle('open');
+        }
+
+        function showProducts(category) {
+            toggleSidebar();
+            const display = document.getElementById('product-display');
+            
+            if (category.includes('NVR')) {
+                display.innerHTML = `
+                    <div class="col-span-full mb-6 border-b pb-2"><h2 class="text-xl font-black uppercase text-blue-600">${category} MODELS</h2></div>
+                    ${[4, 8, 16, 32].map(ch => `
+                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm text-center">
+                            <i class="fas fa-server text-3xl text-slate-300 mb-4"></i>
+                            <h3 class="font-bold text-sm uppercase">${category} ${ch}-CHANNEL</h3>
+                            <div class="text-blue-600 font-black text-xl my-4">SAR ${ch == 4 ? '320' : ch == 8 ? '540' : ch == 16 ? '890' : '1450'}</div>
+                            <button class="w-full bg-slate-900 text-white py-2 rounded text-[10px] font-bold uppercase">View Specs</button>
+                        </div>
+                    `).join('')}
+                `;
+            } else {
+                display.innerHTML = `
+                    <div class="col-span-full text-center py-20 bg-white rounded-2xl border border-slate-100">
+                        <i class="fas fa-sync fa-spin text-3xl text-blue-500 mb-4"></i>
+                        <h2 class="text-2xl font-bold uppercase text-slate-400">Loading ${category} Price List...</h2>
+                        <p class="text-slate-400 text-sm">Fetching Hafar Al Batin Inventory</p>
+                    </div>`;
+            }
+            window.scrollTo({ top: 400, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
