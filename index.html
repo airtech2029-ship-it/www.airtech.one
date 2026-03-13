@@ -3,102 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIRTECH ONE | MASTER</title>
+    <title>AIRTECH ONE | OFFICIAL</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Inter:wght@400;700;900&display=swap');
+        
         body { background-color: #05070a; color: #ffffff; font-family: 'Inter', sans-serif; margin: 0; }
-        #sidebar { background: #0a101f; width: 320px; height: 100vh; position: fixed; left: -320px; top: 0; transition: 0.3s; z-index: 1000; border-right: 1px solid #161f32; padding: 25px; overflow-y: auto; }
+
+        /* Header Match */
+        header { background: #05070a; border-bottom: 1px solid #161f32; padding: 20px; position: sticky; top: 0; z-index: 100; }
+        
+        /* Sidebar - Exact Screenshot Match */
+        #sidebar { 
+            background: #0a101f; 
+            width: 320px; 
+            height: 100vh; 
+            position: fixed; 
+            left: -320px; 
+            top: 0; 
+            transition: 0.3s; 
+            z-index: 1000; 
+            padding: 25px;
+            border-right: 1px solid #161f32;
+        }
         .sidebar-active { left: 0 !important; }
-        .sidebar-box { background: rgba(22, 31, 50, 0.5); border-radius: 2rem; padding: 20px; margin-bottom: 20px; border: 1px solid #1e293b; }
-        .card { background: #0a101f; border-radius: 2.5rem; padding: 30px; margin-bottom: 25px; border: 1px solid #161f32; }
-        .model-name { font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 900; margin-top: 15px; }
-        .price-bar { background: #05070a; border-radius: 1.5rem; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-left: 4px solid #3b82f6; margin-top: 20px; }
-        .sar-label { color: #3b82f6; font-size: 0.7rem; font-weight: 900; }
-        .amount { font-size: 1.8rem; font-weight: 900; }
+
+        .menu-category-box { 
+            background: rgba(22, 31, 50, 0.4); 
+            border-radius: 2rem; 
+            padding: 20px; 
+            margin-bottom: 20px; 
+            border: 1px solid #1e293b;
+        }
+
+        /* Card Layout from Video/Screenshots */
+        .product-card {
+            background: #0a101f;
+            border-radius: 2.5rem;
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 1px solid #161f32;
+            position: relative;
+        }
+        
+        .model-name { 
+            font-family: 'Orbitron', sans-serif; 
+            font-size: 1.8rem; 
+            font-weight: 900; 
+            line-height: 1.2;
+            margin: 15px 0 5px 0;
+        }
+
+        /* Blue "Official Rate" Price Box */
+        .price-section {
+            background: #05070a;
+            border-radius: 1.8rem;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid #3b82f6;
+            margin-top: 20px;
+        }
+
+        .check-circle { 
+            width: 32px; height: 32px; 
+            border-radius: 50%; 
+            background: #1e293b; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: #3b82f6;
+            border: 1px solid #3b82f6;
+        }
+
+        .sar-label { color: #3b82f6; font-size: 0.75rem; font-weight: 900; margin-right: 2px; }
+        .price-val { font-size: 2rem; font-weight: 900; color: #fff; }
     </style>
 </head>
 <body>
 
-    <header class="p-6 flex justify-between items-center bg-[#05070a] sticky top-0 z-50">
-        <button onclick="toggleSidebar()" class="w-12 h-12 flex items-center justify-center bg-[#161f32] rounded-2xl border border-slate-800">
+    <header class="flex justify-between items-center">
+        <button onclick="nav()" class="w-12 h-12 bg-[#161f32] rounded-2xl border border-slate-800 flex items-center justify-center">
             <i class="fas fa-th-large text-blue-500"></i>
         </button>
-        <div class="text-center">
-            <div class="text-xl font-black italic tracking-tighter">AIRTECH <span class="text-blue-600">ONE</span></div>
-            <p class="text-[7px] tracking-[0.4em] text-slate-500 uppercase font-bold">VIP Distribution</p>
+        <div class="text-center italic font-black text-xl tracking-tighter uppercase">
+            AIRTECH <span class="text-blue-600">ONE</span>
         </div>
-        <button class="text-[10px] font-black uppercase text-slate-400 border border-slate-800 px-4 py-2 rounded-xl">العربية</button>
+        <div class="text-[10px] bg-slate-900 border border-slate-800 px-4 py-2 rounded-xl text-slate-400">العربية</div>
     </header>
 
     <div id="sidebar">
-        <div class="flex justify-between items-center mb-8">
-            <div class="text-blue-600 font-black italic text-lg uppercase">AIRTECH MENU</div>
-            <button onclick="toggleSidebar()" class="text-slate-500 text-3xl">&times;</button>
+        <div class="flex justify-between items-center mb-10">
+            <div class="text-blue-500 font-black italic text-xl">AIRTECH MENU</div>
+            <button onclick="nav()" class="text-slate-500 text-3xl">&times;</button>
         </div>
 
-        <div class="sidebar-box">
-            <p class="text-[8px] font-black text-blue-500 uppercase mb-4">Security & Surveillance</p>
-            <button onclick="load('hik')" class="block w-full text-left font-bold text-slate-300 py-2">HIKVISION DVR/NVR</button>
-            <button onclick="load('ezviz')" class="block w-full text-left font-bold text-blue-400 italic py-2">EZVIZ WI-FI CAMERA</button>
+        <div class="menu-category-box">
+            <p class="text-[8px] font-black text-blue-500 uppercase tracking-widest mb-4">Security & Surveillance</p>
+            <button onclick="show('hik')" class="block w-full text-left font-bold text-slate-300 py-2">HIKVISION DVR/NVR</button>
+            <button onclick="show('ezviz')" class="block w-full text-left font-bold text-blue-400 italic py-2">EZVIZ WI-FI CAMERA</button>
         </div>
 
-        <div class="sidebar-box">
-            <p class="text-[8px] font-black text-orange-500 uppercase mb-4">Dahua Technology</p>
-            <button onclick="load('dah')" class="block w-full text-left font-bold text-slate-300 py-2">DAHUA DVR/NVR</button>
-            <button onclick="load('imou')" class="block w-full text-left font-bold text-orange-400 italic py-2">IMOU WI-FI CAMERA</button>
+        <div class="menu-category-box">
+            <p class="text-[8px] font-black text-orange-500 uppercase tracking-widest mb-4">Dahua Technology</p>
+            <button onclick="show('dah')" class="block w-full text-left font-bold text-slate-300 py-2">DAHUA DVR/NVR</button>
+            <button onclick="show('imou')" class="block w-full text-left font-bold text-orange-400 italic py-2">IMOU WI-FI CAMERA</button>
         </div>
 
-        <div class="sidebar-box">
-            <p class="text-[8px] font-black text-purple-500 uppercase mb-4">Storage & Network</p>
-            <button onclick="load('hdd')" class="block w-full text-left font-bold text-slate-300 py-2">SURVEILLANCE HDD</button>
-            <button onclick="load('sandisk')" class="block w-full text-left font-bold text-slate-300 py-2">SANDISK MEMORY</button>
-            <button onclick="load('tp')" class="block w-full text-left font-bold text-purple-400 italic py-2">TP-LINK / TAPO</button>
+        <div class="menu-category-box">
+            <p class="text-[8px] font-black text-purple-500 uppercase tracking-widest mb-4">Storage & Infrastructure</p>
+            <button onclick="show('hdd')" class="block w-full text-left font-bold text-slate-300 py-2">SURVEILLANCE HDD</button>
+            <button onclick="show('san')" class="block w-full text-left font-bold text-slate-300 py-2">SANDISK MEMORY</button>
         </div>
     </div>
 
-    <div id="main" class="p-5"><div id="display" class="grid grid-cols-1 gap-6"></div></div>
+    <div id="content" class="p-5">
+        <div id="grid"></div>
+    </div>
 
     <script>
-        const stock = {
+        const inventory = {
             hik: [
-                { m: 'DS-7604NI-K1', d: '4-CH 4K NVR SYSTEM', p: '345', i: 'https://www.hikvision.com/content/dam/hikvision/en/marketing-material/product-photos/nvr/7600/7604NI-K1.png' },
-                { m: 'DS-7208HUHI-K1', d: '8-CH 5MP TURBO DVR', p: '545', i: 'https://www.hikvision.com/content/dam/hikvision/en/marketing-material/product-photos/dvr/7200/7208HUHI-K1.png' }
+                { m: 'DS-7604NI-K1', d: '4-CH 4K NVR SYSTEM', p: '345', i: 'https://www.hikvision.com/content/dam/hikvision/en/marketing-material/product-photos/nvr/7600/7604NI-K1.png' }
             ],
-            ezviz: [{ m: 'C6N 1080P', d: 'SMART INDOOR PT', p: '145', i: 'https://m.media-amazon.com/images/I/51uI4W7e+BL._AC_SL1000_.jpg' }],
-            dah: [{ m: 'NVR4104HS-I', d: '4-CH WIZSENSE AI', p: '320', i: 'https://www.dahuasecurity.com/asset/upload/product/20191024/NVR4104HS-I.png', c: 'text-orange-500' }],
-            imou: [{ m: 'RANGER 2', d: '4MP INDOOR 360', p: '175', i: 'https://m.media-amazon.com/images/I/51r7H5eLpSL._AC_SL1000_.jpg', c: 'text-orange-400' }],
+            ezviz: [
+                { m: 'C6N 1080P', d: 'SMART INDOOR PT', p: '145', i: 'https://m.media-amazon.com/images/I/51uI4W7e+BL._AC_SL1000_.jpg' }
+            ],
+            dah: [
+                { m: 'NVR4104HS-I', d: '4-CH WIZSENSE AI', p: '320', i: 'https://www.dahuasecurity.com/asset/upload/product/20191024/NVR4104HS-I.png', c: 'text-orange-500' }
+            ],
+            san: [
+                { m: 'ULTRA 128GB', d: 'MICRO SD CLASS 10', p: '75', i: 'https://m.media-amazon.com/images/I/617NnxA9dtL._AC_SL1500_.jpg' }
+            ],
             hdd: [
-                { m: 'WD PURPLE 2TB', d: 'SURVEILLANCE HDD', p: '265', i: 'https://m.media-amazon.com/images/I/81S88mBvSML._AC_SL1500_.jpg', c: 'text-purple-500' },
-                { m: 'WD PURPLE 10TB', d: 'SURVEILLANCE HDD', p: '1280', i: 'https://m.media-amazon.com/images/I/81S88mBvSML._AC_SL1500_.jpg', c: 'text-purple-500' }
-            ],
-            sandisk: [{ m: 'ULTRA 128GB', d: 'MICRO SD CARD', p: '75', i: 'https://m.media-amazon.com/images/I/617NnxA9dtL._AC_SL1500_.jpg', c: 'text-red-500' }],
-            tp: [
-                { m: 'ARCHER AX10', d: 'WIFI 6 ROUTER', p: '290', i: 'https://m.media-amazon.com/images/I/51oGclD0XPL._AC_SL1500_.jpg', c: 'text-purple-400' },
-                { m: 'TAPO C200', d: 'HOME SECURITY PT', p: '135', i: 'https://m.media-amazon.com/images/I/51Z9q7y+fTL._AC_SL1500_.jpg', c: 'text-purple-400' }
+                { m: 'WD PURPLE 2TB', d: 'SURVEILLANCE GRADE', p: '265', i: 'https://m.media-amazon.com/images/I/81S88mBvSML._AC_SL1500_.jpg' }
             ]
         };
 
-        function toggleSidebar() { document.getElementById('sidebar').classList.toggle('sidebar-active'); }
-        function load(key) {
-            toggleSidebar();
-            const grid = document.getElementById('display');
-            grid.innerHTML = stock[key].map(item => `
-                <div class="card">
-                    <img src="${item.i}" class="h-48 mx-auto object-contain mb-4">
-                    <div class="model-name ${item.c || 'text-blue-500'}">${item.m}</div>
-                    <p class="text-[9px] text-slate-500 font-black uppercase tracking-widest">${item.d}</p>
-                    <div class="price-bar">
-                        <div class="w-8 h-8 rounded-full border-2 border-blue-500 flex items-center justify-center"><i class="fas fa-check text-blue-500 text-xs"></i></div>
-                        <div class="text-right"><span class="block text-[8px] text-slate-500 font-bold uppercase">OFFICIAL RATE</span>
-                        <div><span class="sar-label">SAR</span><span class="amount">${item.p}</span></div></div>
+        function nav() { document.getElementById('sidebar').classList.toggle('sidebar-active'); }
+
+        function show(key) {
+            nav();
+            const grid = document.getElementById('grid');
+            grid.innerHTML = inventory[key].map(item => `
+                <div class="product-card">
+                    <img src="${item.i}" class="h-44 mx-auto object-contain">
+                    <div class="model-name ${item.c || 'text-white'}">${item.m}</div>
+                    <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">${item.d}</p>
+                    <div class="price-section">
+                        <div class="check-circle"><i class="fas fa-check"></i></div>
+                        <div class="text-right">
+                            <span class="block text-[8px] text-slate-500 font-black tracking-tighter uppercase">OFFICIAL RATE</span>
+                            <div><span class="sar-label text-blue-600">SAR</span><span class="price-val">${item.p}</span></div>
+                        </div>
                     </div>
                 </div>
             `).join('');
             window.scrollTo(0,0);
         }
-        load('hik'); // Default load
+        show('hik');
     </script>
 </body>
 </html>
