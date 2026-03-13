@@ -1,107 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AirTech One | Hafar Al Batin Tech Solutions</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-        body { font-family: 'Poppins', sans-serif; }
-        .hero-section { background: #0f172a; position: relative; overflow: hidden; }
-        .service-card:hover { border-color: #3b82f6; transform: translateY(-5px); transition: all 0.3s; }
-        .portfolio-overlay { background: rgba(15, 23, 42, 0.8); }
-    </style>
-</head>
-<body class="bg-slate-50">
-
-    <nav class="bg-white border-b border-slate-200 p-5 sticky top-0 z-50">
-        <div class="container mx-auto flex justify-between items-center">
-            <div class="text-2xl font-bold tracking-tighter text-blue-900 uppercase">
-                AIRTECH <span class="text-blue-500 font-light">ONE</span>
+<div id="sidePanel" class="fixed inset-y-0 left-0 w-80 bg-[#0f172a] text-white transform -translate-x-full transition-transform duration-300 ease-in-out z-[100] shadow-2xl border-r border-blue-900/30">
+    <div class="flex flex-col h-full">
+        <div class="p-6 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+            <div>
+                <h2 class="text-xl font-bold text-blue-400 tracking-tighter">AIRTECH ONE</h2>
+                <p class="text-[10px] text-slate-500 uppercase tracking-widest">Solutions Provider</p>
             </div>
-            <a href="https://wa.me/966500000000" class="bg-blue-600 text-white px-6 py-2 rounded-md font-bold shadow-lg shadow-blue-200">
-                Consult Now
+            <button onclick="togglePanel()" class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 text-white hover:bg-red-500 transition-colors">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="flex-1 overflow-y-auto p-6 custom-scrollbar">
+            <div class="mb-8">
+                <h4 class="text-xs font-bold text-blue-500 uppercase mb-4 tracking-widest border-l-2 border-blue-500 pl-3">Security Systems</h4>
+                <div class="space-y-2">
+                    <a href="#" class="group flex items-center p-3 rounded-lg hover:bg-white/5 transition">
+                        <div class="w-8 text-slate-400 group-hover:text-blue-400"><i class="fas fa-camera"></i></div>
+                        <span class="text-sm font-medium">4K CCTV Cameras</span>
+                    </a>
+                    <a href="#" class="group flex items-center p-3 rounded-lg hover:bg-white/5 transition">
+                        <div class="w-8 text-slate-400 group-hover:text-blue-400"><i class="fas fa-microchip"></i></div>
+                        <span class="text-sm font-medium">IP System Setup</span>
+                    </a>
+                    <a href="#" class="group flex items-center p-3 rounded-lg hover:bg-white/5 transition">
+                        <div class="w-8 text-slate-400 group-hover:text-blue-400"><i class="fas fa-hdd"></i></div>
+                        <span class="text-sm font-medium">NVR / DVR Storage</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h4 class="text-xs font-bold text-green-500 uppercase mb-4 tracking-widest border-l-2 border-green-500 pl-3">Business Solutions</h4>
+                <div class="space-y-2">
+                    <a href="#" class="group flex items-center p-3 rounded-lg hover:bg-white/5 transition">
+                        <div class="w-8 text-slate-400 group-hover:text-green-400"><i class="fas fa-file-invoice-dollar"></i></div>
+                        <span class="text-sm font-medium">BillZest VIP POS</span>
+                    </a>
+                    <a href="#" class="group flex items-center p-3 rounded-lg hover:bg-white/5 transition">
+                        <div class="w-8 text-slate-400 group-hover:text-green-400"><i class="fas fa-print"></i></div>
+                        <span class="text-sm font-medium">Thermal Printers</span>
+                    </a>
+                    <a href="#" class="group flex items-center p-3 rounded-lg hover:bg-white/5 transition">
+                        <div class="w-8 text-slate-400 group-hover:text-green-400"><i class="fas fa-barcode"></i></div>
+                        <span class="text-sm font-medium">Barcode Scanners</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h4 class="text-xs font-bold text-purple-500 uppercase mb-4 tracking-widest border-l-2 border-purple-500 pl-3">Advanced Tech</h4>
+                <div class="space-y-2">
+                    <a href="#" class="group flex items-center p-3 rounded-lg hover:bg-white/5 transition">
+                        <div class="w-8 text-slate-400 group-hover:text-purple-400"><i class="fas fa-robot"></i></div>
+                        <span class="text-sm font-medium">AI Business Reports</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-6 bg-slate-900 border-t border-slate-800">
+            <a href="https://wa.me/966500000000" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 transition">
+                <i class="fab fa-whatsapp"></i> Chat with Us
             </a>
         </div>
-    </nav>
+    </div>
+</div>
 
-    <header class="hero-section text-white py-32 px-6">
-        <div class="container mx-auto text-center relative z-10">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6">Innovative Tech for Modern Business</h1>
-            <p class="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">Providing Hafar Al Batin with Premium CCTV Security Systems and BillZest VIP POS Management Software.</p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#portfolio" class="bg-blue-600 px-8 py-3 rounded-md font-bold hover:bg-blue-700">View Our Work</a>
-                <a href="https://wa.me/966500000000" class="bg-transparent border border-slate-500 px-8 py-3 rounded-md font-bold hover:bg-white hover:text-black transition">Request Quote</a>
-            </div>
-        </div>
-    </header>
-
-    <section class="py-12 bg-slate-900 text-white border-t border-slate-800">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div><div class="text-3xl font-bold text-blue-400">100+</div><div class="text-xs text-slate-500 uppercase tracking-widest mt-1">Clients Served</div></div>
-                <div><div class="text-3xl font-bold text-blue-400">500+</div><div class="text-xs text-slate-500 uppercase tracking-widest mt-1">CCTV Cameras</div></div>
-                <div><div class="text-3xl font-bold text-blue-400">24/7</div><div class="text-xs text-slate-500 uppercase tracking-widest mt-1">Expert Support</div></div>
-                <div><div class="text-3xl font-bold text-blue-400">100%</div><div class="text-xs text-slate-500 uppercase tracking-widest mt-1">Data Security</div></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="services" class="py-20 container mx-auto px-6">
-        <div class="grid md:grid-cols-2 gap-12">
-            <div class="service-card bg-white p-10 rounded-xl border border-slate-200 shadow-sm">
-                <div class="text-blue-600 text-4xl mb-6"><i class="fas fa-shield-alt"></i></div>
-                <h3 class="text-2xl font-bold mb-4 text-slate-900">CCTV Surveillance</h3>
-                <p class="text-slate-600 mb-6 leading-relaxed">High-definition security cameras with AI motion detection and remote mobile access for your home or shop.</p>
-                <div class="text-blue-900 font-bold mb-6 text-lg">Standard Setup: SAR 250</div>
-                <a href="https://wa.me/966500000000" class="inline-block text-blue-600 font-bold border-b-2 border-blue-600 pb-1">Order Installation →</a>
-            </div>
-
-            <div class="service-card bg-white p-10 rounded-xl border border-slate-200 shadow-sm">
-                <div class="text-blue-600 text-4xl mb-6"><i class="fas fa-chart-line"></i></div>
-                <h3 class="text-2xl font-bold mb-4 text-slate-900">BillZest VIP POS</h3>
-                <p class="text-slate-600 mb-6 leading-relaxed">Complete management system with bilingual invoice generation and WhatsApp report integration.</p>
-                <div class="text-blue-900 font-bold mb-6 text-lg">Monthly License: SAR 135</div>
-                <a href="https://wa.me/966500000000" class="inline-block text-blue-600 font-bold border-b-2 border-blue-600 pb-1">Request Demo →</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="portfolio" class="py-20 bg-slate-50 border-t border-slate-200">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-slate-900 uppercase">Recent Projects</h2>
-                <div class="w-16 h-1 bg-blue-600 mx-auto mt-4"></div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="group relative h-64 rounded-xl overflow-hidden shadow-md">
-                    <img src="https://images.unsplash.com/photo-1556742044-3c52d6e88c62?auto=format&fit=crop&w=500&q=60" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 portfolio-overlay flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                        <span class="text-white font-bold">Restaurant POS Setup</span>
-                    </div>
-                </div>
-                <div class="group relative h-64 rounded-xl overflow-hidden shadow-md">
-                    <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=500&q=60" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 portfolio-overlay flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                        <span class="text-white font-bold">CCTV Security Installation</span>
-                    </div>
-                </div>
-                <div class="group relative h-64 rounded-xl overflow-hidden shadow-md">
-                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=500&q=60" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 portfolio-overlay flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                        <span class="text-white font-bold">Retail Management System</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-white py-12 border-t text-center">
-        <p class="font-bold text-slate-800 uppercase tracking-tighter">AirTech One</p>
-        <p class="text-sm text-slate-400 mt-2">Hafar Al Batin, Saudi Arabia</p>
-    </footer>
-
-</body>
-</html>
+<div id="overlay" onclick="togglePanel()" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden z-[90]"></div>
