@@ -2,149 +2,104 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BillZest VIP | AirTech One</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AirTech One | Official</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #050505; color: white; overflow-x: hidden; }
-        .gold-text { background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; }
-        .side-panel { transition: transform 0.4s ease; background: #0d1117; }
-        .vip-card { background: #111; border: 1px solid #222; border-radius: 20px; padding: 18px; transition: 0.3s; height: 100%; display: flex; flex-direction: column; position: relative; }
-        .vip-card:hover { border-color: #bf953f; transform: translateY(-5px); }
-        .img-container { width: 100%; height: 160px; background: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .product-img { max-height: 85%; max-width: 85%; object-fit: contain; }
+        body { background: #000; color: #fff; font-family: 'Inter', sans-serif; margin: 0; -webkit-tap-highlight-color: transparent; }
+        .airtech-blue { color: #3b82f6; }
+        
+        /* Premium Splash Screen */
+        .hero-section { height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: radial-gradient(circle at center, #111827 0%, #000 100%); }
+        .big-logo { font-size: 3.8rem; font-style: italic; font-weight: 900; line-height: 0.85; letter-spacing: -3px; text-align: center; text-transform: uppercase; }
+        .sub-heading { font-size: 10px; color: #4b5563; letter-spacing: 4px; margin-top: 25px; font-weight: 800; text-transform: uppercase; }
+
+        /* Menu Rows */
+        .section-tag { color: #3b82f6; font-size: 11px; font-weight: 900; letter-spacing: 2px; margin: 35px 0 12px 5px; text-transform: uppercase; border-left: 3px solid #3b82f6; padding-left: 12px; }
+        .item-row { background: #0d1117; border: 1px solid #1a1a1a; border-radius: 18px; padding: 22px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; cursor: pointer; transition: 0.2s; }
+        .item-row:active { transform: scale(0.96); background: #111827; }
+
+        /* Product Display */
+        .modal-view { position: fixed; inset: 0; background: #000; z-index: 500; display: none; flex-direction: column; }
+        .prod-card { background: #0d1117; border: 1px solid #1a1a1a; border-radius: 20px; padding: 15px; margin-bottom: 20px; position: relative; }
+        .discount-badge { position: absolute; top: 12px; right: 12px; background: #ef4444; color: white; font-size: 10px; font-weight: 900; padding: 4px 8px; border-radius: 6px; }
+        .img-box { background: white; border-radius: 12px; height: 160px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 10px; }
+        .img-box img { max-height: 100%; max-width: 100%; object-fit: contain; }
+        .strike { text-decoration: line-through; color: #4b5563; font-size: 11px; margin-right: 6px; }
     </style>
 </head>
 <body>
 
-    <nav class="p-5 flex justify-between items-center sticky top-0 bg-black/90 backdrop-blur-md border-b border-zinc-800 z-50">
-        <button onclick="togglePanel()" class="w-12 h-12 bg-zinc-900 rounded-xl flex items-center justify-center border border-zinc-800 text-yellow-500 shadow-lg">
-            <i class="fas fa-bars text-xl"></i>
-        </button>
-        <div class="text-2xl font-black italic uppercase"><span class="gold-text">BILLZEST</span> VIP</div>
-        <div class="w-12"></div>
-    </nav>
-
-    <div id="sidePanel" class="side-panel fixed inset-y-0 left-0 w-80 border-r border-zinc-800 -translate-x-full flex flex-col z-[100] shadow-2xl">
-        <div class="p-6 border-b border-zinc-800 flex justify-between items-center bg-black">
-            <h2 class="text-xl font-black gold-text italic">AIRTECH ONE</h2>
-            <button onclick="togglePanel()" class="text-4xl text-zinc-600">&times;</button>
-        </div>
-        
-        <div class="flex-1 overflow-y-auto p-4 space-y-6">
-            <div>
-                <p class="text-[10px] font-black text-blue-500 mb-2 uppercase tracking-widest px-2">Hikvision</p>
-                <div class="flex flex-col gap-1">
-                    <button onclick="openProducts('hikNvr')" class="text-left p-3 rounded-xl hover:bg-zinc-800 text-sm font-bold text-zinc-400 hover:text-white transition-all">NVR Systems</button>
-                    <button onclick="openProducts('hikIpIn')" class="text-left p-3 rounded-xl hover:bg-zinc-800 text-sm font-bold text-zinc-400 hover:text-white transition-all">IP Indoor Camera</button>
-                    <button onclick="openProducts('hikIpOut')" class="text-left p-3 rounded-xl hover:bg-zinc-800 text-sm font-bold text-zinc-400 hover:text-white transition-all">IP Outdoor Camera</button>
-                    <button onclick="openProducts('hikAna')" class="text-left p-3 rounded-xl hover:bg-zinc-800 text-sm font-bold text-zinc-400 hover:text-white transition-all">Analog Cameras</button>
-                </div>
-            </div>
-
-            <div>
-                <p class="text-[10px] font-black text-orange-500 mb-2 uppercase tracking-widest px-2">Dahua</p>
-                <div class="flex flex-col gap-1">
-                    <button onclick="openProducts('dahuaDvr')" class="text-left p-3 rounded-xl hover:bg-zinc-800 text-sm font-bold text-zinc-400 hover:text-white transition-all">DVR Recorders</button>
-                    <button onclick="openProducts('dahuaIp')" class="text-left p-3 rounded-xl hover:bg-zinc-800 text-sm font-bold text-zinc-400 hover:text-white transition-all">IP Solutions</button>
-                    <button onclick="openProducts('dahuaAna')" class="text-left p-3 rounded-xl hover:bg-zinc-800 text-sm font-bold text-zinc-400 hover:text-white transition-all">Analog Camera</button>
-                </div>
-            </div>
-
-            <div>
-                <p class="text-[10px] font-black text-purple-500 mb-2 uppercase tracking-widest px-2">Storage & Net</p>
-                <div class="flex flex-col gap-1">
-                    <button onclick="openProducts('wdHdd')" class="text-left p-3 rounded-xl hover:bg-zinc-800 text-sm font-bold text-zinc-400 hover:text-white transition-all">HDD (WD Purple)</button>
-                    <button onclick="openProducts('tpLink')" class="text-left p-3 rounded-xl hover:bg-zinc-800 text-sm font-bold text-zinc-400 hover:text-white transition-all">Network (TP-Link)</button>
-                </div>
-            </div>
-        </div>
+    <div class="hero-section">
+        <h1 class="big-logo">AIRTECH<br><span class="airtech-blue">ONE</span></h1>
+        <p class="sub-heading">Hafar Al Batin Specialist</p>
     </div>
 
-    <div id="fullView" class="fixed inset-0 bg-black z-[200] hidden flex-col">
-        <div class="p-6 border-b border-zinc-800 flex justify-between items-center bg-black/50 sticky top-0">
-            <button onclick="closeFullView()" class="text-yellow-500 font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> BACK</button>
-            <h2 id="catTitle" class="text-xl font-black italic gold-text">CATALOG</h2>
-            <span></span>
-        </div>
-        <div id="productGrid" class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 overflow-y-auto pb-32"></div>
+    <div class="p-6 bg-black">
+        <div class="section-tag">Wireless Security</div>
+        <div onclick="openCatalog('ezviz')" class="item-row"><span>Ezviz WiFi Series</span> <i class="fas fa-wifi airtech-blue"></i></div>
+        <div onclick="openCatalog('imou')" class="item-row"><span>Imou Smart Series</span> <i class="fas fa-video airtech-blue"></i></div>
+
+        <div class="section-tag">CCTV Professional</div>
+        <div onclick="openCatalog('hik')" class="item-row"><span>Hikvision Stock</span> <i class="fas fa-chevron-right airtech-blue"></i></div>
+        <div onclick="openCatalog('dahua')" class="item-row"><span>Dahua Technology</span> <i class="fas fa-chevron-right airtech-blue"></i></div>
+
+        <div class="section-tag">Storage</div>
+        <div onclick="openCatalog('storage')" class="item-row"><span>WD Purple HDD</span> <i class="fas fa-hdd airtech-blue"></i></div>
     </div>
 
-    <div id="overlay" onclick="togglePanel()" class="fixed inset-0 bg-black/90 hidden z-[90] backdrop-blur-sm"></div>
+    <div id="productModal" class="modal-view">
+        <div class="p-6 border-b border-zinc-900 flex justify-between items-center bg-black sticky top-0 z-10">
+            <button onclick="closeCatalog()" class="text-blue-500 font-black text-sm uppercase flex items-center"><i class="fas fa-arrow-left mr-2"></i> Back</button>
+            <span id="modalTitle" class="airtech-blue font-black uppercase text-xs">CATALOG</span>
+            <div class="w-10"></div>
+        </div>
+        <div id="productGrid" class="p-6 overflow-y-auto pb-40"></div>
+    </div>
 
     <script>
-        const catalog = {
-            // HIKVISION DATA
-            hikNvr: { title: "HIKVISION NVR", items: [
-                { model: 'DS-7104NI-Q1', name: '4-CH Mini NVR', price: 310, img: 'https://m.media-amazon.com/images/I/41-N6B6-y3L._AC_SL1000_.jpg' },
-                { model: 'DS-7608NI-K2', name: '8-CH 4K Pro NVR', price: 585, img: 'https://m.media-amazon.com/images/I/41-N6B6-y3L._AC_SL1000_.jpg' },
-                { model: 'DS-7732NI-K4', name: '32-CH Pro NVR', price: 1450, img: 'https://m.media-amazon.com/images/I/41-N6B6-y3L._AC_SL1000_.jpg' }
+        const phone = "966550898978"; // Aapka number verified
+        const airtechData = {
+            ezviz: { t: "EZVIZ WIFI", items: [
+                { m: 'C6N 4MP', n: 'Ezviz Smart Pan/Tilt 4MP', p: 175, i: 'https://m.media-amazon.com/images/I/51p08l21tCL._AC_SL1000_.jpg' },
+                { m: 'C3N Outdoor', n: 'Ezviz Color Night Vision', p: 210, i: 'https://m.media-amazon.com/images/I/61N+U9p8H2L._AC_SL1500_.jpg' }
             ]},
-            hikIpIn: { title: "HIK IP INDOOR", items: [
-                { model: 'DS-2CD1123G0', name: '2MP IP Dome Indoor', price: 165, img: 'https://m.media-amazon.com/images/I/51-mB4n8k1L._AC_SL1000_.jpg' },
-                { model: 'DS-2CD1323G0', name: '2MP Turret IP Camera', price: 175, img: 'https://m.media-amazon.com/images/I/51-mB4n8k1L._AC_SL1000_.jpg' }
+            imou: { t: "IMOU WIFI", items: [
+                { m: 'Ranger 2', n: 'Imou Indoor 360 4MP', p: 160, i: 'https://m.media-amazon.com/images/I/51YVvG9-mYL._AC_SL1500_.jpg' },
+                { m: 'Cruiser 4MP', n: 'Imou Outdoor PTZ Color', p: 295, i: 'https://m.media-amazon.com/images/I/618x430-DPL._AC_SL1500_.jpg' }
             ]},
-            hikIpOut: { title: "HIK IP OUTDOOR", items: [
-                { model: 'DS-2CD1023G0', name: '2MP IP Bullet Outdoor', price: 185, img: 'https://m.media-amazon.com/images/I/51-mB4n8k1L._AC_SL1000_.jpg' },
-                { model: 'DS-2CD2043G0', name: '4MP 4K IP Bullet', price: 340, img: 'https://m.media-amazon.com/images/I/51-mB4n8k1L._AC_SL1000_.jpg' }
+            hik: { t: "HIKVISION", items: [
+                { m: '7608NI-K2', n: '8-CH 4K Pro NVR', p: 595, i: 'https://m.media-amazon.com/images/I/41-N6B6-y3L._AC_SL1000_.jpg' },
+                { m: '7732NI-K4', n: '32-CH Enterprise NVR', p: 1550, i: 'https://m.media-amazon.com/images/I/41-N6B6-y3L._AC_SL1000_.jpg' }
             ]},
-            hikAna: { title: "HIK ANALOG CAMERAS", items: [
-                { model: 'DS-2CE56D0T', name: '2MP Analog Dome', price: 75, img: 'https://m.media-amazon.com/images/I/51-mB4n8k1L._AC_SL1000_.jpg' },
-                { model: 'DS-2CE16D0T', name: '2MP Analog Bullet', price: 80, img: 'https://m.media-amazon.com/images/I/51-mB4n8k1L._AC_SL1000_.jpg' }
-            ]},
-
-            // DAHUA DATA
-            dahuaDvr: { title: "DAHUA DVR", items: [
-                { model: 'XVR5104HS-4KL', name: '4-CH 4K WizSense', price: 390, img: 'https://m.media-amazon.com/images/I/51p8I+Yp9qL._AC_SL1000_.jpg' },
-                { model: 'XVR5108HS-4KL', name: '8-CH 4K WizSense', price: 595, img: 'https://m.media-amazon.com/images/I/51p8I+Yp9qL._AC_SL1000_.jpg' }
-            ]},
-            dahuaIp: { title: "DAHUA IP CAMERA", items: [
-                { model: 'IPC-HDBW1230E', name: '2MP IP Dome IR', price: 195, img: 'https://m.media-amazon.com/images/I/51p-Vp8C+GL._AC_SL1500_.jpg' },
-                { model: 'IPC-HFW1431S', name: '4MP IP Bullet Outdoor', price: 280, img: 'https://m.media-amazon.com/images/I/51p-Vp8C+GL._AC_SL1500_.jpg' }
-            ]},
-            dahuaAna: { title: "DAHUA ANALOG", items: [
-                { model: 'HAC-HDW1200M', name: '2MP Analog Dome', price: 85, img: 'https://m.media-amazon.com/images/I/51p-Vp8C+GL._AC_SL1500_.jpg' },
-                { model: 'HAC-HFW1200R', name: '2MP Analog Bullet', price: 90, img: 'https://m.media-amazon.com/images/I/51p-Vp8C+GL._AC_SL1500_.jpg' }
-            ]},
-
-            // HDD & NETWORK
-            wdHdd: { title: "WD PURPLE STORAGE", items: [
-                { model: 'WD20PURZ', name: '2TB WD Purple', price: 275, img: 'https://m.media-amazon.com/images/I/81sh9jG7tWL._AC_SL1500_.jpg' },
-                { model: 'WD40PURZ', name: '4TB WD Purple', price: 415, img: 'https://m.media-amazon.com/images/I/81sh9jG7tWL._AC_SL1500_.jpg' },
-                { model: 'WD60PURZ', name: '6TB WD Purple', price: 680, img: 'https://m.media-amazon.com/images/I/81sh9jG7tWL._AC_SL1500_.jpg' }
-            ]},
-            tpLink: { title: "TP-LINK NETWORK", items: [
-                { model: 'TL-WR840N', name: '300Mbps Router', price: 95, img: 'https://m.media-amazon.com/images/I/51vI-E9T3cL._AC_SL1500_.jpg' },
-                { model: 'LS1008G', name: '8-Port Gigabit Switch', price: 110, img: 'https://m.media-amazon.com/images/I/51vI-E9T3cL._AC_SL1500_.jpg' }
+            storage: { t: "STORAGE", items: [
+                { m: '2TB PURZ', n: 'WD Purple Surveillance HDD', p: 285, i: 'https://m.media-amazon.com/images/I/81sh9jG7tWL._AC_SL1500_.jpg' },
+                { m: '4TB PURZ', n: 'WD Purple Surveillance HDD', p: 435, i: 'https://m.media-amazon.com/images/I/81sh9jG7tWL._AC_SL1500_.jpg' }
             ]}
         };
 
-        function togglePanel() {
-            document.getElementById('sidePanel').classList.toggle('-translate-x-full');
-            document.getElementById('overlay').classList.toggle('hidden');
-        }
-
-        function openProducts(key) {
-            const data = catalog[key] || { title: "NO DATA", items: [] };
-            document.getElementById('catTitle').innerText = data.title;
+        function openCatalog(key) {
+            const data = airtechData[key] || { t: "STOCK", items: [] };
+            document.getElementById('modalTitle').innerText = data.t;
             const grid = document.getElementById('productGrid');
-            grid.innerHTML = data.items.map(item => `
-                <div class="vip-card">
-                    <span class="text-[9px] text-zinc-500 font-black mb-3 uppercase tracking-widest">${item.model}</span>
-                    <div class="img-container"><img src="${item.img}" class="product-img"></div>
-                    <h3 class="text-white font-bold text-[12px] uppercase mt-4 h-8 overflow-hidden">${item.name}</h3>
-                    <div class="mt-auto pt-4 border-t border-zinc-800 flex justify-between items-center">
-                        <span class="text-lg font-black gold-text">${(item.price * 0.98).toFixed(0)} <small class="text-[8px] text-zinc-500">SAR</small></span>
-                        <a href="https://wa.me/966500000000" class="text-green-500 text-xl"><i class="fab fa-whatsapp"></i></a>
+            grid.innerHTML = data.items.map(p => {
+                const discounted = Math.round(p.p * 0.98); // Perfect 2% Discount
+                return `
+                <div class="prod-card shadow-2xl">
+                    <div class="discount-badge">2% OFF</div>
+                    <p class="text-[9px] text-zinc-600 font-bold mb-2 uppercase">${p.m}</p>
+                    <div class="img-box mb-4"><img src="${p.i}" loading="lazy"></div>
+                    <h3 class="text-xs font-black uppercase mb-4 h-8 overflow-hidden">${p.n}</h3>
+                    <div class="flex justify-between items-center border-t border-zinc-900 pt-4">
+                        <div><span class="strike">${p.p}</span><span class="text-xl font-black airtech-blue">${discounted} <small class="text-[9px]">SAR</small></span></div>
+                        <a href="https://wa.me/${phone}?text=Assalamu Alaikum AirTech One, I am interested in ${p.n} (${p.m})" class="text-green-500 text-3xl active:scale-90 transition-transform"><i class="fab fa-whatsapp"></i></a>
                     </div>
-                </div>`).join('');
-            document.getElementById('fullView').style.display = 'flex';
-            if(!document.getElementById('sidePanel').classList.contains('-translate-x-full')) togglePanel();
+                </div>`;
+            }).join('');
+            document.getElementById('productModal').style.display = 'flex';
         }
-
-        function closeFullView() { document.getElementById('fullView').style.display = 'none'; }
+        function closeCatalog() { document.getElementById('productModal').style.display = 'none'; }
     </script>
 </body>
 </html>
