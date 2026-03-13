@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AirTech One | Hafar Al Batin VIP Store</title>
+    <title>AirTech One | Final VIP Catalog</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -12,9 +12,9 @@
         .side-panel { transition: transform 0.3s ease-in-out; }
         .vip-card { background: #161e31; border: 1px solid #232d45; border-radius: 20px; padding: 18px; transition: 0.3s; height: 100%; display: flex; flex-direction: column; }
         .vip-card:hover { border-color: #3b82f6; transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .img-container { width: 100%; height: 180px; background: white; border-radius: 15px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 15px; position: relative; }
+        .img-container { width: 100%; height: 180px; background: white; border-radius: 15px; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
         .product-img { max-height: 100%; max-width: 100%; object-fit: contain; }
-        .discount-tag { position: absolute; top: 10px; right: 10px; background: #ef4444; color: white; font-size: 10px; font-weight: 900; padding: 4px 8px; border-radius: 6px; z-index: 10; }
+        .discount-tag { position: absolute; top: 10px; right: 10px; background: #ef4444; color: white; font-size: 10px; font-weight: 900; padding: 4px 8px; border-radius: 6px; }
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
     </style>
@@ -42,7 +42,6 @@
                     <a href="#" onclick="openProducts('hikIpOut')" class="p-3">IP CAMERA OUTDOOR</a>
                     <a href="#" onclick="openProducts('hikAnaIn')" class="p-3">ANALOG CAMERA INDOOR</a>
                     <a href="#" onclick="openProducts('hikAnaOut')" class="p-3">ANALOG CAMERA OUTDOOR</a>
-                    <a href="#" onclick="openProducts('ezviz')" class="p-3 text-blue-400 italic">EZVIZ WI-FI</a>
                 </div>
             </div>
             <div class="bg-slate-900/40 rounded-2xl border border-slate-800 p-2">
@@ -54,21 +53,25 @@
                     <a href="#" onclick="openProducts('dahuaIpOut')" class="p-3">IP CAMERA OUTDOOR</a>
                     <a href="#" onclick="openProducts('dahuaAnaIn')" class="p-3">ANALOG CAMERA INDOOR</a>
                     <a href="#" onclick="openProducts('dahuaAnaOut')" class="p-3">ANALOG CAMERA OUTDOOR</a>
-                    <a href="#" onclick="openProducts('imou')" class="p-3 text-orange-400 italic">IMOU WI-FI</a>
+                </div>
+            </div>
+            <div class="bg-slate-900/40 rounded-2xl border border-slate-800 p-2">
+                <p class="text-[10px] font-black text-purple-500 px-3 py-2 uppercase tracking-widest">Storage & Network</p>
+                <div class="flex flex-col ml-2 border-l border-purple-500/20 text-[11px] font-bold text-slate-400">
+                    <a href="#" onclick="openProducts('wdHdd')" class="p-3">HDD STORE (WD Purple)</a>
+                    <a href="#" onclick="openProducts('tpLink')" class="p-3">NETWORK STORE (TPLink)</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <header class="py-20 px-6 text-center">
-        <h1 class="text-5xl font-black uppercase italic tracking-tighter leading-tight">PREMIUM<br><span class="text-blue-600">A2Z SECURITY</span></h1>
-        <p class="text-slate-500 text-[10px] font-bold uppercase tracking-[4px] mt-4">Hafar Al Batin • KSA</p>
-    </header>
-
     <div id="fullView" class="fixed inset-0 bg-[#0a1120] z-[200] hidden flex-col">
         <div class="p-6 border-b border-slate-800 flex justify-between items-center bg-[#0d1629]">
-            <h2 id="catTitle" class="text-xl font-black uppercase italic text-blue-500">Products</h2>
-            <button onclick="closeFullView()" class="text-4xl">&times;</button>
+            <div class="flex items-center gap-4">
+                <button onclick="closeFullView()" class="text-blue-500 text-2xl"><i class="fas fa-arrow-left"></i></button>
+                <h2 id="catTitle" class="text-xl font-black uppercase italic text-blue-500">Products</h2>
+            </div>
+            <button onclick="closeFullView()" class="text-4xl text-slate-500">&times;</button>
         </div>
         <div id="productGrid" class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 overflow-y-auto pb-20"></div>
     </div>
@@ -77,61 +80,24 @@
 
     <script>
         const catalog = {
-            // HIKVISION COMPLETE RANGE
-            hikNvr: { title: "HIKVISION NVR RANGE", items: [
-                { model: 'DS-7604NI-K1', name: '4-CH 4K NVR', price: 420, img: 'https://m.media-amazon.com/images/I/41-N6B6-y3L._AC_SL1000_.jpg' },
-                { model: 'DS-7608NI-K2', name: '8-CH 4K Professional NVR', price: 585, img: 'https://m.media-amazon.com/images/I/41-N6B6-y3L._AC_SL1000_.jpg' },
-                { model: 'DS-7616NI-K2', name: '16-CH 4K Network Recorder', price: 850, img: 'https://m.media-amazon.com/images/I/41-N6B6-y3L._AC_SL1000_.jpg' },
-                { model: 'DS-7732NI-K4', name: '32-CH 4K High-End NVR', price: 1450, img: 'https://m.media-amazon.com/images/I/41-N6B6-y3L._AC_SL1000_.jpg' }
-            ]},
-            hikDvr: { title: "HIKVISION DVR RANGE", items: [
-                { model: 'DS-7204HGHI', name: '4-CH Turbo HD DVR', price: 245, img: 'https://m.media-amazon.com/images/I/51p8I+Yp9qL._AC_SL1000_.jpg' },
-                { model: 'DS-7208HUHI', name: '8-CH 4K (8MP) Turbo DVR', price: 620, img: 'https://m.media-amazon.com/images/I/51p8I+Yp9qL._AC_SL1000_.jpg' },
-                { model: 'DS-7216HQHI', name: '16-CH 4MP Turbo DVR', price: 780, img: 'https://m.media-amazon.com/images/I/51p8I+Yp9qL._AC_SL1000_.jpg' }
-            ]},
-            hikIpIn: { title: "HIKVISION IP INDOOR", items: [
-                { model: 'DS-2CD1123G0', name: '2MP Dome IP Camera', price: 165, img: 'https://m.media-amazon.com/images/I/51-mB4n8k1L._AC_SL1000_.jpg' },
-                { model: 'DS-2CD2143G2', name: '4MP AcuSense Dome', price: 320, img: 'https://m.media-amazon.com/images/I/51-mB4n8k1L._AC_SL1000_.jpg' },
-                { model: 'DS-2CD2183G2', name: '8MP (4K) UHD Dome Cam', price: 450, img: 'https://m.media-amazon.com/images/I/51-mB4n8k1L._AC_SL1000_.jpg' }
-            ]},
-            hikIpOut: { title: "HIKVISION IP OUTDOOR", items: [
-                { model: 'DS-2CD1023G0', name: '2MP Bullet IP Camera', price: 175, img: 'https://m.media-amazon.com/images/I/51p-Vp8C+GL._AC_SL1500_.jpg' },
-                { model: 'DS-2CD2043G2', name: '4MP AcuSense Bullet', price: 335, img: 'https://m.media-amazon.com/images/I/51p-Vp8C+GL._AC_SL1500_.jpg' },
-                { model: 'DS-2CD2083G2', name: '8MP (4K) UHD Bullet', price: 490, img: 'https://m.media-amazon.com/images/I/51p-Vp8C+GL._AC_SL1500_.jpg' }
-            ]},
-            hikAnaIn: { title: "HIKVISION ANALOG INDOOR", items: [
-                { model: 'DS-2CE56D0T', name: '2MP Analog Dome Cam', price: 85, img: 'https://m.media-amazon.com/images/I/51-mB4n8k1L._AC_SL1000_.jpg' },
-                { model: 'DS-2CE76H0T', name: '5MP Audio Dome Cam', price: 155, img: 'https://m.media-amazon.com/images/I/51-mB4n8k1L._AC_SL1000_.jpg' }
-            ]},
-            hikAnaOut: { title: "HIKVISION ANALOG OUTDOOR", items: [
-                { model: 'DS-2CE16D0T', name: '2MP Analog Bullet Cam', price: 95, img: 'https://m.media-amazon.com/images/I/51p-Vp8C+GL._AC_SL1500_.jpg' },
-                { model: 'DS-2CE16H0T', name: '5MP Analog Bullet Cam', price: 165, img: 'https://m.media-amazon.com/images/I/51p-Vp8C+GL._AC_SL1500_.jpg' }
+            // HIKVISION
+            hikNvr: { title: "HIKVISION NVR", items: [{ model: 'DS-7608NI-K2', name: '8-CH 4K Professional NVR', price: 585, img: 'https://m.media-amazon.com/images/I/41-N6B6-y3L._AC_SL1000_.jpg' }] },
+            hikIpIn: { title: "HIKVISION IP INDOOR", items: [{ model: 'DS-2CD1123G0', name: '2MP Dome IP Camera', price: 165, img: 'https://m.media-amazon.com/images/I/51-mB4n8k1L._AC_SL1000_.jpg' }] },
+            
+            // DAHUA (Verified Models)
+            dahuaDvr: { title: "DAHUA DVR", items: [{ model: 'XVR5108HS-4KL', name: '8-CH 4K WizSense DVR', price: 595, img: 'https://m.media-amazon.com/images/I/51p8I+Yp9qL._AC_SL1000_.jpg' }] },
+            dahuaAnaOut: { title: "DAHUA ANALOG OUTDOOR", items: [{ model: 'HAC-HFW1200R', name: '2MP Analog Bullet', price: 95, img: 'https://m.media-amazon.com/images/I/51p-Vp8C+GL._AC_SL1500_.jpg' }] },
+
+            // STORAGE (WD Purple Verified)
+            wdHdd: { title: "HDD STORE (WD PURPLE)", items: [
+                { model: 'WD20PURZ', name: '2TB WD Purple HDD', price: 275, img: 'https://m.media-amazon.com/images/I/81sh9jG7tWL._AC_SL1500_.jpg' },
+                { model: 'WD40PURZ', name: '4TB WD Purple HDD', price: 415, img: 'https://m.media-amazon.com/images/I/81sh9jG7tWL._AC_SL1500_.jpg' }
             ]},
 
-            // DAHUA COMPLETE RANGE
-            dahuaNvr: { title: "DAHUA NVR RANGE", items: [
-                { model: 'NVR4108HS', name: '8-CH 4K Compact NVR', price: 540, img: 'https://m.media-amazon.com/images/I/41-N6B6-y3L._AC_SL1000_.jpg' },
-                { model: 'NVR5216-4K', name: '16-CH 4K Pro NVR', price: 890, img: 'https://m.media-amazon.com/images/I/41-N6B6-y3L._AC_SL1000_.jpg' }
-            ]},
-            dahuaIpOut: { title: "DAHUA IP OUTDOOR", items: [
-                { model: 'IPC-HFW1230S', name: '2MP Entry IR Bullet', price: 170, img: 'https://m.media-amazon.com/images/I/51p-Vp8C+GL._AC_SL1500_.jpg' },
-                { model: 'IPC-HFW2431S', name: '4MP WDR IR Bullet', price: 295, img: 'https://m.media-amazon.com/images/I/51p-Vp8C+GL._AC_SL1500_.jpg' },
-                { model: 'IPC-HFW3841E', name: '8MP (4K) WizSense Bullet', price: 510, img: 'https://m.media-amazon.com/images/I/51p-Vp8C+GL._AC_SL1500_.jpg' }
-            ]},
-            dahuaDvr: { title: "DAHUA DVR RANGE", items: [
-                { model: 'XVR1B04-I', name: '4-CH WizSense DVR', price: 230, img: 'https://m.media-amazon.com/images/I/51p8I+Yp9qL._AC_SL1000_.jpg' },
-                { model: 'XVR5108HS-4KL', name: '8-CH 4K WizSense DVR', price: 595, img: 'https://m.media-amazon.com/images/I/51p8I+Yp9qL._AC_SL1000_.jpg' },
-                { model: 'XVR5116HS-I3', name: '16-CH WizSense DVR', price: 790, img: 'https://m.media-amazon.com/images/I/51p8I+Yp9qL._AC_SL1000_.jpg' }
-            ]},
-            
-            // SMART BRANDS
-            ezviz: { title: "EZVIZ WI-FI RANGE", items: [
-                { model: 'C6N 4MP', name: 'Smart Indoor Pan/Tilt', price: 175, img: 'https://m.media-amazon.com/images/I/51M6X6N0FRL._AC_SL1500_.jpg' },
-                { model: 'H8C 2K', name: '360° Outdoor Pan/Tilt', price: 295, img: 'https://m.media-amazon.com/images/I/51Hk6l+f6KL._AC_SL1500_.jpg' }
-            ]},
-            imou: { title: "IMOU WI-FI RANGE", items: [
-                { model: 'Ranger 2', name: 'Indoor 360° Cam', price: 145, img: 'https://m.media-amazon.com/images/I/51y8S5Q9p8L._AC_SL1500_.jpg' },
-                { model: 'Cruiser 2 5MP', name: 'Outdoor 5MP Pan/Tilt', price: 340, img: 'https://m.media-amazon.com/images/I/61S-U8S3GvL._AC_SL1500_.jpg' }
+            // NETWORK (TPLink Verified)
+            tpLink: { title: "NETWORK STORE (TPLINK)", items: [
+                { model: 'TL-WR840N', name: 'TP-Link 300Mbps Router', price: 95, img: 'https://m.media-amazon.com/images/I/51vI-E9T3cL._AC_SL1500_.jpg' },
+                { model: 'TL-SF1008D', name: '8-Port Desktop Switch', price: 65, img: 'https://m.media-amazon.com/images/I/51vI-E9T3cL._AC_SL1500_.jpg' }
             ]}
         };
 
@@ -141,7 +107,7 @@
         }
 
         function openProducts(key) {
-            const data = catalog[key] || { title: "Coming Soon", items: [] };
+            const data = catalog[key] || { title: "Updating Models...", items: [] };
             document.getElementById('catTitle').innerText = data.title;
             const grid = document.getElementById('productGrid');
             grid.innerHTML = data.items.map(i => {
@@ -149,23 +115,21 @@
                 return `
                 <div class="vip-card">
                     <span class="text-[9px] bg-blue-600/20 text-blue-400 px-3 py-1 rounded-md font-black mb-3 w-fit tracking-widest">${i.model}</span>
-                    <div class="img-container shadow-inner">
-                        <div class="discount-tag">2% OFF</div>
-                        <img src="${i.img}" alt="${i.name}" class="product-img">
-                    </div>
-                    <h3 class="text-white font-bold text-[13px] uppercase mt-4 text-center h-10 flex items-center leading-tight tracking-tight">${i.name}</h3>
+                    <div class="img-container"><div class="discount-tag">2% OFF</div><img src="${i.img}" class="product-img"></div>
+                    <h3 class="text-white font-bold text-[13px] uppercase mt-4 text-center h-10 flex items-center">${i.name}</h3>
                     <div class="w-full mt-auto flex justify-between items-center border-t border-slate-800 pt-4">
                         <div class="flex flex-col">
                             <span class="text-[10px] text-slate-500 line-through">${i.price} SAR</span>
-                            <span class="text-xl font-black text-white">${discounted} <small class="text-[9px] text-blue-500 font-bold tracking-widest">SAR</small></span>
+                            <span class="text-xl font-black text-white">${discounted} <small class="text-[9px] text-blue-500">SAR</small></span>
                         </div>
-                        <a href="https://wa.me/966500000000" class="w-10 h-10 bg-green-600/20 text-green-500 border border-green-500/20 rounded-xl flex items-center justify-center hover:bg-green-600 hover:text-white transition-all"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/966500000000" class="w-10 h-10 bg-green-600/20 text-green-500 border border-green-500/20 rounded-xl flex items-center justify-center"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>`;
             }).join('');
             document.getElementById('fullView').style.display = 'flex';
-            togglePanel();
+            if(!document.getElementById('sidePanel').classList.contains('-translate-x-full')) togglePanel();
         }
+
         function closeFullView() { document.getElementById('fullView').style.display = 'none'; }
     </script>
 </body>
