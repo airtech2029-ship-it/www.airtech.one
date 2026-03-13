@@ -3,38 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIRTECH VIP | FULL SYSTEM</title>
+    <title>AIRTECH VIP | ACCORDION MENU</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Inter:wght@400;700;900&display=swap');
-        body { background-color: #05070a; color: #ffffff; font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
+        body { background-color: #05070a; color: #ffffff; font-family: 'Inter', sans-serif; margin: 0; }
         
         /* Sidebar Fix */
         #sidebar { 
             background: #0a101f; width: 320px; height: 100vh; position: fixed; 
-            left: -320px; top: 0; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
-            z-index: 1000; padding: 25px; border-right: 1px solid #161f32; overflow-y: auto;
+            left: -320px; top: 0; transition: 0.4s ease; z-index: 1000; 
+            padding: 20px; border-right: 1px solid #161f32; overflow-y: auto;
         }
         #sidebar.active { left: 0; }
         #overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 999; }
         #overlay.active { display: block; }
 
-        /* UI Elements from Video */
-        .menu-box { background: rgba(22, 31, 50, 0.4); border-radius: 1.5rem; padding: 15px; margin-bottom: 15px; border: 1px solid #1e293b; }
-        .sub-link { display: block; width: 100%; text-align: left; padding: 10px; font-size: 11px; font-weight: 700; color: #94a3b8; border-bottom: 1px solid #161f32; cursor: pointer; text-transform: uppercase; }
-        .sub-link:hover { color: #3b82f6; background: rgba(59, 130, 246, 0.1); }
+        /* Accordion Logic */
+        .category-header { 
+            background: rgba(22, 31, 50, 0.6); border-radius: 1rem; 
+            padding: 15px; margin-bottom: 10px; cursor: pointer;
+            border: 1px solid #1e293b; display: flex; justify-content: space-between; align-items: center;
+        }
+        .category-content { 
+            max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;
+            padding: 0 15px; margin-bottom: 10px;
+        }
+        .category-content.open { max-height: 500px; padding-bottom: 10px; }
 
+        .sub-item { 
+            display: block; padding: 12px 0; font-size: 11px; font-weight: 700; 
+            color: #94a3b8; border-bottom: 1px solid #161f32; text-transform: uppercase; 
+        }
+        .sub-item:last-child { border-bottom: none; }
+
+        /* Product Card */
         .card { background: #0a101f; border-radius: 2.5rem; padding: 30px; margin-bottom: 25px; border: 1px solid #161f32; }
-        .model-main { font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 900; margin: 15px 0; }
-        
         .price-box {
             background: #05070a; border-radius: 1.8rem; padding: 18px 25px;
             display: flex; justify-content: space-between; align-items: center;
             border-left: 5px solid #3b82f6; margin-top: 25px;
         }
-        .sar-tag { color: #3b82f6; font-size: 0.8rem; font-weight: 900; }
-        .price-num { font-size: 2.2rem; font-weight: 900; }
     </style>
 </head>
 <body>
@@ -43,82 +53,82 @@
 
     <header class="p-6 flex justify-between items-center sticky top-0 bg-[#05070a] z-50 border-b border-slate-900">
         <button onclick="toggleSidebar()" class="w-12 h-12 bg-[#161f32] rounded-2xl flex items-center justify-center border border-slate-800">
-            <i class="fas fa-th-large text-blue-500 text-xl"></i>
+            <i class="fas fa-th-large text-blue-500"></i>
         </button>
         <div class="text-center italic font-black text-xl">AIRTECH <span class="text-blue-600">VIP</span></div>
         <div class="text-[10px] bg-slate-900 px-4 py-2 rounded-xl text-slate-400 font-bold">العربية</div>
     </header>
 
     <div id="sidebar">
-        <div class="flex justify-between items-center mb-10">
+        <div class="flex justify-between items-center mb-8">
             <div class="text-blue-500 font-black italic text-lg uppercase">AIRTECH MENU</div>
-            <button onclick="toggleSidebar()" class="text-slate-500 text-4xl">&times;</button>
+            <button onclick="toggleSidebar()" class="text-slate-500 text-3xl">&times;</button>
         </div>
 
-        <div class="menu-box">
-            <p class="text-[8px] font-black text-blue-500 uppercase mb-2 tracking-widest">HIKVISION SOLUTIONS</p>
-            <div class="sub-link" onclick="render('hik_nvr')">HIK NVR SYSTEM</div>
-            <div class="sub-link" onclick="render('hik_dvr')">HIK DVR RECORDER</div>
-            <div class="sub-link" onclick="render('hik_ip_in')">IP CAMERA INDOOR</div>
+        <div class="category-header" onclick="toggleAccordion('hik-menu')">
+            <span class="text-[10px] font-black text-blue-500 tracking-widest">HIKVISION SOLUTIONS</span>
+            <i class="fas fa-chevron-down text-[10px] text-slate-500"></i>
+        </div>
+        <div id="hik-menu" class="category-content">
+            <div class="sub-item" onclick="render('hik_nvr')">HIK NVR SYSTEM</div>
+            <div class="sub-item" onclick="render('hik_dvr')">HIK DVR RECORDER</div>
+            <div class="sub-item" onclick="render('hik_ip_in')">IP CAMERA INDOOR</div>
             <div class="sub-link" onclick="render('hik_ip_out')">IP CAMERA OUTDOOR</div>
-            <div class="sub-link" onclick="render('hik_an_in')">ANALOG INDOOR</div>
-            <div class="sub-link" onclick="render('hik_an_out')">ANALOG OUTDOOR</div>
         </div>
 
-        <div class="menu-box">
-            <p class="text-[8px] font-black text-orange-500 uppercase mb-2 tracking-widest">DAHUA TECHNOLOGY</p>
-            <div class="sub-link" onclick="render('dah_nvr')">DAHUA NVR</div>
-            <div class="sub-link" onclick="render('dah_dvr')">DAHUA DVR/XVR</div>
-            <div class="sub-link" onclick="render('dah_ip_in')">IP CAMERA INDOOR</div>
-            <div class="sub-link" onclick="render('dah_ip_out')">IP CAMERA OUTDOOR</div>
-            <div class="sub-link" onclick="render('dah_an_in')">ANALOG INDOOR</div>
-            <div class="sub-link" onclick="render('dah_an_out')">ANALOG OUTDOOR</div>
+        <div class="category-header" onclick="toggleAccordion('dah-menu')">
+            <span class="text-[10px] font-black text-orange-500 tracking-widest">DAHUA TECHNOLOGY</span>
+            <i class="fas fa-chevron-down text-[10px] text-slate-500"></i>
+        </div>
+        <div id="dah-menu" class="category-content">
+            <div class="sub-item" onclick="render('dah_nvr')">DAHUA NVR</div>
+            <div class="sub-item" onclick="render('dah_dvr')">DAHUA DVR/XVR</div>
+            <div class="sub-item" onclick="render('dah_ip')">IP SOLUTIONS</div>
         </div>
 
-        <div class="menu-box">
-            <p class="text-[8px] font-black text-purple-500 uppercase mb-2 tracking-widest">WIRELESS & STORAGE</p>
-            <div class="sub-link" onclick="render('ezviz')">EZVIZ WIFI CAMERA</div>
-            <div class="sub-link" onclick="render('imou')">IMOU WIFI CAMERA</div>
-            <div class="sub-link" onclick="render('hdd')">HDD STORE</div>
-            <div class="sub-link" onclick="render('net')">NETWORK STORE</div>
+        <div class="category-header" onclick="toggleAccordion('st-menu')">
+            <span class="text-[10px] font-black text-purple-500 tracking-widest">STORAGE & NETWORK</span>
+            <i class="fas fa-chevron-down text-[10px] text-slate-500"></i>
+        </div>
+        <div id="st-menu" class="category-content">
+            <div class="sub-item" onclick="render('ezviz')">EZVIZ WIFI</div>
+            <div class="sub-item" onclick="render('imou')">IMOU LIFE</div>
+            <div class="sub-item" onclick="render('hdd')">HDD STORE</div>
         </div>
     </div>
 
-    <div id="main" class="p-5">
-        <div id="display"></div>
-    </div>
+    <div id="main" class="p-5"><div id="display"></div></div>
 
     <script>
-        const db = {
-            hik_nvr: [{ m: 'DS-7604NI-K1', d: '4-CH 4K NVR', p: '345', i: 'https://www.hikvision.com/content/dam/hikvision/en/marketing-material/product-photos/nvr/7600/7604NI-K1.png' }],
-            dah_nvr: [{ m: 'NVR4104HS-I', d: '4-CH WIZSENSE AI', p: '320', i: 'https://www.dahuasecurity.com/asset/upload/product/20191024/NVR4104HS-I.png' }],
-            ezviz: [{ m: 'C6N 1080P', d: 'SMART INDOOR PT', p: '145', i: 'https://m.media-amazon.com/images/I/51uI4W7e+BL._AC_SL1000_.jpg' }],
-            hdd: [{ m: 'WD Purple 2TB', d: 'SURVEILLANCE HDD', p: '265', i: 'https://m.media-amazon.com/images/I/81S88mBvSML._AC_SL1500_.jpg' }],
-            net: [{ m: 'SanDisk 128GB', d: 'MICRO SD CARD', p: '75', i: 'https://m.media-amazon.com/images/I/617NnxA9dtL._AC_SL1500_.jpg' }]
-        };
-
         function toggleSidebar() {
             document.getElementById('sidebar').classList.toggle('active');
             document.getElementById('overlay').classList.toggle('active');
         }
 
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            const allContent = document.querySelectorAll('.category-content');
+            
+            // Dusra koi khula ho toh band kar do
+            allContent.forEach(item => { if(item.id !== id) item.classList.remove('open'); });
+            
+            content.classList.toggle('open');
+        }
+
         function render(cat) {
             toggleSidebar();
             const container = document.getElementById('display');
-            container.innerHTML = (db[cat] || []).map(item => `
-                <div class="card">
-                    <p class="text-[7px] text-slate-500 font-black uppercase tracking-widest">Ready to dispatch from Hafar Al Batin</p>
-                    <img src="${item.i}" class="h-44 mx-auto my-6 object-contain">
-                    <div class="model-name text-white">${item.m}</div>
-                    <p class="text-[9px] text-slate-500 font-bold uppercase tracking-widest">${item.d}</p>
-                    <div class="price-box">
-                        <div class="w-10 h-10 rounded-full border border-blue-500 flex items-center justify-center"><i class="fas fa-check text-blue-500"></i></div>
-                        <div class="text-right"><span class="block text-[7px] text-slate-500 font-black uppercase">Official Rate</span>
-                        <div><span class="sar-tag">SAR</span><span class="price-num">${item.p}</span></div></div>
-                    </div>
+            // Sample Data Loading Logic
+            container.innerHTML = `<div class="card">
+                <p class="text-[7px] text-slate-500 font-black uppercase tracking-widest">Ready to dispatch from Hafar Al Batin</p>
+                <div class="h-44 bg-slate-900/50 my-6 rounded-3xl flex items-center justify-center text-slate-700">PRODUCT IMAGE</div>
+                <div style="font-family: 'Orbitron';" class="text-2xl font-black text-white uppercase mb-2">LOADING MODEL...</div>
+                <div class="price-box">
+                    <div class="w-10 h-10 rounded-full border border-blue-500 flex items-center justify-center"><i class="fas fa-check text-blue-500"></i></div>
+                    <div class="text-right"><span class="block text-[7px] text-slate-500 font-black uppercase">Official Rate</span>
+                    <div><span class="text-blue-500 font-black text-xs">SAR</span><span class="text-3xl font-black"> ---</span></div></div>
                 </div>
-            `).join('') || '<div class="text-center py-20 text-slate-700 font-bold uppercase tracking-widest">No Products Loaded Yet</div>';
-            window.scrollTo(0,0);
+            </div>`;
         }
         render('hik_nvr');
     </script>
