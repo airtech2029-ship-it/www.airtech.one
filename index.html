@@ -3,63 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AirTech One | CCTV & POS Solutions</title>
+    <title>AirTech One | Hafar Al Batin Tech Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .hero-bg { background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%); }
-        .card-hover:hover { transform: translateY(-10px); transition: 0.3s; }
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+        .hero-section { background: #0f172a; position: relative; overflow: hidden; }
+        .service-card:hover { border-color: #3b82f6; transform: translateY(-5px); transition: all 0.3s; }
     </style>
 </head>
-<body class="bg-slate-50 font-sans">
+<body class="bg-slate-50">
 
-    <nav class="bg-white shadow-md p-4 sticky top-0 z-50">
+    <nav class="bg-white border-b border-slate-200 p-5 sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-blue-700">AirTech <span class="text-slate-800">One</span></h1>
-            <a href="https://wa.me/966500000000" class="bg-green-600 text-white px-5 py-2 rounded-full font-bold">
-                <i class="fab fa-whatsapp mr-2"></i>Get 10% Off
+            <div class="text-2xl font-bold tracking-tighter text-blue-900">
+                AIRTECH <span class="text-blue-500 font-light">ONE</span>
+            </div>
+            <div class="hidden md:flex space-x-8 font-semibold text-slate-600">
+                <a href="#services" class="hover:text-blue-600">Services</a>
+                <a href="#solutions" class="hover:text-blue-600">Solutions</a>
+                <a href="#contact" class="hover:text-blue-600">Contact</a>
+            </div>
+            <a href="https://wa.me/966500000000" class="bg-blue-600 text-white px-6 py-2 rounded-md font-bold">
+                Consult Now
             </a>
         </div>
     </nav>
 
-    <header class="hero-bg text-white py-20 px-6 text-center">
-        <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Security & Tech in Hafar Al Batin</h2>
-        <div class="inline-block bg-yellow-400 text-blue-900 px-6 py-2 rounded-full font-bold mb-6">
-            🔥 NEW CUSTOMER? 10% DISCOUNT!
+    <header class="hero-section text-white py-32 px-6">
+        <div class="container mx-auto text-center relative z-10">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">Innovative Tech for Modern Business</h1>
+            <p class="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">Providing Hafar Al Batin with Premium CCTV Security Systems and BillZest VIP POS Management Software.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#services" class="bg-blue-600 px-8 py-3 rounded-md font-bold hover:bg-blue-700">Explore Services</a>
+                <a href="https://wa.me/966500000000" class="bg-transparent border border-slate-500 px-8 py-3 rounded-md font-bold hover:bg-white hover:text-black">Request Quote</a>
+            </div>
         </div>
     </header>
 
-    <section class="container mx-auto py-12 px-6">
-        <div class="grid md:grid-cols-2 gap-8">
-            <div class="bg-white p-8 rounded-3xl shadow-lg card-hover border-t-8 border-blue-600">
-                <i class="fas fa-video text-4xl text-blue-600 mb-4"></i>
-                <h3 class="text-2xl font-bold mb-2">CCTV Security</h3>
-                <p class="text-slate-500 mb-4 font-semibold text-lg"><span class="line-through">SAR 250</span> <span class="text-blue-600">SAR 180</span></p>
-                <p class="text-slate-600 mb-6">4K Quality, Mobile Access, 24/7 Professional Support.</p>
-                <a href="https://wa.me/966500000000" class="block text-center bg-blue-600 text-white py-3 rounded-xl font-bold">Order Now</a>
+    <section id="services" class="py-24 container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-slate-900">Professional Solutions</h2>
+            <div class="w-20 h-1 bg-blue-600 mx-auto mt-4"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12">
+            <div class="service-card bg-white p-10 rounded-xl border border-slate-200 shadow-sm">
+                <div class="text-blue-600 text-4xl mb-6"><i class="fas fa-shield-alt"></i></div>
+                <h3 class="text-2xl font-bold mb-4">CCTV Surveillance</h3>
+                <p class="text-slate-600 mb-6 leading-relaxed">High-definition security cameras with AI motion detection, remote mobile access, and 24/7 cloud recording features.</p>
+                <div class="text-blue-900 font-bold mb-6 text-lg">Standard Setup: SAR 250</div>
+                <ul class="space-y-3 text-sm text-slate-500">
+                    <li><i class="fas fa-check text-blue-600 mr-2"></i> Ultra HD 4K Cameras</li>
+                    <li><i class="fas fa-check text-blue-600 mr-2"></i> Professional Installation</li>
+                    <li><i class="fas fa-check text-blue-600 mr-2"></i> 1 Year Warranty</li>
+                </ul>
             </div>
 
-            <div class="bg-white p-8 rounded-3xl shadow-lg card-hover border-t-8 border-green-600">
-                <i class="fas fa-file-invoice text-4xl text-green-600 mb-4"></i>
-                <h3 class="text-2xl font-bold mb-2">BillZest VIP POS</h3>
-                <p class="text-slate-500 mb-4 font-semibold text-lg"><span class="line-through">SAR 135</span> <span class="text-green-600">SAR 99</span></p>
-                <p class="text-slate-600 mb-6">Arabic/English Support, Inventory & WhatsApp Billing.</p>
-                <a href="https://wa.me/966500000000" class="block text-center bg-green-600 text-white py-3 rounded-xl font-bold">Get Demo</a>
+            <div class="service-card bg-white p-10 rounded-xl border border-slate-200 shadow-sm">
+                <div class="text-blue-600 text-4xl mb-6"><i class="fas fa-chart-line"></i></div>
+                <h3 class="text-2xl font-bold mb-2 text-slate-800">BillZest VIP POS</h3>
+                <p class="text-slate-600 mb-6 leading-relaxed">Complete Retail & Restaurant management system with inventory tracking, employee logs, and bilingual invoice generation.</p>
+                <div class="text-blue-900 font-bold mb-6 text-lg">Monthly License: SAR 135</div>
+                <ul class="space-y-3 text-sm text-slate-500">
+                    <li><i class="fas fa-check text-blue-600 mr-2"></i> Arabic & English Interface</li>
+                    <li><i class="fas fa-check text-blue-600 mr-2"></i> WhatsApp Bill Integration</li>
+                    <li><i class="fas fa-check text-blue-600 mr-2"></i> Cloud Data Backup</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <section class="bg-slate-900 text-white py-16 text-center">
-        <h3 class="text-3xl font-bold mb-4 text-yellow-400 italic">AI Monthly Intelligence</h3>
-        <p class="text-slate-400 mb-8">Get automated business reports on your WhatsApp.</p>
-        <div class="flex justify-center space-x-4">
-            <span class="bg-slate-800 px-4 py-2 rounded-lg text-sm">Profit Tracking</span>
-            <span class="bg-slate-800 px-4 py-2 rounded-lg text-sm">Stock Alerts</span>
+    <section id="solutions" class="bg-slate-100 py-20 px-6">
+        <div class="container mx-auto text-center">
+            <h3 class="text-3xl font-bold mb-6 text-slate-800 italic underline underline-offset-8 decoration-blue-500">AI Monthly Intelligence</h3>
+            <p class="text-slate-600 mb-12 max-w-2xl mx-auto">Hamara AI system aapke business data ko analyze karta hai aur har mahine aapke WhatsApp par detail growth report bhejta hai.</p>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h5 class="font-bold text-blue-900">Sales Prediction</h5>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h5 class="font-bold text-blue-900">Inventory Alerts</h5>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h5 class="font-bold text-blue-900">Profit Analytics</h5>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer class="py-8 bg-white text-center border-t">
-        <p>© 2026 AirTech One - Hafar Al Batin</p>
+    <footer id="contact" class="bg-white py-12 border-t text-center">
+        <div class="mb-6">
+            <h4 class="text-xl font-bold">AirTech One</h4>
+            <p class="text-slate-400">Hafar Al Batin, Saudi Arabia</p>
+        </div>
+        <p class="text-sm text-slate-500">© 2026 Professional Tech Solutions</p>
     </footer>
 
 </body>
