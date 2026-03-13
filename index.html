@@ -13,6 +13,8 @@
         .hero-gradient { background: radial-gradient(circle at top right, #1e293b, #0f172a); }
         .custom-scrollbar::-webkit-scrollbar { width: 4px; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        .submenu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .submenu.active { max-height: 500px; }
         @keyframes pulse-soft { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
         .animate-pulse-custom { animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
     </style>
@@ -29,79 +31,80 @@
             <button onclick="togglePanel()" class="text-slate-400 hover:text-white text-3xl">&times;</button>
         </div>
         
-        <div class="flex-1 overflow-y-auto p-6 custom-scrollbar space-y-8">
+        <div class="flex-1 overflow-y-auto p-4 custom-scrollbar space-y-4">
             
-            <div>
-                <h4 class="text-[11px] font-black text-blue-500 uppercase tracking-[0.2em] mb-4 border-l-2 border-blue-500 pl-3">Hikvision Solutions</h4>
-                <div class="space-y-1 ml-2">
-                    <a href="#" class="group flex items-center p-3 rounded-xl hover:bg-blue-600/10 transition">
-                        <div class="w-8 text-slate-400 group-hover:text-blue-400 transition"><i class="fas fa-database"></i></div>
-                        <div class="flex flex-col">
-                            <span class="text-sm font-bold text-slate-200 group-hover:text-white">NVR / DVR Storage</span>
-                            <span class="text-[10px] text-slate-500 uppercase italic tracking-tighter">Hikvision Recording</span>
-                        </div>
-                    </a>
+            <div class="bg-slate-900/40 rounded-2xl border border-slate-800/50">
+                <button onclick="toggleAccordion('hik-menu', 'hik-icon')" class="w-full flex items-center justify-between p-4 focus:outline-none">
+                    <div class="flex items-center">
+                        <div class="h-4 w-1 bg-blue-500 mr-3 rounded-full"></div>
+                        <span class="text-xs font-black text-blue-400 uppercase tracking-widest">Hikvision Solutions</span>
+                    </div>
+                    <i class="fas fa-chevron-down text-[10px] text-slate-500 transition-transform duration-300" id="hik-icon"></i>
+                </button>
+                <div id="hik-menu" class="submenu">
+                    <div class="px-4 pb-4 space-y-1 ml-4 border-l border-slate-800">
+                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-blue-600/10 rounded-lg transition">NVR System</a>
+                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-blue-600/10 rounded-lg transition">DVR System</a>
+                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-blue-600/10 rounded-lg transition">IP Camera Outdoor</a>
+                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-blue-600/10 rounded-lg transition">IP Camera Indoor</a>
+                    </div>
                 </div>
             </div>
 
-            <div>
-                <h4 class="text-[11px] font-black text-orange-500 uppercase tracking-[0.2em] mb-4 border-l-2 border-orange-500 pl-3">Dahua Technology</h4>
-                <div class="space-y-1 ml-2">
-                    <a href="#" class="group flex items-center p-3 rounded-xl hover:bg-orange-600/10 transition">
-                        <div class="w-8 text-slate-400 group-hover:text-orange-400 transition"><i class="fas fa-server"></i></div>
-                        <div class="flex flex-col">
-                            <span class="text-sm font-bold text-slate-200 group-hover:text-white">Dahua DVR / NVR</span>
-                            <span class="text-[10px] text-slate-500 uppercase italic tracking-tighter">AI Coding Storage</span>
-                        </div>
-                    </a>
+            <div class="bg-slate-900/40 rounded-2xl border border-slate-800/50">
+                <button onclick="toggleAccordion('dahua-menu', 'dahua-icon')" class="w-full flex items-center justify-between p-4 focus:outline-none">
+                    <div class="flex items-center">
+                        <div class="h-4 w-1 bg-orange-500 mr-3 rounded-full"></div>
+                        <span class="text-xs font-black text-orange-400 uppercase tracking-widest">Dahua Technology</span>
+                    </div>
+                    <i class="fas fa-chevron-down text-[10px] text-slate-500 transition-transform duration-300" id="dahua-icon"></i>
+                </button>
+                <div id="dahua-menu" class="submenu">
+                    <div class="px-4 pb-4 space-y-1 ml-4 border-l border-slate-800">
+                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-orange-600/10 rounded-lg transition">NVR System</a>
+                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-orange-600/10 rounded-lg transition">DVR System</a>
+                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-orange-600/10 rounded-lg transition">IP Camera Outdoor</a>
+                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-orange-600/10 rounded-lg transition">IP Camera Indoor</a>
+                    </div>
                 </div>
             </div>
 
-            <div>
-                <h4 class="text-[11px] font-black text-purple-500 uppercase tracking-[0.2em] mb-4 border-l-2 border-purple-500 pl-3">Storage Solutions</h4>
-                <div class="space-y-2 ml-2">
-                    <a href="#" class="group flex items-center p-3 rounded-xl hover:bg-purple-600/10 transition border border-transparent hover:border-purple-500/30">
-                        <div class="w-8 text-slate-400 group-hover:text-purple-400 transition"><i class="fas fa-hdd"></i></div>
-                        <div class="flex-1 flex flex-col">
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm font-bold text-slate-200 group-hover:text-white">WD Purple 4TB</span>
-                                <span class="text-[9px] bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full font-bold uppercase">In Stock</span>
-                            </div>
-                            <span class="text-[10px] text-slate-500 uppercase italic tracking-tighter">240 SAR</span>
+            <div class="p-2">
+                <h4 class="text-[10px] font-black text-purple-500 uppercase tracking-[0.2em] mb-3 ml-2">Storage</h4>
+                <a href="#" class="group flex items-center p-3 rounded-xl hover:bg-purple-600/10 border border-transparent hover:border-purple-500/30">
+                    <div class="w-8 text-slate-400 group-hover:text-purple-400 transition"><i class="fas fa-hdd"></i></div>
+                    <div class="flex-1 flex flex-col">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-slate-200">WD Purple 4TB</span>
+                            <span class="text-[8px] bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full font-bold">STOCK</span>
                         </div>
-                    </a>
-                </div>
+                    </div>
+                </a>
             </div>
 
-            <div>
-                <h4 class="text-[11px] font-black text-teal-400 uppercase tracking-[0.2em] mb-4 border-l-2 border-teal-400 pl-3">Network & WiFi</h4>
-                <div class="space-y-1 ml-2">
-                    <a href="#" class="group flex items-center p-3 rounded-xl hover:bg-teal-600/10 transition">
-                        <div class="w-8 text-slate-400 group-hover:text-teal-400 transition"><i class="fas fa-router"></i></div>
-                        <div class="flex flex-col">
-                            <span class="text-sm font-bold text-slate-200 group-hover:text-white">TP-Link Archer</span>
-                            <span class="text-[10px] text-slate-500 uppercase tracking-tighter">WiFi 6 Solutions</span>
-                        </div>
-                    </a>
-                </div>
+            <div class="p-2">
+                <h4 class="text-[10px] font-black text-teal-400 uppercase tracking-[0.2em] mb-3 ml-2">Networking</h4>
+                <a href="#" class="group flex items-center p-3 rounded-xl hover:bg-teal-600/10 transition">
+                    <div class="w-8 text-slate-400 group-hover:text-teal-400 transition"><i class="fas fa-router"></i></div>
+                    <span class="text-xs font-bold text-slate-200">TP-Link Solutions</span>
+                </a>
             </div>
 
             <div class="pt-4">
-                <a href="https://wa.me/966500000000?text=I%20want%20a%20Free%20Demo%20of%20BillZest" class="group relative overflow-hidden flex items-center p-4 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-800 border border-blue-400/20 transition-all">
+                <a href="https://wa.me/966500000000" class="group relative overflow-hidden flex items-center p-4 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-800 border border-blue-400/20">
                     <div class="z-10 w-10 text-white text-xl mr-3"><i class="fas fa-rocket"></i></div>
                     <div class="z-10 flex flex-col flex-1">
                         <div class="flex justify-between items-center">
-                            <span class="text-sm font-black text-white uppercase tracking-tighter">BillZest VIP POS</span>
-                            <span class="text-[8px] bg-yellow-400 text-blue-900 px-2 py-0.5 rounded font-black animate-pulse">FREE DEMO</span>
+                            <span class="text-sm font-black text-white uppercase tracking-tighter">BillZest VIP</span>
+                            <span class="text-[8px] bg-yellow-400 text-blue-900 px-2 py-0.5 rounded font-black animate-pulse">DEMO</span>
                         </div>
-                        <span class="text-[9px] text-blue-100 uppercase font-bold opacity-80 mt-1">Smart Management</span>
                     </div>
                 </a>
             </div>
         </div>
 
         <div class="p-6 bg-slate-900 border-t border-slate-800">
-            <a href="https://wa.me/966500000000" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 transition">
+            <a href="https://wa.me/966500000000" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 transition shadow-lg">
                 <i class="fab fa-whatsapp text-xl"></i> CONTACT ASIM
             </a>
         </div>
@@ -112,99 +115,24 @@
     <nav class="bg-white/95 backdrop-blur-sm border-b border-slate-200 p-4 sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
             <div class="flex items-center">
-                <button onclick="togglePanel()" class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 mr-4 transition">
+                <button onclick="togglePanel()" class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 mr-4">
                     <i class="fas fa-bars text-xl text-slate-900"></i>
                 </button>
                 <div class="text-2xl font-black text-blue-900 tracking-tighter uppercase">AirTech One</div>
             </div>
-            <a href="https://wa.me/966500000000" class="bg-blue-600 text-white px-6 py-2.5 rounded-xl font-black text-xs shadow-lg shadow-blue-500/30 hover:bg-blue-700 transition">CONSULT NOW</a>
+            <a href="https://wa.me/966500000000" class="bg-blue-600 text-white px-6 py-2.5 rounded-xl font-black text-xs">CONSULT</a>
         </div>
     </nav>
 
-    <header class="hero-gradient text-white py-32 px-6 text-center relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-            <div class="absolute top-10 left-10 w-64 h-64 bg-blue-500 rounded-full blur-[120px]"></div>
-            <div class="absolute bottom-10 right-10 w-64 h-64 bg-indigo-500 rounded-full blur-[120px]"></div>
-        </div>
-        <h1 class="text-5xl md:text-8xl font-black mb-6 tracking-tighter uppercase leading-none">AirTech One</h1>
-        <p class="text-slate-400 max-w-2xl mx-auto mb-12 text-lg font-light leading-relaxed">
-            The Ultimate <span class="text-white font-bold">Security & Networking</span> Hub in Hafar Al Batin. Professional CCTV, POS & IT Infrastructure.
-        </p>
-        <button onclick="togglePanel()" class="bg-blue-600 px-12 py-5 rounded-2xl font-black shadow-2xl shadow-blue-500/40 hover:bg-blue-700 transition transform hover:-translate-y-1 uppercase tracking-widest text-sm">Explore Catalog</button>
+    <header class="hero-gradient text-white py-32 px-6 text-center">
+        <h1 class="text-5xl md:text-8xl font-black mb-6 tracking-tighter uppercase">AirTech One</h1>
+        <p class="text-slate-400 max-w-2xl mx-auto mb-12 text-lg">Hafar Al Batin Premium Security & Networking Hub.</p>
+        <button onclick="togglePanel()" class="bg-blue-600 px-12 py-5 rounded-2xl font-black shadow-2xl hover:bg-blue-700 transition transform hover:-translate-y-1">EXPLORE CATALOG</button>
     </header>
 
-    <section class="py-24 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
-                <div>
-                    <span class="text-blue-600 font-black text-xs uppercase tracking-[0.3em]">Hafar Al Batin Premium</span>
-                    <h2 class="text-4xl font-black text-slate-900 tracking-tighter uppercase mt-2">Core Inventory</h2>
-                    <div class="h-1.5 w-16 bg-blue-600 mt-4 rounded-full"></div>
-                </div>
-                <button onclick="togglePanel()" class="text-slate-500 font-bold text-sm hover:text-blue-600 transition flex items-center gap-2">
-                    OPEN FULL CATALOG <i class="fas fa-chevron-right text-[10px]"></i>
-                </button>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="group bg-slate-50 rounded-[40px] p-10 border border-slate-100 hover:shadow-3xl transition-all duration-500 hover:-translate-y-2">
-                    <div class="w-16 h-16 bg-blue-600/10 rounded-2xl flex items-center justify-center text-blue-600 text-3xl mb-8 group-hover:bg-blue-600 group-hover:text-white transition-all duration-500">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <h3 class="text-2xl font-black text-slate-900 mb-3">Hikvision HD</h3>
-                    <p class="text-slate-500 text-sm mb-8 leading-relaxed">Professional HD CCTV Kits with Night Vision and Smart AI Human Detection.</p>
-                    <div class="flex justify-between items-center border-t border-slate-200 pt-8">
-                        <div class="flex flex-col">
-                            <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Starting From</span>
-                            <span class="text-xl font-black text-blue-600">450 SAR</span>
-                        </div>
-                        <a href="https://wa.me/966500000000" class="w-12 h-12 rounded-full bg-slate-900 text-white flex items-center justify-center hover:bg-blue-600 transition-all shadow-lg"><i class="fas fa-plus"></i></a>
-                    </div>
-                </div>
-
-                <div class="group bg-slate-50 rounded-[40px] p-10 border border-slate-100 hover:shadow-3xl transition-all duration-500 hover:-translate-y-2">
-                    <div class="w-16 h-16 bg-purple-600/10 rounded-2xl flex items-center justify-center text-purple-600 text-3xl mb-8 group-hover:bg-purple-600 group-hover:text-white transition-all duration-500">
-                        <i class="fas fa-hdd"></i>
-                    </div>
-                    <h3 class="text-2xl font-black text-slate-900 mb-3">Surveillance HDD</h3>
-                    <p class="text-slate-500 text-sm mb-8 leading-relaxed">WD Purple & Seagate SkyHawk drives optimized for 24/7 video recording.</p>
-                    <div class="flex justify-between items-center border-t border-slate-200 pt-8">
-                        <div class="flex flex-col">
-                            <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">WD Purple 4TB</span>
-                            <span class="text-xl font-black text-purple-600">240 SAR</span>
-                        </div>
-                        <a href="https://wa.me/966500000000" class="w-12 h-12 rounded-full bg-slate-900 text-white flex items-center justify-center hover:bg-purple-600 transition-all shadow-lg"><i class="fas fa-plus"></i></a>
-                    </div>
-                </div>
-
-                <div class="group bg-slate-900 rounded-[40px] p-10 border border-slate-800 hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 relative overflow-hidden">
-                    <div class="absolute top-6 right-6 bg-yellow-400 text-black text-[10px] font-black px-4 py-1.5 rounded-full z-10">BEST SELLER</div>
-                    <div class="w-16 h-16 bg-blue-500/20 rounded-2xl flex items-center justify-center text-blue-400 text-3xl mb-8 group-hover:bg-blue-500 group-hover:text-white transition-all duration-500">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3 class="text-2xl font-black text-white mb-3">BillZest VIP</h3>
-                    <p class="text-slate-400 text-sm mb-8 leading-relaxed">Advanced POS Management System for Retail, Groceries, and Coffee Shops.</p>
-                    <div class="flex justify-between items-center border-t border-slate-700 pt-8">
-                        <div class="flex flex-col">
-                            <span class="text-[10px] text-blue-400 font-bold uppercase tracking-widest">Business Software</span>
-                            <span class="text-xl font-black text-blue-400 italic underline">FREE DEMO</span>
-                        </div>
-                        <a href="https://wa.me/966500000000" class="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-white hover:text-blue-600 transition-all shadow-lg shadow-blue-500/20"><i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-20 text-center bg-slate-50 border-t border-slate-200">
-        <div class="text-3xl font-black text-slate-900 tracking-tighter uppercase">AIRTECH ONE</div>
-        <p class="text-slate-500 text-sm mt-4 font-bold">Smart Technology Solutions Provider</p>
-        <div class="flex justify-center gap-6 mt-8">
-            <a href="#" class="text-slate-400 hover:text-blue-600 text-xl"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="text-slate-400 hover:text-blue-600 text-xl"><i class="fab fa-whatsapp"></i></a>
-            <a href="#" class="text-slate-400 hover:text-blue-600 text-xl"><i class="fas fa-map-marker-alt"></i></a>
-        </div>
-        <p class="text-slate-400 text-[10px] mt-12 uppercase tracking-[0.4em] font-bold">Hafar Al Batin | Saudi Arabia | 2026</p>
+    <footer class="py-16 text-center bg-slate-50 border-t border-slate-200">
+        <div class="text-2xl font-black text-slate-900 tracking-tighter">AIRTECH ONE</div>
+        <p class="text-slate-400 text-[10px] mt-4 uppercase tracking-[0.4em]">Hafar Al Batin | 2026</p>
     </footer>
 
     <script>
@@ -212,7 +140,6 @@
             const panel = document.getElementById('sidePanel');
             const overlay = document.getElementById('overlay');
             const isOpen = !panel.classList.contains('-translate-x-full');
-
             if (isOpen) {
                 panel.classList.add('-translate-x-full');
                 overlay.classList.add('hidden');
@@ -221,6 +148,26 @@
                 panel.classList.remove('-translate-x-full');
                 overlay.classList.remove('hidden');
                 document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function toggleAccordion(menuId, iconId) {
+            const menu = document.getElementById(menuId);
+            const icon = document.getElementById(iconId);
+            
+            // Check if active
+            const isActive = menu.classList.contains('active');
+            
+            // Close all first (Optional: for cleaner look)
+            // document.querySelectorAll('.submenu').forEach(s => s.classList.remove('active'));
+            // document.querySelectorAll('.fa-chevron-down').forEach(i => i.style.transform = 'rotate(0deg)');
+
+            if (!isActive) {
+                menu.classList.add('active');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                menu.classList.remove('active');
+                icon.style.transform = 'rotate(0deg)';
             }
         }
     </script>
