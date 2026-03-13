@@ -3,238 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AirTech One | Hafar Al Batin Premium Tech</title>
+    <title>AirTech One | Hafar Al Batin VIP</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
-        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: white; }
         .side-panel { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .hero-gradient { background: radial-gradient(circle at top right, #1e293b, #0f172a); }
-        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
         .submenu { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out; }
         .submenu.active { max-height: 1000px; }
-
-        /* VIP CARD STYLING */
+        
+        /* VIP Premium Card */
         .vip-card { 
             background: linear-gradient(145deg, #1e293b, #0f172a); 
-            border: 1px solid #334155; 
-            border-radius: 25px; 
-            padding: 20px; 
-            transition: all 0.3s ease;
+            border: 1px solid rgba(51, 65, 85, 0.5); 
+            border-radius: 28px; 
+            padding: 18px;
+            transition: 0.3s ease;
         }
-        .vip-card:active { transform: scale(0.96); }
+        .vip-card:hover { border-color: #3b82f6; transform: translateY(-8px); box-shadow: 0 20px 40px -15px rgba(59, 130, 246, 0.3); }
         
-        #fullView { 
-            position: fixed; 
-            inset: 0; 
-            background: #0f172a; 
-            z-index: 200; 
-            display: none; 
-            flex-direction: column; 
-            overflow-y: auto; 
-        }
+        #fullView { position: fixed; inset: 0; background: #0f172a; z-index: 200; display: none; flex-direction: column; overflow-y: auto; }
+        .search-box { background: rgba(30, 41, 59, 0.8); border: 1px solid #334155; border-radius: 15px; padding: 12px 20px; outline: none; width: 100%; color: white; }
     </style>
 </head>
-<body class="bg-slate-50 overflow-x-hidden">
+<body class="overflow-x-hidden">
 
-    <div id="sidePanel" class="side-panel fixed inset-y-0 left-0 w-80 bg-[#0f172a] text-white -translate-x-full z-[100] shadow-2xl border-r border-blue-500/20 flex flex-col">
-        
+    <div id="sidePanel" class="side-panel fixed inset-y-0 left-0 w-80 bg-[#0f172a] -translate-x-full z-[100] border-r border-blue-500/20 flex flex-col shadow-2xl">
         <div class="p-6 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
-            <div>
-                <h2 class="text-xl font-black text-blue-400 tracking-tighter uppercase">AirTech Catalog</h2>
-                <div class="h-1 w-8 bg-blue-600 mt-1"></div>
-            </div>
-            <button onclick="togglePanel()" class="text-slate-400 hover:text-white text-3xl">&times;</button>
+            <h2 class="text-xl font-black text-blue-400 uppercase tracking-tighter">AirTech Menu</h2>
+            <button onclick="togglePanel()" class="text-3xl">&times;</button>
         </div>
         
-        <div class="flex-1 overflow-y-auto p-4 custom-scrollbar space-y-4">
-            
+        <div class="flex-1 overflow-y-auto p-4 space-y-4">
             <div class="bg-slate-900/40 rounded-2xl border border-slate-800/50">
-                <button onclick="toggleAccordion('hik-menu', 'hik-icon')" class="w-full flex items-center justify-between p-4 focus:outline-none">
-                    <div class="flex items-center">
-                        <div class="h-4 w-1 bg-blue-500 mr-3 rounded-full"></div>
-                        <span class="text-xs font-black text-blue-400 uppercase tracking-widest">Hikvision Solutions</span>
-                    </div>
-                    <i class="fas fa-chevron-down text-[10px] text-slate-500 transition-transform duration-300" id="hik-icon"></i>
+                <button onclick="toggleAccordion('hik-menu')" class="w-full flex items-center justify-between p-4">
+                    <span class="text-xs font-black text-blue-400 uppercase tracking-widest">Hikvision Solutions</span>
+                    <i class="fas fa-chevron-down text-[10px]"></i>
                 </button>
-                <div id="hik-menu" class="submenu">
-                    <div class="px-4 pb-4 space-y-1 ml-4 border-l border-slate-800">
-                        <a href="javascript:void(0)" onclick="openProducts('NVR System')" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-blue-600/10 rounded-lg transition">NVR System</a>
-                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-blue-600/10 rounded-lg transition">DVR System</a>
-                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-blue-600/10 rounded-lg transition">IP Camera Outdoor</a>
-                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-blue-600/10 rounded-lg transition">IP Camera Indoor</a>
-                    </div>
+                <div id="hik-menu" class="submenu border-l border-slate-800 ml-6 pb-2">
+                    <a href="javascript:void(0)" onclick="openProducts('hikNvr')" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white">NVR System</a>
+                    <a href="javascript:void(0)" onclick="openProducts('hikDvr')" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white">DVR System</a>
                 </div>
             </div>
 
             <div class="bg-slate-900/40 rounded-2xl border border-slate-800/50">
-                <button onclick="toggleAccordion('dahua-menu', 'dahua-icon')" class="w-full flex items-center justify-between p-4 focus:outline-none">
-                    <div class="flex items-center">
-                        <div class="h-4 w-1 bg-orange-500 mr-3 rounded-full"></div>
-                        <span class="text-xs font-black text-orange-400 uppercase tracking-widest">Dahua Technology</span>
-                    </div>
-                    <i class="fas fa-chevron-down text-[10px] text-slate-500 transition-transform duration-300" id="dahua-icon"></i>
+                <button onclick="toggleAccordion('dahua-menu')" class="w-full flex items-center justify-between p-4">
+                    <span class="text-xs font-black text-orange-400 uppercase tracking-widest">Dahua Technology</span>
+                    <i class="fas fa-chevron-down text-[10px]"></i>
                 </button>
-                <div id="dahua-menu" class="submenu">
-                    <div class="px-4 pb-4 space-y-1 ml-4 border-l border-slate-800">
-                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-orange-600/10 rounded-lg transition">Dahua NVR</a>
-                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-orange-600/10 rounded-lg transition">Dahua DVR</a>
-                    </div>
+                <div id="dahua-menu" class="submenu border-l border-slate-800 ml-6 pb-2">
+                    <a href="javascript:void(0)" onclick="openProducts('dahuaNvr')" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white">Dahua NVR</a>
+                    <a href="javascript:void(0)" onclick="openProducts('dahuaDvr')" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white">Dahua DVR</a>
                 </div>
             </div>
 
             <div class="bg-slate-900/40 rounded-2xl border border-slate-800/50">
-                <button onclick="toggleAccordion('hdd-menu', 'hdd-icon')" class="w-full flex items-center justify-between p-4 focus:outline-none">
-                    <div class="flex items-center">
-                        <div class="h-4 w-1 bg-purple-500 mr-3 rounded-full"></div>
-                        <span class="text-xs font-black text-purple-400 uppercase tracking-widest">HDD Store</span>
-                    </div>
-                    <i class="fas fa-chevron-down text-[10px] text-slate-500 transition-transform duration-300" id="hdd-icon"></i>
+                <button onclick="toggleAccordion('hdd-menu')" class="w-full flex items-center justify-between p-4">
+                    <span class="text-xs font-black text-purple-400 uppercase tracking-widest">HDD Store</span>
+                    <i class="fas fa-chevron-down text-[10px]"></i>
                 </button>
-                <div id="hdd-menu" class="submenu">
-                    <div class="px-4 pb-4 space-y-1 ml-4 border-l border-slate-800">
-                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-purple-600/10 rounded-lg transition flex justify-between items-center">
-                            <span>WD Purple</span>
-                            <span class="text-[8px] bg-green-500/20 text-green-400 px-2 py-0.5 rounded font-black">STOCK</span>
-                        </a>
-                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-purple-600/10 rounded-lg transition flex justify-between items-center">
-                            <span>Toshiba S300</span>
-                            <span class="text-[8px] bg-green-500/20 text-green-400 px-2 py-0.5 rounded font-black">STOCK</span>
-                        </a>
-                    </div>
+                <div id="hdd-menu" class="submenu border-l border-slate-800 ml-6 pb-2">
+                    <a href="javascript:void(0)" onclick="openProducts('hddStore')" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white">WD & Toshiba</a>
                 </div>
             </div>
 
             <div class="p-2">
-                <h4 class="text-[10px] font-black text-teal-400 uppercase tracking-[0.2em] mb-3 ml-2">Networking</h4>
-                <a href="#" class="group flex items-center p-3 rounded-xl hover:bg-teal-600/10 transition border border-transparent hover:border-teal-500/30">
-                    <div class="w-8 text-slate-400 group-hover:text-teal-400 transition"><i class="fas fa-router"></i></div>
-                    <span class="text-xs font-bold text-slate-200">TP-Link Archer Solutions</span>
-                </a>
-            </div>
-
-            <div class="pt-4">
-                <a href="#" class="group relative overflow-hidden flex items-center p-4 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-800 border border-blue-400/20">
-                    <div class="z-10 w-10 text-white text-xl mr-3"><i class="fas fa-rocket"></i></div>
-                    <div class="z-10 flex flex-col flex-1">
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm font-black text-white uppercase tracking-tighter">BillZest VIP</span>
-                            <span class="text-[8px] bg-yellow-400 text-blue-900 px-2 py-0.5 rounded font-black animate-pulse">DEMO</span>
-                        </div>
-                    </div>
+                <h4 class="text-[10px] font-black text-teal-400 uppercase tracking-widest mb-3 ml-2">Networking</h4>
+                <a href="javascript:void(0)" onclick="openProducts('networking')" class="flex items-center p-3 rounded-xl hover:bg-teal-600/10 border border-transparent hover:border-teal-500/30">
+                    <i class="fas fa-router mr-3 text-slate-400"></i>
+                    <span class="text-xs font-bold">TP-Link Solutions</span>
                 </a>
             </div>
         </div>
 
-        <div class="p-6 bg-slate-900 border-t border-slate-800">
-            <a href="https://wa.me/966500000000" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 transition">
-                <i class="fab fa-whatsapp text-xl"></i> CONTACT ASIM
+        <div class="p-6 bg-slate-900">
+            <a href="https://wa.me/966500000000" class="w-full bg-blue-600 py-4 rounded-xl flex items-center justify-center gap-3 font-bold text-white uppercase text-xs">
+                <i class="fab fa-whatsapp text-lg"></i> Contact Asim
             </a>
         </div>
     </div>
 
     <div id="fullView">
         <div class="p-6 border-b border-slate-800 flex justify-between items-center sticky top-0 bg-[#0f172a] z-50">
-            <div>
-                <h2 id="catTitle" class="text-2xl font-black text-white uppercase tracking-tighter">Category</h2>
-                <p class="text-[9px] text-blue-400 font-bold tracking-[3px]">AIRTECH SELECTION</p>
-            </div>
-            <button onclick="closeFullView()" class="w-12 h-12 bg-slate-800 rounded-2xl text-2xl text-white">&times;</button>
+            <h2 id="catTitle" class="text-2xl font-black italic uppercase">Catalog</h2>
+            <button onclick="closeFullView()" class="w-12 h-12 bg-slate-800 rounded-2xl text-2xl">&times;</button>
         </div>
-        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6"></div>
+        
+        <div class="p-6">
+            <input type="text" id="prodSearch" onkeyup="searchProducts()" placeholder="Quick Search Model..." class="search-box mb-6">
+            <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+        </div>
     </div>
 
-    <div id="overlay" onclick="togglePanel()" class="fixed inset-0 bg-black/70 backdrop-blur-md hidden z-[90]"></div>
+    <div id="overlay" onclick="togglePanel()" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden z-[90]"></div>
 
-    <nav class="bg-white/95 backdrop-blur-sm border-b border-slate-200 p-4 sticky top-0 z-50">
-        <div class="container mx-auto flex justify-between items-center">
-            <div class="flex items-center">
-                <button onclick="togglePanel()" class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 mr-4 transition">
-                    <i class="fas fa-bars text-xl text-slate-900"></i>
-                </button>
-                <div class="text-2xl font-black text-blue-900 tracking-tighter uppercase">AirTech One</div>
-            </div>
-            <a href="https://wa.me/966500000000" class="bg-blue-600 text-white px-6 py-2.5 rounded-xl font-black text-xs uppercase tracking-widest">Consult</a>
-        </div>
+    <nav class="p-4 flex justify-between items-center bg-[#0f172a] border-b border-slate-800 sticky top-0 z-50">
+        <button onclick="togglePanel()" class="w-10 h-10 bg-slate-800 rounded-lg"><i class="fas fa-bars text-blue-400"></i></button>
+        <div class="text-xl font-black uppercase tracking-widest text-white">AirTech One</div>
+        <div class="w-10"></div>
     </nav>
 
-    <header class="hero-gradient text-white py-32 px-6 text-center">
-        <h1 class="text-5xl md:text-8xl font-black mb-6 tracking-tighter uppercase leading-tight">AirTech One</h1>
-        <p class="text-slate-400 max-w-2xl mx-auto mb-12 text-lg">Premium Security & Networking Hub in Hafar Al Batin.</p>
-        <button onclick="togglePanel()" class="bg-blue-600 px-12 py-5 rounded-2xl font-black shadow-2xl hover:bg-blue-700 transition transform hover:-translate-y-1 uppercase tracking-widest text-sm">Explore Catalog</button>
+    <header class="py-24 px-6 text-center">
+        <div class="inline-block px-4 py-1 rounded-full border border-blue-500/30 text-[10px] font-black tracking-[0.3em] uppercase mb-4 text-blue-400">Premium Tech Hub</div>
+        <h1 class="text-5xl md:text-8xl font-black mb-4 uppercase tracking-tighter leading-none">AIRTECH<br><span class="text-blue-600">ONE</span></h1>
+        <p class="text-slate-400 mb-8 max-w-md mx-auto">Saudi Arabia's Leading Distributor for CCTV & Networking Systems.</p>
+        <button onclick="togglePanel()" class="bg-blue-600 px-12 py-5 rounded-2xl font-black uppercase tracking-widest shadow-xl">Explore Inventory</button>
     </header>
 
-    <footer class="py-16 text-center bg-slate-50 border-t border-slate-200">
-        <div class="text-2xl font-black text-slate-900 tracking-tighter uppercase">AIRTECH ONE</div>
-        <p class="text-slate-400 text-[10px] mt-4 uppercase tracking-[0.4em]">Hafar Al Batin | Saudi Arabia | 2026</p>
-    </footer>
-
     <script>
-        // Sample Data
-        const nvrData = [
-            { model: 'DS-7604NI-K1', name: '4-CH Smart 4K NVR', price: '450' },
-            { model: 'DS-7608NI-K2', name: '8-CH Pro Series NVR', price: '720' },
-            { model: 'DS-7716NI-I4', name: '16-CH 4-SATA NVR', price: '1250' },
-            { model: 'DS-9632NI-I8', name: '32-CH Ultra 4K NVR', price: '2100' }
-        ];
+        const catalog = {
+            hikNvr: { title: "HIKVISION NVR", items: [
+                { model: 'DS-7604NI-K1', name: '4-CH Smart 4K NVR', price: '450', img: 'https://placehold.co/400x300/1e293b/3b82f6?text=HIK+NVR' },
+                { model: 'DS-7608NI-K2', name: '8-CH Pro Series NVR', price: '720', img: 'https://placehold.co/400x300/1e293b/3b82f6?text=HIK+NVR+8CH' }
+            ]},
+            hikDvr: { title: "HIKVISION DVR", items: [
+                { model: 'DS-7204HGHI', name: '4-CH HD Turbo DVR', price: '280', img: 'https://placehold.co/400x300/1e293b/3b82f6?text=HIK+DVR' }
+            ]},
+            dahuaNvr: { title: "DAHUA NVR", items: [
+                { model: 'DHI-NVR4104', name: '4-CH Compact NVR', price: '420', img: 'https://placehold.co/400x300/1e293b/f97316?text=DAHUA+NVR' },
+                { model: 'DHI-NVR5216', name: '16-CH AI NVR Pro', price: '1150', img: 'https://placehold.co/400x300/1e293b/f97316?text=DAHUA+NVR+16' }
+            ]},
+            dahuaDvr: { title: "DAHUA DVR", items: [
+                { model: 'XVR5104HS-I2', name: '4-CH WizSense DVR', price: '310', img: 'https://placehold.co/400x300/1e293b/f97316?text=DAHUA+DVR' }
+            ]},
+            hddStore: { title: "HDD STORE", items: [
+                { model: 'WD40PURZ', name: 'WD Purple 4TB', price: '380', img: 'https://placehold.co/400x300/1e293b/a855f7?text=WD+PURPLE' },
+                { model: 'ST4000VX', name: 'Seagate SkyHawk 4TB', price: '375', img: 'https://placehold.co/400x300/1e293b/a855f7?text=SKYHAWK' }
+            ]},
+            networking: { title: "NETWORKING", items: [
+                { model: 'Archer C6', name: 'TP-Link AC1200 Router', price: '190', img: 'https://placehold.co/400x300/1e293b/14b8a6?text=TP-LINK' },
+                { model: 'TL-SG1008P', name: '8-Port POE Switch', price: '320', img: 'https://placehold.co/400x300/1e293b/14b8a6?text=POE+SWITCH' }
+            ]}
+        };
+
+        let currentKey = "";
 
         function togglePanel() {
-            const panel = document.getElementById('sidePanel');
-            const overlay = document.getElementById('overlay');
-            if (panel.classList.contains('-translate-x-full')) {
-                panel.classList.remove('-translate-x-full');
-                overlay.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
-            } else {
-                panel.classList.add('-translate-x-full');
-                overlay.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-            }
+            document.getElementById('sidePanel').classList.toggle('-translate-x-full');
+            document.getElementById('overlay').classList.toggle('hidden');
         }
 
-        function toggleAccordion(menuId, iconId) {
-            const menu = document.getElementById(menuId);
-            const icon = document.getElementById(iconId);
-            if (!menu.classList.contains('active')) {
-                menu.classList.add('active');
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                menu.classList.remove('active');
-                icon.style.transform = 'rotate(0deg)';
-            }
+        function toggleAccordion(id) {
+            document.getElementById(id).classList.toggle('active');
         }
 
-        function openProducts(cat) {
+        function openProducts(key) {
+            currentKey = key;
             togglePanel();
+            document.getElementById('catTitle').innerText = catalog[key].title;
+            render(catalog[key].items);
+            document.getElementById('fullView').style.display = 'flex';
+        }
+
+        function render(items) {
             const grid = document.getElementById('productGrid');
-            document.getElementById('catTitle').innerText = cat;
-            grid.innerHTML = nvrData.map(item => `
-                <div class="vip-card flex flex-col h-full">
-                    <div class="w-full h-40 bg-[#0f172a] rounded-xl mb-4 flex items-center justify-center border border-slate-800">
-                        <i class="fas fa-video text-3xl text-slate-700"></i>
-                    </div>
-                    <div class="flex-1">
-                        <span class="text-[9px] text-blue-400 font-black border border-blue-500/30 px-2 py-1 rounded uppercase tracking-wider">${item.model}</span>
-                        <h3 class="text-white font-bold text-lg mt-2 leading-tight">${item.name}</h3>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center">
+            grid.innerHTML = items.map(i => `
+                <div class="vip-card">
+                    <img src="${i.img}" class="w-full rounded-2xl mb-4 border border-slate-800 shadow-inner">
+                    <span class="text-[10px] bg-blue-600/20 text-blue-400 px-3 py-1 rounded-full font-black uppercase tracking-tighter border border-blue-500/30">${i.model}</span>
+                    <h3 class="text-white font-bold text-lg mt-3 leading-tight">${i.name}</h3>
+                    <div class="mt-6 flex justify-between items-center border-t border-slate-800 pt-4">
                         <div>
-                            <p class="text-[8px] text-slate-500 font-bold uppercase">Price</p>
-                            <span class="text-xl font-black text-white">${item.price} <small class="text-xs text-blue-500 font-bold">SAR</small></span>
+                            <p class="text-[9px] text-slate-500 uppercase font-black">Price (SAR)</p>
+                            <span class="text-xl font-black text-white">${i.price}</span>
                         </div>
-                        <a href="https://wa.me/966500000000?text=Interested in: ${item.model}" class="w-10 h-10 bg-[#25d366] rounded-xl flex items-center justify-center text-white"><i class="fab fa-whatsapp text-lg"></i></a>
+                        <a href="https://wa.me/966500000000?text=I am interested in ${i.model}" class="w-12 h-12 bg-[#25d366] rounded-2xl flex items-center justify-center text-white text-xl hover:scale-110 transition"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
             `).join('');
-            document.getElementById('fullView').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
+        }
+
+        function searchProducts() {
+            const query = document.getElementById('prodSearch').value.toLowerCase();
+            const filtered = catalog[currentKey].items.filter(i => i.model.toLowerCase().includes(query) || i.name.toLowerCase().includes(query));
+            render(filtered);
         }
 
         function closeFullView() {
             document.getElementById('fullView').style.display = 'none';
-            document.body.style.overflow = 'auto';
         }
     </script>
 </body>
