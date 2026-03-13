@@ -3,141 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AirTech One | Hafar Al Batin</title>
+    <title>AirTech VIP Catalog | Saudi Pro POS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #0a1120; color: white; overflow-x: hidden; }
-        .submenu { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out; }
-        .submenu.active { max-height: 2000px; }
-        .side-panel { transition: transform 0.3s ease-in-out; }
-        .vip-card { background: #161e31; border: 1px solid #232d45; border-radius: 20px; padding: 18px; }
+        body { background-color: #020617; color: #cbd5e1; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .gold-text { color: #fbbf24; }
+        .vip-card { background: linear-gradient(145deg, #0f172a, #020617); border: 1px solid #1e293b; transition: 0.3s; }
+        .vip-card:hover { border-color: #fbbf24; transform: translateY(-5px); }
+        .submenu { display: none; transition: all 0.3s ease; }
+        .submenu.active { display: block; }
         ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #fbbf24; border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <div id="sidePanel" class="side-panel fixed inset-y-0 left-0 w-80 bg-[#0d1629] z-[100] border-r border-slate-800 -translate-x-full flex flex-col shadow-2xl">
-        <div class="p-6 border-b border-slate-800 flex justify-between items-center">
-            <h2 class="text-xl font-black text-blue-500 italic uppercase">AIRTECH MENU</h2>
-            <button onclick="togglePanel()" class="text-3xl text-slate-500">&times;</button>
+    <div class="fixed inset-y-0 left-0 w-72 bg-slate-950 border-r border-slate-800 z-50 flex flex-col">
+        <div class="p-6 border-b border-slate-800">
+            <h1 class="text-xl font-black italic tracking-tighter text-blue-500">AIRTECH <span class="gold-text">VIP</span></h1>
+            <p class="text-[10px] text-slate-500 uppercase tracking-widest">Hafar Al Batin Branch</p>
         </div>
-        
-        <div class="flex-1 overflow-y-auto p-4 space-y-4">
-            
-            <div class="bg-slate-900/40 rounded-2xl border border-slate-800">
-                <button onclick="toggleAccordion('hik-menu')" class="w-full flex items-center justify-between p-4">
-                    <span class="text-[11px] font-black text-blue-400 uppercase tracking-widest">Hikvision Solutions</span>
-                    <i class="fas fa-chevron-down text-[10px] text-blue-500"></i>
-                </button>
-                <div id="hik-menu" class="submenu border-l border-blue-500/20 ml-6 pb-2">
-                    <a href="#" onclick="openProducts('hikNvr')" class="block p-3 text-[11px] font-bold text-slate-400">NVR SYSTEM</a>
-                    <a href="#" onclick="openProducts('hikDvr')" class="block p-3 text-[11px] font-bold text-slate-400">DVR SYSTEM</a>
-                    <a href="#" onclick="openProducts('hikIpIn')" class="block p-3 text-[11px] font-bold text-slate-400">IP CAMERA INDOOR</a>
-                    <a href="#" onclick="openProducts('hikIpOut')" class="block p-3 text-[11px] font-bold text-slate-400">IP CAMERA OUTDOOR</a>
-                    <a href="#" onclick="openProducts('hikAnaIn')" class="block p-3 text-[11px] font-bold text-slate-400">ANALOG CAMERA INDOOR</a>
-                    <a href="#" onclick="openProducts('hikAnaOut')" class="block p-3 text-[11px] font-bold text-slate-400">ANALOG CAMERA OUTDOOR</a>
-                    <a href="#" onclick="openProducts('ezviz')" class="block p-3 text-[11px] font-bold text-blue-400 italic">EZVIZ WI-FI CAMERA</a>
-                </div>
+
+        <div class="flex-1 overflow-y-auto p-4 space-y-2">
+            <button onclick="toggleAccordion('hik-menu')" class="w-full flex items-center justify-between p-4 bg-slate-900/50 rounded-xl border border-slate-800 hover:border-blue-500 transition">
+                <span class="text-[11px] font-black text-blue-400 uppercase tracking-widest">HIKVISION DS-SERIES</span>
+                <i class="fas fa-chevron-down text-[10px]"></i>
+            </button>
+            <div id="hik-menu" class="submenu pl-4 space-y-1">
+                <a href="#" onclick="render('hikNvr')" class="block p-2 text-[10px] font-bold text-slate-400 hover:text-white">• NVR SYSTEM</a>
+                <a href="#" onclick="render('hikDvr')" class="block p-2 text-[10px] font-bold text-slate-400 hover:text-white">• DVR SYSTEM</a>
+                <a href="#" onclick="render('hikIpIn')" class="block p-2 text-[10px] font-bold text-slate-400 hover:text-white">• IP CAMERAS</a>
+                <a href="#" onclick="render('hikAnaIn')" class="block p-2 text-[10px] font-bold text-slate-400 hover:text-white">• ANALOG CAMERAS</a>
             </div>
 
-            <div class="bg-slate-900/40 rounded-2xl border border-slate-800">
-                <button onclick="toggleAccordion('dahua-menu')" class="w-full flex items-center justify-between p-4">
-                    <span class="text-[11px] font-black text-orange-400 uppercase tracking-widest">Dahua Technology</span>
-                    <i class="fas fa-chevron-down text-[10px] text-orange-500"></i>
-                </button>
-                <div id="dahua-menu" class="submenu border-l border-orange-500/20 ml-6 pb-2">
-                    <a href="#" onclick="openProducts('dahuaNvr')" class="block p-3 text-[11px] font-bold text-slate-400">NVR SYSTEM</a>
-                    <a href="#" onclick="openProducts('dahuaDvr')" class="block p-3 text-[11px] font-bold text-slate-400">DVR SYSTEM</a>
-                    <a href="#" onclick="openProducts('dahuaIpIn')" class="block p-3 text-[11px] font-bold text-slate-400">IP CAMERA INDOOR</a>
-                    <a href="#" onclick="openProducts('dahuaIpOut')" class="block p-3 text-[11px] font-bold text-slate-400">IP CAMERA OUTDOOR</a>
-                    <a href="#" onclick="openProducts('dahuaAnaIn')" class="block p-3 text-[11px] font-bold text-slate-400">ANALOG CAMERA INDOOR</a>
-                    <a href="#" onclick="openProducts('dahuaAnaOut')" class="block p-3 text-[11px] font-bold text-slate-400">ANALOG CAMERA OUTDOOR</a>
-                    <a href="#" onclick="openProducts('imou')" class="block p-3 text-[11px] font-bold text-orange-400 italic">IMOU WI-FI CAMERA</a>
-                </div>
+            <button onclick="toggleAccordion('dahua-menu')" class="w-full flex items-center justify-between p-4 bg-slate-900/50 rounded-xl border border-slate-800 hover:border-orange-500 transition">
+                <span class="text-[11px] font-black text-orange-400 uppercase tracking-widest">DAHUA WIZSENSE</span>
+                <i class="fas fa-chevron-down text-[10px]"></i>
+            </button>
+            <div id="dahua-menu" class="submenu pl-4 space-y-1">
+                <a href="#" onclick="render('dahuaNvr')" class="block p-2 text-[10px] font-bold text-slate-400 hover:text-white">• NVR MODELS</a>
+                <a href="#" onclick="render('dahuaDvr')" class="block p-2 text-[10px] font-bold text-slate-400 hover:text-white">• XVR MODELS</a>
             </div>
 
-            <div class="bg-slate-900/40 rounded-2xl border border-slate-800">
-                <button onclick="toggleAccordion('hdd-menu')" class="w-full flex items-center justify-between p-4">
-                    <span class="text-[11px] font-black text-purple-400 uppercase tracking-widest">Storage Store</span>
-                    <i class="fas fa-chevron-down text-[10px] text-purple-500"></i>
-                </button>
-                <div id="hdd-menu" class="submenu border-l border-purple-500/20 ml-6 pb-2">
-                    <a href="#" onclick="openProducts('toshibaHdd')" class="block p-3 text-[11px] font-bold text-slate-400 uppercase">Toshiba HDD</a>
-                    <a href="#" onclick="openProducts('wdHdd')" class="block p-3 text-[11px] font-bold text-slate-400 uppercase">WD Purple HDD</a>
-                    <a href="#" onclick="openProducts('tpLink')" class="block p-3 text-[11px] font-bold text-purple-400">TP-LINK ROUTERS</a>
-                    <a href="#" onclick="openProducts('tapo')" class="block p-3 text-[11px] font-bold text-purple-400 italic">TAPO SMART HOME</a>
-                </div>
-            </div>
+            <div class="pt-4 pb-2 text-[9px] font-bold text-slate-600 uppercase tracking-[0.2em] px-4">Wireless & Storage</div>
+            <a href="#" onclick="render('ezviz')" class="flex items-center gap-3 p-3 text-[11px] font-bold text-slate-400 hover:bg-slate-900 rounded-lg transition"><i class="fas fa-wifi text-emerald-500 w-4"></i> EZVIZ WIFI</a>
+            <a href="#" onclick="render('imou')" class="flex items-center gap-3 p-3 text-[11px] font-bold text-slate-400 hover:bg-slate-900 rounded-lg transition"><i class="fas fa-video text-orange-400 w-4"></i> IMOU WIFI</a>
+            <a href="#" onclick="render('wdHdd')" class="flex items-center gap-3 p-3 text-[11px] font-bold text-slate-400 hover:bg-slate-900 rounded-lg transition"><i class="fas fa-hdd text-purple-500 w-4"></i> HDD STORE</a>
+            <a href="#" onclick="render('sandisk')" class="flex items-center gap-3 p-3 text-[11px] font-bold text-slate-400 hover:bg-slate-900 rounded-lg transition"><i class="fas fa-sd-card text-red-500 w-4"></i> SANDISK MEMORY</a>
+            <a href="#" onclick="render('tpLink')" class="flex items-center gap-3 p-3 text-[11px] font-bold text-slate-400 hover:bg-slate-900 rounded-lg transition"><i class="fas fa-network-wired text-pink-500 w-4"></i> NETWORK STORE</a>
 
-            <div class="mt-auto p-2">
-                <div onclick="openProducts('billzest')" class="flex items-center gap-3 p-4 bg-blue-600/10 rounded-2xl border border-blue-500/20 cursor-pointer">
-                    <i class="fas fa-crown text-blue-500"></i>
-                    <span class="text-[11px] font-black text-blue-400 uppercase tracking-widest">BillZest VIP POS</span>
+            <div class="pt-10">
+                <div onclick="render('billzest')" class="flex items-center justify-center gap-2 p-4 bg-yellow-500/10 rounded-2xl border border-yellow-500/30 cursor-pointer group">
+                    <i class="fas fa-crown gold-text group-hover:scale-125 transition"></i>
+                    <span class="text-[12px] font-black gold-text uppercase tracking-widest">BillZest VIP</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <nav class="p-6 flex justify-between items-center sticky top-0 bg-[#0a1120] border-b border-slate-900 z-50">
-        <button onclick="togglePanel()" class="w-10 h-10 bg-slate-900 rounded-lg flex items-center justify-center border border-slate-800 text-blue-500"><i class="fas fa-bars"></i></button>
-        <div class="text-xl font-black italic uppercase">AIRTECH <span class="text-blue-600">ONE</span></div>
-        <div class="w-10"></div>
-    </nav>
+    <main class="ml-72 p-10">
+        <header class="mb-10 flex justify-between items-end">
+            <div>
+                <h2 id="cat-title" class="text-3xl font-black text-white uppercase italic">SELECT CATEGORY</h2>
+                <p class="text-slate-500 text-xs tracking-widest mt-1 uppercase">Ready to dispatch from Hafar Al Batin</p>
+            </div>
+            <div class="text-right">
+                <span class="block text-[10px] text-slate-500 font-bold uppercase tracking-widest">System Status</span>
+                <span class="gold-text font-black">EN | AR ACTIVE</span>
+            </div>
+        </header>
 
-    <header class="py-32 px-6 text-center">
-        <h1 class="text-6xl font-black uppercase italic tracking-tighter">AIRTECH<br><span class="text-blue-600">ONE</span></h1>
-        <p class="text-slate-500 text-sm mt-4 uppercase tracking-[5px]">Hafar Al Batin Specialist</p>
-    </header>
-
-    <div id="fullView" class="fixed inset-0 bg-[#0a1120] z-[200] hidden flex-col">
-        <div class="p-6 border-b border-slate-800 flex justify-between items-center bg-[#0d1629]">
-            <h2 id="catTitle" class="text-2xl font-black uppercase italic text-blue-500">Products</h2>
-            <button onclick="closeFullView()" class="text-4xl">&times;</button>
-        </div>
-        <div id="productGrid" class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6 overflow-y-auto"></div>
-    </div>
-
-    <div id="overlay" onclick="togglePanel()" class="fixed inset-0 bg-black/80 hidden z-[90] backdrop-blur-sm"></div>
+        <div id="grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+    </main>
 
     <script>
         const catalog = {
-            hikNvr: { title: "HIKVISION NVR", items: [{ model: '4K', name: 'DS-7604NI-K1', price: '450', img: 'https://www.hikvision.com/content/dam/hikvision/en/marketing-material/product-photos/nvr/7600/7604NI-K1.png' }] },
-            ezviz: { title: "EZVIZ WI-FI CAM", items: [{ model: '4MP', name: 'Ezviz C6N Smart', price: '165', img: 'http://googleusercontent.com/image_collection/image_retrieval/8990992085306262255_0' }] },
-            imou: { title: "IMOU WI-FI CAM", items: [{ model: '360', name: 'Imou Ranger 2', price: '145', img: 'http://googleusercontent.com/image_collection/image_retrieval/17594564920537744808_0' }] },
-            wdHdd: { title: "WD PURPLE HDD", items: [{ model: '4TB', name: 'WD Purple 4TB', price: '410', img: 'https://m.media-amazon.com/images/I/81sh9jG7tWL._AC_SL1500_.jpg' }] },
-            // Add other data here as needed...
+            hikNvr: { title: "HIKVISION DS-NVR", items: [
+                { name: 'DS-7604NI-K1', model: '4-CH 4K', price: '345', img: 'https://www.hikvision.com/content/dam/hikvision/en/marketing-material/product-photos/nvr/7600/7604NI-K1.png' },
+                { name: 'DS-7608NI-K2', model: '8-CH 4K', price: '590', img: 'https://www.hikvision.com/content/dam/hikvision/en/marketing-material/product-photos/nvr/7600/7608NI-K2.png' },
+                { name: 'DS-7716NI-K4', model: '16-CH 4K', price: '1150', img: 'https://www.hikvision.com/content/dam/hikvision/en/marketing-material/product-photos/nvr/7700/7716NI-K4.png' }
+            ]},
+            hikDvr: { title: "HIKVISION DS-DVR", items: [
+                { name: 'DS-7204HGHI-K1 (S)', model: '4-CH Audio', price: '195', img: 'https://www.hikvision.com/content/dam/hikvision/en/marketing-material/product-photos/dvr/7200/7204HGHI-K1.png' },
+                { name: 'DS-7208HUHI-K1', model: '8-CH 5MP', price: '545', img: 'https://www.hikvision.com/content/dam/hikvision/en/marketing-material/product-photos/dvr/7200/7208HUHI-K1.png' }
+            ]},
+            dahuaNvr: { title: "DAHUA NVR WIZSENSE", items: [
+                { name: 'NVR4104HS-I', model: '4-CH WizSense', price: '320', img: 'https://www.dahuasecurity.com/asset/upload/product/20191024/NVR4104HS-I.png' },
+                { name: 'NVR4216-4KS2', model: '16-CH 4K Pro', price: '720', img: 'https://www.dahuasecurity.com/asset/upload/product/20180521/NVR4216-4KS2.png' }
+            ]},
+            ezviz: { title: "EZVIZ WIFI CAMERAS", items: [
+                { name: 'Ezviz C6N 1080P', model: 'Indoor PT', price: '145', img: 'https://m.media-amazon.com/images/I/51uI4W7e+BL._AC_SL1000_.jpg' },
+                { name: 'Ezviz C8C 360', model: 'Outdoor PTZ', price: '320', img: 'https://m.media-amazon.com/images/I/51Hk8y683RL._AC_SL1000_.jpg' }
+            ]},
+            imou: { title: "IMOU WIFI CAMERAS", items: [
+                { name: 'Imou Ranger 2', model: 'Indoor 360', price: '125', img: 'https://m.media-amazon.com/images/I/51r7H5eLpSL._AC_SL1000_.jpg' },
+                { name: 'Imou Cruiser 2', model: '4MP PTZ', price: '340', img: 'https://m.media-amazon.com/images/I/51BfK8-j9TL._AC_SL1000_.jpg' }
+            ]},
+            wdHdd: { title: "SURVEILLANCE HDD STORE", items: [
+                { name: 'WD Purple 2TB', model: 'Surveillance', price: '265', img: 'https://m.media-amazon.com/images/I/81S88mBvSML._AC_SL1500_.jpg' },
+                { name: 'WD Purple 10TB', model: 'Surveillance', price: '1280', img: 'https://m.media-amazon.com/images/I/81S88mBvSML._AC_SL1500_.jpg' },
+                { name: 'Toshiba 4TB', model: 'Surveillance', price: '385', img: 'https://m.media-amazon.com/images/I/718vHn+R76L._AC_SL1500_.jpg' }
+            ]},
+            sandisk: { title: "SANDISK STORAGE", items: [
+                { name: 'SanDisk Ultra 128GB', model: 'Micro SD', price: '75', img: 'https://m.media-amazon.com/images/I/617NnxA9dtL._AC_SL1500_.jpg' },
+                { name: 'SanDisk 64GB HE', model: 'High Endurance', price: '65', img: 'https://m.media-amazon.com/images/I/61dYvI7vVpL._AC_SL1500_.jpg' }
+            ]},
+            tpLink: { title: "TP-LINK NETWORK", items: [
+                { name: 'Archer C6', model: 'AC1200 Gigabit', price: '165', img: 'https://m.media-amazon.com/images/I/51M3fA68uCL._AC_SL1000_.jpg' },
+                { name: 'TL-SG1008P', model: '8-Port POE+', price: '320', img: 'https://m.media-amazon.com/images/I/61r5f7H3bPL._AC_SL1500_.jpg' }
+            ]},
+            billzest: { title: "BILLZEST VIP POS", items: [
+                { name: 'BillZest Pro', model: 'Video Integrated', price: 'CALL', img: 'https://cdn-icons-png.flaticon.com/512/5662/5662359.png' }
+            ]}
         };
 
-        function togglePanel() {
-            document.getElementById('sidePanel').classList.toggle('-translate-x-full');
-            document.getElementById('overlay').classList.toggle('hidden');
-        }
         function toggleAccordion(id) {
+            document.querySelectorAll('.submenu').forEach(m => { if(m.id !== id) m.classList.remove('active'); });
             document.getElementById(id).classList.toggle('active');
         }
-        function openProducts(key) {
-            const data = catalog[key] || { title: "Updating...", items: [] };
-            document.getElementById('catTitle').innerText = data.title;
-            const grid = document.getElementById('productGrid');
-            grid.innerHTML = data.items.map(i => `
-                <div class="vip-card flex flex-col items-center">
-                    <div class="w-full h-40 bg-white rounded-2xl mb-4 p-4 flex items-center justify-center">
-                        <img src="${i.img}" class="max-h-32 object-contain">
-                    </div>
-                    <h3 class="text-white font-bold text-sm uppercase">${i.name}</h3>
-                    <div class="w-full mt-4 flex justify-between items-center border-t border-slate-800 pt-4">
-                        <span class="text-xl font-black">${i.price} <small class="text-blue-500 text-[10px]">SAR</small></span>
-                        <a href="#" class="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center text-white"><i class="fab fa-whatsapp"></i></a>
+
+        function render(key) {
+            const data = catalog[key];
+            if(!data) return;
+            document.getElementById('cat-title').innerText = data.title;
+            const grid = document.getElementById('grid');
+            grid.innerHTML = data.items.map(item => `
+                <div class="vip-card rounded-3xl p-6 text-center group">
+                    <img src="${item.img}" class="h-40 mx-auto mb-6 object-contain group-hover:scale-110 transition duration-500">
+                    <h3 class="text-white font-black text-lg mb-1">${item.name}</h3>
+                    <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-4">${item.model}</p>
+                    <div class="flex justify-between items-center bg-slate-900/80 p-3 rounded-2xl border border-slate-800">
+                        <span class="text-xs font-bold text-slate-400 uppercase">SAR</span>
+                        <span class="gold-text font-black text-xl">${item.price}</span>
                     </div>
                 </div>
-            `).join('') || '<p class="text-slate-500">List updating soon...</p>';
-            document.getElementById('fullView').style.display = 'flex';
-            togglePanel();
+            `).join('');
         }
-        function closeFullView() { document.getElementById('fullView').style.display = 'none'; }
+
+        // Default Load
+        render('hikNvr');
     </script>
 </body>
 </html>
