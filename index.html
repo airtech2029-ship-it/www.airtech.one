@@ -10,9 +10,11 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
         body { font-family: 'Inter', sans-serif; background-color: #0a1120; color: white; overflow-x: hidden; }
         .submenu { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .submenu.active { max-height: 1000px; }
+        .submenu.active { max-height: 2000px; }
         .side-panel { transition: transform 0.3s ease-in-out; }
         .vip-card { background: #161e31; border: 1px solid #232d45; border-radius: 20px; padding: 18px; }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
     </style>
 </head>
 <body>
@@ -34,8 +36,7 @@
                     <a href="#" onclick="openProducts('hikDvr')" class="block p-3 text-[11px] font-bold text-slate-400">DVR SYSTEM</a>
                     <a href="#" onclick="openProducts('hikIpOut')" class="block p-3 text-[11px] font-bold text-blue-300">IP CAMERA OUTDOOR</a>
                     <a href="#" onclick="openProducts('hikIpIn')" class="block p-3 text-[11px] font-bold text-blue-300">IP CAMERA INDOOR</a>
-                    <a href="#" onclick="openProducts('hikAnaOut')" class="block p-3 text-[11px] font-bold text-slate-400">ANALOG CAMERA OUTDOOR</a>
-                    <a href="#" onclick="openProducts('hikAnaIn')" class="block p-3 text-[11px] font-bold text-slate-400">ANALOG CAMERA INDOOR</a>
+                    <a href="#" onclick="openProducts('hikAnaOut')" class="block p-3 text-[11px] font-bold text-slate-400">ANALOG OUTDOOR</a>
                 </div>
             </div>
 
@@ -49,35 +50,31 @@
                     <a href="#" onclick="openProducts('dahuaDvr')" class="block p-3 text-[11px] font-bold text-slate-400">DVR SYSTEM</a>
                     <a href="#" onclick="openProducts('dahuaIpOut')" class="block p-3 text-[11px] font-bold text-orange-300">IP CAMERA OUTDOOR</a>
                     <a href="#" onclick="openProducts('dahuaIpIn')" class="block p-3 text-[11px] font-bold text-orange-300">IP CAMERA INDOOR</a>
-                    <a href="#" onclick="openProducts('dahuaAnaOut')" class="block p-3 text-[11px] font-bold text-slate-400">ANALOG CAMERA OUTDOOR</a>
-                    <a href="#" onclick="openProducts('dahuaAnaIn')" class="block p-3 text-[11px] font-bold text-slate-400">ANALOG CAMERA INDOOR</a>
                 </div>
             </div>
 
             <div class="bg-slate-900/40 rounded-2xl border border-slate-800">
                 <button onclick="toggleAccordion('hdd-menu')" class="w-full flex items-center justify-between p-4">
-                    <span class="text-[11px] font-black text-purple-400 uppercase tracking-widest">HDD Store</span>
+                    <span class="text-[11px] font-black text-purple-400 uppercase tracking-widest">Storage Store</span>
                     <i class="fas fa-chevron-down text-[10px] text-purple-500"></i>
                 </button>
                 <div id="hdd-menu" class="submenu border-l border-purple-500/20 ml-6 pb-2">
-                    <a href="#" onclick="openProducts('hdd')" class="block p-3 text-[11px] font-bold text-slate-400">Surveillance HDD (WD Purple)</a>
+                    <a href="#" onclick="openProducts('wdHdd')" class="block p-3 text-[11px] font-bold text-slate-400 italic">WD PURPLE HDD</a>
+                    <a href="#" onclick="openProducts('toshibaHdd')" class="block p-3 text-[11px] font-bold text-slate-400 italic">TOSHIBA HDD</a>
+                    <a href="#" onclick="openProducts('seagateHdd')" class="block p-3 text-[11px] font-bold text-slate-400 italic">SEAGATE HDD</a>
+                    <a href="#" onclick="openProducts('sandisk')" class="block p-3 text-[11px] font-bold text-purple-300 italic">SANDISK STORAGE</a>
                 </div>
             </div>
 
-            <div class="p-4 space-y-1">
-                <span class="text-[10px] font-black text-teal-400 uppercase tracking-widest">Networking</span>
-                <a href="#" onclick="openProducts('net')" class="block p-2 text-[11px] font-bold text-slate-200">TP-Link Solutions (Archer)</a>
+            <div class="mt-auto border-t border-slate-800 pt-6 pb-4 px-4">
+                <div onclick="openProducts('billzest')" class="flex items-center gap-3 p-3 bg-blue-600/5 rounded-xl border border-blue-500/10 hover:border-blue-500/40 cursor-pointer transition">
+                    <div class="w-8 h-8 bg-blue-600/20 rounded-lg flex items-center justify-center"><i class="fas fa-crown text-blue-500 text-xs"></i></div>
+                    <div>
+                        <p class="text-[10px] font-black text-blue-400 uppercase tracking-[2px]">BillZest VIP</p>
+                        <p class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Video POS System</p>
+                    </div>
+                </div>
             </div>
-
-            <div class="border-t border-slate-800 pt-6 px-4">
-                <a href="#" class="block text-[10px] font-black text-slate-500 uppercase tracking-widest hover:text-blue-500 transition">BillZest VIP POS System</a>
-            </div>
-        </div>
-
-        <div class="p-6">
-            <a href="https://wa.me/966500000000" class="w-full bg-blue-600 py-4 rounded-xl flex items-center justify-center gap-3 font-bold text-white uppercase text-xs">
-                <i class="fab fa-whatsapp"></i> CONTACT ASIM
-            </a>
         </div>
     </div>
 
@@ -88,65 +85,75 @@
     </nav>
 
     <header class="py-32 px-6 text-center">
-        <h1 class="text-6xl font-black uppercase italic mb-4 leading-none tracking-tighter">AIRTECH<br><span class="text-blue-600">ONE</span></h1>
-        <p class="text-slate-500 text-sm max-w-xs mx-auto mb-10 font-medium">Premium Security & Networking Hub in Hafar Al Batin.</p>
-        <button onclick="togglePanel()" class="bg-blue-600 px-12 py-5 rounded-2xl font-black uppercase text-xs tracking-widest">EXPLORE CATALOG</button>
+        <h1 class="text-6xl font-black uppercase italic mb-4 tracking-tighter">AIRTECH<br><span class="text-blue-600">ONE</span></h1>
+        <p class="text-slate-500 text-sm italic">Hafar Al Batin Specialist</p>
     </header>
 
     <div id="fullView" class="fixed inset-0 bg-[#0a1120] z-[200] hidden flex-col">
-        <div class="p-6 border-b border-slate-800 flex justify-between items-center bg-[#0a1120]">
+        <div class="p-6 border-b border-slate-800 flex justify-between items-center">
             <h2 id="catTitle" class="text-2xl font-black uppercase italic">Products</h2>
             <button onclick="closeFullView()" class="w-12 h-12 bg-slate-800 rounded-2xl text-2xl">&times;</button>
         </div>
-        <div id="productGrid" class="p-6 grid grid-cols-1 gap-6 overflow-y-auto"></div>
+        <div id="productGrid" class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-y-auto"></div>
     </div>
 
-    <footer class="mt-20 p-10 text-center border-t border-slate-900 bg-slate-900/20">
-        <h3 class="text-lg font-black italic uppercase">AIRTECH ONE</h3>
-        <p class="text-[10px] text-slate-500 font-bold uppercase tracking-[4px] mt-2">HAFAR AL BATIN | SAUDI ARABIA | 2026</p>
+    <footer class="mt-20 p-10 text-center border-t border-slate-900">
+        <p class="text-[10px] text-slate-500 font-bold uppercase tracking-[4px]">HAFAR AL BATIN | SAUDI ARABIA | 2026</p>
     </footer>
 
     <div id="overlay" onclick="togglePanel()" class="fixed inset-0 bg-black/80 hidden z-[90] backdrop-blur-sm"></div>
 
     <script>
         const catalog = {
-            hikNvr: { title: "HIK NVR SYSTEM", items: [{ model: 'DS-7604NI-K1', name: '4-CH Smart 4K NVR', price: '450' }] },
-            hikDvr: { title: "HIK DVR SYSTEM", items: [{ model: 'DS-7204HGHI', name: '4-CH Turbo DVR', price: '280' }] },
-            hikIpOut: { title: "HIK IP OUTDOOR", items: [{ model: 'DS-2CD2043G0', name: '4MP Bullet Camera', price: '340' }] },
-            hikIpIn: { title: "HIK IP INDOOR", items: [{ model: 'DS-2CD2143G0', name: '4MP Dome Camera', price: '320' }] },
-            dahuaNvr: { title: "DAHUA NVR SYSTEM", items: [{ model: 'NVR4108HS', name: '8-CH Dahua 4K NVR', price: '490' }] },
-            dahuaDvr: { title: "DAHUA DVR SYSTEM", items: [{ model: 'XVR5104HS', name: '4-CH WizSense XVR', price: '310' }] },
-            hdd: { title: "HDD STORE", items: [{ model: 'WD40PURZ', name: 'WD Purple 4TB', price: '380' }] },
-            net: { title: "NETWORKING", items: [{ model: 'Archer AX55', name: 'TP-Link Wi-Fi 6', price: '420' }] }
+            toshibaHdd: { title: "TOSHIBA HDD", items: [
+                { model: '1TB', name: 'Toshiba 1TB HDD', price: '185' },
+                { model: '2TB', name: 'Toshiba 2TB HDD', price: '240' },
+                { model: '4TB', name: 'Toshiba 4TB HDD', price: '360' },
+                { model: '8TB', name: 'Toshiba 8TB HDD', price: '720' },
+                { model: '10TB', name: 'Toshiba 10TB HDD', price: '950' }
+            ]},
+            wdHdd: { title: "WD PURPLE HDD", items: [
+                { model: '1TB', name: 'WD Purple 1TB', price: '210' },
+                { model: '4TB', name: 'WD Purple 4TB', price: '410' },
+                { model: '8TB', name: 'WD Purple 8TB', price: '880' }
+            ]},
+            seagateHdd: { title: "SEAGATE HDD", items: [
+                { model: '1TB', name: 'Seagate 1TB HDD', price: '200' },
+                { model: '4TB', name: 'Seagate 4TB HDD', price: '395' }
+            ]},
+            hikNvr: { title: "HIKVISION NVR", items: [
+                { model: 'DS-7604NI', name: '4-CH 4K NVR', price: '480' },
+                { model: 'DS-7732NI', name: '32-CH Pro NVR', price: '2100' }
+            ]},
+            dahuaNvr: { title: "DAHUA NVR", items: [
+                { model: 'NVR4104HS', name: '4-CH 4K NVR', price: '460' },
+                { model: 'NVR5232', name: '32-CH Pro NVR', price: '1950' }
+            ]}
         };
 
         function togglePanel() {
             document.getElementById('sidePanel').classList.toggle('-translate-x-full');
             document.getElementById('overlay').classList.toggle('hidden');
         }
-
-        function toggleAccordion(id) {
-            document.getElementById(id).classList.toggle('active');
-        }
-
+        function toggleAccordion(id) { document.getElementById(id).classList.toggle('active'); }
         function openProducts(key) {
-            const data = catalog[key] || { title: "Coming Soon", items: [] };
+            const data = catalog[key];
+            if(!data) { alert("Updating list..."); return; }
             document.getElementById('catTitle').innerText = data.title;
             const grid = document.getElementById('productGrid');
             grid.innerHTML = data.items.map(i => `
                 <div class="vip-card">
-                    <span class="text-[10px] bg-blue-600/20 text-blue-400 px-3 py-1 rounded-lg font-bold uppercase tracking-tighter">${i.model}</span>
-                    <h3 class="text-white font-bold text-lg mt-3 uppercase tracking-tight">${i.name}</h3>
+                    <span class="text-[10px] bg-blue-600/20 text-blue-400 px-3 py-1 rounded-lg font-bold">${i.model}</span>
+                    <h3 class="text-white font-bold text-lg mt-3 uppercase">${i.name}</h3>
                     <div class="mt-6 flex justify-between items-center border-t border-slate-800 pt-4">
                         <span class="text-xl font-black text-white">${i.price} <small class="text-[10px] text-blue-500 font-bold">SAR</small></span>
-                        <a href="https://wa.me/966500000000?text=Model:${i.model}" class="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center text-white text-xl"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/966500000000" class="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center text-white"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
             `).join('');
             document.getElementById('fullView').style.display = 'flex';
             togglePanel();
         }
-
         function closeFullView() { document.getElementById('fullView').style.display = 'none'; }
     </script>
 </body>
