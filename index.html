@@ -9,154 +9,157 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
         body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: white; margin: 0; overflow-x: hidden; }
-        .side-panel { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 150; }
-        .submenu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
-        .submenu.active { max-height: 500px; }
-        .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
+        
+        /* Premium Card Styling */
+        .vip-card { 
+            background: linear-gradient(145deg, #1e293b, #0f172a); 
+            border: 1px solid #334155; 
+            border-radius: 30px; 
+            padding: 20px; 
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .vip-card:active { transform: scale(0.96); }
+
+        /* Full Screen Overlay */
+        #fullView { 
+            position: fixed; 
+            inset: 0; 
+            background: #0f172a; 
+            z-index: 1000; 
+            display: none; 
+            flex-direction: column; 
+            overflow-y: auto; 
+        }
+
+        /* Sidebar Transition */
+        #sidebar { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
     </style>
 </head>
 <body>
 
-    <nav class="p-4 border-b border-slate-800 flex justify-between items-center sticky top-0 bg-[#0f172a]/90 backdrop-blur-md z-[100]">
-        <button onclick="toggleSidebar()" class="w-12 h-12 glass-card rounded-2xl flex items-center justify-center text-blue-400 border border-slate-700 active:scale-90 transition">
+    <nav class="p-5 border-b border-slate-800 flex justify-between items-center sticky top-0 bg-[#0f172a]/90 backdrop-blur-md z-[100]">
+        <button onclick="toggleSidebar()" class="w-12 h-12 bg-slate-800 rounded-2xl flex items-center justify-center text-blue-400 border border-slate-700">
             <i class="fas fa-bars text-xl"></i>
         </button>
-        <div class="text-xl font-black tracking-tighter uppercase italic">AirTech One</div>
-        <button class="bg-blue-600 px-5 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-blue-500/20">Consult</button>
+        <div class="text-xl font-black tracking-tighter uppercase italic text-white">AirTech One</div>
+        <div class="w-12"></div>
     </nav>
 
     <div class="p-6">
-        <div class="bg-gradient-to-br from-blue-700 to-indigo-900 rounded-[2.5rem] p-10 text-center shadow-2xl relative overflow-hidden">
-            <div class="relative z-10">
-                <h1 class="text-4xl font-black uppercase mb-2 tracking-tighter leading-none">AirTech One</h1>
-                <p class="text-blue-100 text-[10px] mb-8 opacity-70 uppercase tracking-[0.2em] font-bold">Premium Security Hub • Hafar Al Batin</p>
-                <button onclick="toggleSidebar()" class="bg-white text-blue-900 px-10 py-4 rounded-2xl font-black text-xs uppercase shadow-2xl active:scale-95 transition">Explore Catalog</button>
-            </div>
-            <div class="absolute -top-20 -right-20 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+        <div class="bg-gradient-to-r from-blue-700 to-indigo-800 rounded-[2.5rem] p-10 text-center shadow-2xl">
+            <h1 class="text-4xl font-black uppercase tracking-tighter">AirTech One</h1>
+            <p class="text-blue-100 text-[10px] mt-2 mb-8 uppercase tracking-[0.2em] font-bold">Hafar Al Batin Premium Hub</p>
+            <button onclick="toggleSidebar()" class="bg-white text-blue-900 px-10 py-4 rounded-2xl font-black text-xs uppercase shadow-xl">Explore Catalog</button>
         </div>
     </div>
 
-    <div id="sidebar" class="side-panel fixed inset-y-0 left-0 w-[85%] sm:w-80 bg-[#0f172a] border-r border-slate-800 -translate-x-full flex flex-col shadow-2xl">
-        <div class="p-6 border-b border-slate-800 flex justify-between items-center">
-            <h2 class="font-black text-blue-400 uppercase text-xs tracking-[0.2em]">AirTech Catalog</h2>
-            <button onclick="toggleSidebar()" class="text-3xl text-slate-500 active:scale-75 transition">&times;</button>
-        </div>
-
-        <div class="flex-1 overflow-y-auto p-4 space-y-4">
-            <div class="glass-card rounded-[2rem] overflow-hidden border border-slate-800">
-                <button onclick="toggleSub('hik-sub')" class="w-full flex justify-between p-5 text-[11px] font-black text-blue-400 uppercase tracking-widest">
-                    Hikvision Solutions <i class="fas fa-chevron-down opacity-40"></i>
-                </button>
-                <div id="hik-sub" class="submenu px-4 pb-4 space-y-1">
-                    <button onclick="openCategory('Hikvision NVR System')" class="w-full text-left py-3.5 px-4 text-slate-400 text-[11px] font-bold hover:bg-slate-800 rounded-xl transition">NVR System</button>
-                    <button onclick="openCategory('Hikvision DVR System')" class="w-full text-left py-3.5 px-4 text-slate-400 text-[11px] font-bold hover:bg-slate-800 rounded-xl transition">DVR System</button>
-                    <button onclick="openCategory('Hikvision IP Cameras')" class="w-full text-left py-3.5 px-4 text-slate-400 text-[11px] font-bold hover:bg-slate-800 rounded-xl transition">IP Camera Outdoor</button>
-                </div>
-            </div>
-
-            <div class="glass-card rounded-[2rem] overflow-hidden border border-slate-800">
-                <button onclick="toggleSub('dahua-sub')" class="w-full flex justify-between p-5 text-[11px] font-black text-orange-400 uppercase tracking-widest">
-                    Dahua Technology <i class="fas fa-chevron-down opacity-40"></i>
-                </button>
-                <div id="dahua-sub" class="submenu px-4 pb-4 space-y-1">
-                    <button onclick="openCategory('Dahua NVR')" class="w-full text-left py-3.5 px-4 text-slate-400 text-[11px] font-bold hover:bg-slate-800 rounded-xl transition">Dahua NVR</button>
-                    <button onclick="openCategory('Dahua DVR')" class="w-full text-left py-3.5 px-4 text-slate-400 text-[11px] font-bold hover:bg-slate-800 rounded-xl transition">Dahua DVR</button>
-                </div>
-            </div>
+    <div id="sidebar" class="fixed inset-y-0 left-0 w-[85%] sm:w-80 bg-[#0f172a] border-r border-slate-800 -translate-x-full z-[1100] flex flex-col p-6 shadow-2xl">
+        <div class="flex justify-between items-center mb-10">
+            <span class="font-black text-blue-400 uppercase text-xs tracking-widest">Catalog Menu</span>
+            <button onclick="toggleSidebar()" class="text-3xl text-slate-500">&times;</button>
         </div>
         
-        <div class="p-6 bg-slate-900/50 border-t border-slate-800">
-            <button class="w-full bg-blue-600 py-4 rounded-2xl flex items-center justify-center font-black text-[10px] gap-3 tracking-[0.1em]">
-                <i class="fab fa-whatsapp text-lg"></i> CONTACT ASIM
+        <div class="space-y-4">
+            <button onclick="openCategory('NVR System')" class="w-full text-left bg-slate-900 p-5 rounded-2xl border border-slate-800 font-black text-slate-300 uppercase text-[11px] tracking-widest hover:border-blue-500 transition">
+                NVR System
+            </button>
+            <button onclick="openCategory('DVR System')" class="w-full text-left bg-slate-900 p-5 rounded-2xl border border-slate-800 font-black text-slate-300 uppercase text-[11px] tracking-widest hover:border-blue-500 transition">
+                DVR System
+            </button>
+            <button onclick="openCategory('IP Camera Outdoor')" class="w-full text-left bg-slate-900 p-5 rounded-2xl border border-slate-800 font-black text-slate-300 uppercase text-[11px] tracking-widest hover:border-blue-500 transition">
+                IP Camera Outdoor
             </button>
         </div>
     </div>
 
-    <div id="fullView" class="fixed inset-0 bg-[#0f172a] z-[300] hidden flex-col p-6 overflow-y-auto">
-        <div class="flex justify-between items-center mb-8 border-b border-slate-800 pb-6">
+    <div id="fullView">
+        <div class="p-6 border-b border-slate-800 flex justify-between items-center sticky top-0 bg-[#0f172a] z-50">
             <div>
-                <h3 id="catTitle" class="text-3xl font-black text-blue-400 uppercase tracking-tighter leading-none">Category</h3>
-                <p class="text-[9px] text-slate-500 uppercase tracking-widest mt-2 font-bold">Select Model for Details</p>
+                <h2 id="catTitle" class="text-3xl font-black text-white uppercase tracking-tighter">Category</h2>
+                <p class="text-[9px] text-blue-400 font-black tracking-[3px]">AIRTECH ONE INVENTORY</p>
             </div>
-            <button onclick="closeFullView()" class="h-14 w-14 bg-slate-800 rounded-[1.5rem] flex items-center justify-center text-3xl text-white shadow-2xl active:scale-90 transition">
-                <i class="fas fa-times"></i>
-            </button>
+            <button onclick="closeFullView()" class="w-14 h-14 bg-slate-800 rounded-2xl text-3xl shadow-xl active:scale-90 transition">&times;</button>
         </div>
 
-        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
             </div>
     </div>
 
-    <div id="overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden z-[140]"></div>
+    <div id="overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden z-[1050]"></div>
 
     <script>
-        // Data Setup
-        const productData = {
-            'Hikvision NVR System': [
-                { model: 'DS-7604NI-K1', name: '4-CH Smart 4K NVR', price: '450 SAR' },
-                { model: 'DS-7608NI-K2', name: '8-CH Pro Series NVR', price: '720 SAR' },
-                { model: 'DS-7716NI-I4', name: '16-CH 4-SATA NVR', price: '1250 SAR' },
-                { model: 'DS-9632NI-I8', name: '32-CH Ultra 4K NVR', price: '2100 SAR' }
+        // Data for Products
+        const inventory = {
+            'NVR System': [
+                { model: 'DS-7604NI-K1', name: '4-CH Smart 4K NVR', price: '450' },
+                { model: 'DS-7608NI-K2', name: '8-CH Pro Series NVR', price: '720' },
+                { model: 'DS-7716NI-I4', name: '16-CH 4-SATA NVR', price: '1250' },
+                { model: 'DS-9632NI-I8', name: '32-CH Ultra 4K NVR', price: '2100' }
             ],
-            'Hikvision DVR System': [
-                { model: 'DS-7204HGHI', name: '4-CH Turbo HD DVR', price: '280 SAR' },
-                { model: 'DS-7208HUHI', name: '8-CH 5MP Turbo DVR', price: '550 SAR' }
+            'DVR System': [
+                { model: 'DS-7204HGHI', name: '4-CH Turbo HD DVR', price: '290' },
+                { model: 'DS-7208HUHI', name: '8-CH 5MP Turbo DVR', price: '580' }
+            ],
+            'IP Camera Outdoor': [
+                { model: 'DS-2CD2043G0', name: '4MP Fixed Bullet Network', price: '320' },
+                { model: 'DS-2CD2T85G1', name: '8MP IR Fixed Bullet', price: '650' }
             ]
         };
 
         function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('-translate-x-full');
-            document.getElementById('overlay').classList.toggle('hidden');
+            const sb = document.getElementById('sidebar');
+            const ov = document.getElementById('overlay');
+            if(sb.classList.contains('-translate-x-full')) {
+                sb.classList.remove('-translate-x-full');
+                ov.classList.remove('hidden');
+            } else {
+                sb.classList.add('-translate-x-full');
+                ov.classList.add('hidden');
+            }
         }
 
-        function toggleSub(id) {
-            document.getElementById(id).classList.toggle('active');
-        }
-
-        function openCategory(catName) {
-            // Sidebar band karo
+        function openCategory(cat) {
+            // Close sidebar
             toggleSidebar();
             
             const view = document.getElementById('fullView');
             const grid = document.getElementById('productGrid');
-            document.getElementById('catTitle').innerText = catName;
+            document.getElementById('catTitle').innerText = cat;
 
-            // Get Data or Default
-            const items = productData[catName] || [
-                { model: 'Coming Soon', name: 'New Inventory Arriving', price: '-- SAR' }
-            ];
-
-            // Render 1 2 3 4 Cards
+            // Load Items
+            const items = inventory[cat] || [];
             grid.innerHTML = items.map(item => `
-                <div class="glass-card border border-slate-800 p-6 rounded-[2.5rem] flex flex-col h-full group active:scale-[0.98] transition-all">
-                    <div class="w-full h-48 bg-slate-800/50 rounded-[2rem] mb-6 flex items-center justify-center relative overflow-hidden border border-slate-700">
-                        <i class="fas fa-video text-5xl text-slate-600 group-hover:scale-110 transition-transform"></i>
+                <div class="vip-card">
+                    <div class="w-full h-44 bg-[#0f172a] rounded-2xl mb-5 flex items-center justify-center border border-slate-800 relative overflow-hidden">
+                        <i class="fas fa-video text-4xl text-slate-700"></i>
                     </div>
                     
                     <div class="flex-1">
-                        <span class="text-[10px] text-blue-400 font-black uppercase tracking-widest">${item.model}</span>
-                        <h4 class="text-xl font-black text-white mt-1 mb-4 leading-tight">${item.name}</h4>
+                        <span class="text-[10px] text-blue-400 font-black border border-blue-500/30 px-3 py-1 rounded-lg uppercase tracking-wider">${item.model}</span>
+                        <h3 class="text-xl font-black text-white mt-4 mb-2 leading-tight">${item.name}</h3>
                     </div>
 
-                    <div class="mt-auto border-t border-slate-800/50 pt-5 flex justify-between items-center">
-                        <div class="flex flex-col">
-                            <span class="text-[9px] text-slate-500 uppercase font-bold tracking-tighter">Best Price</span>
-                            <span class="text-xl font-black text-white tracking-tighter">${item.price}</span>
+                    <div class="mt-6 pt-5 border-t border-slate-800 flex justify-between items-center">
+                        <div>
+                            <p class="text-[9px] text-slate-500 font-bold uppercase tracking-widest">Price</p>
+                            <span class="text-2xl font-black text-white">${item.price} <small class="text-[12px] text-blue-500 font-bold">SAR</small></span>
                         </div>
-                        <a href="https://wa.me/966500000000?text=I'm interested in ${item.model}" class="bg-blue-600 text-white p-4 rounded-2xl shadow-lg shadow-blue-500/20 active:scale-90 transition">
-                            <i class="fab fa-whatsapp text-xl"></i>
+                        <a href="https://wa.me/966500000000?text=Model: ${item.model}" class="w-12 h-12 bg-[#25d366] rounded-2xl flex items-center justify-center text-white shadow-lg shadow-green-500/20 active:scale-90 transition">
+                            <i class="fab fa-whatsapp text-2xl"></i>
                         </a>
                     </div>
                 </div>
             `).join('');
 
-            view.classList.remove('hidden');
-            view.classList.add('flex');
+            view.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
 
         function closeFullView() {
-            document.getElementById('fullView').classList.add('hidden');
+            document.getElementById('fullView').style.display = 'none';
             document.body.style.overflow = 'auto';
         }
     </script>
