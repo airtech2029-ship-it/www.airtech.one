@@ -40,6 +40,8 @@
                     <a href="#" onclick="openProducts('hikDvr')" class="p-3">DVR SYSTEM</a>
                     <a href="#" onclick="openProducts('hikIpIn')" class="p-3">IP CAMERA INDOOR</a>
                     <a href="#" onclick="openProducts('hikIpOut')" class="p-3">IP CAMERA OUTDOOR</a>
+                    <a href="#" onclick="openProducts('hikAnaIn')" class="p-3">ANALOG CAMERA INDOOR</a>
+                    <a href="#" onclick="openProducts('hikAnaOut')" class="p-3">ANALOG CAMERA OUTDOOR</a>
                     <a href="#" onclick="openProducts('ezviz')" class="p-3 text-blue-400 italic">EZVIZ WI-FI</a>
                 </div>
             </div>
@@ -48,14 +50,11 @@
                 <div class="flex flex-col ml-2 border-l border-orange-500/20 text-[11px] font-bold text-slate-400">
                     <a href="#" onclick="openProducts('dahuaNvr')" class="p-3">NVR SYSTEM</a>
                     <a href="#" onclick="openProducts('dahuaDvr')" class="p-3">DVR SYSTEM</a>
+                    <a href="#" onclick="openProducts('dahuaIpIn')" class="p-3">IP CAMERA INDOOR</a>
+                    <a href="#" onclick="openProducts('dahuaIpOut')" class="p-3">IP CAMERA OUTDOOR</a>
+                    <a href="#" onclick="openProducts('dahuaAnaIn')" class="p-3">ANALOG CAMERA INDOOR</a>
+                    <a href="#" onclick="openProducts('dahuaAnaOut')" class="p-3">ANALOG CAMERA OUTDOOR</a>
                     <a href="#" onclick="openProducts('imou')" class="p-3 text-orange-400 italic">IMOU WI-FI</a>
-                </div>
-            </div>
-            <div class="bg-slate-900/40 rounded-2xl border border-slate-800 p-2">
-                <p class="text-[10px] font-black text-purple-500 px-3 py-2 uppercase tracking-widest">Storage & Others</p>
-                <div class="flex flex-col ml-2 border-l border-purple-500/20 text-[11px] font-bold text-slate-400">
-                    <a href="#" onclick="openProducts('wdHdd')" class="p-3">SURVEILLANCE HDD</a>
-                    <a href="#" onclick="openProducts('tapo')" class="p-3 text-purple-400 italic">TAPO SMART</a>
                 </div>
             </div>
         </div>
@@ -63,7 +62,7 @@
 
     <header class="py-20 px-6 text-center">
         <h1 class="text-5xl font-black uppercase italic tracking-tighter leading-tight">PREMIUM<br><span class="text-blue-600">A2Z SECURITY</span></h1>
-        <p class="text-slate-500 text-[10px] font-bold uppercase tracking-[4px] mt-4">Hafar Al Batin • Saudi Pro POS</p>
+        <p class="text-slate-500 text-[10px] font-bold uppercase tracking-[4px] mt-4">Hafar Al Batin • KSA</p>
     </header>
 
     <div id="fullView" class="fixed inset-0 bg-[#0a1120] z-[200] hidden flex-col">
@@ -78,48 +77,61 @@
 
     <script>
         const catalog = {
-            hikNvr: { title: "HIKVISION NVR (A2Z)", items: [
-                { model: 'DS-7604NI-K1', name: '4-CH 4K Network Recorder', price: 420, img: 'https://m.media-amazon.com/images/I/41-N6B6-y3L._AC_SL1000_.jpg' },
+            // HIKVISION COMPLETE RANGE
+            hikNvr: { title: "HIKVISION NVR RANGE", items: [
+                { model: 'DS-7604NI-K1', name: '4-CH 4K NVR', price: 420, img: 'https://m.media-amazon.com/images/I/41-N6B6-y3L._AC_SL1000_.jpg' },
                 { model: 'DS-7608NI-K2', name: '8-CH 4K Professional NVR', price: 585, img: 'https://m.media-amazon.com/images/I/41-N6B6-y3L._AC_SL1000_.jpg' },
                 { model: 'DS-7616NI-K2', name: '16-CH 4K Network Recorder', price: 850, img: 'https://m.media-amazon.com/images/I/41-N6B6-y3L._AC_SL1000_.jpg' },
                 { model: 'DS-7732NI-K4', name: '32-CH 4K High-End NVR', price: 1450, img: 'https://m.media-amazon.com/images/I/41-N6B6-y3L._AC_SL1000_.jpg' }
             ]},
-            hikDvr: { title: "HIKVISION DVR (A2Z)", items: [
+            hikDvr: { title: "HIKVISION DVR RANGE", items: [
                 { model: 'DS-7204HGHI', name: '4-CH Turbo HD DVR', price: 245, img: 'https://m.media-amazon.com/images/I/51p8I+Yp9qL._AC_SL1000_.jpg' },
                 { model: 'DS-7208HUHI', name: '8-CH 4K (8MP) Turbo DVR', price: 620, img: 'https://m.media-amazon.com/images/I/51p8I+Yp9qL._AC_SL1000_.jpg' },
                 { model: 'DS-7216HQHI', name: '16-CH 4MP Turbo DVR', price: 780, img: 'https://m.media-amazon.com/images/I/51p8I+Yp9qL._AC_SL1000_.jpg' }
             ]},
             hikIpIn: { title: "HIKVISION IP INDOOR", items: [
                 { model: 'DS-2CD1123G0', name: '2MP Dome IP Camera', price: 165, img: 'https://m.media-amazon.com/images/I/51-mB4n8k1L._AC_SL1000_.jpg' },
+                { model: 'DS-2CD2143G2', name: '4MP AcuSense Dome', price: 320, img: 'https://m.media-amazon.com/images/I/51-mB4n8k1L._AC_SL1000_.jpg' },
                 { model: 'DS-2CD2183G2', name: '8MP (4K) UHD Dome Cam', price: 450, img: 'https://m.media-amazon.com/images/I/51-mB4n8k1L._AC_SL1000_.jpg' }
             ]},
             hikIpOut: { title: "HIKVISION IP OUTDOOR", items: [
                 { model: 'DS-2CD1023G0', name: '2MP Bullet IP Camera', price: 175, img: 'https://m.media-amazon.com/images/I/51p-Vp8C+GL._AC_SL1500_.jpg' },
+                { model: 'DS-2CD2043G2', name: '4MP AcuSense Bullet', price: 335, img: 'https://m.media-amazon.com/images/I/51p-Vp8C+GL._AC_SL1500_.jpg' },
                 { model: 'DS-2CD2083G2', name: '8MP (4K) UHD Bullet', price: 490, img: 'https://m.media-amazon.com/images/I/51p-Vp8C+GL._AC_SL1500_.jpg' }
             ]},
-            dahuaNvr: { title: "DAHUA NVR (A2Z)", items: [
+            hikAnaIn: { title: "HIKVISION ANALOG INDOOR", items: [
+                { model: 'DS-2CE56D0T', name: '2MP Analog Dome Cam', price: 85, img: 'https://m.media-amazon.com/images/I/51-mB4n8k1L._AC_SL1000_.jpg' },
+                { model: 'DS-2CE76H0T', name: '5MP Audio Dome Cam', price: 155, img: 'https://m.media-amazon.com/images/I/51-mB4n8k1L._AC_SL1000_.jpg' }
+            ]},
+            hikAnaOut: { title: "HIKVISION ANALOG OUTDOOR", items: [
+                { model: 'DS-2CE16D0T', name: '2MP Analog Bullet Cam', price: 95, img: 'https://m.media-amazon.com/images/I/51p-Vp8C+GL._AC_SL1500_.jpg' },
+                { model: 'DS-2CE16H0T', name: '5MP Analog Bullet Cam', price: 165, img: 'https://m.media-amazon.com/images/I/51p-Vp8C+GL._AC_SL1500_.jpg' }
+            ]},
+
+            // DAHUA COMPLETE RANGE
+            dahuaNvr: { title: "DAHUA NVR RANGE", items: [
                 { model: 'NVR4108HS', name: '8-CH 4K Compact NVR', price: 540, img: 'https://m.media-amazon.com/images/I/41-N6B6-y3L._AC_SL1000_.jpg' },
                 { model: 'NVR5216-4K', name: '16-CH 4K Pro NVR', price: 890, img: 'https://m.media-amazon.com/images/I/41-N6B6-y3L._AC_SL1000_.jpg' }
             ]},
-            dahuaDvr: { title: "DAHUA DVR (A2Z)", items: [
+            dahuaIpOut: { title: "DAHUA IP OUTDOOR", items: [
+                { model: 'IPC-HFW1230S', name: '2MP Entry IR Bullet', price: 170, img: 'https://m.media-amazon.com/images/I/51p-Vp8C+GL._AC_SL1500_.jpg' },
+                { model: 'IPC-HFW2431S', name: '4MP WDR IR Bullet', price: 295, img: 'https://m.media-amazon.com/images/I/51p-Vp8C+GL._AC_SL1500_.jpg' },
+                { model: 'IPC-HFW3841E', name: '8MP (4K) WizSense Bullet', price: 510, img: 'https://m.media-amazon.com/images/I/51p-Vp8C+GL._AC_SL1500_.jpg' }
+            ]},
+            dahuaDvr: { title: "DAHUA DVR RANGE", items: [
+                { model: 'XVR1B04-I', name: '4-CH WizSense DVR', price: 230, img: 'https://m.media-amazon.com/images/I/51p8I+Yp9qL._AC_SL1000_.jpg' },
                 { model: 'XVR5108HS-4KL', name: '8-CH 4K WizSense DVR', price: 595, img: 'https://m.media-amazon.com/images/I/51p8I+Yp9qL._AC_SL1000_.jpg' },
                 { model: 'XVR5116HS-I3', name: '16-CH WizSense DVR', price: 790, img: 'https://m.media-amazon.com/images/I/51p8I+Yp9qL._AC_SL1000_.jpg' }
             ]},
+            
+            // SMART BRANDS
             ezviz: { title: "EZVIZ WI-FI RANGE", items: [
                 { model: 'C6N 4MP', name: 'Smart Indoor Pan/Tilt', price: 175, img: 'https://m.media-amazon.com/images/I/51M6X6N0FRL._AC_SL1500_.jpg' },
                 { model: 'H8C 2K', name: '360° Outdoor Pan/Tilt', price: 295, img: 'https://m.media-amazon.com/images/I/51Hk6l+f6KL._AC_SL1500_.jpg' }
             ]},
             imou: { title: "IMOU WI-FI RANGE", items: [
-                { model: 'Ranger 2', name: 'Indoor 360° Wi-Fi Cam', price: 145, img: 'https://m.media-amazon.com/images/I/51y8S5Q9p8L._AC_SL1500_.jpg' },
-                { model: 'Cruiser 2 5MP', name: '5MP Pan/Tilt Outdoor', price: 340, img: 'https://m.media-amazon.com/images/I/61S-U8S3GvL._AC_SL1500_.jpg' }
-            ]},
-            wdHdd: { title: "SURVEILLANCE HDD", items: [
-                { model: '2TB Purple', name: 'WD Surveillance HDD', price: 275, img: 'https://m.media-amazon.com/images/I/81sh9jG7tWL._AC_SL1500_.jpg' },
-                { model: '4TB Purple', name: 'WD Surveillance HDD', price: 415, img: 'https://m.media-amazon.com/images/I/81sh9jG7tWL._AC_SL1500_.jpg' }
-            ]},
-            tapo: { title: "TAPO SMART RANGE", items: [
-                { model: 'Tapo C200', name: 'Home Pan/Tilt Cam', price: 125, img: 'https://m.media-amazon.com/images/I/51N-D3U5k8L._AC_SL1000_.jpg' },
-                { model: 'Tapo C310', name: 'Outdoor Wi-Fi Camera', price: 195, img: 'https://m.media-amazon.com/images/I/51vI-E9T3cL._AC_SL1500_.jpg' }
+                { model: 'Ranger 2', name: 'Indoor 360° Cam', price: 145, img: 'https://m.media-amazon.com/images/I/51y8S5Q9p8L._AC_SL1500_.jpg' },
+                { model: 'Cruiser 2 5MP', name: 'Outdoor 5MP Pan/Tilt', price: 340, img: 'https://m.media-amazon.com/images/I/61S-U8S3GvL._AC_SL1500_.jpg' }
             ]}
         };
 
@@ -137,7 +149,7 @@
                 return `
                 <div class="vip-card">
                     <span class="text-[9px] bg-blue-600/20 text-blue-400 px-3 py-1 rounded-md font-black mb-3 w-fit tracking-widest">${i.model}</span>
-                    <div class="img-container">
+                    <div class="img-container shadow-inner">
                         <div class="discount-tag">2% OFF</div>
                         <img src="${i.img}" alt="${i.name}" class="product-img">
                     </div>
