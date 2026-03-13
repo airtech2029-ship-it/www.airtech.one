@@ -14,9 +14,7 @@
         .custom-scrollbar::-webkit-scrollbar { width: 4px; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
         .submenu { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out; }
-        .submenu.active { max-height: 800px; }
-        @keyframes pulse-soft { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-        .animate-pulse-custom { animation: pulse-soft 2s infinite; }
+        .submenu.active { max-height: 1000px; }
     </style>
 </head>
 <body class="bg-slate-50 overflow-x-hidden">
@@ -43,12 +41,12 @@
                 </button>
                 <div id="hik-menu" class="submenu">
                     <div class="px-4 pb-4 space-y-1 ml-4 border-l border-slate-800">
-                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-blue-600/10 rounded-lg">NVR System</a>
-                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-blue-600/10 rounded-lg">DVR System</a>
-                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-blue-600/10 rounded-lg">IP Camera Outdoor</a>
-                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-blue-600/10 rounded-lg">IP Camera Indoor</a>
+                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-blue-600/10 rounded-lg transition">NVR System</a>
+                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-blue-600/10 rounded-lg transition">DVR System</a>
+                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-blue-600/10 rounded-lg transition">IP Camera Outdoor</a>
+                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-blue-600/10 rounded-lg transition">IP Camera Indoor</a>
                         <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-blue-600/10 rounded-lg border-t border-slate-800/50 mt-1 pt-3">Analog Camera Outdoor</a>
-                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-blue-600/10 rounded-lg">Analog Camera Indoor</a>
+                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-blue-600/10 rounded-lg transition">Analog Camera Indoor</a>
                     </div>
                 </div>
             </div>
@@ -63,35 +61,45 @@
                 </button>
                 <div id="dahua-menu" class="submenu">
                     <div class="px-4 pb-4 space-y-1 ml-4 border-l border-slate-800">
-                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-orange-600/10 rounded-lg">NVR System</a>
-                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-orange-600/10 rounded-lg">DVR System</a>
-                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-orange-600/10 rounded-lg">IP Camera Outdoor</a>
-                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-orange-600/10 rounded-lg">IP Camera Indoor</a>
+                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-orange-600/10 rounded-lg transition">Dahua NVR</a>
+                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-orange-600/10 rounded-lg transition">Dahua DVR</a>
+                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-orange-600/10 rounded-lg transition">IP Camera Outdoor</a>
+                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-orange-600/10 rounded-lg transition">IP Camera Indoor</a>
                         <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-orange-600/10 rounded-lg border-t border-slate-800/50 mt-1 pt-3">Analog Camera Outdoor</a>
-                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-orange-600/10 rounded-lg">Analog Camera Indoor</a>
+                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-orange-600/10 rounded-lg transition">Analog Camera Indoor</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-900/40 rounded-2xl border border-slate-800/50">
+                <button onclick="toggleAccordion('hdd-menu', 'hdd-icon')" class="w-full flex items-center justify-between p-4 focus:outline-none">
+                    <div class="flex items-center">
+                        <div class="h-4 w-1 bg-purple-500 mr-3 rounded-full"></div>
+                        <span class="text-xs font-black text-purple-400 uppercase tracking-widest">HDD Store</span>
+                    </div>
+                    <i class="fas fa-chevron-down text-[10px] text-slate-500 transition-transform duration-300" id="hdd-icon"></i>
+                </button>
+                <div id="hdd-menu" class="submenu">
+                    <div class="px-4 pb-4 space-y-1 ml-4 border-l border-slate-800">
+                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-purple-600/10 rounded-lg transition flex justify-between items-center">
+                            <span>WD Purple (Surveillance)</span>
+                            <span class="text-[8px] bg-green-500/20 text-green-400 px-2 py-0.5 rounded font-black">STOCK</span>
+                        </a>
+                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-purple-600/10 rounded-lg transition flex justify-between items-center">
+                            <span>Toshiba S300</span>
+                            <span class="text-[8px] bg-green-500/20 text-green-400 px-2 py-0.5 rounded font-black">STOCK</span>
+                        </a>
+                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-purple-600/10 rounded-lg transition">Seagate SkyHawk</a>
+                        <a href="#" class="block p-3 text-[11px] font-bold text-slate-400 hover:text-white hover:bg-purple-600/10 rounded-lg transition border-t border-slate-800/50 mt-1 pt-3">SanDisk SSD Solutions</a>
                     </div>
                 </div>
             </div>
 
             <div class="p-2">
-                <h4 class="text-[10px] font-black text-purple-500 uppercase tracking-[0.2em] mb-3 ml-2">Storage</h4>
-                <a href="#" class="group flex items-center p-3 rounded-xl hover:bg-purple-600/10 border border-transparent hover:border-purple-500/30 transition">
-                    <div class="w-8 text-slate-400 group-hover:text-purple-400 transition"><i class="fas fa-hdd"></i></div>
-                    <div class="flex-1 flex flex-col">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold text-slate-200">WD Purple 4TB</span>
-                            <span class="text-[8px] bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full font-bold">STOCK</span>
-                        </div>
-                        <span class="text-[9px] text-slate-500 italic mt-0.5">240 SAR</span>
-                    </div>
-                </a>
-            </div>
-
-            <div class="p-2">
                 <h4 class="text-[10px] font-black text-teal-400 uppercase tracking-[0.2em] mb-3 ml-2">Networking</h4>
-                <a href="#" class="group flex items-center p-3 rounded-xl hover:bg-teal-600/10 transition">
+                <a href="#" class="group flex items-center p-3 rounded-xl hover:bg-teal-600/10 transition border border-transparent hover:border-teal-500/30">
                     <div class="w-8 text-slate-400 group-hover:text-teal-400 transition"><i class="fas fa-router"></i></div>
-                    <span class="text-xs font-bold text-slate-200">TP-Link Solutions</span>
+                    <span class="text-xs font-bold text-slate-200">TP-Link Archer Solutions</span>
                 </a>
             </div>
 
@@ -125,28 +133,19 @@
                 </button>
                 <div class="text-2xl font-black text-blue-900 tracking-tighter uppercase">AirTech One</div>
             </div>
-            <a href="https://wa.me/966500000000" class="bg-blue-600 text-white px-6 py-2.5 rounded-xl font-black text-xs">CONSULT NOW</a>
+            <a href="https://wa.me/966500000000" class="bg-blue-600 text-white px-6 py-2.5 rounded-xl font-black text-xs uppercase tracking-widest">Consult</a>
         </div>
     </nav>
 
     <header class="hero-gradient text-white py-32 px-6 text-center">
-        <h1 class="text-5xl md:text-8xl font-black mb-6 tracking-tighter uppercase">AirTech One</h1>
+        <h1 class="text-5xl md:text-8xl font-black mb-6 tracking-tighter uppercase leading-tight">AirTech One</h1>
         <p class="text-slate-400 max-w-2xl mx-auto mb-12 text-lg">Premium Security & Networking Hub in Hafar Al Batin.</p>
-        <button onclick="togglePanel()" class="bg-blue-600 px-12 py-5 rounded-2xl font-black shadow-2xl hover:bg-blue-700 transition transform hover:-translate-y-1">EXPLORE CATALOG</button>
+        <button onclick="togglePanel()" class="bg-blue-600 px-12 py-5 rounded-2xl font-black shadow-2xl hover:bg-blue-700 transition transform hover:-translate-y-1 uppercase tracking-widest text-sm">Explore Catalog</button>
     </header>
-
-    <section class="py-24 bg-white">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl font-black text-slate-900 uppercase">Our Core Inventory</h2>
-            <div class="h-1 w-12 bg-blue-600 mx-auto mt-4 mb-12"></div>
-            <p class="text-slate-500 mb-8">Professional Grade Equipment for your Business & Home.</p>
-            <button onclick="togglePanel()" class="text-blue-600 font-bold hover:underline">View All Products in Catalog →</button>
-        </div>
-    </section>
 
     <footer class="py-16 text-center bg-slate-50 border-t border-slate-200">
         <div class="text-2xl font-black text-slate-900 tracking-tighter uppercase">AIRTECH ONE</div>
-        <p class="text-slate-400 text-[10px] mt-4 uppercase tracking-[0.4em]">Hafar Al Batin | 2026</p>
+        <p class="text-slate-400 text-[10px] mt-4 uppercase tracking-[0.4em]">Hafar Al Batin | Saudi Arabia | 2026</p>
     </footer>
 
     <script>
