@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AirTech One | CCTV & Security Experts Saudi Arabia</title>
+    <title>AirTech One | CCTV Experts Saudi Arabia</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Roboto:ital,wght@1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -31,40 +31,73 @@
             scroll-behavior: smooth;
         }
 
-        /* --- HEADER NAVIGATION --- */
+        /* --- FIXED HEADER DESIGN --- */
         header {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr; 
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            padding: 25px 5%;
+            padding: 15px 5%;
             border-bottom: 2px solid #f0f0f0;
             position: sticky;
             top: 0;
             background: #ffffff;
             z-index: 1000;
+            height: 70px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex: 1;
         }
 
         .sidebar-trigger {
-            font-size: 30px;
+            font-size: 26px;
             cursor: pointer;
-            justify-self: start;
+            color: var(--text-black);
+        }
+
+        .search-icon {
+            font-size: 20px;
+            cursor: pointer;
+            color: #555;
+        }
+
+        .logo-container {
+            flex: 2;
+            text-align: center;
         }
 
         .logo {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 900;
             color: var(--primary-blue);
             text-decoration: none;
-            justify-self: center;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             text-transform: uppercase;
         }
 
-        .header-icons {
+        .header-right {
             display: flex;
-            gap: 25px;
+            align-items: center;
+            gap: 20px;
+            justify-content: flex-end;
+            flex: 1;
+        }
+
+        .cart-icon {
+            font-size: 22px;
+            color: var(--text-black);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .whatsapp-link {
             font-size: 24px;
-            justify-self: end;
+            color: var(--whatsapp-green);
+            text-decoration: none;
+            transition: 0.3s;
         }
 
         /* --- SIDEBAR DESIGN --- */
@@ -79,26 +112,24 @@
             overflow-x: hidden;
             transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 15px 0 40px rgba(0,0,0,0.15);
-            padding-top: 100px;
+            padding-top: 80px;
         }
 
         .sidebar .closebtn {
             position: absolute;
-            top: 25px;
-            right: 35px;
-            font-size: 50px;
+            top: 20px;
+            right: 30px;
+            font-size: 45px;
             cursor: pointer;
-            color: var(--text-black);
         }
 
-        /* HIKVISION PREMIUM DROPDOWN */
+        /* HIKVISION BUTTON */
         .hik-main-btn {
-            padding: 25px 35px;
+            padding: 20px 30px;
             font-family: 'Roboto', sans-serif;
             font-weight: 900;
             font-style: italic; 
-            font-size: 30px;
-            letter-spacing: -1.5px;
+            font-size: 28px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -115,18 +146,16 @@
         }
 
         .lvl-1-item {
-            padding: 20px 45px;
+            padding: 15px 40px;
             font-weight: 700;
             font-size: 18px;
             border-bottom: 1px solid #eee;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
-            align-items: center;
             color: #333;
         }
 
-        /* LEVEL 2 - NVR PRODUCTS WITH PRICES */
         .lvl-2-container {
             display: none;
             background-color: #f1f1f1;
@@ -135,85 +164,51 @@
         }
 
         .product-link {
-            padding: 15px 40px;
+            padding: 12px 35px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             text-decoration: none;
             border-bottom: 1px solid #e5e5e5;
-            transition: 0.3s;
         }
 
-        .product-link:hover {
-            background-color: #fff;
-        }
-
-        .model-name {
-            font-size: 14px;
-            font-weight: 700;
-            color: #444;
-        }
-
-        .price-tag {
-            font-size: 14px;
-            font-weight: 900;
-            color: var(--price-gold);
-            background: #fff;
-            padding: 4px 12px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-        }
-
-        .cat-title {
-            padding: 15px 40px;
-            font-size: 13px;
-            color: #000;
-            font-weight: 900;
-            text-transform: uppercase;
-            background: #e9e9e9;
-            margin-top: 10px;
-        }
+        .model-name { font-size: 13px; font-weight: 700; color: #444; }
+        .price-tag { font-size: 13px; font-weight: 900; color: var(--price-gold); background: #fff; padding: 2px 8px; border-radius: 4px; }
+        .cat-title { padding: 10px 35px; font-size: 12px; font-weight: 900; text-transform: uppercase; background: #e9e9e9; }
 
         /* --- SECTIONS --- */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&q=80&w=1600') center/cover;
-            height: 500px;
+            height: 400px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             color: white;
-            padding: 0 40px;
+            padding: 0 20px;
         }
-
-        .hero h1 { font-size: 50px; margin-bottom: 15px; }
 
         .trust-badges {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 30px;
-            padding: 80px 5%;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
+            padding: 50px 5%;
             background: var(--light-gray);
             text-align: center;
         }
 
-        .badge-card i { font-size: 45px; color: var(--primary-blue); margin-bottom: 20px; }
-        .badge-card p { font-weight: 800; font-size: 16px; }
-
-        .brands { padding: 100px 5%; text-align: center; }
-        .brand-logos { display: flex; justify-content: center; gap: 80px; flex-wrap: wrap; }
-        .brand-logos img { height: 60px; filter: grayscale(100%); opacity: 0.5; }
+        .badge-card i { font-size: 35px; color: var(--primary-blue); margin-bottom: 10px; }
+        .badge-card p { font-weight: 800; font-size: 13px; }
 
         footer {
             background: var(--dark-blue);
             color: white;
-            padding: 80px 5% 40px;
+            padding: 50px 5% 30px;
             text-align: center;
         }
 
         .rotate { transform: rotate(180deg); transition: 0.3s; }
-
     </style>
 </head>
 <body>
@@ -234,94 +229,63 @@
             
             <div class="lvl-2-container" id="lvl-2-nvr">
                 <div class="cat-title">Non-PoE Models</div>
-                <a href="#" class="product-link">
-                    <span class="model-name">4CH (DS-7604NI-K1)</span>
-                    <span class="price-tag">350 SAR</span>
-                </a>
-                <a href="#" class="product-link">
-                    <span class="model-name">8CH (DS-7608NI-K2)</span>
-                    <span class="price-tag">550 SAR</span>
-                </a>
-                <a href="#" class="product-link">
-                    <span class="model-name">16CH (DS-7616NI-K2)</span>
-                    <span class="price-tag">850 SAR</span>
-                </a>
-                <a href="#" class="product-link">
-                    <span class="model-name">32CH (DS-7732NI-K4)</span>
-                    <span class="price-tag">1450 SAR</span>
-                </a>
+                <a href="#" class="product-link"><span class="model-name">4CH (DS-7604NI-K1)</span><span class="price-tag">350 SAR</span></a>
+                <a href="#" class="product-link"><span class="model-name">8CH (DS-7608NI-K2)</span><span class="price-tag">550 SAR</span></a>
+                <a href="#" class="product-link"><span class="model-name">16CH (DS-7616NI-K2)</span><span class="price-tag">850 SAR</span></a>
+                <a href="#" class="product-link"><span class="model-name">32CH (DS-7732NI-K4)</span><span class="price-tag">1450 SAR</span></a>
 
                 <div class="cat-title">PoE Models</div>
-                <a href="#" class="product-link">
-                    <span class="model-name">4CH PoE (DS-7604NI-K1/4P)</span>
-                    <span class="price-tag">480 SAR</span>
-                </a>
-                <a href="#" class="product-link">
-                    <span class="model-name">8CH PoE (DS-7608NI-K2/8P)</span>
-                    <span class="price-tag">720 SAR</span>
-                </a>
-                <a href="#" class="product-link">
-                    <span class="model-name">16CH PoE (DS-7616NI-K2/16P)</span>
-                    <span class="price-tag">1150 SAR</span>
-                </a>
-                <a href="#" class="product-link">
-                    <span class="model-name">32CH PoE (DS-7732NI-I4/16P)</span>
-                    <span class="price-tag">1950 SAR</span>
-                </a>
+                <a href="#" class="product-link"><span class="model-name">4CH PoE (DS-7604NI-K1/4P)</span><span class="price-tag">480 SAR</span></a>
+                <a href="#" class="product-link"><span class="model-name">8CH PoE (DS-7608NI-K2/8P)</span><span class="price-tag">720 SAR</span></a>
+                <a href="#" class="product-link"><span class="model-name">16CH PoE (DS-7616NI-K2/16P)</span><span class="price-tag">1150 SAR</span></a>
+                <a href="#" class="product-link"><span class="model-name">32CH PoE (DS-7732NI-I4/16P)</span><span class="price-tag">1950 SAR</span></a>
             </div>
 
-            <div class="lvl-1-item" onclick="closeNav()">DVR</div>
-            <div class="lvl-1-item" onclick="closeNav()">IP CAMERA OUTDOOR</div>
-            <div class="lvl-1-item" onclick="closeNav()">IP CAMERA INDOOR</div>
-            <div class="lvl-1-item" onclick="closeNav()">ANALOG CAMERA OUTDOOR</div>
-            <div class="lvl-1-item" onclick="closeNav()">ANALOG CAMERA INDOOR</div>
-            <div class="lvl-1-item" onclick="closeNav()">EZVIZ WIFI CAMERA</div>
+            <div class="lvl-1-item">DVR</div>
+            <div class="lvl-1-item">IP CAMERA</div>
         </div>
-
-        <div style="padding: 30px 35px;">
-            <a href="#" onclick="closeNav()" style="display:block; padding:15px 0; color:var(--text-black); text-decoration:none; font-weight:700; border-bottom:1px solid #f5f5f5;">HOME</a>
-            <a href="#categories" onclick="closeNav()" style="display:block; padding:15px 0; color:var(--text-black); text-decoration:none; font-weight:700; border-bottom:1px solid #f5f5f5;">BRANDS</a>
-            <a href="#" onclick="closeNav()" style="display:block; padding:15px 0; color:var(--text-black); text-decoration:none; font-weight:700; border-bottom:1px solid #f5f5f5;">CONTACT</a>
+        
+        <div style="padding: 20px 30px;">
+            <a href="#" style="display:block; padding:10px 0; color:#333; text-decoration:none; font-weight:700;">HOME</a>
         </div>
     </div>
 
     <header>
-        <div class="sidebar-trigger" onclick="openNav()"><i class="fa fa-bars"></i></div>
-        <a href="#" class="logo">AirTech One</a>
-        <div class="header-icons">
-            <i class="fa fa-search"></i>
-            <a href="https://wa.me/966557978781" target="_blank" style="color: inherit;"><i class="fab fa-whatsapp" style="color: var(--whatsapp-green);"></i></a>
+        <div class="header-left">
+            <div class="sidebar-trigger" onclick="openNav()"><i class="fa fa-bars"></i></div>
+            <div class="search-icon"><i class="fa fa-search"></i></div>
+        </div>
+
+        <div class="logo-container">
+            <a href="#" class="logo">AirTech One</a>
+        </div>
+
+        <div class="header-right">
+            <div class="cart-icon"><i class="fa fa-shopping-cart"></i></div>
+            <a href="https://wa.me/966557978781" target="_blank" class="whatsapp-link">
+                <i class="fab fa-whatsapp"></i>
+            </a>
         </div>
     </header>
 
     <section class="hero">
         <h1>Advanced Security Solutions</h1>
-        <p>Authorized Partner for Hikvision & Dahua in Saudi Arabia</p>
+        <p>Premium Installation in Hafar Al-Batin</p>
     </section>
 
     <section class="trust-badges">
         <div class="badge-card"><i class="fa fa-truck"></i><p>FAST DELIVERY</p></div>
-        <div class="badge-card"><i class="fa fa-wallet"></i><p>CASH ON DELIVERY</p></div>
-        <div class="badge-card"><i class="fa fa-shield-halved"></i><p>OFFICIAL WARRANTY</p></div>
+        <div class="badge-card"><i class="fa fa-shield-check"></i><p>OFFICIAL WARRANTY</p></div>
         <div class="badge-card"><i class="fa fa-headset"></i><p>TECH SUPPORT</p></div>
     </section>
 
-    <section id="categories" class="brands">
-        <h2>Our Trusted Partners</h2>
-        <div class="brand-logos">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Hikvision_logo.svg" alt="Hikvision">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Dahua_Technology_logo.svg" alt="Dahua">
-        </div>
-    </section>
-
     <footer>
-        <p>AirTech One | Mr. Asim</p>
+        <p>AirTech One | Saudi Arabia</p>
         <p>WhatsApp: +966 557 978 781</p>
-        <p style="font-size: 12px; opacity: 0.5; margin-top: 30px;">© 2026 AirTech One Saudi Arabia. All rights reserved.</p>
     </footer>
 
     <script>
-        function openNav() { document.getElementById("mySidebar").style.width = "400px"; }
+        function openNav() { document.getElementById("mySidebar").style.width = "320px"; }
         function closeNav() { 
             document.getElementById("mySidebar").style.width = "0";
             document.getElementById("lvl-1-hik").style.display = "none";
@@ -330,26 +294,14 @@
         function toggleLvl1() {
             var menu = document.getElementById("lvl-1-hik");
             var arrow = document.getElementById("hik-arrow");
-            if (menu.style.display === "block") {
-                menu.style.display = "none";
-                arrow.classList.remove("rotate");
-            } else {
-                menu.style.display = "block";
-                arrow.classList.add("rotate");
-            }
+            menu.style.display = (menu.style.display === "block") ? "none" : "block";
+            arrow.classList.toggle("rotate");
         }
         function toggleNvr() {
             var nvr = document.getElementById("lvl-2-nvr");
             var arrow = document.getElementById("nvr-arrow");
-            if (nvr.style.display === "block") {
-                nvr.style.display = "none";
-                arrow.classList.remove("fa-minus");
-                arrow.classList.add("fa-plus");
-            } else {
-                nvr.style.display = "block";
-                arrow.classList.remove("fa-plus");
-                arrow.classList.add("fa-minus");
-            }
+            nvr.style.display = (nvr.style.display === "block") ? "none" : "block";
+            arrow.classList.toggle("fa-minus");
         }
     </script>
 </body>
