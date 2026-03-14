@@ -1,1 +1,181 @@
-hi
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirTech One | Premium CCTV Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-blue: #0046BE;
+            --dark-blue: #002D7A;
+            --white: #FFFFFF;
+            --light-gray: #F4F7F9;
+            --text-black: #1A1A1A;
+            --accent-red: #D0021B; /* Sirf Flash Sale ke liye */
+            --whatsapp-green: #25D366;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-black);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', 'Noto Sans Arabic', sans-serif; font-weight: 700; }
+
+        /* --- Header --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            border-bottom: 1px solid #eee;
+            position: sticky; top: 0; background: #fff; z-index: 1000;
+        }
+        .logo { font-size: 24px; font-weight: bold; color: var(--primary-blue); text-decoration: none; }
+        nav a { margin: 0 15px; text-decoration: none; color: var(--text-black); font-weight: 600; font-size: 14px; }
+        .header-icons { display: flex; align-items: center; gap: 20px; font-size: 18px; }
+
+        /* --- Hero Banner --- */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&q=80&w=1600') center/cover;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+        .hero h1 { font-size: 42px; margin-bottom: 10px; }
+        .hero p { font-size: 18px; margin-bottom: 30px; }
+        .btn-group { display: flex; gap: 15px; }
+        .btn { padding: 12px 30px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .btn-blue { background: var(--primary-blue); color: white; }
+        .btn-whatsapp { background: var(--whatsapp-green); color: white; }
+
+        /* --- Trust Badges (Grid) --- */
+        .trust-badges {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            padding: 50px 5%;
+            background: var(--light-gray);
+            text-align: center;
+        }
+        .badge-card i { font-size: 30px; color: var(--primary-blue); margin-bottom: 10px; }
+        .badge-card p { font-size: 14px; font-weight: 600; margin: 0; }
+
+        /* --- Featured Brands --- */
+        .brands { padding: 50px 5%; text-align: center; }
+        .brand-logos { display: flex; justify-content: center; align-items: center; gap: 60px; filter: grayscale(100%); opacity: 0.6; }
+        .brand-logos img { height: 50px; }
+        .brand-logos img:hover { filter: grayscale(0%); opacity: 1; transition: 0.3s; cursor: pointer; }
+
+        /* --- Why Choose Us --- */
+        .why-us { padding: 60px 5%; text-align: center; }
+        .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
+        .why-item { padding: 20px; border: 1px solid #eee; border-radius: 10px; }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 768px) {
+            nav { display: none; }
+            .hero h1 { font-size: 28px; }
+            .why-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">AirTech One</a>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Categories</a>
+            <a href="#">Flash Sale</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+        </nav>
+        <div class="header-icons">
+            <i class="fa fa-search"></i>
+            <i class="fa fa-shopping-cart"></i>
+            <i class="fab fa-whatsapp" style="color: var(--whatsapp-green);"></i>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Premium CCTV Solutions in Hafar Al-Batin</h1>
+        <p>Hikvision & Dahua Experts | Security Systems & Installation</p>
+        <div class="btn-group">
+            <a href="#" class="btn btn-blue">Shop Now</a>
+            <a href="https://wa.me/966557978781" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Contact Us</a>
+        </div>
+    </section>
+
+    <section class="trust-badges">
+        <div class="badge-card">
+            <i class="fa fa-truck"></i>
+            <p>Free Delivery > 500 SR</p>
+        </div>
+        <div class="badge-card">
+            <i class="fa fa-wallet"></i>
+            <p>Cash on Delivery</p>
+        </div>
+        <div class="badge-card">
+            <i class="fa fa-shield-halved"></i>
+            <p>1-2 Year Warranty</p>
+        </div>
+        <div class="badge-card">
+            <i class="fa fa-headset"></i>
+            <p>24/7 Support</p>
+        </div>
+        <div class="badge-card">
+            <i class="fa fa-check-circle"></i>
+            <p>Genuine Products</p>
+        </div>
+    </section>
+
+    <section class="brands">
+        <h3>Trusted Brands</h3>
+        <div class="brand-logos">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Hikvision_logo.svg" alt="Hikvision">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Dahua_Technology_logo.svg" alt="Dahua">
+        </div>
+    </section>
+
+    <section class="why-us">
+        <h2>Why Choose AirTech One?</h2>
+        <div class="why-grid">
+            <div class="why-item">
+                <h3>Expert Support</h3>
+                <p>Our team of certified professionals ensures your security is never compromised.</p>
+            </div>
+            <div class="why-item">
+                <h3>Fast Delivery</h3>
+                <p>Quick dispatch and reliable shipping across Saudi Arabia, especially in Hafar Al-Batin.</p>
+            </div>
+            <div class="why-item">
+                <h3>Best Prices</h3>
+                <p>Quality CCTV systems at competitive market rates with genuine brand parts.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: var(--dark-blue); color: white; padding: 40px 5%; text-align: center;">
+        <p>Contact: Mr. Asim | +966 557 978 781</p>
+        <div style="margin: 20px 0;">
+            <i class="fab fa-facebook" style="margin: 0 10px;"></i>
+            <i class="fab fa-instagram" style="margin: 0 10px;"></i>
+            <i class="fab fa-linkedin" style="margin: 0 10px;"></i>
+        </div>
+        <p style="font-size: 12px; opacity: 0.7;">© 2026 AirTech One. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
