@@ -1,218 +1,81 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AirTech One | Premium Security Systems</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AirTech One | VIP Security</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --primary-gold: #D4AF37; 
-            --black: #0A0A0A;
-            --white: #FFFFFF;
-            --card-bg: #151515;
-        }
-
-        body { margin:0; font-family:'Open Sans', sans-serif; color:var(--white); overflow-x: hidden; background-color: var(--black); }
-        
-        /* Header & Navigation */
-        header { 
-            display: grid; 
-            grid-template-columns: 1fr auto 1fr; 
-            align-items: center; 
-            padding: 20px 5%; 
-            background: var(--black); 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-        }
-        
-        .logo { 
-            font-family: 'Montserrat', sans-serif;
-            font-size: 24px; 
-            font-weight: 700; 
-            color: var(--primary-gold); 
-            text-decoration: none; 
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-        
-        nav { 
-            display: flex; 
-            justify-content: center; 
-            padding: 15px 0; 
-            background: rgba(10, 10, 10, 0.95); 
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-        }
-        
-        nav a { 
-            margin: 0 15px; 
-            text-decoration: none; 
-            color: #ccc; 
-            font-weight: 600; 
-            font-size: 11px; 
-            letter-spacing: 1.5px; 
-            transition: 0.3s;
-            text-transform: uppercase;
-        }
-
-        nav a:hover { color: var(--primary-gold); }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-            url('https://files.oaiusercontent.com/file-Xz8E0qK4f3p9n5l6m7s8a9b0') center/cover no-repeat;
-            height: 550px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-        }
-
-        .hero h1 { 
-            font-size: 42px; 
-            margin-bottom: 15px; 
-            font-family: 'Montserrat', sans-serif; 
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--primary-gold);
-        }
-        
-        .hero p { font-size: 18px; margin-bottom: 35px; max-width: 700px; opacity: 0.9; }
-
-        .btn-group { display: flex; gap: 15px; }
-        .btn { 
-            padding: 14px 30px; 
-            border-radius: 4px; 
-            text-decoration: none; 
-            font-weight: bold; 
-            transition: 0.4s; 
-            text-transform: uppercase; 
-            font-size: 13px; 
-        }
-        
-        .btn-gold { background: var(--primary-gold); color: var(--black); border: 2px solid var(--primary-gold); }
-        .btn-outline { background: transparent; color: white; border: 2px solid white; }
-
-        /* CEO Section */
-        .ceo-section { padding: 80px 10%; background: #0D0D0D; }
-        .ceo-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 60px; 
-            align-items: center; 
-        }
-        .ceo-image-container { position: relative; text-align: center; }
-        .ceo-image-border { border: 2px solid var(--primary-gold); padding: 12px; display: inline-block; }
-        .ceo-image-border img { width: 100%; max-width: 350px; display: block; background: #1a1a1a; }
-        .ceo-tag { 
-            position: absolute; bottom: -20px; right: 20px; 
-            background: var(--primary-gold); color: var(--black); 
-            padding: 12px 25px; font-weight: 800; font-size: 12px; letter-spacing: 1px;
-        }
-
-        /* Responsive Fixes */
-        @media(max-width:768px) {
-            header { padding: 15px 5%; }
-            nav { display: none; } /* Mobile par nav hide kiya for better look */
-            .hero h1 { font-size: 28px; }
-            .hero p { font-size: 15px; }
-            .btn-group { flex-direction: column; width: 100%; max-width: 250px; }
-            
-            .ceo-grid { grid-template-columns: 1fr; gap: 50px; text-align: center; }
-            .ceo-image-container { margin-bottom: 40px; }
-            .ceo-tag { right: 50%; transform: translateX(50%); bottom: -15px; width: 60%; }
-            .ceo-content h2 { font-size: 24px; }
-            .ceo-content div { margin: 0 auto 25px !important; }
-        }
-
-        /* Trust Badges */
-        .trust-badges { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 60px 10%; text-align: center; }
-        .badge-card { padding: 30px 15px; background: var(--card-bg); border: 1px solid rgba(212, 175, 55, 0.1); }
-        .badge-card i { font-size: 35px; color: var(--primary-gold); margin-bottom: 15px; }
-        .badge-card p { font-weight: 700; color: var(--primary-gold); margin: 5px 0; }
-        .badge-card small { color: #888; }
-
-        footer { background: var(--black); padding: 60px 5%; text-align: center; border-top: 1px solid var(--primary-gold); }
+        :root { --gold: #D4AF37; --black: #0A0A0A; --card-bg: #111111; }
+        body { background-color: var(--black); margin: 0; padding: 0; color: #fff; font-family: 'Open Sans', sans-serif; overflow-x: hidden; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: #000; border-bottom: 1px solid rgba(212, 175, 55, 0.4); position: fixed; top: 0; width: 100%; z-index: 1000; box-sizing: border-box; }
+        .logo { font-family: 'Montserrat'; font-size: 18px; color: var(--gold); text-decoration: none; letter-spacing: 2px; }
+        .side-nav { height: 100%; width: 0; position: fixed; z-index: 3000; top: 0; left: 0; background-color: #0d0d0d; overflow-y: auto; transition: 0.3s; border-right: 1px solid var(--gold); }
+        .side-nav.active { width: 280px; }
+        .nav-item, .dropdown-btn { padding: 15px 25px; border-bottom: 1px solid #1a1a1a; display: block; color: #ccc; text-decoration: none; text-transform: uppercase; font-size: 13px; background: none; border: none; width: 100%; text-align: left; cursor: pointer; }
+        .dropdown-container { display: none; background: #050505; }
+        .dropdown-container a { padding: 12px 40px; font-size: 12px; color: #888; display: block; text-decoration: none; border-bottom: 1px solid #111; }
+        .main-content { margin-top: 80px; padding: 15px; min-height: 100vh; }
+        .page-section { display: none; }
+        .page-section.active { display: block; }
+        .vip-card { border: 1px solid var(--gold); background: var(--card-bg); padding: 25px; text-align: center; border-radius: 5px; margin-bottom: 15px; }
+        .vip-card i { color: var(--gold); font-size: 28px; margin-bottom: 10px; }
+        .vip-card h3 { margin: 5px 0; font-size: 14px; text-transform: uppercase; color: var(--gold); }
+        .ceo-section { border: 1px solid var(--gold); padding: 20px; text-align: center; background: #000; margin-top: 20px; }
+        #overlay { position: fixed; display: none; width: 100%; height: 100%; top: 0; left: 0; background: rgba(0,0,0,0.8); z-index: 2000; }
     </style>
 </head>
 <body>
-
+<div id="overlay" onclick="closeNav()"></div>
+<div id="mySidenav" class="side-nav">
+    <a href="javascript:void(0)" style="text-align:right; font-size:30px; color:var(--gold);" class="nav-item" onclick="closeNav()">&times;</a>
+    <a href="#" class="nav-item" onclick="showSection('home')">HOME</a>
+    <button class="dropdown-btn" onclick="toggleDrop('hik-drop')">HIKVISION <i class="fa fa-caret-down"></i></button>
+    <div id="hik-drop" class="dropdown-container">
+        <a href="#" onclick="showSection('hik-nvr')">NVR</a>
+        <a href="#" onclick="showSection('hik-dvr')">DVR</a>
+    </div>
+    <button class="dropdown-btn" onclick="toggleDrop('dah-drop')">DAHUA <i class="fa fa-caret-down"></i></button>
+    <div id="dah-drop" class="dropdown-container"><a href="#" onclick="showSection('dah-nvr')">NVR</a></div>
+    <a href="#" class="nav-item" onclick="showSection('ezviz')">EZVIZ</a>
+    <a href="#" class="nav-item" onclick="showSection('imou')">IMOU</a>
+    <a href="#" class="nav-item" onclick="showSection('hdd-store')">HDD STORE</a>
+    <a href="#" class="nav-item" onclick="showSection('tp-link')">TP-LINK</a>
+    <a href="#" class="nav-item" onclick="showSection('tapo')">TAPO</a>
+    <a href="#" class="nav-item" onclick="showSection('contact')">CONTACT US</a>
+</div>
 <header>
-    <div></div>
-    <a href="#" class="logo">AirTech One</a>
-    <div style="text-align:right;"><i class="fa fa-shopping-cart" style="font-size: 20px; color: var(--primary-gold);"></i></div>
+    <i class="fa fa-bars" style="color:var(--gold); font-size:22px;" onclick="openNav()"></i>
+    <a href="#" class="logo">AIRTECH ONE</a>
+    <i class="fa fa-shopping-cart" style="color:var(--gold); font-size:22px;"></i>
 </header>
-
-<nav>
-    <a href="#">Home</a>
-    <a href="#">Hikvision</a>
-    <a href="#">Dahua</a>
-    <a href="#">TP-Link</a>
-    <a href="#">Contact</a>
-</nav>
-
-<section class="hero">
-    <h1>Security Redefined</h1>
-    <p>Premium Protection for Your Home & Business in Hafar Al-Batin</p>
-    <div class="btn-group">
-        <a href="#" class="btn btn-gold">Explore Products</a>
-        <a href="https://wa.me/966550898978" class="btn btn-outline">Get a Quote</a>
+<div class="main-content">
+    <div id="home" class="page-section active">
+        <h1 style="color:var(--gold); text-align:center; letter-spacing:3px;">SECURITY REDEFINED</h1>
+        <p style="text-align:center; font-size:12px; opacity:0.6; margin-bottom:20px;">Premium Protection for Hafar Al-Batin</p>
+        <div class="vip-card"><i class="fa fa-truck-fast"></i><h3>Fast Delivery</h3><p style="font-size:11px; opacity:0.7;">On all orders over 500 SR</p></div>
+        <div class="vip-card"><i class="fa fa-user-shield"></i><h3>Expert Setup</h3><p style="font-size:11px; opacity:0.7;">By certified professional team</p></div>
+        <div class="vip-card"><i class="fa fa-medal"></i><h3>2 Year Warranty</h3><p style="font-size:11px; opacity:0.7;">Genuine brand guarantee</p></div>
+        <div class="ceo-section"><p style="margin:0; font-weight:700;">Mr. Asim</p><p style="margin:0; font-size:10px; color:var(--gold);">CEO & FOUNDER</p></div>
     </div>
-</section>
-
-<section class="ceo-section">
-    <div class="ceo-grid">
-        <div class="ceo-image-container">
-            <div class="ceo-image-border">
-                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="CEO AirTech One">
-            </div>
-            <div class="ceo-tag">CEO & FOUNDER</div>
-        </div>
-        <div class="ceo-content">
-            <h2 style="color: var(--primary-gold); text-transform: uppercase;">Leadership Excellence</h2>
-            <div style="width: 50px; height: 3px; background: var(--primary-gold); margin-bottom: 25px;"></div>
-            <p style="font-style: italic; opacity: 0.8; line-height: 1.6;">
-                "At AirTech One, we are committed to setting the highest standards in security installation. Our goal is to provide every client with professional and cutting-edge technology to protect what matters most."
-            </p>
-            <h3 style="margin: 20px 0 5px 0;">Mr. Asim</h3>
-            <p style="color: var(--primary-gold); font-size: 12px; letter-spacing: 2px;">AIRTECH ONE GROUP</p>
-        </div>
+    <div id="hdd-store" class="page-section">
+        <h2 style="color:var(--gold); text-align:center; letter-spacing:2px;">HDD STORE</h2>
+        <div class="vip-card"><p>Hard Drive products coming soon...</p></div>
     </div>
-</section>
-
-<section class="trust-badges">
-    <div class="badge-card">
-        <i class="fa fa-truck-fast"></i>
-        <p>FAST DELIVERY</p>
-        <small>Orders over 500 SR</small>
-    </div>
-    <div class="badge-card">
-        <i class="fa fa-user-shield"></i>
-        <p>EXPERT SETUP</p>
-        <small>Certified Technicians</small>
-    </div>
-    <div class="badge-card">
-        <i class="fa fa-award"></i>
-        <p>2 YEAR WARRANTY</p>
-        <small>Genuine Brand Support</small>
-    </div>
-</section>
-
-<footer>
-    <div class="footer-content">
-        <h3 style="color: var(--primary-gold);">AIRTECH ONE</h3>
-        <p>Hafar Al-Batin, Saudi Arabia</p>
-        <p>+966 550 898 978</p>
-        <div style="margin-top: 30px; opacity: 0.3; font-size: 10px;">
-            © 2026 AIRTECH ONE. ALL RIGHTS RESERVED.
-        </div>
-    </div>
-</footer>
-
+    <div id="hik-nvr" class="page-section"><h2 style="color:var(--gold); text-align:center;">HIKVISION NVR</h2></div>
+</div>
+<script>
+    function openNav() { document.getElementById("mySidenav").style.width = "280px"; document.getElementById("overlay").style.display = "block"; }
+    function closeNav() { document.getElementById("mySidenav").style.width = "0"; document.getElementById("overlay").style.display = "none"; }
+    function toggleDrop(id) { var d = document.getElementById(id); d.style.display = (d.style.display === "block") ? "none" : "block"; }
+    function showSection(id) {
+        var sections = document.getElementsByClassName('page-section');
+        for (var i = 0; i < sections.length; i++) { sections[i].classList.remove('active'); }
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0, 0); // Isse page jump nahi karega
+        closeNav();
+    }
+</script>
 </body>
 </html>
