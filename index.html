@@ -174,5 +174,92 @@
             window.scrollTo({ top: 400, behavior: 'smooth' });
         }
     </script>
-</body>
+</body><script>
+    // 1. SIDEBAR & OVERLAY TOGGLE
+    function toggleSidebar() {
+        document.getElementById('sidebar').classList.toggle('active');
+        document.getElementById('overlay').classList.toggle('active');
+    }
+
+    // 2. ACCORDION MENU
+    function toggleAcc(id) {
+        const el = document.getElementById(id);
+        const all = document.querySelectorAll('.sub-menu');
+        all.forEach(item => { if(item.id !== id) item.classList.remove('open'); });
+        el.classList.toggle('open');
+    }
+
+    // 3. FULL PRICE LIST DATA
+    const pricingData = {
+        'HIK NVR': [
+            { title: '4-CH HIK NVR', price: '320' },
+            { title: '8-CH HIK NVR', price: '540' },
+            { title: '16-CH HIK NVR', price: '890' },
+            { title: '32-CH HIK NVR', price: '1,450' }
+        ],
+        'DAHUA NVR': [
+            { title: '4-CH DAHUA NVR', price: '310' },
+            { title: '8-CH DAHUA NVR', price: '520' },
+            { title: '32-CH DAHUA NVR', price: '1,390' }
+        ],
+        'DVR': [
+            { title: '4-CH DVR Recorder', price: '210' },
+            { title: '8-CH DVR Recorder', price: '380' },
+            { title: '16-CH DVR Recorder', price: '650' }
+        ],
+        'CAMERA': [
+            { title: '2MP HD Indoor', price: '85' },
+            { title: '2MP HD Outdoor', price: '95' },
+            { title: '5MP HD Indoor', price: '135' },
+            { title: '5MP HD Outdoor', price: '155' },
+            { title: '8MP 4K Indoor', price: '210' },
+            { title: '8MP 4K Outdoor', price: '245' }
+        ],
+        'EZVIZ': [{ title: 'Ezviz C6N 2MP', price: '145' }, { title: 'Ezviz H8C 2K', price: '290' }],
+        'IMOU': [{ title: 'Imou Ranger 2', price: '135' }, { title: 'Imou Cruiser', price: '340' }],
+        'STORAGE': [
+            { title: 'Toshiba 1TB HDD', price: '185' },
+            { title: 'WD Purple 2TB', price: '275' },
+            { title: 'WD Purple 4TB', price: '450' }
+        ],
+        'NETWORK': [{ title: 'TP-Link Router', price: '180' }, { title: 'Tapo Camera', price: '145' }],
+        'BILLZEST': [{ title: 'Monthly VIP POS', price: '135' }, { title: 'VIP Lifetime', price: '2,500' }]
+    };
+
+    // 4. DISPLAY FUNCTION WITH ICONS
+    function showPrices(type) {
+        toggleSidebar();
+        const container = document.getElementById('product-display');
+        
+        let key = type;
+        if(type.includes('CAMERA')) key = 'CAMERA';
+        if(type.includes('DVR')) key = 'DVR';
+        if(type.includes('NVR')) key = type.includes('HIK') ? 'HIK NVR' : 'DAHUA NVR';
+        
+        let data = pricingData[key] || [];
+        
+        // Icon Logic
+        let icon = "fas fa-box";
+        if(key.includes('NVR') || key === 'DVR') icon = "fas fa-server text-blue-500";
+        if(key === 'CAMERA') icon = "fas fa-video text-blue-500";
+        if(key === 'STORAGE') icon = "fas fa-hdd text-purple-500";
+        if(key === 'EZVIZ' || key === 'IMOU') icon = "fas fa-wifi text-orange-500";
+        if(key === 'BILLZEST') icon = "fas fa-crown text-yellow-500";
+
+        container.innerHTML = `<div class="col-span-full border-b-4 border-blue-600 pb-2 mb-6"><h2 class="text-xl font-black uppercase">${type} PRICE LIST</h2></div>`;
+        
+        data.forEach(item => {
+            container.innerHTML += `
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 flex flex-col items-center text-center shadow-sm hover:border-blue-600 transition-all">
+                    <div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mb-4 border border-slate-100"><i class="${icon} text-2xl"></i></div>
+                    <h3 class="font-bold text-slate-700 text-[10px] uppercase mb-2">${item.title}</h3>
+                    <div class="text-2xl font-black text-blue-600 mb-4 text-right">SAR ${item.price}</div>
+                    <a href="https://wa.me/966500000000?text=Order: ${item.title}" class="w-full bg-slate-900 text-white py-2 rounded-xl font-bold text-[9px] uppercase tracking-widest">Order Now</a>
+                </div>
+            `;
+        });
+        window.scrollTo({ top: 400, behavior: 'smooth' });
+    }
+</script>
+
 </html>
