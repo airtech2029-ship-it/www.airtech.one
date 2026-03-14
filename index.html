@@ -1,109 +1,139 @@
 <!DOCTYPE html>
-<html 
-    lang="en" 
-    dir="ltr"
->
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta 
-        name="viewport" 
-        content="width=device-width, initial-scale=1.0"
-    >
-    <title>
-        AirTech One | CCTV Experts
-    </title>
-    
-    <link 
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Roboto:ital,wght@1,900&display=swap" 
-        rel="stylesheet"
-    >
-    <link 
-        rel="stylesheet" 
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    >
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirTech One | VIP Catalog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* ROOT VARIABLES 
-        */
-        :root {
-            --primary-blue: #0046BE;
-            --dark-blue: #002D7A;
-            --white: #FFFFFF;
-            --light-gray: #F4F7F9;
-            --text-black: #1A1A1A;
-            --hik-red: #D0021B; 
-            --hik-grey: #6D6E71; 
-            --whatsapp-green: #25D366;
-            --shadow-light: 0 4px 6px rgba(0,0,0,0.1);
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #0a1120; color: white; overflow-x: hidden; }
+        .side-panel { transition: transform 0.3s ease-in-out; }
+        .vip-card { background: #161e31; border: 1px solid #232d45; border-radius: 20px; padding: 18px; transition: 0.3s; height: 100%; }
+        .vip-card:hover { border-color: #3b82f6; transform: translateY(-5px); shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .img-container { width: 100%; height: 180px; background: white; border-radius: 15px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 10px; }
+        .product-img { max-height: 100%; max-width: 100%; object-contain: contain; }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+    <div id="sidePanel" class="side-panel fixed inset-y-0 left-0 w-80 bg-[#0d1629] z-[100] border-r border-slate-800 -translate-x-full flex flex-col shadow-2xl">
+        <div class="p-6 border-b border-slate-800 flex justify-between items-center">
+            <h2 class="text-xl font-black text-blue-500 italic uppercase">AIRTECH MENU</h2>
+            <button onclick="togglePanel()" class="text-3xl text-slate-500">&times;</button>
+        </div>
+        
+        <div class="flex-1 overflow-y-auto p-4 space-y-4">
+            <div class="bg-slate-900/40 rounded-2xl border border-slate-800 p-2">
+                <p class="text-[10px] font-black text-blue-500 px-3 py-2 uppercase tracking-widest">Hikvision Solutions</p>
+                <div class="flex flex-col ml-2 border-l border-blue-500/20">
+                    <a href="#" onclick="openProducts('hikNvr')" class="p-3 text-[11px] font-bold text-slate-400 hover:text-white">NVR SYSTEM</a>
+                    <a href="#" onclick="openProducts('hikDvr')" class="p-3 text-[11px] font-bold text-slate-400 hover:text-white">DVR SYSTEM</a>
+                    <a href="#" onclick="openProducts('hikIpIn')" class="p-3 text-[11px] font-bold text-slate-400 hover:text-white">IP CAMERA INDOOR</a>
+                    <a href="#" onclick="openProducts('hikIpOut')" class="p-3 text-[11px] font-bold text-slate-400 hover:text-white">IP CAMERA OUTDOOR</a>
+                    <a href="#" onclick="openProducts('hikAnaIn')" class="p-3 text-[11px] font-bold text-slate-400 hover:text-white">ANALOG CAMERA INDOOR</a>
+                    <a href="#" onclick="openProducts('hikAnaOut')" class="p-3 text-[11px] font-bold text-slate-400 hover:text-white">ANALOG CAMERA OUTDOOR</a>
+                    <a href="#" onclick="openProducts('ezviz')" class="p-3 text-[11px] font-bold text-blue-400 italic">EZVIZ WI-FI CAMERA</a>
+                </div>
+            </div>
+
+            <div class="bg-slate-900/40 rounded-2xl border border-slate-800 p-2">
+                <p class="text-[10px] font-black text-orange-500 px-3 py-2 uppercase tracking-widest">Dahua Technology</p>
+                <div class="flex flex-col ml-2 border-l border-orange-500/20">
+                    <a href="#" onclick="openProducts('dahuaNvr')" class="p-3 text-[11px] font-bold text-slate-400">NVR SYSTEM</a>
+                    <a href="#" onclick="openProducts('dahuaDvr')" class="p-3 text-[11px] font-bold text-slate-400">DVR SYSTEM</a>
+                    <a href="#" onclick="openProducts('dahuaIpIn')" class="p-3 text-[11px] font-bold text-slate-400">IP CAMERA INDOOR</a>
+                    <a href="#" onclick="openProducts('dahuaIpOut')" class="p-3 text-[11px] font-bold text-slate-400">IP CAMERA OUTDOOR</a>
+                    <a href="#" onclick="openProducts('dahuaAnaIn')" class="p-3 text-[11px] font-bold text-slate-400">ANALOG CAMERA INDOOR</a>
+                    <a href="#" onclick="openProducts('dahuaAnaOut')" class="p-3 text-[11px] font-bold text-slate-400">ANALOG CAMERA OUTDOOR</a>
+                    <a href="#" onclick="openProducts('imou')" class="p-3 text-[11px] font-bold text-orange-400 italic">IMOU WI-FI CAMERA</a>
+                </div>
+            </div>
+
+            <div class="bg-slate-900/40 rounded-2xl border border-slate-800 p-2">
+                <p class="text-[10px] font-black text-purple-500 px-3 py-2 uppercase tracking-widest">Storage Store</p>
+                <div class="flex flex-col ml-2 border-l border-purple-500/20">
+                    <a href="#" onclick="openProducts('toshibaHdd')" class="p-3 text-[11px] font-bold text-slate-400">TOSHIBA HDD</a>
+                    <a href="#" onclick="openProducts('wdHdd')" class="p-3 text-[11px] font-bold text-slate-400">WD PURPLE HDD</a>
+                    <a href="#" onclick="openProducts('tpLink')" class="p-3 text-[11px] font-bold text-purple-400">TP-LINK ROUTERS</a>
+                    <a href="#" onclick="openProducts('tapo')" class="p-3 text-[11px] font-bold text-purple-400 italic">TAPO SMART HOME</a>
+                </div>
+            </div>
+
+            <div class="mt-auto pt-6 px-2">
+                <div class="p-4 bg-blue-600/10 rounded-2xl border border-blue-500/20 flex items-center gap-3">
+                    <i class="fas fa-crown text-blue-500"></i>
+                    <span class="text-[10px] font-black text-blue-400 uppercase tracking-widest">BillZest VIP POS</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="p-6 flex justify-between items-center sticky top-0 bg-[#0a1120]/90 backdrop-blur-md border-b border-slate-900 z-50">
+        <button onclick="togglePanel()" class="w-10 h-10 bg-slate-900 rounded-lg flex items-center justify-center border border-slate-800 text-blue-500 hover:scale-110 transition"><i class="fas fa-bars"></i></button>
+        <div class="text-xl font-black italic uppercase tracking-tighter">AIRTECH <span class="text-blue-600">ONE</span></div>
+        <div class="flex items-center gap-2">
+            <span class="text-[10px] font-bold text-slate-500">EN</span>
+            <div class="w-8 h-8 bg-slate-800 rounded-full flex items-center justify-center text-[10px] text-slate-400"><i class="fas fa-user"></i></div>
+        </div>
+    </nav>
+
+    <header class="py-24 px-6 text-center">
+        <h1 class="text-6xl font-black uppercase italic tracking-tighter mb-4 leading-none">AIRTECH<br><span class="text-blue-600">STORE</span></h1>
+        <p class="text-slate-500 text-[10px] font-bold uppercase tracking-[6px]">Hafar Al Batin • Premium Security</p>
+    </header>
+
+    <div id="fullView" class="fixed inset-0 bg-[#0a1120] z-[200] hidden flex-col">
+        <div class="p-6 border-b border-slate-800 flex justify-between items-center bg-[#0d1629]">
+            <h2 id="catTitle" class="text-2xl font-black uppercase italic text-blue-500">Products</h2>
+            <button onclick="closeFullView()" class="w-12 h-12 flex items-center justify-center bg-slate-800 rounded-full text-2xl hover:bg-red-500/20 transition">&times;</button>
+        </div>
+        <div id="productGrid" class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 overflow-y-auto pb-20"></div>
+    </div>
+
+    <div id="overlay" onclick="togglePanel()" class="fixed inset-0 bg-black/80 hidden z-[90] backdrop-blur-md"></div>
+
+    <script>
+        const catalog = {
+            hikNvr: { title: "HIKVISION NVR SYSTEM", items: [{ model: 'DS-7604NI-K1', name: '4-CH 4K NVR Recorder', price: '420', img: 'https://www.hikvision.com/content/dam/hikvision/en/marketing-material/product-photos/nvr/7600/7604NI-K1.png' }, { model: 'DS-7608NI-K2', name: '8-CH Professional NVR', price: '590', img: 'https://www.hikvision.com/content/dam/hikvision/en/marketing-material/product-photos/nvr/7600/7608NI-K2.png' }] },
+            ezviz: { title: "EZVIZ WI-FI CAMERA", items: [{ model: 'C6N 4MP', name: 'Smart Wi-Fi Pan/Tilt', price: '175', img: 'http://googleusercontent.com/image_collection/image_retrieval/8990992085306262255_0' }, { model: 'C3TN', name: 'Color Night Vision Outdoor', price: '215', img: 'https://m.media-amazon.com/images/I/51H-D3U5k8L._AC_SL1000_.jpg' }] },
+            imou: { title: "IMOU WI-FI CAMERA", items: [{ model: 'Ranger 2', name: '360° Indoor Wi-Fi', price: '145', img: 'http://googleusercontent.com/image_collection/image_retrieval/17594564920537744808_0' }, { model: 'Bullet 2C', name: 'Outdoor Wi-Fi Camera', price: '185', img: 'https://m.media-amazon.com/images/I/51pI-E9T3cL._AC_SL1500_.jpg' }] },
+            tpLink: { title: "TP-LINK ROUTERS", items: [{ model: 'Archer C54', name: 'AC1200 Dual Band', price: '135', img: 'http://googleusercontent.com/image_collection/image_retrieval/334492989085222901_0' }, { model: 'TL-WR840N', name: '300Mbps Wi-Fi Router', price: '85', img: 'https://static.tp-link.com/TL-WR840N_UN_6.0_01_1495013093202r.jpg' }] },
+            tapo: { title: "TAPO SMART HOME", items: [{ model: 'C200', name: 'Tapo Pan/Tilt Cam', price: '125', img: 'http://googleusercontent.com/image_collection/image_retrieval/10486097695225849254_0' }] },
+            wdHdd: { title: "WD PURPLE HDD", items: [{ model: '4TB Purple', name: 'Surveillance HDD', price: '415', img: 'https://m.media-amazon.com/images/I/81sh9jG7tWL._AC_SL1500_.jpg' }] },
+            toshibaHdd: { title: "TOSHIBA HDD", items: [{ model: '1TB S300', name: 'Toshiba Surveillance', price: '185', img: 'https://m.media-amazon.com/images/I/61MoyYl66fL._AC_SL1000_.jpg' }] }
+        };
+
+        function togglePanel() {
+            document.getElementById('sidePanel').classList.toggle('-translate-x-full');
+            document.getElementById('overlay').classList.toggle('hidden');
         }
 
-        /* CORE BODY STYLES 
-        */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Open Sans', sans-serif;
-            background-color: var(--white);
-            color: var(--text-black);
-            line-height: 1.8;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
+        function openProducts(key) {
+            const data = catalog[key] || { title: "Coming Soon", items: [] };
+            document.getElementById('catTitle').innerText = data.title;
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = data.items.map(i => `
+                <div class="vip-card flex flex-col items-center">
+                    <span class="self-start text-[9px] bg-blue-600/20 text-blue-400 px-2 py-1 rounded-md font-black mb-3 tracking-widest">${i.model}</span>
+                    <div class="img-container shadow-inner">
+                        <img src="${i.img}" alt="${i.name}" class="product-img">
+                    </div>
+                    <h3 class="text-white font-bold text-[13px] uppercase mt-4 text-center h-10 flex items-center leading-tight tracking-tight">${i.name}</h3>
+                    <div class="w-full mt-4 flex justify-between items-center border-t border-slate-800 pt-4">
+                        <span class="text-xl font-black text-white">${i.price} <small class="text-[9px] text-blue-500 font-bold tracking-widest">SAR</small></span>
+                        <a href="https://wa.me/966500000000" class="w-10 h-10 bg-green-600/20 text-green-500 border border-green-500/20 rounded-xl flex items-center justify-center hover:bg-green-600 hover:text-white transition-all"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('fullView').style.display = 'flex';
+            togglePanel();
         }
 
-        /* HEADER NAVIGATION 
-        */
-        header {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr; 
-            align-items: center;
-            padding: 25px 5%;
-            border-bottom: 2px solid #f0f0f0;
-            position: sticky;
-            top: 0;
-            background: #ffffff;
-            z-index: 1000;
-        }
-
-        .sidebar-trigger {
-            font-size: 30px;
-            cursor: pointer;
-            justify-self: start;
-            transition: color 0.3s ease;
-        }
-
-        .sidebar-trigger:hover {
-            color: var(--primary-blue);
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 900;
-            color: var(--primary-blue);
-            text-decoration: none;
-            justify-self: center;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .header-icons {
-            display: flex;
-            gap: 25px;
-            font-size: 24px;
-            justify-self: end;
-        }
-
-        .header-icons i {
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .header-icons i:hover {
-            transform: scale(1.2);
-            color: var(--primary-blue);
-        }
-
-        /* SIDEBAR SYSTEM 
-        */
-        .sidebar {
-            height: 100%;
-            width: 0; 
+        function closeFullView() { document.getElementById('fullView').style.display = 'none'; }
+    </script>
+</body>
+</html>
