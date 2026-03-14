@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AirTech One | Premium CCTV Solutions</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/dist/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         :root {
@@ -40,7 +40,8 @@
         .logo { font-size: 24px; font-weight: bold; color: var(--primary-blue); text-decoration: none; }
         nav a { margin: 0 15px; text-decoration: none; color: var(--text-black); font-weight: 600; font-size: 14px; }
         .header-icons { display: flex; align-items: center; gap: 20px; font-size: 18px; }
-        .header-icons i { cursor: pointer; }
+        .header-icons i { cursor: pointer; transition: 0.3s; }
+        .header-icons i:hover { color: var(--primary-blue); }
 
         /* --- Hero Banner --- */
         .hero {
@@ -57,9 +58,9 @@
         .hero h1 { font-size: 42px; margin-bottom: 10px; }
         .hero p { font-size: 18px; margin-bottom: 30px; }
         .btn-group { display: flex; gap: 15px; }
-        .btn { padding: 12px 30px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; }
-        .btn-blue { background: var(--primary-blue); color: white; }
-        .btn-whatsapp { background: var(--whatsapp-green); color: white; }
+        .btn { padding: 12px 30px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; cursor: pointer; }
+        .btn-blue { background: var(--primary-blue); color: white; border: none; }
+        .btn-whatsapp { background: var(--whatsapp-green); color: white; border: none; }
 
         /* --- Trust Badges --- */
         .trust-badges {
@@ -105,8 +106,8 @@
         </nav>
         <div class="header-icons">
             <i class="fa fa-search" onclick="alert('Searching...')"></i>
-            <i class="fa fa-shopping-cart" onclick="alert('Cart empty')"></i>
-            <a href="https://wa.me/966557978781" target="_blank">
+            <i class="fa fa-shopping-cart" onclick="alert('Your cart is empty!')"></i>
+            <a href="https://wa.me/966557978781" target="_blank" style="text-decoration: none; color: inherit;">
                 <i class="fab fa-whatsapp" style="color: var(--whatsapp-green);"></i>
             </a>
         </div>
