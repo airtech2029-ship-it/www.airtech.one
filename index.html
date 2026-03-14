@@ -1,56 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>AirTech One | Premium CCTV Solutions</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-<style>
+<!DOCTYPE html><html lang="en">
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>AirTech One | CCTV Store</title><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"><style>
 
 body{
 margin:0;
 font-family:'Open Sans',sans-serif;
-background:white;
+background:#f5f6f7;
 }
 
 /* HEADER */
 
 header{
-display:grid;
-grid-template-columns:auto 1fr auto;
+display:flex;
 align-items:center;
+justify-content:space-between;
 padding:15px 20px;
+background:white;
 border-bottom:1px solid #eee;
 position:sticky;
 top:0;
-background:white;
 z-index:1000;
 }
 
 .logo{
-text-align:center;
-font-size:26px;
+position:absolute;
+left:50%;
+transform:translateX(-50%);
+font-size:24px;
 font-weight:bold;
 color:#0046BE;
 }
 
+.menu-btn{
+font-size:22px;
+cursor:pointer;
+}
+
 .header-icons{
 display:flex;
-gap:18px;
+gap:20px;
 font-size:20px;
 }
 
-/* MENU ICON */
-
-.menu-icon{
-font-size:22px;
-cursor:pointer;
+.cart-count{
+background:red;
+color:white;
+font-size:12px;
+padding:2px 6px;
+border-radius:50%;
+position:absolute;
+margin-left:-8px;
 }
 
 /* SIDEBAR */
@@ -62,10 +61,9 @@ left:-260px;
 width:260px;
 height:100%;
 background:white;
-box-shadow:2px 0 10px rgba(0,0,0,0.2);
-padding:25px;
+padding:20px;
+box-shadow:2px 0 10px rgba(0,0,0,0.3);
 transition:0.3s;
-z-index:2000;
 }
 
 .sidebar a{
@@ -77,243 +75,98 @@ font-weight:600;
 border-bottom:1px solid #eee;
 }
 
-/* HERO */
+/* SEARCH */
 
-.hero{
-background:url('https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=1600&q=80');
-background-size:cover;
-background-position:center;
-height:420px;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-color:white;
+.search-box{
 text-align:center;
+padding:30px;
+background:white;
 }
 
-.hero h1{
-font-size:34px;
+.search-box input{
+width:60%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:6px;
 }
 
-/* CATEGORY */
+/* PRODUCTS */
 
-.categories{
+.products{
 padding:50px 5%;
-text-align:center;
 }
 
-.category-grid{
+.product-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:25px;
-margin-top:35px;
 }
 
-.category-card{
+.product{
 background:white;
-border-radius:12px;
-overflow:hidden;
-box-shadow:0 5px 20px rgba(0,0,0,0.08);
+padding:15px;
+border-radius:10px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,0.08);
 }
 
-.category-card img{
+.product img{
 width:100%;
 height:170px;
 object-fit:cover;
 }
 
-.category-card h3{
-padding:15px;
+.price{
+color:#0046BE;
+font-weight:bold;
 }
 
-/* TRUST */
-
-.trust-badges{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-gap:20px;
-padding:40px 5%;
-background:#f4f7f9;
-text-align:center;
+button{
+background:#0046BE;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:6px;
+cursor:pointer;
+margin-top:10px;
 }
 
-/* BRANDS */
+</style></head><body><div id="sidebar" class="sidebar"><h3>Menu</h3><a href="#">CCTV Cameras</a>
+<a href="#">DVR / NVR</a>
+<a href="#">Network Switch</a>
+<a href="#">Accessories</a>
 
-.brands{
-padding:50px 5%;
-text-align:center;
-}
+</div><header><i class="fa fa-bars menu-btn" onclick="toggleMenu()"></i>
 
-.brand-logos{
-display:flex;
-justify-content:center;
-gap:60px;
-margin-top:20px;
-}
+<div class="logo">AirTech One</div><div class="header-icons"><i class="fa fa-search"></i>
 
-.brand-logos img{
-height:50px;
-}
-
-/* WHY */
-
-.why-us{
-padding:60px 5%;
-text-align:center;
-}
-
-.why-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
-margin-top:40px;
-}
-
-.why-item{
-padding:25px;
-border:1px solid #eee;
-border-radius:10px;
-}
-
-</style>
-</head>
-
-<body>
-
-<!-- SIDEBAR -->
-
-<div id="sidebar" class="sidebar">
-
-<h3>Menu</h3>
-
-<a href="#">Home</a>
-<a href="#">Categories</a>
-<a href="#">Flash Sale</a>
-<a href="#">Brands</a>
-<a href="#">Contact</a>
-
-</div>
-
-<!-- HEADER -->
-
-<header>
-
-<i class="fa fa-bars menu-icon" onclick="openMenu()"></i>
-
-<div class="logo">AirTech One</div>
-
-<div class="header-icons">
-<i class="fa fa-search"></i>
+<div style="position:relative">
 <i class="fa fa-shopping-cart"></i>
-<i class="fab fa-whatsapp" style="color:#25D366;"></i>
-</div>
+<span id="cartCount" class="cart-count">0</span>
+</div><i class="fab fa-whatsapp"></i>
 
-</header>
-
-<!-- HERO -->
-
-<section class="hero">
-
-<h1>Premium CCTV Solutions</h1>
-
-<p>Hikvision & Dahua Experts</p>
-
-</section>
-
-<!-- CATEGORIES -->
-
-<section class="categories">
-
-<h2>Shop by Categories</h2>
-
-<div class="category-grid">
-
-<div class="category-card">
+</div></header><!-- SEARCH --><div class="search-box"><input type="text" id="searchInput" placeholder="Search CCTV products..." onkeyup="searchProducts()"></div><!-- PRODUCTS --><section class="products"><div class="product-grid" id="productList"><div class="product">
 <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80">
-<h3>CCTV Cameras</h3>
-</div>
-
-<div class="category-card">
+<h4>Hikvision Camera</h4>
+<p class="price">299 SAR</p>
+<button onclick="addToCart()">Add to Cart</button>
+</div><div class="product">
 <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80">
-<h3>DVR / NVR</h3>
-</div>
-
-<div class="category-card">
+<h4>Dahua DVR</h4>
+<p class="price">399 SAR</p>
+<button onclick="addToCart()">Add to Cart</button>
+</div><div class="product">
 <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80">
-<h3>Network Switch</h3>
-</div>
+<h4>Network Switch</h4>
+<p class="price">199 SAR</p>
+<button onclick="addToCart()">Add to Cart</button>
+</div></div></section><script>
 
-<div class="category-card">
-<img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=800&q=80">
-<h3>Accessories</h3>
-</div>
-
-</div>
-
-</section>
-
-<!-- TRUST -->
-
-<section class="trust-badges">
-
-<div>Free Delivery</div>
-<div>Cash on Delivery</div>
-<div>1-2 Year Warranty</div>
-<div>Genuine Products</div>
-
-</section>
-
-<!-- BRANDS -->
-
-<section class="brands">
-
-<h2>Trusted Brands</h2>
-
-<div class="brand-logos">
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Hikvision_logo.png/320px-Hikvision_logo.png">
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Dahua_Technology_logo.png/320px-Dahua_Technology_logo.png">
-
-</div>
-
-</section>
-
-<!-- WHY -->
-
-<section class="why-us">
-
-<h2>Why Choose AirTech One?</h2>
-
-<div class="why-grid">
-
-<div class="why-item">
-<h3>Expert Support</h3>
-<p>Certified professionals ready to help you anytime.</p>
-</div>
-
-<div class="why-item">
-<h3>Fast Delivery</h3>
-<p>Quick shipping across Saudi Arabia.</p>
-</div>
-
-<div class="why-item">
-<h3>Best Prices</h3>
-<p>Top quality CCTV at best market price.</p>
-</div>
-
-</div>
-
-</section>
-
-<script>
-
-function openMenu(){
+function toggleMenu(){
 
 let sidebar=document.getElementById("sidebar");
 
-if(sidebar.style.left=="0px"){
+if(sidebar.style.left==="0px"){
 sidebar.style.left="-260px";
 }else{
 sidebar.style.left="0px";
@@ -321,7 +174,39 @@ sidebar.style.left="0px";
 
 }
 
-</script>
+let cart=0;
 
-</body>
+function addToCart(){
+
+cart++;
+
+document.getElementById("cartCount").innerText=cart;
+
+}
+
+function searchProducts(){
+
+let input=document.getElementById("searchInput").value.toLowerCase();
+
+let products=document.getElementsByClassName("product");
+
+for(let i=0;i<products.length;i++){
+
+let name=products[i].innerText.toLowerCase();
+
+if(name.includes(input)){
+
+products[i].style.display="block";
+
+}else{
+
+products[i].style.display="none";
+
+}
+
+}
+
+}
+
+</script></body>
 </html>
