@@ -64,6 +64,7 @@ background:white;
 padding:20px;
 box-shadow:2px 0 10px rgba(0,0,0,0.3);
 transition:0.3s;
+z-index:2000;
 }
 
 .sidebar a{
@@ -73,6 +74,33 @@ text-decoration:none;
 color:black;
 font-weight:600;
 border-bottom:1px solid #eee;
+}
+
+/* SLIDER */
+
+.slider{
+width:100%;
+height:420px;
+overflow:hidden;
+}
+
+.slides{
+display:flex;
+width:300%;
+animation:slide 15s infinite;
+}
+
+.slides img{
+width:100%;
+height:420px;
+object-fit:cover;
+}
+
+@keyframes slide{
+0%{transform:translateX(0);}
+33%{transform:translateX(-100%);}
+66%{transform:translateX(-200%);}
+100%{transform:translateX(0);}
 }
 
 /* SEARCH */
@@ -131,6 +159,58 @@ cursor:pointer;
 margin-top:10px;
 }
 
+/* ORDER FORM */
+
+.order{
+background:white;
+padding:50px 5%;
+}
+
+.order form{
+max-width:500px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.order input{
+padding:10px;
+border:1px solid #ccc;
+border-radius:6px;
+}
+
+/* BRANDS */
+
+.brands{
+padding:50px 5%;
+text-align:center;
+}
+
+.brand-logos{
+display:flex;
+justify-content:center;
+gap:60px;
+margin-top:20px;
+}
+
+.brand-logos img{
+height:50px;
+}
+
+/* WHATSAPP FLOAT */
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+font-size:26px;
+padding:15px;
+border-radius:50%;
+}
+
 </style></head><body><div id="sidebar" class="sidebar"><h3>Menu</h3><a href="#">CCTV Cameras</a>
 <a href="#">DVR / NVR</a>
 <a href="#">Network Switch</a>
@@ -145,7 +225,7 @@ margin-top:10px;
 <span id="cartCount" class="cart-count">0</span>
 </div><i class="fab fa-whatsapp"></i>
 
-</div></header><!-- SEARCH --><div class="search-box"><input type="text" id="searchInput" placeholder="Search CCTV products..." onkeyup="searchProducts()"></div><!-- PRODUCTS --><section class="products"><div class="product-grid" id="productList"><div class="product">
+</div></header><!-- SLIDER --><div class="slider"><div class="slides"><img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=1600&q=80"><img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1600&q=80"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80"></div></div><!-- SEARCH --><div class="search-box"><input type="text" id="searchInput" placeholder="Search CCTV products..." onkeyup="searchProducts()"></div><!-- PRODUCTS --><section class="products"><div class="product-grid" id="productList"><div class="product">
 <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80">
 <h4>Hikvision Camera</h4>
 <p class="price">299 SAR</p>
@@ -160,7 +240,11 @@ margin-top:10px;
 <h4>Network Switch</h4>
 <p class="price">199 SAR</p>
 <button onclick="addToCart()">Add to Cart</button>
-</div></div></section><script>
+</div></div></section><!-- ORDER FORM --><section class="order"><h2 style="text-align:center;">Place Order</h2><form id="orderForm"><input type="text" id="name" placeholder="Your Name" required><input type="text" id="phone" placeholder="Phone Number" required><input type="text" id="product" placeholder="Product Name" required><button type="submit">Order on WhatsApp</button>
+
+</form></section><!-- BRANDS --><section class="brands"><h3>Trusted Brands</h3><div class="brand-logos"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Hikvision_logo.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Dahua_Technology_logo.svg"></div></section><a href="https://wa.me/966557978781" class="whatsapp"><i class="fab fa-whatsapp"></i>
+
+</a><script>
 
 function toggleMenu(){
 
@@ -195,18 +279,28 @@ for(let i=0;i<products.length;i++){
 let name=products[i].innerText.toLowerCase();
 
 if(name.includes(input)){
-
 products[i].style.display="block";
-
 }else{
-
 products[i].style.display="none";
-
 }
 
 }
 
 }
+
+document.getElementById("orderForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let name=document.getElementById("name").value;
+let phone=document.getElementById("phone").value;
+let product=document.getElementById("product").value;
+
+let msg=`Hello AirTech One %0AName:${name} %0APhone:${phone} %0AProduct:${product}`;
+
+window.open("https://wa.me/966557978781?text="+msg);
+
+});
 
 </script></body>
 </html>
