@@ -38,39 +38,110 @@
 
   /* NAVBAR */
   nav {
-    position: fixed; top:0; left:0; right:0; z-index:100;
-    background: rgba(10,10,15,0.92);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    height: 68px;
+    position: fixed; top:0; left:0; right:0; z-index: 500;
+    background: rgba(3,8,15,0.96);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(0,212,255,0.1);
+    padding: 0 2.5rem;
+    height: 64px;
     display: flex; align-items: center; justify-content: space-between;
     animation: slideDown 0.6s ease;
   }
   @keyframes slideDown { from { transform: translateY(-100%); opacity:0; } to { transform: translateY(0); opacity:1; } }
-
+  .nav-left { display: flex; align-items: center; gap: 1rem; }
+  .hamburger {
+    background: none; border: none; cursor: pointer;
+    color: var(--text2); width: 36px; height: 36px;
+    border-radius: 8px; transition: all 0.2s;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4.5px;
+    flex-shrink: 0;
+  }
+  .hamburger:hover { color: var(--accent); }
+  .hamburger span {
+    display: block; width: 20px; height: 1.5px;
+    background: currentColor; border-radius: 2px; transition: all 0.3s;
+  }
+  .hamburger span:nth-child(2) { width: 14px; align-self: flex-start; }
+  .hamburger:hover span:nth-child(2) { width: 20px; }
+  .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); width: 20px; }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); width: 20px; }
   .nav-logo {
     font-family: 'Playfair Display', serif;
-    font-size: 1.5rem; font-weight: 900;
-    color: var(--accent); letter-spacing: 0.05em; cursor: pointer;
-    text-decoration: none;
+    font-size: 1.3rem; font-weight: 900;
+    color: var(--accent); letter-spacing: 0.04em;
+    cursor: pointer; white-space: nowrap; text-decoration: none;
   }
   .nav-logo span { color: var(--text); }
-  .nav-center { display: flex; gap: 2rem; }
-  .nav-center a {
-    text-decoration: none; color: var(--text2);
-    font-size: 0.85rem; font-weight: 500;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    transition: color 0.2s; cursor: pointer;
-  }
-  .nav-center a:hover, .nav-center a.active { color: var(--accent); }
-  .nav-right { display: flex; align-items: center; gap: 1rem; }
+  .nav-right { display: flex; align-items: center; gap: 0.4rem; }
   .nav-btn {
-    background: none; border: none; color: var(--text2); cursor: pointer;
-    width: 40px; height: 40px; border-radius: 10px; transition: all 0.2s;
+    background: none; border: none;
+    color: var(--text3); cursor: pointer;
+    width: 42px; height: 42px; padding: 0;
+    border-radius: 10px; transition: all 0.2s;
+    position: relative;
     display: flex; align-items: center; justify-content: center;
   }
-  .nav-btn:hover { color: var(--accent); background: var(--surface); }
+  .nav-btn:hover { color: var(--accent); background: rgba(0,212,255,0.06); }
+  .cart-badge {
+    position: absolute; top: 5px; right: 5px;
+    background: var(--accent); color: var(--bg);
+    font-size: 0.55rem; font-weight: 800;
+    width: 16px; height: 16px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    border: 1.5px solid var(--bg);
+  }
+
+  /* SIDEBAR */
+  .sidebar-overlay {
+    position: fixed; inset: 0; z-index: 8000;
+    background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  }
+  .sidebar-overlay.open { opacity: 1; pointer-events: all; }
+  .sidebar {
+    position: fixed; top: 0; left: 0; z-index: 8001;
+    width: 280px; height: 100vh;
+    background: var(--bg2); border-right: 1px solid var(--border);
+    transform: translateX(-100%);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    display: flex; flex-direction: column; overflow-y: auto;
+  }
+  .sidebar.open { transform: translateX(0); }
+  .sidebar-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem; border-bottom: 1px solid var(--border);
+  }
+  .sidebar-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 900; color: var(--accent); }
+  .sidebar-logo span { color: var(--text); }
+  .sidebar-close {
+    background: var(--surface); border: none; cursor: pointer;
+    width: 34px; height: 34px; border-radius: 8px;
+    color: var(--text2); font-size: 1rem;
+    display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+  }
+  .sidebar-close:hover { background: var(--border); color: var(--text); }
+  .sidebar-nav { padding: 1.5rem 1rem; flex: 1; }
+  .sidebar-nav-title {
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--text3); font-weight: 600; padding: 0 0.75rem;
+    margin-bottom: 0.75rem; margin-top: 1.25rem;
+  }
+  .sidebar-nav-title:first-child { margin-top: 0; }
+  .sidebar-link {
+    display: flex; align-items: center; gap: 0.9rem;
+    padding: 11px 14px; border-radius: 10px;
+    color: var(--text2); text-decoration: none; cursor: pointer;
+    font-size: 0.92rem; font-weight: 500;
+    transition: all 0.2s; margin-bottom: 2px;
+  }
+  .sidebar-link:hover, .sidebar-link.active {
+    background: rgba(0,212,255,0.08); color: var(--accent);
+    border-left: 2px solid var(--accent); padding-left: 12px;
+  }
+  .sidebar-footer { padding: 1.25rem 1.5rem; border-top: 1px solid var(--border); }
+  .sidebar-contact { font-size: 0.78rem; color: var(--text3); line-height: 1.8; }
+  .sidebar-contact a { color: var(--accent); text-decoration: none; }
 
   /* HERO BANNER */
   .contact-hero {
@@ -337,24 +408,82 @@
 </head>
 <body>
 
+<!-- SIDEBAR OVERLAY -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">AIRTECH <span>ONE</span></div>
+    <button class="sidebar-close" onclick="closeSidebar()">✕</button>
+  </div>
+  <div class="sidebar-nav">
+    <div class="sidebar-nav-title">Menu</div>
+    <a class="sidebar-link" href="ecommerce.html">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+      Home
+    </a>
+    <a class="sidebar-link active" href="contact.html">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Contact Us
+    </a>
+    <div class="sidebar-nav-title">Categories</div>
+    <a class="sidebar-link" href="electronics.html">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+      Electronics
+    </a>
+    <a class="sidebar-link" href="hikvision.html">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M20.188 10.934a8 8 0 1 1-8.122-7.93"/></svg>
+      HiKvision
+    </a>
+    <a class="sidebar-link" href="ezviz.html">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3l-4 4-4-4"/></svg>
+      EZVIZ
+    </a>
+    <a class="sidebar-link" href="dahua.html">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+      Dahua
+    </a>
+    <a class="sidebar-link" href="tplink.html">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="22" height="12" rx="2"/><line x1="1" y1="12" x2="23" y2="12"/></svg>
+      TP-Link
+    </a>
+    <div class="sidebar-nav-title">Account</div>
+    <a class="sidebar-link" href="ecommerce.html">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Sign In / Register
+    </a>
+    <a class="sidebar-link" href="ecommerce.html">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      My Cart
+    </a>
+  </div>
+  <div class="sidebar-footer">
+    <div class="sidebar-contact">
+      <div>📧 <a href="mailto:admin@airtech.one">admin@airtech.one</a></div>
+      <div>📞 <a href="tel:+966550898978">+966 550 898 978</a></div>
+    </div>
+  </div>
+</div>
+
 <!-- NAVBAR -->
 <nav>
-  <a class="nav-logo" href="ecommerce.html">AIRTECH<span> ONE</span></a>
-  <div class="nav-center">
-    <a href="ecommerce.html">Shop</a>
-    <a>Collections</a>
-    <a>About</a>
-    <a class="active">Contact</a>
+  <div class="nav-left">
+    <button class="hamburger" id="hamburgerBtn" onclick="toggleSidebar()">
+      <span></span><span></span><span></span>
+    </button>
+    <a class="nav-logo" href="ecommerce.html">AIRTECH <span>ONE</span></a>
   </div>
   <div class="nav-right">
-    <button class="nav-btn" title="Search">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <button class="nav-btn" title="Search" onclick="window.location.href='ecommerce.html'">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
     </button>
-    <button class="nav-btn" title="Account">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <button class="nav-btn" title="Account" onclick="window.location.href='ecommerce.html'">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
     </button>
-    <button class="nav-btn" title="Cart">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    <button class="nav-btn" title="Cart" onclick="window.location.href='ecommerce.html'" style="margin-left:0.2rem">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-badge">0</span>
     </button>
   </div>
 </nav>
@@ -382,7 +511,7 @@
       </div>
       <div>
         <h3>Email Us</h3>
-        <a href="mailto:admin@airtech.one">admin@airtech.one</a>
+        <a href="/cdn-cgi/l/email-protection#2d4c494044436d4c445f59484e4503424348"><span class="__cf_email__" data-cfemail="dabbbeb7b3b49abbb3a8aebfb9b2f4b5b4bf">[email&#160;protected]</span></a>
         <p class="sub">We reply within 24 hours</p>
       </div>
     </div>
@@ -494,7 +623,7 @@
     <div class="success-msg" id="successMsg">
       <div class="success-icon">✓</div>
       <h3>Message Sent!</h3>
-      <p>Thank you for reaching out. Our team at <strong>admin@airtech.one</strong> will get back to you within 24 hours.</p>
+      <p>Thank you for reaching out. Our team at <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3150555c585f71505843455452591f5e5f54">[email&#160;protected]</a></strong> will get back to you within 24 hours.</p>
       <button class="form-submit" style="margin-top:1.5rem" onclick="resetForm()">Send Another Message</button>
     </div>
   </div>
@@ -520,9 +649,9 @@
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
     +966 550 898 978
   </a>
-  <a href="mailto:admin@airtech.one">
+  <a href="/cdn-cgi/l/email-protection#3150555c585f71505843455452591f5e5f54">
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
-    admin@airtech.one
+    <span class="__cf_email__" data-cfemail="b0d1d4ddd9def0d1d9c2c4d5d3d89edfded5">[email&#160;protected]</span>
   </a>
 </footer>
 
@@ -532,7 +661,18 @@
   <span id="toastMsg">Message sent!</span>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('open');
+  document.getElementById('hamburgerBtn').classList.toggle('open');
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('open');
+  document.getElementById('hamburgerBtn').classList.remove('open');
+}
+
 function updateCount() {
   const msg = document.getElementById('message');
   document.getElementById('charCount').textContent = msg.value.length;
@@ -563,20 +703,4 @@ function resetForm() {
   document.getElementById('fname').value = '';
   document.getElementById('lname').value = '';
   document.getElementById('email').value = '';
-  document.getElementById('phone').value = '';
-  document.getElementById('subject').value = '';
-  document.getElementById('message').value = '';
-  document.getElementById('charCount').textContent = '0';
-}
-
-let toastTimer;
-function showToast(msg) {
-  const toast = document.getElementById('toast');
-  document.getElementById('toastMsg').textContent = msg;
-  toast.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
-}
-</script>
-</body>
-</html>
+  document.getElementBy
