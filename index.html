@@ -7,85 +7,75 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/dist/css/all.min.css">
     <style>
+        #sidebar { transition: transform 0.3s ease; transform: translateX(-100%); }
+        #sidebar.active { transform: translateX(0); }
         .sub-menu { display: none; }
         .sub-menu.open { display: block; }
-        #sidebar { transition: transform 0.3s ease-in-out; transform: translateX(-100%); }
-        #sidebar.active { transform: translateX(0); }
         #overlay { display: none; }
         #overlay.active { display: block; }
-        .gold-text { color: #D4AF37; }
-        .bg-gold { background-color: #D4AF37; }
+        .vip-card { transition: all 0.3s ease; }
+        .vip-card:hover { transform: translateY(-5px); border-color: #3b82f6; }
     </style>
 </head>
-<body class="bg-slate-50 font-sans">
+<body class="bg-slate-50">
 
     <div id="overlay" class="fixed inset-0 bg-black/50 z-40" onclick="toggleSidebar()"></div>
 
     <div id="sidebar" class="fixed top-0 left-0 h-full w-72 bg-white z-50 shadow-2xl p-6 overflow-y-auto">
         <div class="flex justify-between items-center mb-8 border-b pb-4">
-            <h2 class="text-xl font-black text-blue-900 italic">AIRTECH <span class="text-blue-500">MENU</span></h2>
-            <button onclick="toggleSidebar()" class="text-slate-400 hover:text-red-500"><i class="fas fa-times text-xl"></i></button>
+            <h2 class="text-xl font-black text-blue-900 italic uppercase">Airtech One</h2>
+            <button onclick="toggleSidebar()" class="text-slate-400"><i class="fas fa-times"></i></button>
         </div>
 
         <div class="space-y-4">
             <div>
-                <button onclick="toggleAcc('hik')" class="w-full flex justify-between items-center font-bold text-slate-700 uppercase tracking-wider text-sm">
-                    Hikvision <i class="fas fa-chevron-down text-[10px]"></i>
-                </button>
-                <div id="hik" class="sub-menu mt-2 pl-2 space-y-1">
-                    <button onclick="showProducts('HIK_NVR')" class="w-full text-left p-2 text-xs text-slate-500 hover:bg-blue-50 rounded italic">NVR Systems</button>
-                    <button onclick="showProducts('HIK_DVR')" class="w-full text-left p-2 text-xs text-slate-500 hover:bg-blue-50 rounded italic">DVR Recorders</button>
-                    <button onclick="showProducts('IP_IN')" class="w-full text-left p-2 text-xs text-slate-500 hover:bg-blue-50 rounded italic">IP Indoor</button>
-                    <button onclick="showProducts('IP_OUT')" class="w-full text-left p-2 text-xs text-slate-500 hover:bg-blue-50 rounded italic">IP Outdoor</button>
+                <button onclick="toggleAcc('hik')" class="w-full flex justify-between font-bold text-slate-700 text-xs uppercase tracking-widest">Hikvision <i class="fas fa-chevron-down"></i></button>
+                <div id="hik" class="sub-menu mt-3 pl-2 space-y-2">
+                    <button onclick="showPrices('HIK NVR SYSTEM')" class="block text-xs text-slate-500 hover:text-blue-600">NVR System</button>
+                    <button onclick="showPrices('HIK DVR RECORDER')" class="block text-xs text-slate-500 hover:text-blue-600">DVR System</button>
+                    <button onclick="showPrices('IP CAMERA INDOOR')" class="block text-xs text-slate-500 hover:text-blue-600">IP Indoor</button>
+                    <button onclick="showPrices('IP CAMERA OUTDOOR')" class="block text-xs text-slate-500 hover:text-blue-600">IP Outdoor</button>
                 </div>
             </div>
 
             <div>
-                <button onclick="toggleAcc('dah')" class="w-full flex justify-between items-center font-bold text-slate-700 uppercase tracking-wider text-sm">
-                    Dahua Technology <i class="fas fa-chevron-down text-[10px]"></i>
-                </button>
-                <div id="dah" class="sub-menu mt-2 pl-2 space-y-1">
-                    <button onclick="showProducts('DAHUA_NVR')" class="w-full text-left p-2 text-xs text-slate-500 hover:bg-blue-50 rounded italic">NVR Systems</button>
-                    <button onclick="showProducts('DAHUA_DVR')" class="w-full text-left p-2 text-xs text-slate-500 hover:bg-blue-50 rounded italic">DVR Systems</button>
+                <button onclick="toggleAcc('dah')" class="w-full flex justify-between font-bold text-slate-700 text-xs uppercase tracking-widest">Dahua <i class="fas fa-chevron-down"></i></button>
+                <div id="dah" class="sub-menu mt-3 pl-2 space-y-2">
+                    <button onclick="showPrices('DAHUA NVR')" class="block text-xs text-slate-500 hover:text-blue-600">Dahua NVR</button>
+                    <button onclick="showPrices('IMOU')" class="block text-xs text-slate-500 hover:text-blue-600">Imou Camera</button>
                 </div>
             </div>
 
-            <button onclick="showProducts('TP_LINK')" class="w-full text-left font-bold text-slate-700 uppercase text-sm py-2 border-t">TP-Link</button>
-            <button onclick="showProducts('STORAGE')" class="w-full text-left font-bold text-slate-700 uppercase text-sm py-2">Hard Drives</button>
-            
-            <button onclick="showProducts('BILLZEST')" class="w-full text-left font-black text-blue-600 uppercase text-sm py-4 border-t border-blue-100 flex items-center">
-                <i class="fas fa-crown gold-text mr-2"></i> BillZest VIP POS
-            </button>
+            <button onclick="showPrices('TP-LINK')" class="w-full text-left font-bold text-slate-700 text-xs py-2 border-t uppercase">TP-Link</button>
+            <button onclick="showPrices('BILLZEST VIP')" class="w-full text-left font-black text-blue-600 text-xs py-4 border-t uppercase italic"><i class="fas fa-crown text-yellow-500 mr-2"></i> BillZest VIP POS</button>
         </div>
     </div>
 
-    <nav class="bg-white border-b sticky top-0 z-30 shadow-sm">
-        <div class="container mx-auto px-4 h-16 flex justify-between items-center">
-            <button onclick="toggleSidebar()" class="text-blue-900 text-xl"><i class="fas fa-bars"></i></button>
-            <h1 class="text-xl font-black text-blue-900 tracking-tighter uppercase">AIRTECH <span class="text-blue-500 font-light">ONE</span></h1>
-            <a href="https://wa.me/966500000000" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-xs font-bold uppercase shadow-lg">WhatsApp</a>
-        </div>
+    <nav class="bg-white border-b sticky top-0 z-30 shadow-sm px-4 h-16 flex justify-between items-center">
+        <button onclick="toggleSidebar()" class="text-blue-900 text-xl"><i class="fas fa-bars"></i></button>
+        <h1 class="text-xl font-black text-blue-900 tracking-tighter italic">AIRTECH <span class="text-blue-500">ONE</span></h1>
+        <a href="https://wa.me/966500000000" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-[10px] font-bold uppercase shadow-lg">WhatsApp</a>
     </nav>
 
     <main class="container mx-auto px-4 py-8">
-        <header class="text-center mb-12 py-12 bg-slate-900 rounded-[2rem] text-white shadow-2xl">
-            <h2 class="text-4xl font-black mb-4 uppercase italic">Premium Tech Solutions</h2>
-            <p class="text-slate-400 text-sm">Serving Hafar Al Batin with VIP CCTV & POS Systems.</p>
+        <header class="text-center mb-10 py-12 bg-slate-900 rounded-[2rem] text-white shadow-xl">
+            <h2 class="text-3xl font-black mb-3 uppercase italic">Premium Tech Solutions</h2>
+            <p class="text-slate-400 text-[10px] tracking-widest">Serving Hafar Al Batin | VIP CCTV & POS</p>
         </header>
 
         <section id="product-display" class="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div class="col-span-full text-center py-24 bg-white rounded-[2rem] border border-dashed border-slate-300">
-                <i class="fas fa-microchip text-slate-200 text-5xl mb-4"></i>
-                <p class="text-slate-400 font-bold uppercase text-[10px] tracking-widest">Select Category to View Price List</p>
+                <p class="text-slate-400 font-bold uppercase text-[10px] tracking-widest">Select Category To View Price List</p>
             </div>
         </section>
     </main>
 
-    <footer class="text-center py-10 text-slate-400 text-[9px] uppercase tracking-[0.2em] border-t mt-12">
-        &copy; 2026 AirTech One | Hafar Al Batin
+    <footer class="text-center py-10 text-slate-400 text-[9px] uppercase tracking-[0.3em] border-t mt-12">
+        &copy; 2026 Airtech One | Hafar Al Batin
     </footer>
 
     <script>
+        // 1. SIDEBAR & MENU LOGIC
         function toggleSidebar() {
             document.getElementById('sidebar').classList.toggle('active');
             document.getElementById('overlay').classList.toggle('active');
@@ -97,36 +87,74 @@
             el.classList.toggle('open');
         }
 
+        // 2. PRICING DATA FROM YOUR SCREENSHOTS
         const pricingData = {
-            'HIK_NVR': [{t:'4-CH HIK NVR', p:'320'}, {t:'8-CH HIK NVR', p:'540'}, {t:'16-CH HIK NVR', p:'890'}],
-            'HIK_DVR': [{t:'4-CH HIK DVR', p:'210'}, {t:'8-CH HIK DVR', p:'380'}],
-            'IP_IN': [{t:'2MP IP Indoor', p:'140'}, {t:'5MP IP Indoor', p:'195'}],
-            'IP_OUT': [{t:'2MP IP Outdoor', p:'165'}, {t:'5MP IP Outdoor', p:'230'}],
-            'DAHUA_NVR': [{t:'4-CH Dahua NVR', p:'310'}, {t:'8-CH Dahua NVR', p:'520'}],
-            'TP_LINK': [{t:'N300 Router', p:'95'}, {t:'Archer C6', p:'180'}],
-            'STORAGE': [{t:'1TB HDD', p:'185'}, {t:'2TB Purple', p:'275'}, {t:'4TB Purple', p:'450'}],
-            'BILLZEST': [{t:'Monthly VIP POS', p:'135'}, {t:'VIP Lifetime', p:'2500'}]
+            'HIK NVR SYSTEM': [
+                { title: '4-CH HIK NVR', price: '320' },
+                { title: '8-CH HIK NVR', price: '540' },
+                { title: '16-CH HIK NVR', price: '890' },
+                { title: '32-CH HIK NVR', price: '1,450' }
+            ],
+            'HIK DVR RECORDER': [
+                { title: '4-CH HIK DVR', price: '210' },
+                { title: '8-CH HIK DVR', price: '380' },
+                { title: '16-CH HIK DVR', price: '650' }
+            ],
+            'IP CAMERA INDOOR': [
+                { title: '2MP IP Indoor', price: '140' },
+                { title: '5MP IP Indoor', price: '195' },
+                { title: '8MP 4K IP Indoor', price: '320' }
+            ],
+            'IP CAMERA OUTDOOR': [
+                { title: '2MP IP Outdoor', price: '165' },
+                { title: '5MP IP Outdoor', price: '230' }
+            ],
+            'DAHUA NVR': [
+                { title: '4-CH Dahua NVR', price: '310' },
+                { title: '8-CH Dahua NVR', price: '520' }
+            ],
+            'TP-LINK': [
+                { title: 'N300 Router', price: '95' },
+                { title: 'Archer C6', price: '180' }
+            ],
+            'BILLZEST VIP': [
+                { title: 'Monthly License', price: '135' },
+                { title: 'VIP Lifetime', price: '2,500' }
+            ]
         };
 
-        function showProducts(cat) {
+        // 3. SHOW PRICES FUNCTION
+        function showPrices(category) {
             if(document.getElementById('sidebar').classList.contains('active')) toggleSidebar();
-            const container = document.getElementById('product-display');
-            const data = pricingData[cat] || [];
-            
-            if(data.length > 0) {
-                container.innerHTML = `<div class="col-span-full border-b-4 border-blue-600 pb-2 mb-6"><h2 class="text-xl font-black text-slate-800 uppercase italic">${cat.replace('_',' ')}</h2></div>`;
+            const display = document.getElementById('product-display');
+            let data = pricingData[category] || [];
+
+            if (data.length > 0) {
+                // Header
+                display.innerHTML = `<div class="col-span-full border-b-2 border-blue-600 pb-2 mb-4">
+                    <h2 class="text-sm font-black uppercase text-slate-800 tracking-tighter">${category} PRICES</h2>
+                </div>`;
+
+                // Product Cards
                 data.forEach(item => {
-                    container.innerHTML += `
-                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center text-center">
-                            <i class="fas fa-tag text-blue-500 mb-4"></i>
-                            <h3 class="font-bold text-[10px] uppercase mb-2 text-slate-600">${item.t}</h3>
-                            <div class="text-xl font-black text-blue-600 mb-4">SAR ${item.p}</div>
-                            <a href="https://wa.me/966500000000?text=Order: ${item.t}" class="w-full bg-slate-900 text-white py-2 rounded-xl text-[9px] font-bold uppercase italic">Order Now</a>
+                    display.innerHTML += `
+                        <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm flex flex-col items-center text-center vip-card">
+                            <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center mb-3">
+                                <i class="fas fa-microchip text-blue-500"></i>
+                            </div>
+                            <h3 class="font-bold text-slate-700 text-[10px] uppercase mb-2 h-8 flex items-center">${item.title}</h3>
+                            <div class="text-xl font-black text-blue-600 mb-4">SAR ${item.price}</div>
+                            <a href="https://wa.me/966500000000?text=Order: ${item.title}" class="w-full bg-slate-900 text-white py-2 rounded-xl text-[9px] font-bold uppercase tracking-widest italic hover:bg-blue-600">Order Now</a>
                         </div>`;
                 });
+            } else {
+                display.innerHTML = `<div class="col-span-full text-center py-20 bg-white rounded-3xl border border-dashed text-slate-400 italic font-bold">Category Under Update...</div>`;
             }
             window.scrollTo({ top: 400, behavior: 'smooth' });
         }
+
+        // 4. BACKUP CALL FOR COMPATIBILITY
+        function showProducts(cat) { showPrices(cat); }
     </script>
 </body>
 </html>
