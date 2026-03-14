@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dahua — AIRTECH ONE</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#03080f;--bg2:#060d18;--surface:#0b1628;--surface2:#112035;
+  --border:#1a3050;--border2:#1e3a5a;
+  --accent:#f59e0b;--text:#e8f4ff;--text2:#7aa8cc;--text3:#4a7a99;
+  --radius:10px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg2);}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+nav{position:fixed;top:0;left:0;right:0;z-index:900;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;background:rgba(3,8,15,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);animation:navIn .5s ease;}
+@keyframes navIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+.nav-back{display:flex;align-items:center;gap:7px;text-decoration:none;color:var(--text2);font-size:.8rem;font-weight:500;padding:7px 13px;border:1px solid var(--border);border-radius:7px;transition:all .2s;}
+.nav-back:hover{color:var(--accent);border-color:var(--accent);}
+.nav-brand{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:900;letter-spacing:.06em;color:var(--accent);}
+.nav-crumb{display:flex;align-items:center;gap:5px;font-size:.7rem;color:var(--text3);}
+.nav-crumb a{color:var(--text3);text-decoration:none;transition:color .2s;}
+.nav-crumb a:hover{color:var(--accent);}
+.hero{min-height:100vh;padding-top:60px;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:4rem 2.5rem;position:relative;z-index:2;}
+.hero-right{position:relative;overflow:hidden;}
+.hero-right img{width:100%;height:100%;object-fit:cover;filter:brightness(.65) contrast(1.1);}
+.hero-right::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,var(--bg) 0%,rgba(3,8,15,.3) 50%,transparent 100%);}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1.1rem;animation:up .6s ease .1s both;}
+.eyebrow::before{content:'';width:24px;height:1.5px;background:var(--accent);}
+h1.htitle{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.8rem,6vw,5rem);font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:.95;margin-bottom:1.2rem;animation:up .6s ease .2s both;}
+.htitle em{color:var(--accent);font-style:normal;}
+.hero-p{font-size:.9rem;color:var(--text2);line-height:1.78;max-width:400px;margin-bottom:2rem;animation:up .6s ease .3s both;}
+.hero-btns{display:flex;gap:.7rem;flex-wrap:wrap;margin-bottom:2.5rem;animation:up .6s ease .4s both;}
+.btn-p{background:var(--accent);color:#000;border:none;cursor:pointer;padding:11px 26px;border-radius:var(--radius);font-family:'Barlow',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:all .25s;}
+.btn-p:hover{opacity:.85;transform:translateY(-2px);box-shadow:0 8px 26px rgba(0,0,0,.3);}
+.btn-s{background:transparent;color:var(--text2);border:1px solid var(--border2);cursor:pointer;padding:11px 22px;border-radius:var(--radius);font-family:'Barlow',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transition:all .25s;}
+.btn-s:hover{border-color:var(--accent);color:var(--accent);}
+.hero-stats{display:flex;gap:2.5rem;padding-top:1.8rem;border-top:1px solid var(--border);animation:up .6s ease .5s both;}
+.sv{font-family:'Barlow Condensed',sans-serif;font-size:1.9rem;font-weight:800;line-height:1;color:var(--accent);}
+.sk{font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;margin-top:3px;}
+@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.section{padding:4.5rem 2.5rem;}
+.sec-label{display:flex;align-items:center;gap:10px;font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.sec-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.7rem,3.5vw,2.8rem);font-weight:800;text-transform:uppercase;letter-spacing:.02em;line-height:1;margin-bottom:2.5rem;}
+.sec-title em{color:var(--accent);font-style:normal;}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1px;border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.pcard{background:var(--surface);transition:background .25s;cursor:pointer;}
+.pcard:hover{background:var(--surface2);}
+.pcard:hover .pimg img{transform:scale(1.05);}
+.pimg{height:185px;overflow:hidden;position:relative;background:var(--surface2);}
+.pimg img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;filter:brightness(.82);}
+.pbadge{position:absolute;top:9px;left:9px;font-family:'Barlow Condensed',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;border-radius:4px;}
+.pb-hot{background:#e8001a;color:#fff;}.pb-new{background:var(--accent);color:#000;}.pb-pro{background:#8b5cf6;color:#fff;}.pb-sale{background:#f59e0b;color:#000;}
+.pbody{padding:1rem 1.1rem 1.2rem;}
+.pmodel{font-size:.62rem;color:var(--text3);font-family:'Barlow Condensed',sans-serif;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;}
+.pname{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em;margin-bottom:4px;line-height:1.2;}
+.pdesc{font-size:.74rem;color:var(--text3);line-height:1.55;margin-bottom:.85rem;}
+.pfoot{display:flex;align-items:center;justify-content:space-between;}
+.pprice{font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:800;}
+.pprice .cur{font-size:.78rem;color:var(--text2);font-weight:400;}
+.abtn{background:rgba(0,0,0,.2);color:var(--accent);border:1px solid rgba(255,255,255,.1);cursor:pointer;padding:6px 13px;border-radius:7px;font-family:'Barlow',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;transition:all .2s;}
+.abtn:hover{background:var(--accent);color:#000;border-color:var(--accent);}
+.toast{position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;background:var(--surface2);border:1px solid var(--border2);border-left:3px solid var(--accent);border-radius:var(--radius);padding:11px 16px;display:flex;align-items:center;gap:9px;font-size:.82rem;font-weight:500;box-shadow:0 8px 32px rgba(0,0,0,.6);transform:translateY(70px);opacity:0;transition:all .3s cubic-bezier(.34,1.56,.64,1);}
+.toast.show{transform:translateY(0);opacity:1;}
+.tdot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+footer{border-top:1px solid var(--border);padding:1.4rem 2.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;background:var(--bg2);}
+footer span{font-size:.73rem;color:var(--text3);}
+.flinks{display:flex;gap:1.5rem;}
+.flinks a{font-size:.73rem;color:var(--text3);text-decoration:none;transition:color .2s;}
+.flinks a:hover{color:var(--accent);}
+@media(max-width:768px){.hero{grid-template-columns:1fr;}.hero-right{height:260px;}.hero-left{padding:3rem 1.5rem;}.section{padding:3rem 1.5rem;}.nav-crumb{display:none;}footer{padding:1.2rem 1.5rem;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-back" href="electronics.html">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Back
+  </a>
+  <div class="nav-brand">Dahua</div>
+  <div class="nav-crumb">
+    <a href="ecommerce.html">Home</a>
+    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    <a href="electronics.html">Electronics</a>
+    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    <span style="color:var(--text2)">Dahua</span>
+  </div>
+</nav>
+<section class="hero">
+  <div class="hero-left">
+    <div class="eyebrow">Professional CCTV</div>
+    <h1 class="htitle">Dahua<br><em>Society</em></h1>
+    <p class="hero-p">Professional-grade IP cameras, NVR and AI analytics for enterprise security.</p>
+    <div class="hero-btns">
+      <button class="btn-p" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Browse Products</button>
+      <button class="btn-s">View Catalog</button>
+    </div>
+    <div class="hero-stats">
+      <div><div class="sv">6</div><div class="sk">Products</div></div>
+      <div><div class="sv">4K</div><div class="sk">Quality</div></div>
+      <div><div class="sv">24/7</div><div class="sk">Support</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1588600878108-578307a3cc9d?w=900&q=90" alt="Dahua"/>
+  </div>
+</section>
+<section class="section" id="products">
+  <div class="sec-label">Product Lineup</div>
+  <h2 class="sec-title">Dahua <em>Products</em></h2>
+  <div class="pgrid" id="pgrid"></div>
+</section>
+<footer>
+  <span>© 2026 Dahua — Presented by AirTech One</span>
+  <div class="flinks">
+    <a href="mailto:admin@airtech.one">admin@airtech.one</a>
+    <a href="tel:+966550898978">+966 550 898 978</a>
+  </div>
+</footer>
+<div class="toast" id="toast"><div class="tdot"></div><span id="toastMsg"></span></div>
+<script>
+const prods=[{"model": "IPC-HDW2831T", "name": "8MP Eyeball Camera", "desc": "4K IR fixed-focal eyeball camera, H.265+, IP67", "price": 129, "badge": "New", "img": "https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=500&q=80"}, {"model": "IPC-HFW2849S", "name": "8MP Lite IR Bullet", "desc": "4K lite IR bullet, 80m IR range, IP67, IK10", "price": 149, "badge": null, "img": "https://images.unsplash.com/photo-1588600878108-578307a3cc9d?w=500&q=80"}, {"model": "NVR4108-8P-4KS3", "name": "8-Ch 4K NVR", "desc": "8ch PoE NVR, 4K output, H.265+, AI features", "price": 279, "badge": "Hot", "img": "https://images.unsplash.com/photo-1606229365485-93a3b8ee0385?w=500&q=80"}, {"model": "SD49425XB-HNR", "name": "4MP AI PTZ", "desc": "4MP IR PTZ, 25\u00d7 optical zoom, AI detection", "price": 459, "badge": "Pro", "img": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80"}, {"model": "IPC-HDW3849H", "name": "Full-Color Eyeball", "desc": "8MP full-color eyeball, built-in mic, H.265", "price": 169, "badge": "New", "img": "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500&q=80"}, {"model": "IPC-HFW3849T1", "name": "8MP Smart Dual Light", "desc": "4K smart dual light bullet, active deterrence", "price": 189, "badge": null, "img": "https://images.unsplash.com/photo-1573160103600-4e5efb14a7e6?w=500&q=80"}];
+const bc=b=>b==='New'?'pb-new':b==='Hot'?'pb-hot':b==='Pro'?'pb-pro':b==='Sale'?'pb-sale':'';
+document.getElementById('pgrid').innerHTML=prods.map((p,i)=>`
+  <div class="pcard" style="animation:up .5s ease ${i*.07}s both">
+    <div class="pimg">
+      ${p.badge?`<span class="pbadge ${bc(p.badge)}">${p.badge}</span>`:''}
+      <img src="${p.img}" alt="${p.name}" onerror="this.style.opacity='.2'"/>
+    </div>
+    <div class="pbody">
+      <div class="pmodel">${p.model}</div>
+      <div class="pname">${p.name}</div>
+      <div class="pdesc">${p.desc}</div>
+      <div class="pfoot">
+        <div class="pprice"><span class="cur">$ </span>${p.price}</div>
+        <button class="abtn" onclick="addC('${p.name}',${p.price})">+ Add</button>
+      </div>
+    </div>
+  </div>
+`).join('');
+function addC(n,p){const el=document.getElementById('toast');document.getElementById('toastMsg').textContent=n+' — $'+p+' added!';el.classList.add('show');clearTimeout(window._t);window._t=setTimeout(()=>el.classList.remove('show'),2800);}
+document.head.insertAdjacentHTML('beforeend','<style>@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}</style>');
+</script>
+</body>
+</html>
