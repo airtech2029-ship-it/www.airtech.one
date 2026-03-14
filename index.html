@@ -260,6 +260,64 @@
         });
         window.scrollTo({ top: 400, behavior: 'smooth' });
     }
+</script><script>
+    function toggleSidebar() {
+        document.getElementById('sidebar').classList.toggle('active');
+        document.getElementById('overlay').classList.toggle('active');
+    }
+
+    function toggleAcc(id) {
+        const el = document.getElementById(id);
+        const all = document.querySelectorAll('.sub-menu');
+        all.forEach(item => { if(item.id !== id) item.classList.remove('open'); });
+        el.classList.toggle('open');
+    }
+
+    const pricingData = {
+        'HIK NVR': [{title:'4-CH NVR', price:'320'}, {title:'8-CH NVR', price:'540'}, {title:'16-CH NVR', price:'890'}, {title:'32-CH NVR', price:'1450'}],
+        'HIK DVR': [{title:'4-CH DVR', price:'210'}, {title:'8-CH DVR', price:'380'}, {title:'16-CH DVR', price:'650'}],
+        'HIK IP IN': [{title:'2MP IP Indoor', price:'140'}, {title:'5MP IP Indoor', price:'195'}],
+        'HIK IP OUT': [{title:'2MP IP Outdoor', price:'165'}, {title:'5MP IP Outdoor', price:'230'}],
+        'TP-LINK': [{title:'N300 Router', price:'95'}, {title:'Archer C6', price:'180'}],
+        'EZVIZ': [{title:'C6N 2MP', price:'145'}, {title:'H8C 2K', price:'290'}]
+    };
+
+    // YEH FUNCTION APKE BUTTONS SE MATCH HONA CHAHIYE
+    function showPrices(category) {
+        toggleSidebar();
+        const display = document.getElementById('product-display');
+        
+        // Loading animation ko khatam karke data dikhane ke liye
+        let data = pricingData[category] || [];
+        
+        if(data.length > 0) {
+            display.innerHTML = `
+                <div class="col-span-full border-b-4 border-blue-600 pb-2 mb-6">
+                    <h2 class="text-xl font-black uppercase text-slate-800">${category} PRICES</h2>
+                </div>
+            `;
+            
+            data.forEach(item => {
+                display.innerHTML += `
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center text-center">
+                        <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-tag text-blue-500"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-700 text-[10px] uppercase mb-2">${item.title}</h3>
+                        <div class="text-2xl font-black text-blue-600 mb-4">SAR ${item.price}</div>
+                        <a href="https://wa.me/966500000000" class="w-full bg-slate-900 text-white py-2 rounded-xl font-bold text-[9px] uppercase">Order Now</a>
+                    </div>
+                `;
+            });
+        } else {
+            display.innerHTML = `<div class="col-span-full text-center py-20 text-slate-400 font-bold uppercase tracking-widest">No Data Found for ${category}</div>`;
+        }
+        window.scrollTo({ top: 400, behavior: 'smooth' });
+    }
+
+    // Backup agar buttons 'showProducts' call kar rahe hain
+    function showProducts(cat) { showPrices(cat); }
 </script>
+
 
 </html>
