@@ -1,30 +1,14 @@
 <!DOCTYPE html>
-<html 
-    lang="en" 
-    dir="ltr"
->
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta 
-        name="viewport" 
-        content="width=device-width, initial-scale=1.0"
-    >
-    <title>
-        AirTech One | CCTV Experts
-    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirTech One | CCTV Experts</title>
     
-    <link 
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Roboto:ital,wght@1,900&display=swap" 
-        rel="stylesheet"
-    >
-    <link 
-        rel="stylesheet" 
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Roboto:ital,wght@1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* ROOT VARIABLES 
-        */
         :root {
             --primary-blue: #0046BE;
             --dark-blue: #002D7A;
@@ -34,24 +18,11 @@
             --hik-red: #D0021B; 
             --hik-grey: #6D6E71; 
             --whatsapp-green: #25D366;
-            --shadow-light: 0 4px 6px rgba(0,0,0,0.1);
+            --price-gold: #B8860B;
         }
 
-        /* CORE BODY STYLES 
-        */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Open Sans', sans-serif;
-            background-color: var(--white);
-            color: var(--text-black);
-            line-height: 1.8;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
+        body { margin: 0; padding: 0; font-family: 'Open Sans', sans-serif; background-color: var(--white); line-height: 1.8; overflow-x: hidden; }
 
-        /* HEADER NAVIGATION 
-        */
         header {
             display: grid;
             grid-template-columns: 1fr auto 1fr; 
@@ -64,46 +35,9 @@
             z-index: 1000;
         }
 
-        .sidebar-trigger {
-            font-size: 30px;
-            cursor: pointer;
-            justify-self: start;
-            transition: color 0.3s ease;
-        }
+        .logo { font-size: 28px; font-weight: 900; color: var(--primary-blue); text-decoration: none; justify-self: center; letter-spacing: 2px; }
 
-        .sidebar-trigger:hover {
-            color: var(--primary-blue);
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 900;
-            color: var(--primary-blue);
-            text-decoration: none;
-            justify-self: center;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .header-icons {
-            display: flex;
-            gap: 25px;
-            font-size: 24px;
-            justify-self: end;
-        }
-
-        .header-icons i {
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .header-icons i:hover {
-            transform: scale(1.2);
-            color: var(--primary-blue);
-        }
-
-        /* SIDEBAR SYSTEM 
-        */
+        /* --- SIDEBAR SYSTEM --- */
         .sidebar {
             height: 100%;
             width: 0; 
@@ -118,18 +52,9 @@
             padding-top: 80px;
         }
 
-        .sidebar .closebtn {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            font-size: 50px;
-            cursor: pointer;
-            color: var(--text-black);
-            line-height: 1;
-        }
+        .sidebar .closebtn { position: absolute; top: 20px; right: 30px; font-size: 50px; cursor: pointer; }
 
-        /* HIKVISION BRAND BUTTON 
-        */
+        /* HIKVISION BUTTON */
         .hik-main-btn {
             padding: 25px 35px;
             font-family: 'Roboto', sans-serif;
@@ -142,28 +67,12 @@
             justify-content: space-between;
             cursor: pointer;
             border-bottom: 2px solid #f8f8f8;
-            transition: background 0.3s;
         }
+        .hik-main-btn .hik { color: var(--hik-red); }
+        .hik-main-btn .vision { color: var(--hik-grey); }
 
-        .hik-main-btn:hover {
-            background-color: #fcfcfc;
-        }
-
-        .hik-main-btn .hik { 
-            color: var(--hik-red); 
-        }
-
-        .hik-main-btn .vision { 
-            color: var(--hik-grey); 
-        }
-
-        /* LEVEL 1 MENU (CATEGORIES) 
-        */
-        .lvl-1-container {
-            display: none;
-            background-color: #fafafa;
-        }
-
+        /* LEVEL 1 (NVR) */
+        .lvl-1-container { display: none; background-color: #fafafa; }
         .lvl-1-item {
             padding: 20px 45px;
             font-weight: 700;
@@ -172,390 +81,123 @@
             cursor: pointer;
             display: flex;
             justify-content: space-between;
-            align-items: center;
             color: #333;
-            transition: 0.3s;
         }
 
-        .lvl-1-item:hover {
-            background-color: #f0f0f0;
-            color: var(--hik-red);
-        }
-
-        /* LEVEL 2 MENU (NVR PRODUCT LIST) 
-        */
-        .lvl-2-container {
-            display: none;
-            background-color: #f1f1f1;
-            padding: 10px 0;
-            border-left: 5px solid var(--hik-red);
-        }
-
+        /* LEVEL 2 (PRODUCT LIST WITH PRICES) */
+        .lvl-2-container { display: none; background-color: #f1f1f1; padding: 10px 0; border-left: 5px solid var(--hik-red); }
+        
         .product-link {
-            padding: 15px 60px;
-            display: block;
-            text-decoration: none;
-            color: #555;
-            font-size: 14px;
-            font-weight: 700;
-            border-bottom: 1px solid #e5e5e5;
-            transition: 0.4s;
-        }
-
-        .product-link:hover {
-            background-color: #ffffff;
-            color: var(--primary-blue);
-            padding-left: 75px;
-        }
-
-        /* SUB-CATEGORY HEADERS 
-        */
-        .cat-title {
-            padding: 15px 60px;
-            font-size: 13px;
-            color: #000;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            background: #e9e9e9;
-            margin-top: 10px;
-        }
-
-        /* STANDARD SIDEBAR LINKS 
-        */
-        .std-links {
-            padding: 30px 35px;
-        }
-
-        .std-links a {
-            padding: 18px 0;
-            text-decoration: none;
-            font-size: 20px;
-            color: var(--text-black);
-            display: block;
-            font-weight: 700;
-            border-bottom: 1px solid #f5f5f5;
-            transition: 0.3s;
-        }
-
-        .std-links a:hover {
-            color: var(--primary-blue);
-            padding-left: 10px;
-        }
-
-        /* UTILITY CLASSES 
-        */
-        .rotate {
-            transform: rotate(180deg);
-            transition: 0.3s;
-        }
-
-        .arrow-icon {
-            font-size: 16px;
-            color: #bbb;
-        }
-
-        /* HERO SECTION 
-        */
-        .hero {
-            background: #000;
-            height: 450px;
-            color: white;
+            padding: 15px 40px;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            flex-direction: column;
+            text-decoration: none;
+            border-bottom: 1px solid #e5e5e5;
+            transition: 0.3s;
         }
+        .product-link:hover { background: #fff; }
 
-        .hero h1 {
-            font-size: 45px;
-            margin-bottom: 15px;
-        }
+        .model-name { font-size: 14px; font-weight: 700; color: #444; }
+        .price-tag { font-size: 14px; font-weight: 900; color: var(--price-gold); background: #fff; padding: 2px 10px; border-radius: 4px; border: 1px solid #ddd; }
 
-        /* FOOTER 
-        */
-        footer {
-            background: var(--dark-blue);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
+        .cat-title { padding: 15px 40px; font-size: 13px; color: #000; font-weight: 900; text-transform: uppercase; background: #e9e9e9; margin-top: 10px; }
 
-        /* MOBILE ADAPTATION 
-        */
-        @media (max-width: 768px) {
-            .logo {
-                font-size: 22px;
-            }
-            .sidebar {
-                width: 0;
-            }
-        }
+        .rotate { transform: rotate(180deg); transition: 0.3s; }
+        .hero { background: #000; height: 300px; color: white; display: flex; align-items: center; justify-content: center; text-align: center; flex-direction: column; }
     </style>
 </head>
 <body>
 
-    <div 
-        id="mySidebar" 
-        class="sidebar"
-    >
+    <div id="mySidebar" class="sidebar">
+        <span class="closebtn" onclick="closeNav()">&times;</span>
         
-        <span 
-            class="closebtn" 
-            onclick="closeNav()"
-        >
-            &times;
-        </span>
-        
-        <div 
-            class="hik-main-btn" 
-            onclick="toggleLvl1()"
-        >
-            <span>
-                <span class="hik">HIK</span><span class="vision">VISION</span>
-            </span>
-            <i 
-                class="fa fa-chevron-down arrow-icon" 
-                id="hik-arrow"
-            ></i>
+        <div class="hik-main-btn" onclick="toggleLvl1()">
+            <span><span class="hik">HIK</span><span class="vision">VISION</span></span>
+            <i class="fa fa-chevron-down" id="hik-arrow"></i>
         </div>
 
-        <div 
-            class="lvl-1-container" 
-            id="lvl-1-hik"
-        >
-            
-            <div 
-                class="lvl-1-item" 
-                onclick="toggleNvr()"
-            >
+        <div class="lvl-1-container" id="lvl-1-hik">
+            <div class="lvl-1-item" onclick="toggleNvr()">
                 <span>NVR SERIES</span>
-                <i 
-                    class="fa fa-plus arrow-icon" 
-                    id="nvr-arrow"
-                ></i>
+                <i class="fa fa-plus" id="nvr-arrow"></i>
             </div>
             
-            <div 
-                class="lvl-2-container" 
-                id="lvl-2-nvr"
-            >
+            <div class="lvl-2-container" id="lvl-2-nvr">
                 
-                <div class="cat-title">
-                    Non-PoE Models
-                </div>
-                
-                <a href="#" class="product-link" onclick="closeNav()">
-                    4 Channel (DS-7604NI-K1)
+                <div class="cat-title">Non-PoE Models</div>
+                <a href="#" class="product-link">
+                    <span class="model-name">4CH (DS-7604NI-K1)</span>
+                    <span class="price-tag">350 SAR</span>
                 </a>
-                
-                <a href="#" class="product-link" onclick="closeNav()">
-                    8 Channel (DS-7608NI-K2)
+                <a href="#" class="product-link">
+                    <span class="model-name">8CH (DS-7608NI-K2)</span>
+                    <span class="price-tag">550 SAR</span>
                 </a>
-                
-                <a href="#" class="product-link" onclick="closeNav()">
-                    16 Channel (DS-7616NI-K2)
+                <a href="#" class="product-link">
+                    <span class="model-name">16CH (DS-7616NI-K2)</span>
+                    <span class="price-tag">850 SAR</span>
                 </a>
-                
-                <a href="#" class="product-link" onclick="closeNav()">
-                    32 Channel (DS-7732NI-K4)
+                <a href="#" class="product-link">
+                    <span class="model-name">32CH (DS-7732NI-K4)</span>
+                    <span class="price-tag">1450 SAR</span>
                 </a>
 
-                <div class="cat-title">
-                    PoE Models
-                </div>
-                
-                <a href="#" class="product-link" onclick="closeNav()">
-                    4 Channel PoE (DS-7604NI-K1/4P)
+                <div class="cat-title">PoE Models</div>
+                <a href="#" class="product-link">
+                    <span class="model-name">4CH PoE (DS-7604NI-K1/4P)</span>
+                    <span class="price-tag">480 SAR</span>
                 </a>
-                
-                <a href="#" class="product-link" onclick="closeNav()">
-                    8 Channel PoE (DS-7608NI-K2/8P)
+                <a href="#" class="product-link">
+                    <span class="model-name">8CH PoE (DS-7608NI-K2/8P)</span>
+                    <span class="price-tag">720 SAR</span>
                 </a>
-                
-                <a href="#" class="product-link" onclick="closeNav()">
-                    16 Channel PoE (DS-7616NI-K2/16P)
+                <a href="#" class="product-link">
+                    <span class="model-name">16CH PoE (DS-7616NI-K2/16P)</span>
+                    <span class="price-tag">1150 SAR</span>
                 </a>
-                
-                <a href="#" class="product-link" onclick="closeNav()">
-                    32 Channel PoE (DS-7732NI-I4/16P)
+                <a href="#" class="product-link">
+                    <span class="model-name">32CH PoE (DS-7732NI-I4/16P)</span>
+                    <span class="price-tag">1950 SAR</span>
                 </a>
-                
             </div>
 
-            <div class="lvl-1-item" onclick="closeNav()">
-                DVR
-            </div>
-            
-            <div class="lvl-1-item" onclick="closeNav()">
-                IP CAMERA OUTDOOR
-            </div>
-            
-            <div class="lvl-1-item" onclick="closeNav()">
-                IP CAMERA INDOOR
-            </div>
-            
-            <div class="lvl-1-item" onclick="closeNav()">
-                ANALOG CAMERA OUTDOOR
-            </div>
-            
-            <div class="lvl-1-item" onclick="closeNav()">
-                ANALOG CAMERA INDOOR
-            </div>
-            
-            <div class="lvl-1-item" onclick="closeNav()">
-                EZVIZ WIFI CAMERA
-            </div>
-            
+            <div class="lvl-1-item">DVR</div>
+            <div class="lvl-1-item">IP CAMERA</div>
+            <div class="lvl-1-item">EZVIZ WIFI</div>
         </div>
-
-        <div class="std-links">
-            
-            <a href="#" onclick="closeNav()">
-                HOME
-            </a>
-            
-            <a href="#" onclick="closeNav()">
-                ABOUT AIRTECH
-            </a>
-            
-            <a href="#" onclick="closeNav()">
-                CONTACT US
-            </a>
-            
-        </div>
-
     </div>
 
     <header>
-        
-        <div 
-            class="sidebar-trigger" 
-            onclick="openNav()"
-        >
-            <i class="fa fa-bars"></i>
-        </div>
-
-        <a 
-            href="#" 
-            class="logo"
-        >
-            AirTech One
-        </a>
-
-        <div class="header-icons">
-            
-            <i class="fa fa-search"></i>
-            
-            <i class="fa fa-shopping-cart"></i>
-            
-            <a 
-                href="https://wa.me/966557978781" 
-                target="_blank" 
-                style="color: inherit;"
-            >
-                <i 
-                    class="fab fa-whatsapp" 
-                    style="color: var(--whatsapp-green);"
-                ></i>
-            </a>
-            
-        </div>
-
+        <div onclick="openNav()" style="cursor:pointer; font-size:30px;"><i class="fa fa-bars"></i></div>
+        <a href="#" class="logo">AirTech One</a>
+        <div style="font-size:24px;"><i class="fa fa-shopping-cart"></i></div>
     </header>
 
     <section class="hero">
-        <h1>
-            Hikvision NVR Experts
-        </h1>
-        <p>
-            Premium Solutions for Hafar Al-Batin
-        </p>
+        <h1>NVR Price List</h1>
+        <p>Best Deals in Saudi Arabia</p>
     </section>
 
-    <footer>
-        <p>
-            AirTech One | Saudi Arabia
-        </p>
-        <p>
-            Contact: +966 557 978 781
-        </p>
-        <p 
-            style="font-size: 12px; opacity: 0.5; margin-top: 20px;"
-        >
-            &copy; 2026 AirTech One. All Rights Reserved.
-        </p>
-    </footer>
-
     <script>
-        
-        // 1. OPEN SIDEBAR
-        function openNav() {
-            
-            var sidebar = document.getElementById("mySidebar");
-            sidebar.style.width = "400px";
-            
-        }
-
-        // 2. CLOSE SIDEBAR
-        function closeNav() {
-            
-            var sidebar = document.getElementById("mySidebar");
-            sidebar.style.width = "0";
-            
-            // RESET ALL DROPDOWNS ON CLOSE
+        function openNav() { document.getElementById("mySidebar").style.width = "400px"; }
+        function closeNav() { 
+            document.getElementById("mySidebar").style.width = "0";
             document.getElementById("lvl-1-hik").style.display = "none";
             document.getElementById("lvl-2-nvr").style.display = "none";
-            
-            // RESET ARROWS
-            document.getElementById("hik-arrow").classList.remove("rotate");
-            
         }
-
-        // 3. TOGGLE LEVEL 1 (HIKVISION MAIN MENU)
         function toggleLvl1() {
-            
             var menu = document.getElementById("lvl-1-hik");
             var arrow = document.getElementById("hik-arrow");
-
-            if (menu.style.display === "block") {
-                
-                menu.style.display = "none";
-                arrow.classList.remove("rotate");
-                
-            } else {
-                
-                menu.style.display = "block";
-                arrow.classList.add("rotate");
-                
-            }
-            
+            menu.style.display = (menu.style.display === "block") ? "none" : "block";
+            arrow.classList.toggle("rotate");
         }
-
-        // 4. TOGGLE LEVEL 2 (NVR SUB-MENU)
         function toggleNvr() {
-            
-            var nvrContainer = document.getElementById("lvl-2-nvr");
-            var nvrArrow = document.getElementById("nvr-arrow");
-
-            if (nvrContainer.style.display === "block") {
-                
-                nvrContainer.style.display = "none";
-                nvrArrow.classList.remove("fa-minus");
-                nvrArrow.classList.add("fa-plus");
-                
-            } else {
-                
-                nvrContainer.style.display = "block";
-                nvrArrow.classList.remove("fa-plus");
-                nvrArrow.classList.add("fa-minus");
-                
-            }
-            
+            var nvr = document.getElementById("lvl-2-nvr");
+            var arrow = document.getElementById("nvr-arrow");
+            nvr.style.display = (nvr.style.display === "block") ? "none" : "block";
+            arrow.classList.toggle("fa-minus");
         }
-
     </script>
-
 </body>
 </html>
