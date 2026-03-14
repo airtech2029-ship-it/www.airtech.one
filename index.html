@@ -147,20 +147,6 @@
             el.classList.toggle('open');
         }    
 
-    // 1. SIDEBAR & OVERLAY TOGGLE
-    function toggleSidebar() {
-        document.getElementById('sidebar').classList.toggle('active');
-        document.getElementById('overlay').classList.toggle('active');
-    }
-
-    // 2. ACCORDION MENU
-    function toggleAcc(id) {
-        const el = document.getElementById(id);
-        const all = document.querySelectorAll('.sub-menu');
-        all.forEach(item => { if(item.id !== id) item.classList.remove('open'); });
-        el.classList.toggle('open');
-    }
-
     // 3. FULL PRICE LIST DATA
     const pricingData = {
         'HIK NVR': [
