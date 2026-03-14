@@ -147,32 +147,7 @@
             el.classList.toggle('open');
         }
 
-        function showProducts(category) {
-            toggleSidebar();
-            const display = document.getElementById('product-display');
-            
-            if (category.includes('NVR')) {
-                display.innerHTML = `
-                    <div class="col-span-full mb-6 border-b pb-2"><h2 class="text-xl font-black uppercase text-blue-600">${category} MODELS</h2></div>
-                    ${[4, 8, 16, 32].map(ch => `
-                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm text-center">
-                            <i class="fas fa-server text-3xl text-slate-300 mb-4"></i>
-                            <h3 class="font-bold text-sm uppercase">${category} ${ch}-CHANNEL</h3>
-                            <div class="text-blue-600 font-black text-xl my-4">SAR ${ch == 4 ? '320' : ch == 8 ? '540' : ch == 16 ? '890' : '1450'}</div>
-                            <button class="w-full bg-slate-900 text-white py-2 rounded text-[10px] font-bold uppercase">View Specs</button>
-                        </div>
-                    `).join('')}
-                `;
-            } else {
-                display.innerHTML = `
-                    <div class="col-span-full text-center py-20 bg-white rounded-2xl border border-slate-100">
-                        <i class="fas fa-sync fa-spin text-3xl text-blue-500 mb-4"></i>
-                        <h2 class="text-2xl font-bold uppercase text-slate-400">Loading ${category} Price List...</h2>
-                        <p class="text-slate-400 text-sm">Fetching Hafar Al Batin Inventory</p>
-                    </div>`;
-            }
-            window.scrollTo({ top: 400, behavior: 'smooth' });
-        }
+        
     </script>
 </body><script>
     // 1. SIDEBAR & OVERLAY TOGGLE
