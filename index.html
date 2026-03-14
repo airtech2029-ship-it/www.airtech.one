@@ -1,160 +1,186 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIRTECH ONE | Security & POS</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>AirTech One | Premium CCTV Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/dist/css/all.min.css">
+    
     <style>
-        #sidebar { transition: transform 0.3s ease; transform: translateX(-100%); }
-        #sidebar.active { transform: translateX(0); }
-        .sub-menu { display: none; }
-        .sub-menu.open { display: block; }
-        #overlay { display: none; }
-        #overlay.active { display: block; }
-        .vip-card { transition: all 0.3s ease; }
-        .vip-card:hover { transform: translateY(-5px); border-color: #3b82f6; }
+        :root {
+            --primary-blue: #0046BE;
+            --dark-blue: #002D7A;
+            --white: #FFFFFF;
+            --light-gray: #F4F7F9;
+            --text-black: #1A1A1A;
+            --accent-red: #D0021B; 
+            --whatsapp-green: #25D366;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-black);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', 'Noto Sans Arabic', sans-serif; font-weight: 700; }
+
+        /* --- Header --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            border-bottom: 1px solid #eee;
+            position: sticky; top: 0; background: #fff; z-index: 1000;
+        }
+        .logo { font-size: 24px; font-weight: bold; color: var(--primary-blue); text-decoration: none; }
+        nav a { margin: 0 15px; text-decoration: none; color: var(--text-black); font-weight: 600; font-size: 14px; }
+        .header-icons { display: flex; align-items: center; gap: 20px; font-size: 18px; }
+        .header-icons i { cursor: pointer; }
+
+        /* --- Hero Banner --- */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&q=80&w=1600') center/cover;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+        .hero h1 { font-size: 42px; margin-bottom: 10px; }
+        .hero p { font-size: 18px; margin-bottom: 30px; }
+        .btn-group { display: flex; gap: 15px; }
+        .btn { padding: 12px 30px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .btn-blue { background: var(--primary-blue); color: white; }
+        .btn-whatsapp { background: var(--whatsapp-green); color: white; }
+
+        /* --- Trust Badges --- */
+        .trust-badges {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            padding: 50px 5%;
+            background: var(--light-gray);
+            text-align: center;
+        }
+        .badge-card i { font-size: 30px; color: var(--primary-blue); margin-bottom: 10px; }
+        .badge-card p { font-size: 14px; font-weight: 600; margin: 0; }
+
+        /* --- Featured Brands --- */
+        .brands { padding: 50px 5%; text-align: center; }
+        .brand-logos { display: flex; justify-content: center; align-items: center; gap: 60px; filter: grayscale(100%); opacity: 0.6; }
+        .brand-logos img { height: 50px; }
+        .brand-logos img:hover { filter: grayscale(0%); opacity: 1; transition: 0.3s; cursor: pointer; }
+
+        /* --- Why Choose Us --- */
+        .why-us { padding: 60px 5%; text-align: center; }
+        .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
+        .why-item { padding: 20px; border: 1px solid #eee; border-radius: 10px; }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 768px) {
+            nav { display: none; }
+            .hero h1 { font-size: 28px; }
+            .why-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
-<body class="bg-slate-50">
+<body>
 
-    <div id="overlay" class="fixed inset-0 bg-black/50 z-40" onclick="toggleSidebar()"></div>
-
-    <div id="sidebar" class="fixed top-0 left-0 h-full w-72 bg-white z-50 shadow-2xl p-6 overflow-y-auto">
-        <div class="flex justify-between items-center mb-8 border-b pb-4">
-            <h2 class="text-xl font-black text-blue-900 italic uppercase">Airtech One</h2>
-            <button onclick="toggleSidebar()" class="text-slate-400"><i class="fas fa-times"></i></button>
+    <header>
+        <a href="#" class="logo">AirTech One</a>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#categories">Categories</a>
+            <a href="#">Flash Sale</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+        </nav>
+        <div class="header-icons">
+            <i class="fa fa-search" onclick="alert('Searching...')"></i>
+            <i class="fa fa-shopping-cart" onclick="alert('Cart empty')"></i>
+            <a href="https://wa.me/966557978781" target="_blank">
+                <i class="fab fa-whatsapp" style="color: var(--whatsapp-green);"></i>
+            </a>
         </div>
+    </header>
 
-        <div class="space-y-4">
-            <div>
-                <button onclick="toggleAcc('hik')" class="w-full flex justify-between font-bold text-slate-700 text-xs uppercase tracking-widest">Hikvision <i class="fas fa-chevron-down"></i></button>
-                <div id="hik" class="sub-menu mt-3 pl-2 space-y-2">
-                    <button onclick="showPrices('HIK NVR SYSTEM')" class="block text-xs text-slate-500 hover:text-blue-600">NVR System</button>
-                    <button onclick="showPrices('HIK DVR RECORDER')" class="block text-xs text-slate-500 hover:text-blue-600">DVR System</button>
-                    <button onclick="showPrices('IP CAMERA INDOOR')" class="block text-xs text-slate-500 hover:text-blue-600">IP Indoor</button>
-                    <button onclick="showPrices('IP CAMERA OUTDOOR')" class="block text-xs text-slate-500 hover:text-blue-600">IP Outdoor</button>
-                </div>
-            </div>
-
-            <div>
-                <button onclick="toggleAcc('dah')" class="w-full flex justify-between font-bold text-slate-700 text-xs uppercase tracking-widest">Dahua <i class="fas fa-chevron-down"></i></button>
-                <div id="dah" class="sub-menu mt-3 pl-2 space-y-2">
-                    <button onclick="showPrices('DAHUA NVR')" class="block text-xs text-slate-500 hover:text-blue-600">Dahua NVR</button>
-                    <button onclick="showPrices('IMOU')" class="block text-xs text-slate-500 hover:text-blue-600">Imou Camera</button>
-                </div>
-            </div>
-
-            <button onclick="showPrices('TP-LINK')" class="w-full text-left font-bold text-slate-700 text-xs py-2 border-t uppercase">TP-Link</button>
-            <button onclick="showPrices('BILLZEST VIP')" class="w-full text-left font-black text-blue-600 text-xs py-4 border-t uppercase italic"><i class="fas fa-crown text-yellow-500 mr-2"></i> BillZest VIP POS</button>
+    <section class="hero">
+        <h1>Premium CCTV Solutions in Hafar Al-Batin</h1>
+        <p>Hikvision & Dahua Experts | Security Systems & Installation</p>
+        <div class="btn-group">
+            <a href="#categories" class="btn btn-blue">Shop Now</a>
+            <a href="https://wa.me/966557978781" target="_blank" class="btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Contact Us
+            </a>
         </div>
-    </div>
+    </section>
 
-    <nav class="bg-white border-b sticky top-0 z-30 shadow-sm px-4 h-16 flex justify-between items-center">
-        <button onclick="toggleSidebar()" class="text-blue-900 text-xl"><i class="fas fa-bars"></i></button>
-        <h1 class="text-xl font-black text-blue-900 tracking-tighter italic">AIRTECH <span class="text-blue-500">ONE</span></h1>
-        <a href="https://wa.me/966500000000" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-[10px] font-bold uppercase shadow-lg">WhatsApp</a>
-    </nav>
+    <section class="trust-badges">
+        <div class="badge-card">
+            <i class="fa fa-truck"></i>
+            <p>Free Delivery > 500 SR</p>
+        </div>
+        <div class="badge-card">
+            <i class="fa fa-wallet"></i>
+            <p>Cash on Delivery</p>
+        </div>
+        <div class="badge-card">
+            <i class="fa fa-shield-halved"></i>
+            <p>1-2 Year Warranty</p>
+        </div>
+        <div class="badge-card">
+            <i class="fa fa-headset"></i>
+            <p>24/7 Support</p>
+        </div>
+        <div class="badge-card">
+            <i class="fa fa-check-circle"></i>
+            <p>Genuine Products</p>
+        </div>
+    </section>
 
-    <main class="container mx-auto px-4 py-8">
-        <header class="text-center mb-10 py-12 bg-slate-900 rounded-[2rem] text-white shadow-xl">
-            <h2 class="text-3xl font-black mb-3 uppercase italic">Premium Tech Solutions</h2>
-            <p class="text-slate-400 text-[10px] tracking-widest">Serving Hafar Al Batin | VIP CCTV & POS</p>
-        </header>
+    <section id="categories" class="brands">
+        <h3>Trusted Brands</h3>
+        <div class="brand-logos">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Hikvision_logo.svg" alt="Hikvision">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Dahua_Technology_logo.svg" alt="Dahua">
+        </div>
+    </section>
 
-        <section id="product-display" class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="col-span-full text-center py-24 bg-white rounded-[2rem] border border-dashed border-slate-300">
-                <p class="text-slate-400 font-bold uppercase text-[10px] tracking-widest">Select Category To View Price List</p>
+    <section class="why-us">
+        <h2>Why Choose AirTech One?</h2>
+        <div class="why-grid">
+            <div class="why-item">
+                <h3>Expert Support</h3>
+                <p>Our team of certified professionals ensures your security is never compromised.</p>
             </div>
-        </section>
-    </main>
+            <div class="why-item">
+                <h3>Fast Delivery</h3>
+                <p>Quick dispatch and reliable shipping across Saudi Arabia, especially in Hafar Al-Batin.</p>
+            </div>
+            <div class="why-item">
+                <h3>Best Prices</h3>
+                <p>Quality CCTV systems at competitive market rates with genuine brand parts.</p>
+            </div>
+        </div>
+    </section>
 
-    <footer class="text-center py-10 text-slate-400 text-[9px] uppercase tracking-[0.3em] border-t mt-12">
-        &copy; 2026 Airtech One | Hafar Al Batin
+    <footer style="background: var(--dark-blue); color: white; padding: 40px 5%; text-align: center;">
+        <p>Contact: Mr. Asim | +966 557 978 781</p>
+        <div style="margin: 20px 0;">
+            <i class="fab fa-facebook" style="margin: 0 10px; cursor: pointer;"></i>
+            <i class="fab fa-instagram" style="margin: 0 10px; cursor: pointer;"></i>
+            <i class="fab fa-linkedin" style="margin: 0 10px; cursor: pointer;"></i>
+        </div>
+        <p style="font-size: 12px; opacity: 0.7;">© 2026 AirTech One. All rights reserved.</p>
     </footer>
 
-    <script>
-        // 1. SIDEBAR & MENU LOGIC
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('active');
-            document.getElementById('overlay').classList.toggle('active');
-        }
-
-        function toggleAcc(id) {
-            const el = document.getElementById(id);
-            document.querySelectorAll('.sub-menu').forEach(m => { if(m.id !== id) m.classList.remove('open'); });
-            el.classList.toggle('open');
-        }
-
-        // 2. PRICING DATA FROM YOUR SCREENSHOTS
-        const pricingData = {
-            'HIK NVR SYSTEM': [
-                { title: '4-CH HIK NVR', price: '320' },
-                { title: '8-CH HIK NVR', price: '540' },
-                { title: '16-CH HIK NVR', price: '890' },
-                { title: '32-CH HIK NVR', price: '1,450' }
-            ],
-            'HIK DVR RECORDER': [
-                { title: '4-CH HIK DVR', price: '210' },
-                { title: '8-CH HIK DVR', price: '380' },
-                { title: '16-CH HIK DVR', price: '650' }
-            ],
-            'IP CAMERA INDOOR': [
-                { title: '2MP IP Indoor', price: '140' },
-                { title: '5MP IP Indoor', price: '195' },
-                { title: '8MP 4K IP Indoor', price: '320' }
-            ],
-            'IP CAMERA OUTDOOR': [
-                { title: '2MP IP Outdoor', price: '165' },
-                { title: '5MP IP Outdoor', price: '230' }
-            ],
-            'DAHUA NVR': [
-                { title: '4-CH Dahua NVR', price: '310' },
-                { title: '8-CH Dahua NVR', price: '520' }
-            ],
-            'TP-LINK': [
-                { title: 'N300 Router', price: '95' },
-                { title: 'Archer C6', price: '180' }
-            ],
-            'BILLZEST VIP': [
-                { title: 'Monthly License', price: '135' },
-                { title: 'VIP Lifetime', price: '2,500' }
-            ]
-        };
-
-        // 3. SHOW PRICES FUNCTION
-        function showPrices(category) {
-            if(document.getElementById('sidebar').classList.contains('active')) toggleSidebar();
-            const display = document.getElementById('product-display');
-            let data = pricingData[category] || [];
-
-            if (data.length > 0) {
-                // Header
-                display.innerHTML = `<div class="col-span-full border-b-2 border-blue-600 pb-2 mb-4">
-                    <h2 class="text-sm font-black uppercase text-slate-800 tracking-tighter">${category} PRICES</h2>
-                </div>`;
-
-                // Product Cards
-                data.forEach(item => {
-                    display.innerHTML += `
-                        <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm flex flex-col items-center text-center vip-card">
-                            <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center mb-3">
-                                <i class="fas fa-microchip text-blue-500"></i>
-                            </div>
-                            <h3 class="font-bold text-slate-700 text-[10px] uppercase mb-2 h-8 flex items-center">${item.title}</h3>
-                            <div class="text-xl font-black text-blue-600 mb-4">SAR ${item.price}</div>
-                            <a href="https://wa.me/966500000000?text=Order: ${item.title}" class="w-full bg-slate-900 text-white py-2 rounded-xl text-[9px] font-bold uppercase tracking-widest italic hover:bg-blue-600">Order Now</a>
-                        </div>`;
-                });
-            } else {
-                display.innerHTML = `<div class="col-span-full text-center py-20 bg-white rounded-3xl border border-dashed text-slate-400 italic font-bold">Category Under Update...</div>`;
-            }
-            window.scrollTo({ top: 400, behavior: 'smooth' });
-        }
-
-        // 4. BACKUP CALL FOR COMPATIBILITY
-        function showProducts(cat) { showPrices(cat); }
-    </script>
 </body>
 </html>
