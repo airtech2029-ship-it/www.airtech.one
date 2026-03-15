@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Product Manager — AIRTECH ONE</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#050810;--bg2:#080c16;--surface:#0d1424;--surface2:#121a2e;
+  --border:#1c2d4a;--border2:#243652;
+  --gold:#c9a96e;--gold2:#e8c98a;--gold3:#f5e0b0;
+  --goldfaint:rgba(201,169,110,0.08);
+  --text:#eef2f8;--text2:#8ba4c2;--text3:#445e7a;
+  --red:#e05c6e;--green:#3ecf8e;--yellow:#e8b84b;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg2);}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
+
+/* TOPBAR */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:900;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;background:rgba(5,8,16,0.97);backdrop-filter:blur(28px);border-bottom:1px solid rgba(201,169,110,0.12);}
+.top-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;}
+.top-logo em{color:var(--gold);font-style:normal;}
+.top-logo small{font-family:'Outfit',sans-serif;font-size:.6rem;color:var(--text3);letter-spacing:.16em;text-transform:uppercase;display:block;margin-top:1px;}
+.top-right{display:flex;align-items:center;gap:.75rem;}
+.top-btn{background:var(--surface);border:1px solid var(--border);color:var(--text3);cursor:pointer;padding:7px 14px;border-radius:5px;font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;transition:all .2s;text-decoration:none;display:flex;align-items:center;gap:6px;}
+.top-btn:hover{border-color:rgba(201,169,110,0.3);color:var(--gold);}
+.save-all-btn{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#050810;border:none;cursor:pointer;padding:8px 18px;border-radius:5px;font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:all .2s;display:flex;align-items:center;gap:6px;}
+.save-all-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(201,169,110,0.28);}
+
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:220px 1fr;min-height:100vh;padding-top:64px;}
+
+/* SIDEBAR */
+.sidebar{background:var(--bg2);border-right:1px solid rgba(201,169,110,0.08);padding:1.5rem 0;position:sticky;top:64px;height:calc(100vh - 64px);overflow-y:auto;}
+.sidebar-section{font-size:.58rem;color:var(--text3);text-transform:uppercase;letter-spacing:.16em;font-weight:600;padding:.5rem 1.25rem;margin-top:1rem;}
+.brand-btn{display:flex;align-items:center;gap:.6rem;padding:9px 1.25rem;cursor:pointer;color:var(--text3);font-size:.8rem;font-weight:500;transition:all .2s;border-left:2px solid transparent;border-radius:0;}
+.brand-btn:hover{color:var(--text2);background:rgba(201,169,110,0.04);}
+.brand-btn.active{color:var(--gold);border-left-color:var(--gold);background:var(--goldfaint);}
+.brand-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.brand-count{margin-left:auto;font-size:.65rem;color:var(--text3);background:var(--surface);padding:2px 7px;border-radius:50px;}
+
+/* MAIN */
+.main{padding:2rem;}
+.brand-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;flex-wrap:wrap;gap:1rem;}
+.brand-title-row{display:flex;align-items:center;gap:.75rem;}
+.brand-icon{width:42px;height:42px;border-radius:8px;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:.9rem;font-weight:700;color:#050810;}
+.brand-heading{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;letter-spacing:.04em;}
+.brand-heading em{font-style:italic;color:var(--gold2);}
+.brand-sub{font-size:.72rem;color:var(--text3);margin-top:1px;}
+.header-actions{display:flex;gap:.6rem;}
+.add-btn{background:var(--goldfaint);border:1px solid rgba(201,169,110,0.25);color:var(--gold);cursor:pointer;padding:8px 16px;border-radius:5px;font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transition:all .2s;display:flex;align-items:center;gap:6px;}
+.add-btn:hover{background:var(--gold);color:#050810;}
+
+/* PRODUCTS GRID */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;}
+.prod-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all .3s;}
+.prod-card:hover{border-color:rgba(201,169,110,0.2);}
+.prod-img-wrap{position:relative;height:170px;overflow:hidden;background:var(--surface2);}
+.prod-img-wrap img{width:100%;height:100%;object-fit:cover;filter:brightness(.8);transition:all .3s;}
+.prod-card:hover .prod-img-wrap img{filter:brightness(.9);}
+.img-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);transition:background .2s;display:flex;align-items:center;justify-content:center;gap:.5rem;opacity:0;transition:all .2s;}
+.prod-card:hover .img-overlay{background:rgba(0,0,0,.5);opacity:1;}
+.img-btn{background:rgba(5,8,16,0.85);border:1px solid rgba(201,169,110,0.3);color:var(--gold);cursor:pointer;padding:7px 14px;border-radius:4px;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transition:all .2s;}
+.img-btn:hover{background:var(--gold);color:#050810;}
+.badge-wrap{position:absolute;top:8px;left:8px;}
+.badge{font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:3px;}
+.b-hot{background:var(--red);color:#fff;}
+.b-new{background:var(--gold);color:#050810;}
+.b-pro{background:var(--surface2);border:1px solid var(--gold);color:var(--gold2);}
+.b-sale{background:var(--green);color:#050810;}
+.prod-body{padding:1.1rem 1.2rem 1.2rem;}
+.prod-fields{display:flex;flex-direction:column;gap:.6rem;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;}
+.field-group{display:flex;flex-direction:column;gap:3px;}
+.field-label{font-size:.58rem;color:var(--text3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;}
+.field-input{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:7px 10px;border-radius:5px;font-family:'Outfit',sans-serif;font-size:.8rem;outline:none;transition:border-color .2s;width:100%;}
+.field-input:focus{border-color:rgba(201,169,110,0.35);}
+.field-input::placeholder{color:var(--text3);}
+.price-input{color:var(--gold2);font-weight:600;}
+.badge-select{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:7px 10px;border-radius:5px;font-family:'Outfit',sans-serif;font-size:.78rem;outline:none;cursor:pointer;width:100%;appearance:none;}
+.badge-select option{background:var(--surface2);}
+.card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:.85rem;padding-top:.85rem;border-top:1px solid var(--border);}
+.save-btn{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#050810;border:none;cursor:pointer;padding:7px 16px;border-radius:4px;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:all .2s;}
+.save-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(201,169,110,0.28);}
+.delete-btn{background:none;border:none;cursor:pointer;color:var(--text3);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;transition:color .2s;font-family:'Outfit',sans-serif;}
+.delete-btn:hover{color:var(--red);}
+.saved-indicator{font-size:.65rem;color:var(--green);display:none;align-items:center;gap:4px;}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:1rem;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--surface);border:1px solid rgba(201,169,110,0.2);border-radius:16px;padding:2rem;width:100%;max-width:480px;animation:popIn .3s ease;}
+@keyframes popIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;margin-bottom:1.5rem;letter-spacing:.04em;}
+.modal-title em{font-style:italic;color:var(--gold2);}
+.modal-field{margin-bottom:1rem;}
+.modal-label{display:block;font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:.12em;margin-bottom:5px;font-weight:600;}
+.modal-input{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:10px 13px;border-radius:7px;font-family:'Outfit',sans-serif;font-size:.87rem;outline:none;transition:border-color .2s;}
+.modal-input:focus{border-color:rgba(201,169,110,0.35);}
+.modal-input::placeholder{color:var(--text3);}
+.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.url-preview{width:100%;height:120px;object-fit:cover;border-radius:7px;margin-top:.5rem;border:1px solid var(--border);background:var(--surface2);display:block;}
+.modal-footer{display:flex;gap:.75rem;margin-top:1.5rem;}
+.modal-save{flex:1;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#050810;border:none;cursor:pointer;padding:12px;border-radius:6px;font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;transition:all .2s;}
+.modal-save:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(201,169,110,0.28);}
+.modal-cancel{background:var(--surface2);border:1px solid var(--border);color:var(--text2);cursor:pointer;padding:12px 20px;border-radius:6px;font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:500;transition:all .2s;}
+.modal-cancel:hover{border-color:var(--border2);color:var(--text);}
+
+/* TOAST */
+.toast{position:fixed;bottom:1.75rem;right:1.75rem;z-index:99999;background:var(--surface);border:1px solid rgba(201,169,110,0.25);border-radius:10px;padding:12px 18px;display:flex;align-items:center;gap:10px;font-size:.82rem;box-shadow:0 16px 40px rgba(0,0,0,.5);transform:translateX(140%);transition:transform .35s cubic-bezier(.4,0,.2,1);}
+.toast.show{transform:translateX(0);}
+.tdot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+
+/* EMPTY */
+.empty-state{text-align:center;padding:4rem 2rem;color:var(--text3);}
+.empty-icon{font-size:2.5rem;margin-bottom:1rem;opacity:.4;}
+
+@media(max-width:768px){
+  .layout{grid-template-columns:1fr;}
+  .sidebar{position:static;height:auto;display:flex;overflow-x:auto;padding:.75rem 1rem;gap:.5rem;border-right:none;border-bottom:1px solid rgba(201,169,110,0.08);}
+  .sidebar-section{display:none;}
+  .brand-btn{white-space:nowrap;border-left:none;border-bottom:2px solid transparent;border-radius:50px;padding:7px 14px;}
+  .brand-btn.active{border-left:none;border-bottom-color:var(--gold);}
+  .main{padding:1.25rem;}
+  .products-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="top-logo"><em>AIRTECH</em> ONE<small>Product Manager</small></div>
+  <div class="top-right">
+    <a class="top-btn" href="airtech_improved.html">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+      View Site
+    </a>
+    <a class="top-btn" href="admin.html">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Dashboard
+    </a>
+    <button class="save-all-btn" onclick="saveAll()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+      Save All
+    </button>
+  </div>
+</div>
+
+<div class="layout">
+  <div class="sidebar" id="sidebar"></div>
+  <div class="main">
+    <div class="brand-header">
+      <div class="brand-title-row">
+        <div class="brand-icon" id="brandIcon">HK</div>
+        <div>
+          <div class="brand-heading" id="brandHeading">HiKvision <em>Products</em></div>
+          <div class="brand-sub" id="brandSub">6 products • Click any field to edit</div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="add-btn" onclick="openAddModal()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add Product
+        </button>
+      </div>
+    </div>
+    <div class="products-grid" id="productsGrid"></div>
+  </div>
+</div>
+
+<!-- IMAGE MODAL -->
+<div class="modal-overlay" id="imgModal">
+  <div class="modal">
+    <div class="modal-title">Change <em>Product Image</em></div>
+    <div class="modal-field">
+      <label class="modal-label">Image URL</label>
+      <input class="modal-input" id="imgUrlInput" placeholder="https://images.unsplash.com/..." oninput="previewImg()"/>
+      <img id="imgPreview" class="url-preview" src="" style="display:none"/>
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Or paste any image URL from web</label>
+      <p style="font-size:.72rem;color:var(--text3);line-height:1.6;">Copy image URL from Google Images, Unsplash, or any website and paste above.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-cancel" onclick="closeImgModal()">Cancel</button>
+      <button class="modal-save" onclick="applyImg()">Apply Image</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD PRODUCT MODAL -->
+<div class="modal-overlay" id="addModal">
+  <div class="modal">
+    <div class="modal-title">Add <em>New Product</em></div>
+    <div class="modal-field">
+      <label class="modal-label">Product Name *</label>
+      <input class="modal-input" id="addName" placeholder="e.g. 4MP Bullet Camera"/>
+    </div>
+    <div class="modal-grid">
+      <div class="modal-field">
+        <label class="modal-label">Model</label>
+        <input class="modal-input" id="addModel" placeholder="e.g. DS-2CD2T47"/>
+      </div>
+      <div class="modal-field">
+        <label class="modal-label">Price ($) *</label>
+        <input class="modal-input" id="addPrice" type="number" placeholder="199"/>
+      </div>
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Description</label>
+      <input class="modal-input" id="addDesc" placeholder="Short product description..."/>
+    </div>
+    <div class="modal-grid">
+      <div class="modal-field">
+        <label class="modal-label">Badge</label>
+        <select class="modal-input" id="addBadge" style="cursor:pointer;appearance:none;">
+          <option value="">None</option>
+          <option value="New">New</option>
+          <option value="Hot">Hot</option>
+          <option value="Pro">Pro</option>
+          <option value="Sale">Sale</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Image URL</label>
+      <input class="modal-input" id="addImg" placeholder="https://images.unsplash.com/..." oninput="previewAddImg()"/>
+      <img id="addImgPreview" class="url-preview" src="" style="display:none"/>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-cancel" onclick="closeAddModal()">Cancel</button>
+      <button class="modal-save" onclick="addProduct()">Add Product</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"><div class="tdot"></div><span id="toastMsg"></span></div>
+
+<script>
+// ===== ALL BRAND DATA =====
+const brandsData = {
+  hikvision: {
+    label: 'HiKvision', initials: 'HK', color: '#e05c6e',
+    file: 'hikvision.html',
+    products: [
+      {id:1,model:'DS-2CD2143G2-I',name:'AcuSense Dome 4MP',desc:'4MP AcuSense fixed dome, IR 40m, H.265+, IP67',price:189,badge:'Hot',img:'https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=500&q=80'},
+      {id:2,model:'DS-2CD2T47G2-L',name:'ColorVu Bullet 4MP',desc:'4MP ColorVu outdoor bullet, 60m white light',price:229,badge:'New',img:'https://images.unsplash.com/photo-1588600878108-578307a3cc9d?w=500&q=80'},
+      {id:3,model:'DS-2CD2T86G2-4I',name:'AcuSense Bullet 8MP',desc:'8MP 4K bullet camera, IR 80m, H.265+',price:299,badge:null,img:'https://images.unsplash.com/photo-1606229365485-93a3b8ee0385?w=500&q=80'},
+      {id:4,model:'DS-2DE4425IWG-E',name:'PTZ Dome 4MP',desc:'4MP 25x optical zoom PTZ, IR 100m, H.265+',price:599,badge:'Pro',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80'},
+      {id:5,model:'DS-7608NI-I2',name:'8-Ch NVR',desc:'8ch NVR, up to 8MP, H.265+, HDMI 4K output',price:239,badge:null,img:'https://images.unsplash.com/photo-1573160103600-4e5efb14a7e6?w=500&q=80'},
+      {id:6,model:'DS-2CD2347G2-LU',name:'ColorVu Dome 4MP',desc:'4MP ColorVu fixed turret, built-in mic',price:189,badge:'Sale',img:'https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500&q=80'},
+    ]
+  },
+  ezviz: {
+    label: 'EZVIZ', initials: 'EZ', color: '#3ecf8e',
+    file: 'ezviz.html',
+    products: [
+      {id:1,model:'CS-C3W-A0-3H4WFL',name:'C3W Pro 4MP',desc:'4MP outdoor Wi-Fi, color night, AI, IP67',price:69,badge:'Hot',img:'https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=500&q=80'},
+      {id:2,model:'CS-H8c-R100-1K3WKFL',name:'H8c Pan & Tilt 3K',desc:'3K pan/tilt, AI detection, color night, 360°',price:59,badge:'New',img:'https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500&q=80'},
+      {id:3,model:'CS-BC1-B2-2C2WPFL',name:'BC1 Battery Cam',desc:'Wire-free battery cam, 1080p, IP67, solar',price:89,badge:null,img:'https://images.unsplash.com/photo-1606229365485-93a3b8ee0385?w=500&q=80'},
+      {id:4,model:'CS-DB2-A0-2C2WPFL',name:'DB2 Video Doorbell',desc:'2K QHD doorbell, AI detection, wired',price:69,badge:'New',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80'},
+      {id:5,model:'CS-C8W-R100-1K3WKFL',name:'C8W Pro 4K',desc:'4K 8MP outdoor Wi-Fi, 360° pan/tilt',price:99,badge:'Pro',img:'https://images.unsplash.com/photo-1588600878108-578307a3cc9d?w=500&q=80'},
+      {id:6,model:'CS-C6W-A0-3C4WFL',name:'C6W Indoor 4MP',desc:'4MP indoor pan/tilt, 360°, AI detection',price:49,badge:'Sale',img:'https://images.unsplash.com/photo-1573160103600-4e5efb14a7e6?w=500&q=80'},
+    ]
+  },
+  dahua: {
+    label: 'Dahua', initials: 'DH', color: '#e8b84b',
+    file: 'dahua.html',
+    products: [
+      {id:1,model:'IPC-HDW2831T',name:'8MP Eyeball Camera',desc:'4K IR fixed-focal eyeball camera, H.265+, IP67',price:129,badge:'New',img:'https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=500&q=80'},
+      {id:2,model:'IPC-HFW2849S',name:'8MP Lite IR Bullet',desc:'4K lite IR bullet, 80m IR range, IP67, IK10',price:149,badge:null,img:'https://images.unsplash.com/photo-1588600878108-578307a3cc9d?w=500&q=80'},
+      {id:3,model:'NVR4108-8P-4KS3',name:'8-Ch 4K NVR',desc:'8ch PoE NVR, 4K output, H.265+, AI features',price:279,badge:'Hot',img:'https://images.unsplash.com/photo-1606229365485-93a3b8ee0385?w=500&q=80'},
+      {id:4,model:'SD49425XB-HNR',name:'4MP AI PTZ',desc:'4MP IR PTZ, 25× optical zoom, AI detection',price:459,badge:'Pro',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80'},
+      {id:5,model:'IPC-HDW3849H',name:'Full-Color Eyeball',desc:'8MP full-color eyeball, built-in mic, H.265',price:169,badge:'New',img:'https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500&q=80'},
+      {id:6,model:'IPC-HFW3849T1',name:'8MP Smart Dual Light',desc:'4K smart dual light bullet, active deterrence',price:189,badge:null,img:'https://images.unsplash.com/photo-1573160103600-4e5efb14a7e6?w=500&q=80'},
+    ]
+  },
+  imou: {
+    label: 'IMOU', initials: 'IM', color: '#9d7fe0',
+    file: 'imou.html',
+    products: [
+      {id:1,model:'IPC-F42FEP',name:'Bullet 2E 4MP',desc:'4MP color night vision bullet, built-in mic, IP67',price:45,badge:'Hot',img:'https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=500&q=80'},
+      {id:2,model:'IPC-A42P',name:'Ranger 2 Pro',desc:'4MP pan/tilt indoor camera, color night, AI',price:39,badge:'New',img:'https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500&q=80'},
+      {id:3,model:'IPC-G42P',name:'Cell Go',desc:'Battery-powered outdoor camera, wire-free, IP67',price:79,badge:'New',img:'https://images.unsplash.com/photo-1606229365485-93a3b8ee0385?w=500&q=80'},
+      {id:4,model:'IPC-F88FIP',name:'Cruiser 2 8MP',desc:'4K outdoor bullet, 60m color night, deterrence',price:99,badge:null,img:'https://images.unsplash.com/photo-1588600878108-578307a3cc9d?w=500&q=80'},
+      {id:5,model:'IPC-D42FEP',name:'Dome Lite 2',desc:'4MP outdoor dome, color night, H.265, IP67',price:49,badge:'Sale',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80'},
+      {id:6,model:'IPC-B46LP',name:'Looc 4MP',desc:'4MP color night outdoor bullet with spotlight',price:59,badge:null,img:'https://images.unsplash.com/photo-1573160103600-4e5efb14a7e6?w=500&q=80'},
+    ]
+  },
+  tapo: {
+    label: 'Tapo', initials: 'TP', color: '#c9a96e',
+    file: 'tapo.html',
+    products: [
+      {id:1,model:'C220',name:'2K Pan/Tilt Camera',desc:'2K indoor pan/tilt, 360° coverage, Alexa',price:29,badge:'Hot',img:'https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500&q=80'},
+      {id:2,model:'C320WS',name:'Outdoor Security Cam',desc:'2K outdoor, color night vision, IP66',price:49,badge:'New',img:'https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=500&q=80'},
+      {id:3,model:'C500',name:'4MP Outdoor Camera',desc:'4MP dual-band Wi-Fi, color night, IP66',price:59,badge:null,img:'https://images.unsplash.com/photo-1588600878108-578307a3cc9d?w=500&q=80'},
+      {id:4,model:'D230S1',name:'Video Doorbell',desc:'2K QHD doorbell, AI detection, wired',price:79,badge:'New',img:'https://images.unsplash.com/photo-1558002038-1055907df827?w=500&q=80'},
+      {id:5,model:'C420S2',name:'Wire-Free Kit 2-Cam',desc:'Battery cameras set, color night, IP65',price:129,badge:'Sale',img:'https://images.unsplash.com/photo-1606229365485-93a3b8ee0385?w=500&q=80'},
+      {id:6,model:'C110',name:'Indoor Mini Camera',desc:'3MP compact indoor cam with night vision',price:19,badge:null,img:'https://images.unsplash.com/photo-1573160103600-4e5efb14a7e6?w=500&q=80'},
+    ]
+  },
+  tplink: {
+    label: 'TP-Link', initials: 'TL', color: '#3ecf8e',
+    file: 'tplink.html',
+    products: [
+      {id:1,model:'Archer AXE75',name:'AXE5400 Tri-Band Router',desc:'Wi-Fi 6E tri-band, 5400Mbps, 6GHz, 4 ports',price:199,badge:'Hot',img:'https://images.unsplash.com/photo-1558002038-1055907df827?w=500&q=80'},
+      {id:2,model:'Deco XE75 Pro',name:'AXE5400 Mesh System',desc:'Wi-Fi 6E mesh 2-pack, whole-home coverage',price:349,badge:'New',img:'https://images.unsplash.com/photo-1606229365485-93a3b8ee0385?w=500&q=80'},
+      {id:3,model:'TL-SG108',name:'8-Port Gigabit Switch',desc:'Unmanaged 8-port gigabit switch, plug & play',price:29,badge:null,img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80'},
+      {id:4,model:'EAP670',name:'AX3600 Access Point',desc:'Wi-Fi 6 ceiling AP, 3600Mbps, PoE, Omada',price:119,badge:'Pro',img:'https://images.unsplash.com/photo-1573160103600-4e5efb14a7e6?w=500&q=80'},
+      {id:5,model:'TL-SG1016PE',name:'16-Port PoE Switch',desc:'16-port gigabit PoE+ switch, 120W, rack',price:179,badge:'New',img:'https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500&q=80'},
+      {id:6,model:'Archer AX23',name:'AX1800 Dual-Band Router',desc:'Wi-Fi 6 router, 1800Mbps, OFDMA, MU-MIMO',price:69,badge:'Sale',img:'https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=500&q=80'},
+    ]
+  },
+  hddstore: {
+    label: 'HDD Store', initials: 'HD', color: '#8ba4c2',
+    file: 'hddstore.html',
+    products: [
+      {id:1,model:'WD Purple 4TB',name:'WD Purple 4TB HDD',desc:'Surveillance 4TB drive, 180TB/year workload',price:89,badge:'Hot',img:'https://images.unsplash.com/photo-1560472355-536de3962603?w=500&q=80'},
+      {id:2,model:'ST6000VX009',name:'Seagate SkyHawk 6TB',desc:'6TB surveillance HDD, 24/7, 16-cam support',price:139,badge:'New',img:'https://images.unsplash.com/photo-1606229365485-93a3b8ee0385?w=500&q=80'},
+      {id:3,model:'WD Purple 8TB',name:'WD Purple Pro 8TB',desc:'8TB pro NVR drive, AI-enabled, 550TB/year',price:199,badge:'Pro',img:'https://images.unsplash.com/photo-1573160103600-4e5efb14a7e6?w=500&q=80'},
+      {id:4,model:'DT01ABA200V',name:'Toshiba 2TB S300',desc:'2TB surveillance HDD, vibration compensation',price:59,badge:null,img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80'},
+      {id:5,model:'ST2000VX017',name:'Seagate SkyHawk 2TB',desc:'2TB entry-level surveillance HDD, 8 cameras',price:55,badge:'Sale',img:'https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500&q=80'},
+      {id:6,model:'WD Purple 12TB',name:'WD Purple 12TB',desc:'12TB high-capacity surveillance, 64 cameras',price:289,badge:'New',img:'https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=500&q=80'},
+    ]
+  }
+};
+
+// Load saved data from localStorage
+function loadData(){
+  Object.keys(brandsData).forEach(key=>{
+    const saved = localStorage.getItem('products_'+key);
+    if(saved){
+      try{ brandsData[key].products = JSON.parse(saved); }catch(e){}
+    }
+  });
+}
+
+let currentBrand = 'hikvision';
+let editingImgTarget = null;
+let nextId = 100;
+
+function buildSidebar(){
+  const sb = document.getElementById('sidebar');
+  sb.innerHTML = '<div class="sidebar-section">Brands</div>' +
+    Object.entries(brandsData).map(([key,b])=>`
+      <div class="brand-btn ${key===currentBrand?'active':''}" onclick="switchBrand('${key}')">
+        <div class="brand-dot" style="background:${b.color}"></div>
+        ${b.label}
+        <span class="brand-count">${b.products.length}</span>
+      </div>
+    `).join('');
+}
+
+function switchBrand(key){
+  currentBrand = key;
+  buildSidebar();
+  renderBrand();
+}
+
+function renderBrand(){
+  const b = brandsData[currentBrand];
+  document.getElementById('brandIcon').textContent = b.initials;
+  document.getElementById('brandHeading').innerHTML = `${b.label} <em>Products</em>`;
+  document.getElementById('brandSub').textContent = `${b.products.length} products • Click any field to edit`;
+
+  const grid = document.getElementById('productsGrid');
+  if(b.products.length===0){
+    grid.innerHTML=`<div class="empty-state" style="grid-column:1/-1"><div class="empty-icon">📦</div><p>No products yet. Click "Add Product" to start.</p></div>`;
+    return;
+  }
+  grid.innerHTML = b.products.map((p,i)=>`
+    <div class="prod-card" id="card-${p.id}">
+      <div class="prod-img-wrap">
+        <img id="img-${p.id}" src="${p.img}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=500&q=80'"/>
+        <div class="img-overlay">
+          <button class="img-btn" onclick="openImgModal(${p.id})">
+            📷 Change Photo
+          </button>
+        </div>
+        <div class="badge-wrap">
+          ${p.badge?`<span class="badge b-${p.badge.toLowerCase()}">${p.badge}</span>`:''}
+        </div>
+      </div>
+      <div class="prod-body">
+        <div class="prod-fields">
+          <div class="field-group">
+            <label class="field-label">Product Name</label>
+            <input class="field-input" id="name-${p.id}" value="${p.name}" placeholder="Product name"/>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label class="field-label">Model</label>
+              <input class="field-input" id="model-${p.id}" value="${p.model}" placeholder="Model no."/>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Price ($)</label>
+              <input class="field-input price-input" id="price-${p.id}" type="number" value="${p.price}" placeholder="0"/>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Description</label>
+            <input class="field-input" id="desc-${p.id}" value="${p.desc}" placeholder="Short description"/>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Badge</label>
+            <select class="badge-select" id="badge-${p.id}">
+              <option value="" ${!p.badge?'selected':''}>None</option>
+              <option value="New" ${p.badge==='New'?'selected':''}>New</option>
+              <option value="Hot" ${p.badge==='Hot'?'selected':''}>Hot</option>
+              <option value="Pro" ${p.badge==='Pro'?'selected':''}>Pro</option>
+              <option value="Sale" ${p.badge==='Sale'?'selected':''}>Sale</option>
+            </select>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="delete-btn" onclick="deleteProduct(${p.id})">✕ Delete</button>
+          <div class="saved-indicator" id="saved-${p.id}">✓ Saved</div>
+          <button class="save-btn" onclick="saveProduct(${p.id})">Save</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function saveProduct(id){
+  const b = brandsData[currentBrand];
+  const p = b.products.find(x=>x.id===id);
+  if(!p) return;
+  p.name = document.getElementById('name-'+id).value;
+  p.model = document.getElementById('model-'+id).value;
+  p.price = parseFloat(document.getElementById('price-'+id).value)||0;
+  p.desc = document.getElementById('desc-'+id).value;
+  p.badge = document.getElementById('badge-'+id).value || null;
+  localStorage.setItem('products_'+currentBrand, JSON.stringify(b.products));
+  const ind = document.getElementById('saved-'+id);
+  ind.style.display='flex';
+  setTimeout(()=>ind.style.display='none',2000);
+  showToast('✓ Product saved!');
+}
+
+function saveAll(){
+  Object.keys(brandsData).forEach(key=>{
+    localStorage.setItem('products_'+key, JSON.stringify(brandsData[key].products));
+  });
+  showToast('✓ All products saved!');
+}
+
+function deleteProduct(id){
+  if(!confirm('Delete this product?')) return;
+  const b = brandsData[currentBrand];
+  b.products = b.products.filter(p=>p.id!==id);
+  localStorage.setItem('products_'+currentBrand, JSON.stringify(b.products));
+  renderBrand();
+  buildSidebar();
+  showToast('Product deleted');
+}
+
+// IMAGE MODAL
+function openImgModal(id){
+  editingImgTarget = id;
+  document.getElementById('imgUrlInput').value = '';
+  document.getElementById('imgPreview').style.display='none';
+  document.getElementById('imgModal').classList.add('open');
+}
+function closeImgModal(){
+  document.getElementById('imgModal').classList.remove('open');
+  editingImgTarget = null;
+}
+function previewImg(){
+  const url = document.getElementById('imgUrlInput').value.trim();
+  const prev = document.getElementById('imgPreview');
+  if(url){prev.src=url;prev.style.display='block';}
+  else{prev.style.display='none';}
+}
+function applyImg(){
+  const url = document.getElementById('imgUrlInput').value.trim();
+  if(!url){showToast('Please enter an image URL');return;}
+  const b = brandsData[currentBrand];
+  const p = b.products.find(x=>x.id===editingImgTarget);
+  if(p){
+    p.img = url;
+    const imgEl = document.getElementById('img-'+editingImgTarget);
+    if(imgEl) imgEl.src = url;
+    localStorage.setItem('products_'+currentBrand, JSON.stringify(b.products));
+    showToast('✓ Image updated!');
+  }
+  closeImgModal();
+}
+
+// ADD MODAL
+function openAddModal(){
+  document.getElementById('addName').value='';
+  document.getElementById('addModel').value='';
+  document.getElementById('addPrice').value='';
+  document.getElementById('addDesc').value='';
+  document.getElementById('addBadge').value='';
+  document.getElementById('addImg').value='';
+  document.getElementById('addImgPreview').style.display='none';
+  document.getElementById('addModal').classList.add('open');
+}
+function closeAddModal(){
+  document.getElementById('addModal').classList.remove('open');
+}
+function previewAddImg(){
+  const url = document.getElementById('addImg').value.trim();
+  const prev = document.getElementById('addImgPreview');
+  if(url){prev.src=url;prev.style.display='block';}
+  else{prev.style.display='none';}
+}
+function addProduct(){
+  const name = document.getElementById('addName').value.trim();
+  const price = parseFloat(document.getElementById('addPrice').value)||0;
+  if(!name||!price){showToast('Name and Price are required');return;}
+  const newProd = {
+    id: nextId++,
+    name,
+    model: document.getElementById('addModel').value.trim(),
+    price,
+    desc: document.getElementById('addDesc').value.trim(),
+    badge: document.getElementById('addBadge').value||null,
+    img: document.getElementById('addImg').value.trim()||'https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=500&q=80'
+  };
+  brandsData[currentBrand].products.push(newProd);
+  localStorage.setItem('products_'+currentBrand, JSON.stringify(brandsData[currentBrand].products));
+  closeAddModal();
+  renderBrand();
+  buildSidebar();
+  showToast('✓ Product added!');
+}
+
+function showToast(msg){
+  const el=document.getElementById('toast');
+  document.getElementById('toastMsg').textContent=msg;
+  el.classList.add('show');
+  clearTimeout(window._t);
+  window._t=setTimeout(()=>el.classList.remove('show'),2800);
+}
+
+// Close modals on overlay click
+document.getElementById('imgModal').addEventListener('click',function(e){if(e.target===this)closeImgModal();});
+document.getElementById('addModal').addEventListener('click',function(e){if(e.target===this)closeAddModal();});
+
+// INIT
+loadData();
+buildSidebar();
+renderBrand();
+</script>
+</body>
+</html>
