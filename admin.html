@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Admin — AIRTECH ONE</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#050810;--bg2:#080c16;--surface:#0d1424;--surface2:#121a2e;
+  --border:#1c2d4a;--border2:#243652;
+  --gold:#c9a96e;--gold2:#e8c98a;--gold3:#f5e0b0;
+  --goldfaint:rgba(201,169,110,0.08);
+  --text:#eef2f8;--text2:#8ba4c2;--text3:#445e7a;
+  --red:#e05c6e;--green:#3ecf8e;--yellow:#e8b84b;--purple:#9d7fe0;
+  --radius:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg2);}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
+
+/* LOGIN */
+.login-screen{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;}
+.login-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(201,169,110,0.06) 0%,transparent 60%);}
+.login-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,169,110,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(201,169,110,0.06) 1px,transparent 1px);background-size:50px 50px;mask-image:radial-gradient(ellipse at center,black 20%,transparent 75%);}
+.login-box{position:relative;z-index:1;background:var(--surface);border:1px solid rgba(201,169,110,0.15);border-radius:20px;padding:2.5rem;width:100%;max-width:380px;animation:fadeUp .6s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.login-logo{text-align:center;margin-bottom:2rem;}
+.login-logo-text{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text);}
+.login-logo-text em{color:var(--gold);font-style:normal;}
+.login-logo-sub{font-size:.68rem;color:var(--text3);text-transform:uppercase;letter-spacing:.16em;margin-top:6px;}
+.login-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:1.5rem;text-align:center;color:var(--text2);}
+.form-group{margin-bottom:1rem;}
+.form-label{display:block;font-size:.7rem;color:var(--text3);margin-bottom:6px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;}
+.form-input{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:11px 14px;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.88rem;outline:none;transition:border-color .2s;}
+.form-input:focus{border-color:rgba(201,169,110,0.4);}
+.form-input::placeholder{color:var(--text3);}
+.login-btn{width:100%;margin-top:.5rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#050810;border:none;cursor:pointer;padding:13px;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:all .25s;}
+.login-btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(201,169,110,0.28);}
+.login-err{color:var(--red);font-size:.78rem;text-align:center;margin-top:.75rem;display:none;}
+
+/* DASHBOARD */
+.dashboard{display:none;}
+.sidebar{position:fixed;top:0;left:0;bottom:0;width:240px;z-index:100;background:var(--bg2);border-right:1px solid rgba(201,169,110,0.08);display:flex;flex-direction:column;transition:transform .3s;}
+.sidebar-logo{padding:1.4rem 1.5rem;border-bottom:1px solid rgba(201,169,110,0.08);font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;}
+.sidebar-logo em{color:var(--gold);font-style:normal;}
+.sidebar-logo span{font-size:.62rem;color:var(--text3);display:block;text-transform:uppercase;letter-spacing:.12em;margin-top:3px;font-family:'Outfit',sans-serif;}
+.sidebar-nav{flex:1;padding:1rem .75rem;overflow-y:auto;}
+.nav-section-title{font-size:.6rem;color:var(--text3);text-transform:uppercase;letter-spacing:.14em;font-weight:600;padding:.5rem .75rem;margin-top:.5rem;}
+.nav-item{display:flex;align-items:center;gap:.75rem;padding:9px 12px;border-radius:6px;cursor:pointer;color:var(--text3);font-size:.82rem;font-weight:500;transition:all .2s;margin-bottom:2px;}
+.nav-item:hover{background:var(--surface);color:var(--text2);}
+.nav-item.active{background:var(--goldfaint);color:var(--gold);border-left:2px solid var(--gold);padding-left:10px;}
+.nav-item svg{flex-shrink:0;opacity:.6;}
+.nav-item.active svg{opacity:1;}
+.sidebar-footer{padding:1rem 1.5rem;border-top:1px solid rgba(201,169,110,0.08);}
+.admin-badge{display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem;}
+.admin-avatar{width:30px;height:30px;border-radius:50%;background:var(--goldfaint);border:1px solid rgba(201,169,110,0.2);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:.72rem;font-weight:700;font-family:'Cormorant Garamond',serif;}
+.admin-name{font-size:.78rem;color:var(--text2);font-weight:500;}
+.logout-btn{background:rgba(224,92,110,0.08);border:1px solid rgba(224,92,110,0.2);color:var(--red);cursor:pointer;padding:7px 14px;border-radius:6px;font-family:'Outfit',sans-serif;font-size:.75rem;font-weight:600;transition:all .2s;display:flex;align-items:center;gap:6px;width:100%;margin-top:.4rem;}
+.logout-btn:hover{background:rgba(224,92,110,0.15);}
+.topbar{position:fixed;top:0;left:240px;right:0;height:64px;z-index:99;background:rgba(5,8,16,0.96);backdrop-filter:blur(28px);border-bottom:1px solid rgba(201,169,110,0.08);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;}
+.topbar-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;letter-spacing:.06em;color:var(--text);}
+.topbar-right{display:flex;align-items:center;gap:1rem;}
+.topbar-btn{background:var(--surface);border:1px solid var(--border);color:var(--text3);cursor:pointer;padding:7px 14px;border-radius:6px;font-family:'Outfit',sans-serif;font-size:.75rem;font-weight:500;transition:all .2s;display:flex;align-items:center;gap:6px;text-decoration:none;}
+.topbar-btn:hover{border-color:rgba(201,169,110,0.3);color:var(--gold);}
+.online-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.main{margin-left:240px;padding-top:64px;min-height:100vh;}
+.page{display:none;padding:2rem;}
+.page.active{display:block;}
+
+/* CARDS */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.25rem;margin-bottom:2rem;}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem;transition:all .3s;animation:fadeUp .5s ease both;}
+.stat-card:hover{border-color:rgba(201,169,110,0.2);transform:translateY(-2px);}
+.stat-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:.9rem;font-size:1.1rem;}
+.stat-val{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;line-height:1;margin-bottom:.2rem;}
+.stat-label{font-size:.68rem;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;}
+.stat-change{font-size:.7rem;margin-top:.4rem;display:flex;align-items:center;gap:4px;}
+.up{color:var(--green);}.down{color:var(--red);}
+.charts-row{display:grid;grid-template-columns:2fr 1fr;gap:1.25rem;margin-bottom:2rem;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;}
+.card-title{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;letter-spacing:.06em;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:space-between;color:var(--text);}
+.card-badge{font-size:.6rem;padding:3px 10px;border-radius:50px;font-family:'Outfit',sans-serif;background:var(--goldfaint);color:var(--gold);border:1px solid rgba(201,169,110,0.2);}
+.bar-chart{display:flex;align-items:flex-end;gap:8px;height:120px;}
+.bar{flex:1;border-radius:3px 3px 0 0;background:linear-gradient(180deg,var(--gold),rgba(201,169,110,0.15));transition:all .3s;cursor:pointer;position:relative;min-width:0;}
+.bar:hover{opacity:.75;}
+.bar-label{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font-size:.58rem;color:var(--text3);white-space:nowrap;}
+.table-wrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;}
+th{font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);font-weight:600;padding:.6rem 1rem;border-bottom:1px solid var(--border);text-align:left;}
+td{padding:.75rem 1rem;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--text2);}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:var(--surface2);color:var(--text);}
+.status-badge{display:inline-flex;padding:3px 10px;border-radius:50px;font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+.s-paid{background:rgba(62,207,142,0.1);color:var(--green);border:1px solid rgba(62,207,142,0.2);}
+.s-pending{background:rgba(232,184,75,0.1);color:var(--yellow);border:1px solid rgba(232,184,75,0.2);}
+.s-cancelled{background:rgba(224,92,110,0.1);color:var(--red);border:1px solid rgba(224,92,110,0.2);}
+.page-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;letter-spacing:.04em;}
+.btn-add{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#050810;border:none;cursor:pointer;padding:9px 20px;border-radius:6px;font-family:'Outfit',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:6px;transition:all .2s;}
+.btn-add:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(201,169,110,0.25);}
+.search-input{background:var(--surface);border:1px solid var(--border);color:var(--text);padding:9px 14px;border-radius:6px;font-family:'Outfit',sans-serif;font-size:.82rem;outline:none;width:240px;transition:border-color .2s;}
+.search-input:focus{border-color:rgba(201,169,110,0.3);}
+.search-input::placeholder{color:var(--text3);}
+.brand-pills{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem;}
+.pill{background:var(--surface);border:1px solid var(--border);color:var(--text3);cursor:pointer;padding:6px 14px;border-radius:50px;font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:500;transition:all .2s;}
+.pill:hover,.pill.active{background:var(--goldfaint);color:var(--gold);border-color:rgba(201,169,110,0.3);}
+.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
+.setting-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;}
+.setting-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;margin-bottom:1.25rem;letter-spacing:.04em;}
+.setting-row{display:flex;align-items:center;justify-content:space-between;padding:.6rem 0;border-bottom:1px solid var(--border);}
+.setting-row:last-child{border-bottom:none;}
+.setting-label{font-size:.8rem;color:var(--text2);}
+.toggle{width:36px;height:20px;border-radius:10px;cursor:pointer;background:var(--border);position:relative;transition:background .2s;flex-shrink:0;}
+.toggle.on{background:var(--gold);}
+.toggle::after{content:'';position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:#fff;transition:transform .2s;}
+.toggle.on::after{transform:translateX(16px);}
+.visitors-list{display:flex;flex-direction:column;gap:.5rem;}
+.visitor-item{display:flex;align-items:center;justify-content:space-between;padding:.6rem .75rem;border-radius:8px;background:var(--surface2);font-size:.78rem;}
+.visitor-country{display:flex;align-items:center;gap:.5rem;color:var(--text2);}
+.visitor-count{color:var(--gold);font-weight:600;font-family:'Cormorant Garamond',serif;font-size:1rem;}
+@media(max-width:768px){
+  .sidebar{transform:translateX(-100%);}
+  .sidebar.open{transform:translateX(0);}
+  .main{margin-left:0;}
+  .topbar{left:0;}
+  .charts-row{grid-template-columns:1fr;}
+  .settings-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="login-screen" id="loginScreen">
+  <div class="login-bg"></div>
+  <div class="login-grid"></div>
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="login-logo-text"><em>AIRTECH</em> ONE</div>
+      <div class="login-logo-sub">Admin Panel</div>
+    </div>
+    <div class="login-title">Sign In</div>
+    <div class="form-group">
+      <label class="form-label">Username</label>
+      <input class="form-input" type="text" id="loginUser" placeholder="admin"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Password</label>
+      <input class="form-input" type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/>
+    </div>
+    <button class="login-btn" onclick="doLogin()">Login to Dashboard</button>
+    <div class="login-err" id="loginErr">✕ Wrong username or password</div>
+  </div>
+</div>
+
+<div class="dashboard" id="dashboard">
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-logo"><em>AIRTECH</em> ONE<span>Admin Dashboard</span></div>
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Main</div>
+      <div class="nav-item active" onclick="showPage('overview',this)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Overview
+      </div>
+      <div class="nav-item" onclick="showPage('orders',this)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>Orders
+      </div>
+      <div class="nav-item" onclick="showPage('products',this)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>Products
+      </div>
+      <div class="nav-item" onclick="showPage('customers',this)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Customers
+      </div>
+      <div class="nav-section-title">Analytics</div>
+      <div class="nav-item" onclick="showPage('analytics',this)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Analytics
+      </div>
+      <div class="nav-item" onclick="showPage('visitors',this)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Visitors
+      </div>
+      <div class="nav-section-title">System</div>
+      <div class="nav-item" onclick="showPage('settings',this)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Settings
+      </div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="admin-badge">
+        <div class="admin-avatar">A</div>
+        <div><div class="admin-name">Admin</div><div style="font-size:.62rem;color:var(--text3)">admin@airtech.one</div></div>
+      </div>
+      <button class="logout-btn" onclick="doLogout()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Logout
+      </button>
+    </div>
+  </div>
+
+  <div class="topbar">
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <button class="topbar-btn" id="menuBtn" onclick="toggleSidebar()" style="display:none">☰</button>
+      <div class="topbar-title" id="topbarTitle">Overview</div>
+    </div>
+    <div class="topbar-right">
+      <div style="display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--text3);"><div class="online-dot"></div>Live</div>
+      <a href="airtech_improved.html" class="topbar-btn" style="text-decoration:none;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>View Site
+      </a>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="page active" id="page-overview">
+      <div class="stats-grid">
+        <div class="stat-card" style="animation-delay:.05s"><div class="stat-icon" style="background:var(--goldfaint);color:var(--gold)">💰</div><div class="stat-val" style="color:var(--gold)">$24,580</div><div class="stat-label">Total Revenue</div><div class="stat-change up">▲ 18.4% this month</div></div>
+        <div class="stat-card" style="animation-delay:.1s"><div class="stat-icon" style="background:rgba(62,207,142,.1);color:var(--green)">🛒</div><div class="stat-val" style="color:var(--green)">342</div><div class="stat-label">Total Orders</div><div class="stat-change up">▲ 12.1% this month</div></div>
+        <div class="stat-card" style="animation-delay:.15s"><div class="stat-icon" style="background:rgba(157,127,224,.1);color:var(--purple)">👥</div><div class="stat-val" style="color:var(--purple)">1,284</div><div class="stat-label">Customers</div><div class="stat-change up">▲ 8.7% this month</div></div>
+        <div class="stat-card" style="animation-delay:.2s"><div class="stat-icon" style="background:rgba(232,184,75,.1);color:var(--yellow)">📦</div><div class="stat-val" style="color:var(--yellow)">271</div><div class="stat-label">Products</div><div class="stat-change down">▼ 2 out of stock</div></div>
+      </div>
+      <div class="charts-row">
+        <div class="card"><div class="card-title">Sales This Week<span class="card-badge">Live</span></div><div class="bar-chart" id="barChart"></div><div style="height:24px"></div></div>
+        <div class="card"><div class="card-title">Top Brands</div><div id="topBrands"></div></div>
+      </div>
+      <div class="card"><div class="card-title">Recent Orders</div><div class="table-wrap"><table><thead><tr><th>Order ID</th><th>Customer</th><th>Product</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead><tbody id="ordersTable"></tbody></table></div></div>
+    </div>
+
+    <div class="page" id="page-orders">
+      <div class="page-header"><div class="page-title">All Orders</div><input class="search-input" placeholder="Search orders..." oninput="filterOrders(this.value)"/></div>
+      <div class="card"><div class="table-wrap"><table><thead><tr><th>Order ID</th><th>Customer</th><th>Product</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead><tbody id="allOrdersTable"></tbody></table></div></div>
+    </div>
+
+    <div class="page" id="page-products">
+      <div class="page-header"><div class="page-title">Products</div><div style="display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;"><input class="search-input" placeholder="Search products..."/><button class="btn-add">+ Add Product</button></div></div>
+      <div class="brand-pills" id="brandPills"></div>
+      <div class="card"><div class="table-wrap"><table><thead><tr><th>Product</th><th>Brand</th><th>Model</th><th>Price</th><th>Stock</th><th>Action</th></tr></thead><tbody id="productsTable"></tbody></table></div></div>
+    </div>
+
+    <div class="page" id="page-customers">
+      <div class="page-header"><div class="page-title">Customers</div><input class="search-input" placeholder="Search customers..."/></div>
+      <div class="card"><div class="table-wrap"><table><thead><tr><th>Name</th><th>Email</th><th>Country</th><th>Orders</th><th>Total Spent</th><th>Joined</th></tr></thead><tbody id="customersTable"></tbody></table></div></div>
+    </div>
+
+    <div class="page" id="page-analytics">
+      <div class="page-title" style="margin-bottom:1.5rem;font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;">Analytics</div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-icon" style="background:var(--goldfaint);color:var(--gold)">👁️</div><div class="stat-val" style="color:var(--gold)">48,291</div><div class="stat-label">Page Views</div><div class="stat-change up">▲ 22% this week</div></div>
+        <div class="stat-card"><div class="stat-icon" style="background:rgba(62,207,142,.1);color:var(--green)">🖱️</div><div class="stat-val" style="color:var(--green)">3.2%</div><div class="stat-label">Click Rate</div><div class="stat-change up">▲ 0.4%</div></div>
+        <div class="stat-card"><div class="stat-icon" style="background:rgba(232,184,75,.1);color:var(--yellow)">⏱️</div><div class="stat-val" style="color:var(--yellow)">4:32</div><div class="stat-label">Avg. Session</div><div class="stat-change up">▲ 30s</div></div>
+        <div class="stat-card"><div class="stat-icon" style="background:rgba(224,92,110,.1);color:var(--red)">📉</div><div class="stat-val" style="color:var(--red)">38%</div><div class="stat-label">Bounce Rate</div><div class="stat-change down">▼ 5% better</div></div>
+      </div>
+      <div class="card" style="margin-top:1.25rem"><div class="card-title">Monthly Revenue<span class="card-badge">2026</span></div><div class="bar-chart" id="monthChart"></div><div style="height:24px"></div></div>
+    </div>
+
+    <div class="page" id="page-visitors">
+      <div class="page-title" style="margin-bottom:1.5rem;font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;">Visitors by Country</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;">
+        <div class="card"><div class="card-title">Top Countries</div><div class="visitors-list" id="visitorsList"></div></div>
+        <div class="card"><div class="card-title">Device Types</div><div id="deviceList" style="display:flex;flex-direction:column;gap:.5rem;"></div></div>
+      </div>
+    </div>
+
+    <div class="page" id="page-settings">
+      <div class="page-title" style="margin-bottom:1.5rem;font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;">Settings</div>
+      <div class="settings-grid">
+        <div class="setting-card"><div class="setting-title">Store Info</div><div class="form-group"><label class="form-label" style="font-size:.68rem;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:5px;">Store Name</label><input class="form-input" value="AIRTECH ONE"/></div><div class="form-group"><label class="form-label" style="font-size:.68rem;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:5px;">Email</label><input class="form-input" value="admin@airtech.one"/></div><div class="form-group"><label class="form-label" style="font-size:.68rem;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:5px;">Phone</label><input class="form-input" value="+966 550 898 978"/></div><button class="btn-add" style="margin-top:.5rem">Save Changes</button></div>
+        <div class="setting-card"><div class="setting-title">Notifications</div><div class="setting-row"><span class="setting-label">New Orders</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div><div class="setting-row"><span class="setting-label">Low Stock Alert</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div><div class="setting-row"><span class="setting-label">Customer Reviews</span><div class="toggle" onclick="this.classList.toggle('on')"></div></div><div class="setting-row"><span class="setting-label">Daily Report</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div><div class="setting-row"><span class="setting-label">Security Alerts</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div></div>
+        <div class="setting-card"><div class="setting-title">Security</div><div class="form-group"><label class="form-label" style="font-size:.68rem;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:5px;">Current Password</label><input class="form-input" type="password" placeholder="••••••••"/></div><div class="form-group"><label class="form-label" style="font-size:.68rem;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:5px;">New Password</label><input class="form-input" type="password" placeholder="••••••••"/></div><button class="btn-add" style="margin-top:.5rem">Update Password</button></div>
+        <div class="setting-card"><div class="setting-title">Store Features</div><div class="setting-row"><span class="setting-label">Maintenance Mode</span><div class="toggle" onclick="this.classList.toggle('on')"></div></div><div class="setting-row"><span class="setting-label">Allow Reviews</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div><div class="setting-row"><span class="setting-label">Guest Checkout</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div><div class="setting-row"><span class="setting-label">Show Stock Count</span><div class="toggle" onclick="this.classList.toggle('on')"></div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const ADMIN_USER='admin',ADMIN_PASS='airtech2026';
+function doLogin(){
+  const u=document.getElementById('loginUser').value.trim();
+  const p=document.getElementById('loginPass').value;
+  if(u===ADMIN_USER&&p===ADMIN_PASS){document.getElementById('loginScreen').style.display='none';document.getElementById('dashboard').style.display='block';initDashboard();}
+  else{const e=document.getElementById('loginErr');e.style.display='block';setTimeout(()=>e.style.display='none',3000);}
+}
+function doLogout(){document.getElementById('dashboard').style.display='none';document.getElementById('loginScreen').style.display='flex';document.getElementById('loginUser').value='';document.getElementById('loginPass').value='';}
+function showPage(name,el){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+name).classList.add('active');document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));el.classList.add('active');document.getElementById('topbarTitle').textContent=el.textContent.trim();if(window.innerWidth<=768)document.getElementById('sidebar').classList.remove('open');}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');}
+const orders=[
+  {id:'#AT-1082',customer:'Ahmed Al-Rashid',product:'HiKvision Dome 4MP',amount:189,status:'paid',date:'Mar 14'},
+  {id:'#AT-1081',customer:'Sara Khan',product:'EZVIZ C3W Pro',amount:69,status:'paid',date:'Mar 14'},
+  {id:'#AT-1080',customer:'Mohammed Ali',product:'TP-Link Archer AX23',amount:69,status:'pending',date:'Mar 13'},
+  {id:'#AT-1079',customer:'Fatima Zahra',product:'Dahua NVR 8CH',amount:279,status:'paid',date:'Mar 13'},
+  {id:'#AT-1078',customer:'Omar Siddiqui',product:'WD Purple 4TB HDD',amount:89,status:'cancelled',date:'Mar 12'},
+  {id:'#AT-1077',customer:'Layla Hassan',product:'Tapo C220',amount:29,status:'paid',date:'Mar 12'},
+  {id:'#AT-1076',customer:'Yusuf Al-Farsi',product:'IMOU Bullet 4MP',amount:45,status:'pending',date:'Mar 11'},
+  {id:'#AT-1075',customer:'Noor Malik',product:'HiKvision PTZ Dome',amount:599,status:'paid',date:'Mar 11'},
+];
+const customers=[
+  {name:'Ahmed Al-Rashid',email:'ahmed@example.com',country:'🇸🇦 Saudi Arabia',orders:8,spent:'$1,240',joined:'Jan 2026'},
+  {name:'Sara Khan',email:'sara@example.com',country:'🇵🇰 Pakistan',orders:3,spent:'$340',joined:'Feb 2026'},
+  {name:'Mohammed Ali',email:'m.ali@example.com',country:'🇦🇪 UAE',orders:12,spent:'$2,890',joined:'Dec 2025'},
+  {name:'Fatima Zahra',email:'fatima@example.com',country:'🇲🇦 Morocco',orders:5,spent:'$780',joined:'Jan 2026'},
+  {name:'Omar Siddiqui',email:'omar@example.com',country:'🇮🇳 India',orders:2,spent:'$158',joined:'Mar 2026'},
+  {name:'Layla Hassan',email:'layla@example.com',country:'🇪🇬 Egypt',orders:7,spent:'$920',joined:'Nov 2025'},
+];
+const allProducts=[
+  {name:'AcuSense Dome',brand:'HiKvision',model:'DS-2CD2143G2-I',price:189,stock:24},
+  {name:'ColorVu Bullet',brand:'HiKvision',model:'DS-2CD2T47G2-L',price:229,stock:18},
+  {name:'C3W Pro',brand:'EZVIZ',model:'CS-C3W',price:69,stock:45},
+  {name:'C220 Pan Tilt',brand:'Tapo',model:'C220',price:29,stock:67},
+  {name:'Bullet 2E',brand:'IMOU',model:'IPC-F42FEP',price:45,stock:32},
+  {name:'Archer AXE75',brand:'TP-Link',model:'Archer AXE75',price:199,stock:11},
+  {name:'WD Purple 4TB',brand:'HDD Store',model:'WD40PURX',price:89,stock:28},
+  {name:'IPC-HDW2831T',brand:'Dahua',model:'IPC-HDW2831T',price:129,stock:0},
+];
+function statusBadge(s){const cls={paid:'s-paid',pending:'s-pending',cancelled:'s-cancelled'};return `<span class="status-badge ${cls[s]}">${s}</span>`;}
+function renderOrderRows(data){return data.map(o=>`<tr><td>${o.id}</td><td>${o.customer}</td><td>${o.product}</td><td style="color:var(--gold);font-weight:600">$${o.amount}</td><td>${statusBadge(o.status)}</td><td>${o.date}</td></tr>`).join('');}
+function filterOrders(q){const f=orders.filter(o=>o.customer.toLowerCase().includes(q.toLowerCase())||o.id.toLowerCase().includes(q.toLowerCase())||o.product.toLowerCase().includes(q.toLowerCase()));document.getElementById('allOrdersTable').innerHTML=renderOrderRows(f);}
+function initDashboard(){
+  document.getElementById('ordersTable').innerHTML=renderOrderRows(orders.slice(0,5));
+  document.getElementById('allOrdersTable').innerHTML=renderOrderRows(orders);
+  const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],vals=[65,80,45,90,72,110,88],max=Math.max(...vals);
+  document.getElementById('barChart').innerHTML=vals.map((v,i)=>`<div class="bar" style="height:${(v/max)*100}%" title="$${v*22}"><span class="bar-label">${days[i]}</span></div>`).join('');
+  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],mvals=[40,55,70,60,85,90,75,95,80,100,88,110],mmax=Math.max(...mvals);
+  document.getElementById('monthChart').innerHTML=mvals.map((v,i)=>`<div class="bar" style="height:${(v/mmax)*100}%;background:linear-gradient(180deg,var(--purple),rgba(157,127,224,0.15))" title="${months[i]}"><span class="bar-label">${months[i]}</span></div>`).join('');
+  const brands=[{name:'HiKvision',val:42,color:'var(--red)'},{name:'TP-Link',val:28,color:'var(--gold)'},{name:'Dahua',val:18,color:'var(--yellow)'},{name:'EZVIZ',val:12,color:'var(--green)'}];
+  document.getElementById('topBrands').innerHTML=brands.map(b=>`<div style="margin-bottom:.75rem"><div style="display:flex;justify-content:space-between;font-size:.73rem;margin-bottom:4px"><span style="color:var(--text2)">${b.name}</span><span style="color:${b.color};font-weight:600">${b.val}%</span></div><div style="height:4px;background:var(--border);border-radius:2px;overflow:hidden"><div style="height:100%;width:${b.val}%;background:${b.color};border-radius:2px;transition:width .6s ease"></div></div></div>`).join('');
+  const brandSet=['All',...new Set(allProducts.map(p=>p.brand))];
+  document.getElementById('brandPills').innerHTML=brandSet.map((b,i)=>`<div class="pill ${i===0?'active':''}" onclick="filterProducts('${b}',this)">${b}</div>`).join('');
+  renderProductsTable(allProducts);
+  document.getElementById('customersTable').innerHTML=customers.map(c=>`<tr><td style="color:var(--text)">${c.name}</td><td>${c.email}</td><td>${c.country}</td><td>${c.orders}</td><td style="color:var(--gold);font-weight:600">${c.spent}</td><td>${c.joined}</td></tr>`).join('');
+  const countries=[{flag:'🇸🇦',name:'Saudi Arabia',count:12840},{flag:'🇦🇪',name:'UAE',count:8920},{flag:'🇵🇰',name:'Pakistan',count:6230},{flag:'🇮🇳',name:'India',count:4890},{flag:'🇪🇬',name:'Egypt',count:3210},{flag:'🇲🇦',name:'Morocco',count:2140}];
+  document.getElementById('visitorsList').innerHTML=countries.map(c=>`<div class="visitor-item"><div class="visitor-country">${c.flag} ${c.name}</div><div class="visitor-count">${c.count.toLocaleString()}</div></div>`).join('');
+  const devices=[{name:'📱 Mobile',pct:62},{name:'💻 Desktop',pct:28},{name:'📟 Tablet',pct:10}];
+  document.getElementById('deviceList').innerHTML=devices.map(d=>`<div style="margin-bottom:.5rem"><div style="display:flex;justify-content:space-between;font-size:.73rem;margin-bottom:4px"><span style="color:var(--text2)">${d.name}</span><span style="color:var(--gold);font-weight:600">${d.pct}%</span></div><div style="height:4px;background:var(--border);border-radius:2px"><div style="height:100%;width:${d.pct}%;background:var(--gold);border-radius:2px"></div></div></div>`).join('');
+  if(window.innerWidth<=768)document.getElementById('menuBtn').style.display='flex';
+}
+function renderProductsTable(data){document.getElementById('productsTable').innerHTML=data.map(p=>`<tr><td style="color:var(--text);font-weight:500">${p.name}</td><td><span class="status-badge s-paid">${p.brand}</span></td><td style="font-size:.7rem;color:var(--text3)">${p.model}</td><td style="color:var(--gold);font-weight:600">$${p.price}</td><td style="color:${p.stock===0?'var(--red)':p.stock<10?'var(--yellow)':'var(--green)'}">${p.stock===0?'Out of Stock':p.stock+' units'}</td><td><button style="background:var(--goldfaint);border:1px solid rgba(201,169,110,0.2);color:var(--gold);padding:4px 10px;border-radius:4px;cursor:pointer;font-size:.68rem;font-family:Outfit,sans-serif;font-weight:600">Edit</button></td></tr>`).join('');}
+function filterProducts(brand,el){document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));el.classList.add('active');renderProductsTable(brand==='All'?allProducts:allProducts.filter(p=>p.brand===brand));}
+window.addEventListener('resize',()=>{const btn=document.getElementById('menuBtn');if(btn)btn.style.display=window.innerWidth<=768?'flex':'none';});
+</script>
+</body>
+</html>
