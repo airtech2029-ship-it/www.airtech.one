@@ -1,20 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AirTech One</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
+
 body{
 font-family:Arial;
+margin:0;
 background:#0f172a;
 color:white;
-text-align:center;
 }
 
 header{
 background:#111827;
 padding:20px;
+text-align:center;
 font-size:28px;
+font-weight:bold;
+}
+
+nav{
+background:#1f2937;
+padding:10px;
+text-align:center;
+}
+
+nav a{
+color:white;
+margin:10px;
+text-decoration:none;
+font-size:18px;
+}
+
+.hero{
+text-align:center;
+padding:40px;
 }
 
 .products{
@@ -22,14 +45,15 @@ display:flex;
 flex-wrap:wrap;
 justify-content:center;
 gap:20px;
-margin-top:30px;
+padding:20px;
 }
 
 .card{
 background:#1f2937;
 padding:20px;
 border-radius:10px;
-width:200px;
+width:220px;
+text-align:center;
 }
 
 .card img{
@@ -46,11 +70,14 @@ cursor:pointer;
 }
 
 footer{
-margin-top:40px;
-padding:20px;
 background:#111827;
+text-align:center;
+padding:20px;
+margin-top:40px;
 }
+
 </style>
+
 </head>
 
 <body>
@@ -59,27 +86,47 @@ background:#111827;
 AirTech One
 </header>
 
-<h2>Security Cameras & Networking</h2>
+<nav>
+<a href="#">Home</a>
+<a href="#">Hikvision</a>
+<a href="#">Dahua</a>
+<a href="#">EZVIZ</a>
+<a href="#">TP-Link</a>
+<a href="#">Contact</a>
+</nav>
 
-<div class="products">
+<section class="hero">
+<h2>Security Cameras & Networking Store</h2>
+<p>Best CCTV Cameras and Networking Products</p>
+</section>
+
+<section class="products">
 
 <div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Security-camera.jpg">
+<img src="images/camera.jpg">
 <h3>Security Camera</h3>
 <p>$45</p>
 <button>Add to Cart</button>
 </div>
 
 <div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Network_router.jpg">
-<h3>WiFi Router</h3>
+<img src="images/camera.jpg">
+<h3>HD CCTV Camera</h3>
+<p>$55</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="images/camera.jpg">
+<h3>WiFi Camera</h3>
 <p>$60</p>
 <button>Add to Cart</button>
 </div>
 
-</div>
+</section>
 
 <footer>
+<h3>AirTech One</h3>
 <p>Phone: +966550898978</p>
 <p>Email: admin@airtech.one</p>
 </footer>
