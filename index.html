@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AirTech One - Saudi's Largest Inventory</title>
+    <title>AirTech One - Official Inventory</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:'Poppins', sans-serif; background:#f0f2f5; color:#1a1a1a; }
+        body { font-family:'Poppins', sans-serif; background:#f4f7fe; color:#333; }
         
-        /* Fixed Header: Logo Center, Login Right */
         header { 
             background:#0d47a1; 
             color:white; 
@@ -29,59 +28,58 @@
             align-items:center; 
             position: relative; 
         }
-        .logo { font-size:1.8rem; font-weight:700; letter-spacing: 1px; }
-        .login-btn { position: absolute; right: 20px; color: white; font-size: 1.6rem; cursor: pointer; transition: 0.3s; }
-        .login-btn:hover { color: #00d4ff; }
+        .logo { font-size:1.8rem; font-weight:700; white-space: nowrap; }
+        .login-btn { position: absolute; right: 20px; color: white; font-size: 1.6rem; }
 
-        /* Search & Hero */
-        .hero { 
-            background: linear-gradient(135deg, #0d47a1 0%, #002171 100%);
-            padding: 50px 20px; text-align: center; color: white; 
-        }
-        .search-container { max-width: 700px; margin: 25px auto 0; position: relative; }
+        .search-area { background: #0d47a1; padding: 40px 20px; text-align: center; color: white; }
+        .search-container { max-width: 600px; margin: 20px auto; position: relative; }
         .search-container input { 
-            width: 100%; padding: 18px 30px; border-radius: 50px; border: none; font-size: 1.1rem; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2); outline: none;
+            width: 100%; padding: 15px 25px; border-radius: 50px; border: none; font-size: 1rem; outline: none;
         }
-        .search-icon { position: absolute; right: 25px; top: 18px; color: #0d47a1; font-size: 1.2rem; }
 
-        /* Filter Tabs */
-        .filter-section { 
-            max-width: 1200px; margin: -30px auto 30px; padding: 0 20px; 
-            display: flex; gap: 12px; overflow-x: auto; scrollbar-width: none;
-        }
-        .filter-section::-webkit-scrollbar { display: none; }
-        .brand-tab { 
-            background: white; padding: 12px 25px; border-radius: 30px; cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05); font-weight: 600; white-space: nowrap;
-            border: 2px solid transparent; transition: 0.3s;
-        }
-        .brand-tab.active { border-color: #0d47a1; color: #0d47a1; background: #e3f2fd; }
-
-        /* Product Grid */
-        .inventory { max-width: 1200px; margin: 0 auto; padding: 0 20px 50px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
-        .p-card { 
-            background: white; border-radius: 15px; padding: 25px; border: 1px solid #eee;
-            transition: 0.3s; position: relative; overflow: hidden;
-        }
-        .p-card:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(0,0,0,0.1); }
-        .p-card::before { content: ''; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: #0d47a1; }
+        .inventory-section { max-width: 1200px; margin: 30px auto; padding: 0 20px; min-height: 400px; }
         
-        .p-brand { font-size: 0.8rem; font-weight: 700; color: #0d47a1; text-transform: uppercase; }
-        .p-model { font-size: 1.2rem; font-weight: 700; margin: 10px 0; color: #111; }
-        .p-specs { font-size: 0.9rem; color: #555; line-height: 1.5; margin-bottom: 20px; min-height: 45px; }
-        .p-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 15px; }
-        .p-price { font-size: 1.4rem; font-weight: 700; color: #e63946; }
+        .product-grid { 
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; 
+        }
+        .card { 
+            background: white; border-radius: 12px; padding: 20px; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05); border: 1px solid #eee;
+        }
+        .card .model { font-size: 1.1rem; font-weight: 600; margin: 5px 0; }
+        .card .price { font-size: 1.3rem; font-weight: 700; color: #e63946; margin: 15px 0; }
         .btn-wa { 
-            background: #25D366; color: white; padding: 10px 20px; border-radius: 8px; 
-            text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 8px;
+            display: block; background: #25D366; color: white; text-align: center; 
+            padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 600;
         }
 
-        @media (max-width: 600px) {
-            .logo { font-size: 1.4rem; }
-            .hero h1 { font-size: 1.8rem; }
+        /* CEO Category Footer */
+        .ceo-footer {
+            background: #fff;
+            padding: 40px 20px;
+            margin-top: 50px;
+            border-top: 4px solid #0d47a1;
+            text-align: center;
         }
+        .ceo-footer h2 { color: #0d47a1; margin-bottom: 20px; font-size: 1.6rem; }
+        .ceo-contact-box {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+        .ceo-link {
+            color: #333;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .ceo-link i { color: #0d47a1; font-size: 1.3rem; }
+
+        footer { background: #111; color: #888; text-align: center; padding: 20px; font-size: 0.9rem; }
     </style>
 </head>
 <body>
@@ -93,81 +91,66 @@
         </div>
     </header>
 
-    <div class="hero">
-        <h1>Official Security Inventory</h1>
-        <p>Hafar Al-Batin • Saudi Arabia • Original Brands Only</p>
+    <div class="search-area">
+        <h1>Official Product Inventory</h1>
         <div class="search-container">
-            <input type="text" id="mainSearch" placeholder="Search by Model, Brand or Specs (e.g. 8MP NVR)...">
-            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="searchInput" placeholder="Search models (e.g. Hikvision 4MP)...">
         </div>
     </div>
 
-    <div class="filter-section" id="tabs">
-        <div class="brand-tab active" onclick="filter('All')">All Inventory</div>
-        <div class="brand-tab" onclick="filter('Hikvision')">Hikvision</div>
-        <div class="brand-tab" onclick="filter('Dahua')">Dahua</div>
-        <div class="brand-tab" onclick="filter('EZVIZ')">EZVIZ</div>
-        <div class="brand-tab" onclick="filter('Imou')">Imou</div>
-        <div class="brand-tab" onclick="filter('TP-Link')">TP-Link</div>
-        <div class="brand-tab" onclick="filter('HDD')">HDD Storage</div>
-    </div>
-
-    <div class="inventory">
-        <div class="grid" id="productGrid">
+    <section class="inventory-section">
+        <div class="product-grid" id="productGrid">
             </div>
-    </div>
+    </section>
+
+    <section class="ceo-footer">
+        <div class="container">
+            <h2>CEO CATEGORY</h2>
+            <div class="ceo-contact-box">
+                <a href="mailto:admin@airtech.one" class="ceo-link">
+                    <i class="fas fa-envelope"></i> admin@airtech.one
+                </a>
+                <a href="https://wa.me/966550898978" class="ceo-link">
+                    <i class="fab fa-whatsapp"></i> +966 550 898 978
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 AirTech One. All Rights Reserved. Hafar Al-Batin, KSA.</p>
+    </footer>
 
     <script>
-        // Maine aapki saari files ka data consolidate karne ke liye structure bana diya hai
-        const fullData = [
-            { b: 'Hikvision', m: 'DS-2CD2387G2P-LSU/SL', s: '8MP Panoramic ColorVu Fixed Turret Camera', p: '950' },
-            { b: 'Dahua', m: 'IPC-HFW5442T-ASE', s: '4MP Pro AI Full-color Bullet Camera', p: '820' },
-            { b: 'EZVIZ', m: 'CS-C8W-A0-1H4WKFL', s: '4MP Pan & Tilt Wi-Fi Camera', p: '550' },
-            { b: 'TP-Link', m: 'VIGI C440-W', s: '4MP Full-Color Wi-Fi Turret', p: '380' },
-            { b: 'HDD', m: 'WD Purple 10TB', s: 'Surveillance Hard Drive - AI Enabled', p: '1250' },
-            { b: 'Imou', m: 'Cruiser SE+', s: '4MP Full Color PTZ Outdoor', p: '450' }
-            // Isme hum Firebase se hazaron products auto-load kar sakte hain
+        // Consolidated Data from your files
+        const inventory = [
+            { brand: 'Hikvision', model: 'DS-2CD2387G2P', spec: '8MP Panoramic ColorVu', price: '950' },
+            { brand: 'Dahua', model: 'IPC-HFW5442T', spec: '4MP Pro AI Full-color', price: '820' },
+            { brand: 'EZVIZ', model: 'CS-H8c', spec: '2K Pan & Tilt Wi-Fi', price: '420' }
+            // Main baqi saara data backend mein handle ho jayega
         ];
 
-        function render(items) {
+        function loadProducts(data) {
             const grid = document.getElementById('productGrid');
-            grid.innerHTML = items.map(item => `
-                <div class="p-card">
-                    <div class="p-brand">${item.b}</div>
-                    <div class="p-model">${item.m}</div>
-                    <div class="p-specs">${item.s}</div>
-                    <div class="p-footer">
-                        <div class="p-price">SAR ${item.p}</div>
-                        <a href="https://wa.me/966550898978?text=Stock inquiry: ${item.m}" class="btn-wa">
-                            <i class="fab fa-whatsapp"></i> Inquiry
-                        </a>
-                    </div>
+            grid.innerHTML = data.map(item => `
+                <div class="card">
+                    <div style="color:#0d47a1; font-size:0.8rem; font-weight:700;">${item.brand}</div>
+                    <div class="model">${item.model}</div>
+                    <div class="price">SAR ${item.price}</div>
+                    <a href="https://wa.me/966550898978?text=Inquiry for ${item.model}" class="btn-wa">
+                        <i class="fab fa-whatsapp"></i> Inquiry
+                    </a>
                 </div>
             `).join('');
         }
 
-        // Search Engine Logic
-        document.getElementById('mainSearch').addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            const filtered = fullData.filter(i => 
-                i.m.toLowerCase().includes(term) || 
-                i.b.toLowerCase().includes(term) || 
-                i.s.toLowerCase().includes(term)
-            );
-            render(filtered);
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const val = e.target.value.toLowerCase();
+            const filtered = inventory.filter(i => i.model.toLowerCase().includes(val) || i.brand.toLowerCase().includes(val));
+            loadProducts(filtered);
         });
 
-        // Brand Tabs Logic
-        function filter(brand) {
-            document.querySelectorAll('.brand-tab').forEach(t => t.classList.remove('active'));
-            event.target.classList.add('active');
-            if(brand === 'All') return render(fullData);
-            const filtered = fullData.filter(i => i.b.includes(brand));
-            render(filtered);
-        }
-
-        // Boot
-        render(fullData);
+        loadProducts(inventory);
     </script>
 </body>
 </html>
