@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>AirTech One - CCTV & Security Cameras | Hafar Al-Batin</title>
     <meta name="description" content="Original Hikvision, Dahua, EZVIZ, Imou, Tapo, TP-Link CCTV cameras, NVR, HDD & networking. Best prices & fast installation in Eastern Province, Saudi Arabia.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
@@ -12,10 +13,24 @@
         .container { max-width:1200px; margin:0 auto; padding:0 16px; }
         header { background:#0d47a1; color:white; padding:12px 0; position:sticky; top:0; z-index:100; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
         header .container { display:flex; justify-content:space-between; align-items:center; }
-        .logo { font-size:1.7rem; font-weight:700; }
-        nav { display:flex; gap:14px; }
-        nav a { color:white; text-decoration:none; font-size:0.95rem; font-weight:500; }
-        nav a:hover { text-decoration:underline; }
+        .logo { font-size:1.7rem; font-weight:700; white-space: nowrap; } /* Ensures text stays on one line */
+        
+        .login-btn {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px; /* Space between icon and text (optional) */
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
         .hero { background:linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)), url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&q=80') center/cover; color:white; text-align:center; padding:90px 16px 60px; }
         .hero h1 { font-size:2.4rem; margin-bottom:10px; }
         .hero p { font-size:1.05rem; margin-bottom:20px; max-width:90%; margin-left:auto; margin-right:auto; }
@@ -24,7 +39,7 @@
         .section { padding:45px 0 20px; }
         h2 { text-align:center; font-size:1.9rem; margin-bottom:1.5rem; color:#0d47a1; }
         .brand-section { margin-bottom:28px; }
-        .brand-header { cursor:pointer; background:#fff; padding:16px 18px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); display:flex; justify-content:space-between; align-items:center; font-size:1.2rem; font-weight:600; color:#0d47a1; min-height:52px; }
+        .brand-header { cursor:pointer; background:#fff; padding:166px 18px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); display:flex; justify-content:space-between; align-items:center; font-size:1.2rem; font-weight:600; color:#0d47a1; min-height:52px; }
         .brand-content { display:none; padding:16px 12px; background:#f9f9f9; border-radius:0 0 10px 10px; }
         .brand-content.active { display:block; }
         .arrow { font-size:1.2rem; transition:0.3s; }
@@ -58,11 +73,8 @@
     <header>
         <div class="container">
             <div class="logo">AirTech One</div>
-            <nav>
-                <a href="#home">Home</a>
-                <a href="#products">Products</a>
-                <a href="#contact">Contact</a>
-            </nav>
+            <a href="#" class="login-btn">
+                <i class="fas fa-user-circle"></i> </a>
         </div>
     </header>
 
@@ -78,7 +90,6 @@
         <div class="container">
             <h2>All CCTV & Networking Products (Expanded 2025–2026 Models)</h2>
 
-            <!-- Hikvision – 8 models (latest ColorVu 3.0, AcuSense, PTZ, etc.) -->
             <div class="brand-section">
                 <div class="brand-header">Hikvision <span class="arrow">▼</span></div>
                 <div class="brand-content">
@@ -92,366 +103,10 @@
                                 <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Hikvision%20ColorVu%203.0%20details%20please')">Ask on WhatsApp</button>
                             </div>
                         </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&fit=crop&q=80" alt="Hikvision AcuSense 3.0">
-                            <div class="product-info">
-                                <h4>AcuSense 3.0 Bullet/Turret</h4>
-                                <p class="product-features">Smart Hybrid Light • AcuSearch • Reduced False Alarms • 4K</p>
-                                <div class="price">From SAR 850</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Hikvision%20AcuSense%203.0%20price')">Ask on WhatsApp</button>
-                            </div>
                         </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1557683311-973673bafdbd?auto=format&fit=crop&q=80" alt="Hikvision PTZ X7 G3">
-                            <div class="product-info">
-                                <h4>PTZ X7 G3 Series</h4>
-                                <p class="product-features">SharpMotion • 4K • 25x Zoom • AI Perimeter • Low-Light</p>
-                                <div class="price">From SAR 2,500</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Hikvision%20PTZ%20X7%20G3%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1558002038-105aeadf5e8e?auto=format&fit=crop&q=80" alt="Hikvision DarkFighter">
-                            <div class="product-info">
-                                <h4>DarkFighter Varifocal DS-2CD2745FWD-IZS</h4>
-                                <p class="product-features">4MP • Powered-by-DarkFighter • Varifocal • Excellent Low-Light</p>
-                                <div class="price">From SAR 950</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Hikvision%20DarkFighter%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1563206767-5b18f218e8de?auto=format&fit=crop&q=80" alt="Hikvision DeepinView">
-                            <div class="product-info">
-                                <h4>DeepinView Series (e.g. DS-2CD7A26G0/P-IZHS)</h4>
-                                <p class="product-features">AI Facial Recognition • People Counting • ANPR • High Accuracy</p>
-                                <div class="price">From SAR 1,800</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Hikvision%20DeepinView%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&q=80" alt="Hikvision Solar-Powered">
-                            <div class="product-info">
-                                <h4>Solar-Powered Series</h4>
-                                <p class="product-features">Wireless • Battery/Solar • 4MP ColorVu • Remote Areas</p>
-                                <div class="price">From SAR 1,200</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Hikvision%20Solar-Powered%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&fit=crop&q=80" alt="Hikvision Pro Series EasyIP">
-                            <div class="product-info">
-                                <h4>Pro Series EasyIP (e.g. DS-2CD2047G3-LI)</h4>
-                                <p class="product-features">Smart Hybrid Light • ColorVu • 4MP • Plug & Play</p>
-                                <div class="price">From SAR 700</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Hikvision%20Pro%20EasyIP%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
-
-            <!-- EZVIZ – Expanded with 6 models -->
-            <div class="brand-section">
-                <div class="brand-header">EZVIZ <span class="arrow">▼</span></div>
-                <div class="brand-content">
-                    <div class="product-grid">
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1558002038-105aeadf5e8e?auto=format&fit=crop&q=80" alt="EZVIZ H8x ColorFULL">
-                            <div class="product-info">
-                                <h4>H8x / H80x Dual ColorFULL</h4>
-                                <p class="product-features">Pan/Tilt • Full-Color Night • AI Tracking • Dual-Lens</p>
-                                <div class="price">From SAR 450</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=EZVIZ%20H8x%20ColorFULL%20info')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1563206767-5b18f218e8de?auto=format&fit=crop&q=80" alt="EZVIZ 9c Dual">
-                            <div class="product-info">
-                                <h4>9c Dual Series</h4>
-                                <p class="product-features">Dual-Lens • 2K/3K • 4G/WiFi Switch • Auto-Tracking</p>
-                                <div class="price">From SAR 500</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=EZVIZ%209c%20Dual%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1557683311-973673bafdbd?auto=format&fit=crop&q=80" alt="EZVIZ C8W Pro">
-                            <div class="product-info">
-                                <h4>C8W Pro</h4>
-                                <p class="product-features">2K/3K Outdoor • Color Night Vision • AI Human/Vehicle</p>
-                                <div class="price">From SAR 350</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=EZVIZ%20C8W%20Pro%20price')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&q=80" alt="EZVIZ H3 2K">
-                            <div class="product-info">
-                                <h4>H3 2K/3K Series</h4>
-                                <p class="product-features">Wi-Fi Smart Home • Indoor/Outdoor • Night Vision • Easy Setup</p>
-                                <div class="price">From SAR 280</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=EZVIZ%20H3%202K%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&fit=crop&q=80" alt="EZVIZ C6N G1">
-                            <div class="product-info">
-                                <h4>C6N G1 Pan & Tilt</h4>
-                                <p class="product-features">Indoor • 1080p/2K • Pan/Tilt • Two-Way Audio • Motion Tracking</p>
-                                <div class="price">From SAR 220</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=EZVIZ%20C6N%20G1%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1558002038-105aeadf5e8e?auto=format&fit=crop&q=80" alt="EZVIZ H80f Triple-Lens">
-                            <div class="product-info">
-                                <h4>H80f Triple-Lens</h4>
-                                <p class="product-features">Multi-Lens • 2K+ • Wide Coverage • AI Detection</p>
-                                <div class="price">From SAR 600</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=EZVIZ%20H80f%20Triple-Lens%20info')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Dahua – Expanded with 7 models (WizColor 2025, WITHS, Bisight, etc.) -->
-            <div class="brand-section">
-                <div class="brand-header">Dahua <span class="arrow">▼</span></div>
-                <div class="brand-content">
-                    <div class="product-grid">
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&q=80" alt="Dahua WizColor 2025">
-                            <div class="product-info">
-                                <h4>WizColor 2025 Series (5MP/6MP)</h4>
-                                <p class="product-features">Full-Color 24/7 • AI Detection • Dual-Light • Low False Alarms</p>
-                                <div class="price">From SAR 550</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Dahua%20WizColor%202025%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&fit=crop&q=80" alt="Dahua Bisight X">
-                            <div class="product-info">
-                                <h4>Bisight X Series (Radar-Video Fusion)</h4>
-                                <p class="product-features">Driver Behavior Monitoring • Dual-Spectrum • AI Detection</p>
-                                <div class="price">From SAR 1,200</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Dahua%20Bisight%20X%20info')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1558002038-105aeadf5e8e?auto=format&fit=crop&q=80" alt="Dahua WITHS Hero">
-                            <div class="product-info">
-                                <h4>WITHS Hero Series (Dual-Lens)</h4>
-                                <p class="product-features">Dual Vision • AI Human/Pet • Auto Tracking • Privacy Mode</p>
-                                <div class="price">From SAR 700</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Dahua%20WITHS%20Hero%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1557683311-973673bafdbd?auto=format&fit=crop&q=80" alt="Dahua Picoo">
-                            <div class="product-info">
-                                <h4>WITHS Picoo Series (Outdoor)</h4>
-                                <p class="product-features">WizColor Full-Color • AI Detection • IP66 • Smart Dual-Light</p>
-                                <div class="price">From SAR 650</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Dahua%20Picoo%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1563206767-5b18f218e8de?auto=format&fit=crop&q=80" alt="Dahua Apollo Series">
-                            <div class="product-info">
-                                <h4>WITHS Apollo Series (Off-Grid)</h4>
-                                <p class="product-features">4G/Solar • Rugged • AI Detection • Remote Sites</p>
-                                <div class="price">From SAR 900</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Dahua%20Apollo%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&q=80" alt="Dahua WizSense 3 Series">
-                            <div class="product-info">
-                                <h4>WizSense 3 Series</h4>
-                                <p class="product-features">AI Perimeter Protection • Smart Motion Detection • 4MP/5MP</p>
-                                <div class="price">From SAR 600</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Dahua%20WizSense%203%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&fit=crop&q=80" alt="Dahua WizMind 8 Series">
-                            <div class="product-info">
-                                <h4>WizMind 8 Series (Advanced AI)</h4>
-                                <p class="product-features">8MP/4K • Facial Recognition • People Counting • Deep Learning</p>
-                                <div class="price">From SAR 1,500</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Dahua%20WizMind%208%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Imou – 5 models -->
-            <div class="brand-section">
-                <div class="brand-header">Imou <span class="arrow">▼</span></div>
-                <div class="brand-content">
-                    <div class="product-grid">
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1563206767-5b18f218e8de?auto=format&fit=crop&q=80" alt="Imou Ranger 2 Pro 4K">
-                            <div class="product-info">
-                                <h4>Ranger 2 Pro / 2C Pro 4K</h4>
-                                <p class="product-features">4K • Pan/Tilt • AI Human/Pet • Dual-Lens Option</p>
-                                <div class="price">From SAR 400</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Imou%20Ranger%202%20Pro%204K%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1557683311-973673bafdbd?auto=format&fit=crop&q=80" alt="Imou A1 Pro 4K">
-                            <div class="product-info">
-                                <h4>A1 Pro 4K / DK3 AOV PT</h4>
-                                <p class="product-features">4K Indoor/Outdoor • Always-On Video • AI Detection • 5MP</p>
-                                <div class="price">From SAR 350</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Imou%20A1%20Pro%204K%20info')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&q=80" alt="Imou Ranger Dual Pro">
-                            <div class="product-info">
-                                <h4>Ranger Dual Pro / 2 Dual</h4>
-                                <p class="product-features">Dual-Lens • Pan/Tilt • Smart Tracking • Wi-Fi 6</p>
-                                <div class="price">From SAR 480</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Imou%20Ranger%20Dual%20Pro%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1558002038-105aeadf5e8e?auto=format&fit=crop&q=80" alt="Imou Cruiser Dual">
-                            <div class="product-info">
-                                <h4>Cruiser Dual / Cruiser Triple</h4>
-                                <p class="product-features">Outdoor • Multi-Lens • AI Detection • Weatherproof</p>
-                                <div class="price">From SAR 550</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Imou%20Cruiser%20Dual%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&fit=crop&q=80" alt="Imou Cell 3C">
-                            <div class="product-info">
-                                <h4>Cell 3C / Cell Go Full Color</h4>
-                                <p class="product-features">4G • Battery/Solar • Full Color • Remote Monitoring</p>
-                                <div class="price">From SAR 650</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Imou%20Cell%203C%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tapo (TP-Link) – 6 models (latest 4K Solar, Pan/Tilt, etc.) -->
-            <div class="brand-section">
-                <div class="brand-header">Tapo (TP-Link Smart Security) <span class="arrow">▼</span></div>
-                <div class="brand-content">
-                    <div class="product-grid">
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1558002038-105aeadf5e8e?auto=format&fit=crop&q=80" alt="Tapo C665G">
-                            <div class="product-info">
-                                <h4>C665G (Solar Dual-Lens)</h4>
-                                <p class="product-features">4K • WiFi/4G • Solar • AI Tracking • No Subscription</p>
-                                <div class="price">From SAR 600</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Tapo%20C665G%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&fit=crop&q=80" alt="Tapo C645D KIT">
-                            <div class="product-info">
-                                <h4>C645D KIT (Dual-Lens Solar)</h4>
-                                <p class="product-features">2K/4K • 10x Zoom • AI Person/Vehicle • Battery/Solar</p>
-                                <div class="price">From SAR 550</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Tapo%20C645D%20KIT%20info')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&q=80" alt="Tapo C710">
-                            <div class="product-info">
-                                <h4>C710 (Pan/Tilt Floodlight)</h4>
-                                <p class="product-features">Outdoor Pan/Tilt • High-Resolution • Floodlight Integration</p>
-                                <div class="price">From SAR 450</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Tapo%20C710%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1563206767-5b18f218e8de?auto=format&fit=crop&q=80" alt="Tapo C520WS">
-                            <div class="product-info">
-                                <h4>C520WS / C530WS Pan/Tilt</h4>
-                                <p class="product-features">Outdoor Pan/Tilt • 2K/3K • Smart Detection • Weatherproof</p>
-                                <div class="price">From SAR 380</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Tapo%20C520WS%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1557683311-973673bafdbd?auto=format&fit=crop&q=80" alt="Tapo MagCam 2K+">
-                            <div class="product-info">
-                                <h4>MagCam 2K+ (Wireless Battery)</h4>
-                                <p class="product-features">Magnetic Mount • Starlight Color Night • Person/Pet/Vehicle Detection</p>
-                                <div class="price">From SAR 350</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Tapo%20MagCam%202K%2B%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1558002038-105aeadf5e8e?auto=format&fit=crop&q=80" alt="Tapo VistaCam 360">
-                            <div class="product-info">
-                                <h4>VistaCam 360 (C660 KIT Solar)</h4>
-                                <p class="product-features">4K • Solar-Powered • Pan/Tilt • 24/7 Capture • AI Detection</p>
-                                <div class="price">From SAR 650</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Tapo%20VistaCam%20360%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Short sections for remaining brands -->
-            <div class="brand-section">
-                <div class="brand-header">HDD Store (Surveillance Drives) <span class="arrow">▼</span></div>
-                <div class="brand-content">
-                    <div class="product-grid">
-                        <div class="product-card">
-                            <div class="product-info">
-                                <h4>WD Purple Pro 8TB–24TB</h4>
-                                <p class="product-features">24/7 CCTV Optimized • High Endurance • AI Ready</p>
-                                <div class="price">From SAR 800</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=WD%20Purple%20HDD%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <div class="product-info">
-                                <h4>Seagate SkyHawk AI 8TB+</h4>
-                                <p class="product-features">AI Workload Optimized • 24/7 • Up to 64 HD Cameras</p>
-                                <div class="price">From SAR 900</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Seagate%20SkyHawk%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="brand-section">
-                <div class="brand-header">Networking (Cisco / Ubiquiti / Ruijie / Tenda) <span class="arrow">▼</span></div>
-                <div class="brand-content">
-                    <div class="product-grid">
-                        <div class="product-card">
-                            <div class="product-info">
-                                <h4>PoE Switches (Various Models)</h4>
-                                <p class="product-features">Gigabit • PoE+ • CCTV Network Support • Managed/Unmanaged</p>
-                                <div class="price">From SAR 300</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=PoE%20Switches%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <div class="product-info">
-                                <h4>Wireless Access Points & Routers</h4>
-                                <p class="product-features">Wi-Fi 6 • Mesh • High-Speed • Stable for Multi-Camera</p>
-                                <div class="price">From SAR 250</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=WiFi%20Access%20Points%20details')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+             </div>
     </section>
 
     <section id="contact" class="contact">
