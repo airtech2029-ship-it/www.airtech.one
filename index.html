@@ -1,9 +1,182 @@
-<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"><title>AirTechOne CCTV</title><link rel="stylesheet" href="css/style.css"></head><body><header><h2>AirTechOne</h2><nav><a href="index.html">Home</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>AirTechOne CCTV & Networking</title><style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#0b0b0b;
+color:white;
+}
+
+header{
+background:#111;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+}
+
+nav a{
+color:white;
+margin:0 10px;
+text-decoration:none;
+}
+
+.slider{
+width:100%;
+height:320px;
+overflow:hidden;
+}
+
+.slider img{
+width:100%;
+height:320px;
+object-fit:cover;
+}
+
+.search{
+text-align:center;
+padding:20px;
+}
+
+.search input{
+width:80%;
+padding:12px;
+border-radius:8px;
+border:none;
+font-size:16px;
+}
+
+.brands{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.card{
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+border-radius:12px;
+padding:15px;
+text-align:center;
+transition:0.3s;
+cursor:pointer;
+}
+
+.card:hover{
+transform:scale(1.05);
+background:rgba(255,255,255,0.1);
+}
+
+.card img{
+width:100%;
+height:80px;
+object-fit:contain;
+}
+
+footer{
+text-align:center;
+padding:20px;
+background:#111;
+}
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:14px 16px;
+border-radius:50%;
+font-size:22px;
+text-decoration:none;
+}
+
+</style></head><body><header><div class="logo">AirTechOne</div><nav><a href="index.html">Home</a>
 <a href="brands.html">Brands</a>
 <a href="contact.html">Contact</a>
 <a href="admin-login.html">Admin</a>
 
-</nav></header><div class="slider"><img id="slide" src="images/slider/slide1.jpg"></div><section class="home-buttons"><a href="brands.html">View All Brands</a>
+</nav></header><div class="slider"><img id="slide" src="images/slider/slide1.jpg"></div><div class="search"><input placeholder="Search CCTV Brand"></div><section class="brands"><div class="card" onclick="go('hikvision')">
+<img src="images/brands/hikvision.jpg">
+<p>HIKVISION</p>
+</div><div class="card" onclick="go('dahua')">
+<img src="images/brands/dahua.jpg">
+<p>DAHUA</p>
+</div><div class="card" onclick="go('uniview')">
+<img src="images/brands/uniview.jpg">
+<p>UNIVIEW</p>
+</div><div class="card" onclick="go('hilook')">
+<img src="images/brands/hilook.jpg">
+<p>HILOOK</p>
+</div><div class="card" onclick="go('axis')">
+<img src="images/brands/axis.jpg">
+<p>AXIS</p>
+</div><div class="card" onclick="go('bosch')">
+<img src="images/brands/bosch.jpg">
+<p>BOSCH</p>
+</div><div class="card" onclick="go('honeywell')">
+<img src="images/brands/honeywell.jpg">
+<p>HONEYWELL</p>
+</div><div class="card" onclick="go('cpplus')">
+<img src="images/brands/cpplus.jpg">
+<p>CP PLUS</p>
+</div><div class="card" onclick="go('zkteco')">
+<img src="images/brands/zkteco.jpg">
+<p>ZKTECO</p>
+</div><div class="card" onclick="go('hanwha')">
+<img src="images/brands/hanwha.jpg">
+<p>HANWHA</p>
+</div><div class="card" onclick="go('tplink')">
+<img src="images/brands/tplink.jpg">
+<p>TP-LINK</p>
+</div><div class="card" onclick="go('tapo')">
+<img src="images/brands/tapo.jpg">
+<p>TAPO</p>
+</div><div class="card" onclick="go('mikrotik')">
+<img src="images/brands/mikrotik.jpg">
+<p>MIKROTIK</p>
+</div><div class="card" onclick="go('dlink')">
+<img src="images/brands/dlink.jpg">
+<p>D-LINK</p>
+</div><div class="card" onclick="go('netgear')">
+<img src="images/brands/netgear.jpg">
+<p>NETGEAR</p>
+</div></section><footer><p>AirTechOne CCTV & Networking</p><p>admin@airtech.one</p><p>+966 55 089 8978</p></footer><a class="whatsapp" href="https://wa.me/966550898978">W</a>
 
-</section><script src="js/slider.js"></script></body>
+<script>
+
+function go(brand){
+
+location.href="products.html?brand="+brand;
+
+}
+
+let slides=[
+
+"images/slider/slide1.jpg",
+"images/slider/slide2.jpg",
+"images/slider/slide3.jpg"
+
+];
+
+let s=0;
+
+setInterval(function(){
+
+s++;
+
+if(s>=slides.length){s=0;}
+
+document.getElementById("slide").src=slides[s];
+
+},3000);
+
+</script></body>
 </html>
