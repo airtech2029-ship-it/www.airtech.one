@@ -3,94 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AirTech One - CCTV & Security Cameras | Hafar Al-Batin, Saudi Arabia</title>
-    <meta name="description" content="AirTech One - #1 CCTV & Security Camera Store in Hafar Al-Batin. Best prices on original Hikvision, Dahua, EZVIZ, TP-Link products with fast installation.">
-    <link rel="stylesheet" href="style.css">
+    <title>AirTech One - Security & CCTV Solutions</title>
+    <meta name="description" content="AirTech One - Premium CCTV Cameras, Security Systems & Networking in Saudi Arabia">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            background: #0a0e17;
+            line-height: 1.6;
+        }
+
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.75)),
+                        url('https://thumbs.dreamstime.com/b/futuristic-cyberpunk-city-flying-vehicles-neon-signs-holographic-displays-cityscape-future-dusk-towering-skyscrapers-428300334.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .content {
+            max-width: 900px;
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(13, 71, 161, 0.8);
+            color: #ffffff;
+        }
+
+        h1 span {
+            color: #00d4ff;
+        }
+
+        p.subtitle {
+            font-size: 1.6rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #25D366;
+            color: white;
+            padding: 16px 40px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn:hover {
+            background: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.6);
+        }
+
+        .contact-info {
+            margin-top: 3rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-info a {
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 3.2rem; }
+            p.subtitle { font-size: 1.3rem; }
+            .btn { padding: 14px 35px; font-size: 1.2rem; }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="logo">AirTech One</div>
-            <nav>
-                <a href="#home">Home</a>
-                <a href="#products">Products</a>
-                <a href="#contact">Contact</a>
-            </nav>
-        </div>
-    </header>
+    <section class="hero">
+        <div class="content">
+            <h1>Air<span>Tech</span> One</h1>
+            <p class="subtitle">Your Trusted Partner for Advanced CCTV, Security Cameras & Networking Solutions in Saudi Arabia</p>
+            
+            <a href="https://wa.me/966550898978?text=Hello%20AirTech%20One%20Team%2C%20I%20would%20like%20to%20inquire%20about%20your%20products%20and%20services" class="btn">
+                Contact Us on WhatsApp
+            </a>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <h1>Your Security is Our Priority</h1>
-            <p>#1 CCTV & Networking Store in Hafar Al-Batin – Serving All Saudi Arabia</p>
-            <a href="https://wa.me/966550898978?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20AirTech%20One%20products" class="btn whatsapp-btn">Order on WhatsApp</a>
-        </div>
-    </section>
-
-    <!-- Products Section -->
-    <section id="products" class="products">
-        <div class="container">
-            <h2>Our Best Products</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <img src="https://via.placeholder.com/300x250?text=Hikvision+4K+Camera" alt="Hikvision 4K Camera">
-                    <h3>Hikvision 4K Security Camera</h3>
-                    <p>AI Detection, Night Vision, Motion Tracking</p>
-                    <span class="price">From SAR 450</span>
-                    <a href="https://wa.me/966550898978?text=Please%20send%20details%20for%20Hikvision%204K%20Camera" class="btn">Ask on WhatsApp</a>
-                </div>
-
-                <div class="product-card">
-                    <img src="https://via.placeholder.com/300x250?text=Dahua+PTZ+Camera" alt="Dahua PTZ Camera">
-                    <h3>Dahua PTZ Smart Camera</h3>
-                    <p>360° Coverage, Waterproof, Long Range</p>
-                    <span class="price">From SAR 1,200</span>
-                    <a href="https://wa.me/966550898978?text=What%20is%20the%20price%20of%20Dahua%20PTZ%20Camera" class="btn">Ask on WhatsApp</a>
-                </div>
-
-                <div class="product-card">
-                    <img src="https://via.placeholder.com/300x250?text=EZVIZ+WiFi+Camera" alt="EZVIZ WiFi Camera">
-                    <h3>EZVIZ WiFi Home Camera</h3>
-                    <p>Cloud Storage, Mobile App Control</p>
-                    <span class="price">From SAR 250</span>
-                    <a href="https://wa.me/966550898978?text=I%20want%20to%20order%20EZVIZ%20Home%20Camera" class="btn">Ask on WhatsApp</a>
-                </div>
-
-                <div class="product-card">
-                    <img src="https://via.placeholder.com/300x250?text=TP-Link+Router" alt="TP-Link Router">
-                    <h3>TP-Link High-Speed Router</h3>
-                    <p>Strong Network, Anti-Hack Features</p>
-                    <span class="price">From SAR 180</span>
-                    <a href="https://wa.me/966550898978?text=Please%20send%20details%20for%20TP-Link%20Router" class="btn">Ask on WhatsApp</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Get in Touch</h2>
-            <p>Fast Installation • 24/7 Support • Best Prices Guaranteed!</p>
             <div class="contact-info">
-                <p><strong>WhatsApp / Call:</strong> <a href="tel:+966550898978">+966 550 898 978</a></p>
-                <p><strong>Email:</strong> <a href="mailto:admin@airtech.one">admin@airtech.one</a></p>
-                <p><strong>Location:</strong> Hafar Al-Batin, Eastern Province, Saudi Arabia</p>
+                <p>WhatsApp / Call: <a href="tel:+966550898978">+966 550 898 978</a></p>
+                <p>Email: <a href="mailto:admin@airtech.one">admin@airtech.one</a></p>
+                <p>Location: Eastern Province, Saudi Arabia</p>
             </div>
-            <a href="https://wa.me/966550898978?text=Hello%20AirTech%20One%20Team" class="btn whatsapp-btn">Chat Now on WhatsApp</a>
         </div>
     </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 AirTech One. All Rights Reserved. | Leading Security Solutions Provider in Saudi Arabia</p>
-        </div>
-    </footer>
 
 </body>
 </html>
