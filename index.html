@@ -3,116 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AirTech One - Inventory System</title>
+    <title>AirTech One | Premium Security Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:'Poppins', sans-serif; background:#f4f7fe; color:#333; }
-        
-        /* Header Fix: Center Logo, Right Login, Left Menu */
+        :root { --primary: #0d47a1; --accent: #25D366; --dark: #1a1a1a; --light: #f4f7fe; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+        body { background: var(--light); color: #333; }
+
+        /* Header Customization */
         header { 
-            background:#0d47a1; color:white; padding:15px 0; 
-            position:sticky; top:0; z-index:1001; box-shadow:0 2px 10px rgba(0,0,0,0.1); 
+            background: var(--primary); color: white; padding: 15px 0; 
+            position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
         }
-        header .container { 
-            max-width:1200px; margin:0 auto; padding:0 20px; 
-            display:flex; justify-content: center; align-items:center; position: relative; 
-        }
-        .logo { font-size:1.8rem; font-weight:700; white-space: nowrap; }
-        .login-btn { position: absolute; right: 20px; color: white; font-size: 1.6rem; cursor: pointer; }
-        .menu-toggle { position: absolute; left: 20px; color: white; font-size: 1.5rem; cursor: pointer; }
+        .header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; align-items: center; position: relative; padding: 0 20px; }
+        .logo { font-size: 1.8rem; font-weight: 700; letter-spacing: 1px; }
+        .menu-toggle { position: absolute; left: 20px; font-size: 1.5rem; cursor: pointer; }
+        .user-icon { position: absolute; right: 20px; font-size: 1.6rem; cursor: pointer; }
 
-        /* Sidebar with Logos */
-        .sidebar {
-            position: fixed; left: -280px; top: 0; width: 280px; height: 100%;
-            background: #fff; box-shadow: 4px 0 15px rgba(0,0,0,0.1);
-            transition: 0.3s; z-index: 1002; padding-top: 20px; overflow-y: auto;
+        /* Hero Section - Naya Add Kiya Hai */
+        .hero { 
+            background: linear-gradient(45deg, #0d47a1, #1565c0); 
+            color: white; padding: 60px 20px; text-align: center; border-bottom-left-radius: 50px; border-bottom-right-radius: 50px;
         }
+        .hero h1 { font-size: 2.2rem; margin-bottom: 10px; }
+        .hero p { opacity: 0.9; font-weight: 300; margin-bottom: 25px; }
+
+        /* Service Cards - Trust Building */
+        .services { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
+            gap: 15px; max-width: 1200px; margin: -30px auto 30px; padding: 0 20px;
+        }
+        .service-card { 
+            background: white; padding: 20px; border-radius: 15px; text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: 0.3s;
+        }
+        .service-card i { color: var(--primary); font-size: 1.5rem; margin-bottom: 10px; }
+        .service-card span { display: block; font-size: 0.8rem; font-weight: 600; }
+
+        /* Sidebar Styling */
+        .sidebar { position: fixed; left: -280px; top: 0; width: 280px; height: 100%; background: white; z-index: 1002; transition: 0.3s; padding: 20px; overflow-y: auto; }
         .sidebar.active { left: 0; }
-        .sidebar-header { padding: 20px; border-bottom: 1px solid #eee; font-weight: 700; color: #0d47a1; }
-        
-        .brand-btn {
-            display: flex; align-items: center; padding: 15px 20px;
-            text-decoration: none; color: #444; font-weight: 600;
-            border-bottom: 1px solid #f9f9f9; transition: 0.2s; gap: 15px;
-        }
-        .brand-btn:hover { background: #e3f2fd; color: #0d47a1; }
-        .brand-logo-img { width: 30px; height: 30px; object-fit: contain; }
+        .brand-item { display: flex; align-items: center; padding: 12px; border-radius: 10px; margin-bottom: 5px; text-decoration: none; color: #444; transition: 0.2s; }
+        .brand-item:hover { background: #e3f2fd; }
+        .brand-item img { width: 30px; margin-right: 15px; }
 
-        /* Search & Product Grid */
-        .search-area { background: #0d47a1; padding: 40px 20px; text-align: center; color: white; }
-        .search-container { max-width: 600px; margin: 20px auto; position: relative; }
-        .search-container input { width: 100%; padding: 15px 25px; border-radius: 50px; border: none; outline: none; }
+        /* Product Cards */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .card { background: white; border-radius: 20px; padding: 20px; position: relative; overflow: hidden; border: 1px solid #eee; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .card .tag { position: absolute; top: 15px; right: 15px; background: #eef2ff; color: var(--primary); padding: 4px 10px; border-radius: 50px; font-size: 0.7rem; font-weight: 700; }
+        .card h3 { margin: 15px 0 5px; font-size: 1.1rem; }
+        .card .price { font-size: 1.4rem; font-weight: 700; color: #e63946; }
+        .wa-btn { background: var(--accent); color: white; display: block; text-align: center; padding: 12px; border-radius: 12px; text-decoration: none; font-weight: 600; margin-top: 15px; transition: 0.3s; }
+        .wa-btn:hover { filter: brightness(1.1); }
 
-        .inventory-section { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        .card { background: white; border-radius: 12px; padding: 20px; border: 1px solid #eee; }
-        .btn-wa { display: block; background: #25D366; color: white; text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; margin-top: 15px; }
+        /* CEO Category Footer */
+        .ceo-section { background: white; padding: 40px 20px; text-align: center; margin-top: 50px; border-top: 1px solid #ddd; }
+        .ceo-section h2 { color: var(--primary); margin-bottom: 20px; }
+        .contact-pill { display: inline-flex; align-items: center; background: #f0f4ff; padding: 10px 20px; border-radius: 50px; margin: 5px; text-decoration: none; color: var(--primary); font-weight: 600; }
 
-        /* CEO Category Section */
-        .ceo-footer { background: #fff; padding: 40px 20px; border-top: 4px solid #0d47a1; text-align: center; }
-        .ceo-link { color: #333; text-decoration: none; font-size: 1.1rem; font-weight: 600; display: flex; align-items: center; gap: 10px; justify-content: center; margin-top: 10px; }
-
-        footer { background: #111; color: #888; text-align: center; padding: 20px; }
         .overlay { display:none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1001; }
         .overlay.active { display:block; }
     </style>
 </head>
 <body>
 
-    <div class="sidebar" id="sidebar">
-        <div class="sidebar-header">BRANDS</div>
-        <a href="#" class="brand-btn" onclick="filter('Hikvision')"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Hikvision_logo.svg" class="brand-logo-img"> Hikvision</a>
-        <a href="#" class="brand-btn" onclick="filter('Ezviz')"><img src="https://www.ezviz.com/assets/images/logo_ezviz.png" class="brand-logo-img"> Ezviz</a>
-        <a href="#" class="brand-btn" onclick="filter('Dahua')"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Dahua_Technology_logo.svg" class="brand-logo-img"> Dahua</a>
-        <a href="#" class="brand-btn" onclick="filter('Imou')"><img src="https://www.imoulife.com/public/assets/images/logo.png" class="brand-logo-img"> Imou</a>
-        <a href="#" class="brand-btn" onclick="filter('Tapo')"><img src="https://upload.wikimedia.org/wikipedia/commons/4/42/TP-Link_logo.svg" class="brand-logo-img"> Tapo</a>
-        <a href="#" class="brand-btn" onclick="filter('Tplink')"><img src="https://upload.wikimedia.org/wikipedia/commons/4/42/TP-Link_logo.svg" class="brand-logo-img"> Tplink</a>
-        <a href="#" class="brand-btn" onclick="filter('Tenda')"><img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Tenda_logo.svg" class="brand-logo-img"> Tenda</a>
-        <a href="#" class="brand-btn" onclick="filter('Hdd Store')"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Western_Digital_logo.svg" class="brand-logo-img"> Hdd Store</a>
-        <a href="#" class="brand-btn" onclick="filter('Cisco')"><img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Cisco_logo_blue_2016.svg" class="brand-logo-img"> Cisco</a>
-        <a href="#" class="brand-btn" onclick="filter('Ubinit')"><img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Ubiquiti_Networks_logo.svg" class="brand-logo-img"> Ubinit</a>
-        <a href="#" class="brand-btn" onclick="filter('Ruijie')"><img src="https://www.ruijienetworks.com/img/logo.png" class="brand-logo-img"> Ruijie</a>
+<header>
+    <div class="header-container">
+        <i class="fas fa-bars menu-toggle" onclick="toggleSidebar()"></i>
+        <div class="logo">AirTech One</div>
+        <i class="fas fa-user-circle user-icon"></i>
+    </div>
+</header>
+
+<div class="sidebar" id="sidebar">
+    <h3 style="margin-bottom:20px; color:var(--primary)">BRANDS</h3>
+    <a href="#" class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Hikvision_logo.svg"> Hikvision</a>
+    <a href="#" class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Dahua_Technology_logo.svg"> Dahua</a>
+    <a href="#" class="brand-item"><img src="https://www.ezviz.com/assets/images/logo_ezviz.png"> Ezviz</a>
+    </div>
+<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<section class="hero">
+    <h1>Official Security Inventory</h1>
+    <p>Hafar Al-Batin • Saudi Arabia • Original Brands Only</p>
+    <div style="max-width:500px; margin:auto; position:relative;">
+        <input type="text" placeholder="Search Model or Specs..." style="width:100%; padding:15px 25px; border-radius:50px; border:none; outline:none;">
+    </div>
+</section>
+
+<section class="services">
+    <div class="service-card"><i class="fas fa-truck"></i><span>Fast Delivery</span></div>
+    <div class="service-card"><i class="fas fa-tools"></i><span>Professional Install</span></div>
+    <div class="service-card"><i class="fas fa-shield-alt"></i><span>Original Warranty</span></div>
+</section>
+
+<div class="product-grid">
+    <div class="card">
+        <span class="tag">HIKVISION</span>
+        <h3>DS-2CD2387G2P-LSU/SL</h3>
+        <p style="font-size:0.8rem; color:#666;">8MP Panoramic ColorVu Fixed Turret</p>
+        <div class="price">SAR 950</div>
+        <a href="https://wa.me/966550898978" class="wa-btn"><i class="fab fa-whatsapp"></i> Inquiry</a>
+    </div>
     </div>
 
-    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
-
-    <header>
-        <div class="container">
-            <i class="fas fa-bars menu-toggle" onclick="toggleSidebar()"></i>
-            <div class="logo">AirTech One</div>
-            <div class="login-btn"><i class="fas fa-user-circle"></i></div>
-        </div>
-    </header>
-
-    <div class="search-area">
-        <h1>Official Product Inventory</h1>
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search brands or models...">
-        </div>
+<section class="ceo-section">
+    <h2>CEO CATEGORY</h2>
+    <div class="contact-box">
+        <a href="mailto:admin@airtech.one" class="contact-pill"><i class="fas fa-envelope"></i> admin@airtech.one</a>
+        <a href="tel:+966550898978" class="contact-pill"><i class="fas fa-phone"></i> +966 550 898 978</a>
     </div>
+</section>
 
-    <section class="inventory-section">
-        <div class="product-grid" id="productGrid">
-            </div>
-    </section>
+<footer style="background:var(--dark); color:white; text-align:center; padding:30px; font-size:0.8rem;">
+    <p>© 2026 AirTech One. Hafar Al-Batin, Eastern Province, KSA.</p>
+</footer>
 
-    <section class="ceo-footer">
-        <h2>CEO CATEGORY</h2>
-        <a href="mailto:admin@airtech.one" class="ceo-link"><i class="fas fa-envelope"></i> admin@airtech.one</a>
-        <a href="https://wa.me/966550898978" class="ceo-link"><i class="fab fa-whatsapp"></i> +966 550 898 978</a>
-    </section>
+<script>
+    function toggleSidebar() {
+        document.getElementById('sidebar').classList.toggle('active');
+        document.getElementById('overlay').classList.toggle('active');
+    }
+</script>
 
-    <footer>
-        <p>© 2026 AirTech One. Hafar Al-Batin, KSA.</p>
-    </footer>
-
-    <script>
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('active');
-            document.getElementById('overlay').classList.toggle('active');
-        }
-    </script>
 </body>
 </html>
