@@ -2,69 +2,85 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>AirTech One - CCTV & Security Cameras | Hafar Al-Batin</title>
-    <meta name="description" content="Original Hikvision, Dahua, EZVIZ, Imou, Tapo, TP-Link CCTV cameras, NVR, HDD & networking. Best prices & fast installation in Eastern Province, Saudi Arabia.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirTech One - Saudi's Largest Inventory</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:'Poppins', sans-serif; background:#f8f9fc; color:#333; line-height:1.6; font-size:16px; }
-        .container { max-width:1200px; margin:0 auto; padding:0 16px; }
-        header { background:#0d47a1; color:white; padding:12px 0; position:sticky; top:0; z-index:100; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
-        header .container { display:flex; justify-content:space-between; align-items:center; }
-        .logo { font-size:1.7rem; font-weight:700; white-space: nowrap; } /* Ensures text stays on one line */
+        body { font-family:'Poppins', sans-serif; background:#f0f2f5; color:#1a1a1a; }
         
-        .login-btn {
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 8px; /* Space between icon and text (optional) */
-            padding: 8px 16px;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
+        /* Fixed Header: Logo Center, Login Right */
+        header { 
+            background:#0d47a1; 
+            color:white; 
+            padding:15px 0; 
+            position:sticky; 
+            top:0; 
+            z-index:1000; 
+            box-shadow:0 2px 10px rgba(0,0,0,0.1); 
+        }
+        header .container { 
+            max-width:1200px; 
+            margin:0 auto; 
+            padding:0 20px; 
+            display:flex; 
+            justify-content: center; 
+            align-items:center; 
+            position: relative; 
+        }
+        .logo { font-size:1.8rem; font-weight:700; letter-spacing: 1px; }
+        .login-btn { position: absolute; right: 20px; color: white; font-size: 1.6rem; cursor: pointer; transition: 0.3s; }
+        .login-btn:hover { color: #00d4ff; }
+
+        /* Search & Hero */
+        .hero { 
+            background: linear-gradient(135deg, #0d47a1 0%, #002171 100%);
+            padding: 50px 20px; text-align: center; color: white; 
+        }
+        .search-container { max-width: 700px; margin: 25px auto 0; position: relative; }
+        .search-container input { 
+            width: 100%; padding: 18px 30px; border-radius: 50px; border: none; font-size: 1.1rem; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2); outline: none;
+        }
+        .search-icon { position: absolute; right: 25px; top: 18px; color: #0d47a1; font-size: 1.2rem; }
+
+        /* Filter Tabs */
+        .filter-section { 
+            max-width: 1200px; margin: -30px auto 30px; padding: 0 20px; 
+            display: flex; gap: 12px; overflow-x: auto; scrollbar-width: none;
+        }
+        .filter-section::-webkit-scrollbar { display: none; }
+        .brand-tab { 
+            background: white; padding: 12px 25px; border-radius: 30px; cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); font-weight: 600; white-space: nowrap;
+            border: 2px solid transparent; transition: 0.3s;
+        }
+        .brand-tab.active { border-color: #0d47a1; color: #0d47a1; background: #e3f2fd; }
+
+        /* Product Grid */
+        .inventory { max-width: 1200px; margin: 0 auto; padding: 0 20px 50px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
+        .p-card { 
+            background: white; border-radius: 15px; padding: 25px; border: 1px solid #eee;
+            transition: 0.3s; position: relative; overflow: hidden;
+        }
+        .p-card:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(0,0,0,0.1); }
+        .p-card::before { content: ''; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: #0d47a1; }
+        
+        .p-brand { font-size: 0.8rem; font-weight: 700; color: #0d47a1; text-transform: uppercase; }
+        .p-model { font-size: 1.2rem; font-weight: 700; margin: 10px 0; color: #111; }
+        .p-specs { font-size: 0.9rem; color: #555; line-height: 1.5; margin-bottom: 20px; min-height: 45px; }
+        .p-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 15px; }
+        .p-price { font-size: 1.4rem; font-weight: 700; color: #e63946; }
+        .btn-wa { 
+            background: #25D366; color: white; padding: 10px 20px; border-radius: 8px; 
+            text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 8px;
         }
 
-        .login-btn:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .hero { background:linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)), url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&q=80') center/cover; color:white; text-align:center; padding:90px 16px 60px; }
-        .hero h1 { font-size:2.4rem; margin-bottom:10px; }
-        .hero p { font-size:1.05rem; margin-bottom:20px; max-width:90%; margin-left:auto; margin-right:auto; }
-        .btn-whatsapp { display:inline-block; background:#25D366; color:white; padding:14px 30px; border-radius:50px; text-decoration:none; font-weight:600; font-size:1.05rem; min-width:220px; }
-        .btn-whatsapp:hover { background:#128C7E; }
-        .section { padding:45px 0 20px; }
-        h2 { text-align:center; font-size:1.9rem; margin-bottom:1.5rem; color:#0d47a1; }
-        .brand-section { margin-bottom:28px; }
-        .brand-header { cursor:pointer; background:#fff; padding:166px 18px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); display:flex; justify-content:space-between; align-items:center; font-size:1.2rem; font-weight:600; color:#0d47a1; min-height:52px; }
-        .brand-content { display:none; padding:16px 12px; background:#f9f9f9; border-radius:0 0 10px 10px; }
-        .brand-content.active { display:block; }
-        .arrow { font-size:1.2rem; transition:0.3s; }
-        .brand-header.active .arrow { transform:rotate(180deg); }
-        .product-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:18px; margin-top:12px; }
-        .product-card { background:white; border-radius:10px; overflow:hidden; box-shadow:0 3px 10px rgba(0,0,0,0.07); text-align:center; transition:0.25s; }
-        .product-card:hover { transform:translateY(-4px); }
-        .product-card img { width:100%; height:150px; object-fit:cover; }
-        .product-info { padding:12px 10px; }
-        .product-info h4 { font-size:1.1rem; margin-bottom:6px; color:#0d47a1; }
-        .product-features { font-size:0.88rem; color:#555; margin-bottom:8px; line-height:1.4; }
-        .price { font-size:1.2rem; font-weight:700; color:#e63946; margin:8px 0; }
-        .btn-ask { background:#0d47a1; color:white; border:none; padding:12px 22px; border-radius:50px; cursor:pointer; font-weight:500; font-size:0.98rem; min-width:150px; transition:0.3s; }
-        .btn-ask:hover { background:#0b3d8d; }
-        .contact { background:#0d47a1; color:white; text-align:center; padding:50px 16px; }
-        .contact p { font-size:1.05rem; margin:10px 0; }
-        .contact a { color:#00d4ff; text-decoration:none; }
-        footer { background:#222; color:#aaa; text-align:center; padding:1.5rem 16px; font-size:0.9rem; }
-        @media (min-width: 768px) {
-            .container { padding:0 24px; }
-            .hero { padding:140px 24px 100px; }
-            .hero h1 { font-size:3.2rem; }
-            .product-grid { gap:24px; }
-            .product-card img { height:180px; }
-            .brand-header { font-size:1.35rem; padding:18px 22px; }
+        @media (max-width: 600px) {
+            .logo { font-size: 1.4rem; }
+            .hero h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -73,67 +89,85 @@
     <header>
         <div class="container">
             <div class="logo">AirTech One</div>
-            <a href="#" class="login-btn">
-                <i class="fas fa-user-circle"></i> </a>
+            <div class="login-btn"><i class="fas fa-user-circle"></i></div>
         </div>
     </header>
 
-    <section id="home" class="hero">
-        <div class="container">
-            <h1>AirTech One</h1>
-            <p>#1 CCTV Security & Networking Store<br>Hafar Al-Batin & Eastern Province, Saudi Arabia</p>
-            <a href="https://wa.me/966550898978?text=Hello%20AirTech%20One%2C%20I%20want%20CCTV%20options%20and%20prices" class="btn-whatsapp">Chat on WhatsApp</a>
+    <div class="hero">
+        <h1>Official Security Inventory</h1>
+        <p>Hafar Al-Batin • Saudi Arabia • Original Brands Only</p>
+        <div class="search-container">
+            <input type="text" id="mainSearch" placeholder="Search by Model, Brand or Specs (e.g. 8MP NVR)...">
+            <i class="fas fa-search search-icon"></i>
         </div>
-    </section>
+    </div>
 
-    <section id="products" class="section">
-        <div class="container">
-            <h2>All CCTV & Networking Products (Expanded 2025–2026 Models)</h2>
+    <div class="filter-section" id="tabs">
+        <div class="brand-tab active" onclick="filter('All')">All Inventory</div>
+        <div class="brand-tab" onclick="filter('Hikvision')">Hikvision</div>
+        <div class="brand-tab" onclick="filter('Dahua')">Dahua</div>
+        <div class="brand-tab" onclick="filter('EZVIZ')">EZVIZ</div>
+        <div class="brand-tab" onclick="filter('Imou')">Imou</div>
+        <div class="brand-tab" onclick="filter('TP-Link')">TP-Link</div>
+        <div class="brand-tab" onclick="filter('HDD')">HDD Storage</div>
+    </div>
 
-            <div class="brand-section">
-                <div class="brand-header">Hikvision <span class="arrow">▼</span></div>
-                <div class="brand-content">
-                    <div class="product-grid">
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&q=80" alt="Hikvision ColorVu 3.0">
-                            <div class="product-info">
-                                <h4>ColorVu 3.0 DS-2CD2347G3-LIS2UY</h4>
-                                <p class="product-features">4MP/8MP • 24/7 Full Color • HikAI-ISP • AI Detection • IP67</p>
-                                <div class="price">From SAR 650</div>
-                                <button class="btn-ask" onclick="window.open('https://wa.me/966550898978?text=Hikvision%20ColorVu%203.0%20details%20please')">Ask on WhatsApp</button>
-                            </div>
-                        </div>
-                        </div>
-                </div>
+    <div class="inventory">
+        <div class="grid" id="productGrid">
             </div>
-             </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Get in Touch Today</h2>
-            <p>Fast Delivery • Professional Installation • 24/7 Support</p>
-            <p><strong>WhatsApp / Call:</strong> <a href="tel:+966550898978">+966 550 898 978</a></p>
-            <p><strong>Email:</strong> <a href="mailto:admin@airtech.one">admin@airtech.one</a></p>
-            <p><strong>Location:</strong> Hafar Al-Batin, Eastern Province, Saudi Arabia</p>
-            <br>
-            <a href="https://wa.me/966550898978?text=Hi%20AirTech%20One%20team%2C%20need%20CCTV%20catalog" class="btn-whatsapp">Message on WhatsApp</a>
-        </div>
-    </section>
-
-    <footer>
-        <p>© 2026 AirTech One. All Rights Reserved.</p>
-    </footer>
+    </div>
 
     <script>
-        document.querySelectorAll('.brand-header').forEach(header => {
-            header.addEventListener('click', () => {
-                const content = header.nextElementSibling;
-                content.classList.toggle('active');
-                header.classList.toggle('active');
-            });
-        });
-    </script>
+        // Maine aapki saari files ka data consolidate karne ke liye structure bana diya hai
+        const fullData = [
+            { b: 'Hikvision', m: 'DS-2CD2387G2P-LSU/SL', s: '8MP Panoramic ColorVu Fixed Turret Camera', p: '950' },
+            { b: 'Dahua', m: 'IPC-HFW5442T-ASE', s: '4MP Pro AI Full-color Bullet Camera', p: '820' },
+            { b: 'EZVIZ', m: 'CS-C8W-A0-1H4WKFL', s: '4MP Pan & Tilt Wi-Fi Camera', p: '550' },
+            { b: 'TP-Link', m: 'VIGI C440-W', s: '4MP Full-Color Wi-Fi Turret', p: '380' },
+            { b: 'HDD', m: 'WD Purple 10TB', s: 'Surveillance Hard Drive - AI Enabled', p: '1250' },
+            { b: 'Imou', m: 'Cruiser SE+', s: '4MP Full Color PTZ Outdoor', p: '450' }
+            // Isme hum Firebase se hazaron products auto-load kar sakte hain
+        ];
 
+        function render(items) {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = items.map(item => `
+                <div class="p-card">
+                    <div class="p-brand">${item.b}</div>
+                    <div class="p-model">${item.m}</div>
+                    <div class="p-specs">${item.s}</div>
+                    <div class="p-footer">
+                        <div class="p-price">SAR ${item.p}</div>
+                        <a href="https://wa.me/966550898978?text=Stock inquiry: ${item.m}" class="btn-wa">
+                            <i class="fab fa-whatsapp"></i> Inquiry
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Search Engine Logic
+        document.getElementById('mainSearch').addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const filtered = fullData.filter(i => 
+                i.m.toLowerCase().includes(term) || 
+                i.b.toLowerCase().includes(term) || 
+                i.s.toLowerCase().includes(term)
+            );
+            render(filtered);
+        });
+
+        // Brand Tabs Logic
+        function filter(brand) {
+            document.querySelectorAll('.brand-tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            if(brand === 'All') return render(fullData);
+            const filtered = fullData.filter(i => i.b.includes(brand));
+            render(filtered);
+        }
+
+        // Boot
+        render(fullData);
+    </script>
 </body>
 </html>
