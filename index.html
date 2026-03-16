@@ -1,182 +1,96 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>AirTechOne CCTV & Networking</title><style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirTech One - CCTV & Security Cameras | Hafar Al-Batin, Saudi Arabia</title>
+    <meta name="description" content="AirTech One - #1 CCTV & Security Camera Store in Hafar Al-Batin. Best prices on original Hikvision, Dahua, EZVIZ, TP-Link products with fast installation.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
 
-body{
-margin:0;
-font-family:Arial;
-background:#0b0b0b;
-color:white;
-}
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">AirTech One</div>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#products">Products</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
 
-header{
-background:#111;
-padding:15px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Your Security is Our Priority</h1>
+            <p>#1 CCTV & Networking Store in Hafar Al-Batin – Serving All Saudi Arabia</p>
+            <a href="https://wa.me/966550898978?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20AirTech%20One%20products" class="btn whatsapp-btn">Order on WhatsApp</a>
+        </div>
+    </section>
 
-.logo{
-font-size:22px;
-font-weight:bold;
-}
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <h2>Our Best Products</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300x250?text=Hikvision+4K+Camera" alt="Hikvision 4K Camera">
+                    <h3>Hikvision 4K Security Camera</h3>
+                    <p>AI Detection, Night Vision, Motion Tracking</p>
+                    <span class="price">From SAR 450</span>
+                    <a href="https://wa.me/966550898978?text=Please%20send%20details%20for%20Hikvision%204K%20Camera" class="btn">Ask on WhatsApp</a>
+                </div>
 
-nav a{
-color:white;
-margin:0 10px;
-text-decoration:none;
-}
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300x250?text=Dahua+PTZ+Camera" alt="Dahua PTZ Camera">
+                    <h3>Dahua PTZ Smart Camera</h3>
+                    <p>360° Coverage, Waterproof, Long Range</p>
+                    <span class="price">From SAR 1,200</span>
+                    <a href="https://wa.me/966550898978?text=What%20is%20the%20price%20of%20Dahua%20PTZ%20Camera" class="btn">Ask on WhatsApp</a>
+                </div>
 
-.slider{
-width:100%;
-height:320px;
-overflow:hidden;
-}
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300x250?text=EZVIZ+WiFi+Camera" alt="EZVIZ WiFi Camera">
+                    <h3>EZVIZ WiFi Home Camera</h3>
+                    <p>Cloud Storage, Mobile App Control</p>
+                    <span class="price">From SAR 250</span>
+                    <a href="https://wa.me/966550898978?text=I%20want%20to%20order%20EZVIZ%20Home%20Camera" class="btn">Ask on WhatsApp</a>
+                </div>
 
-.slider img{
-width:100%;
-height:320px;
-object-fit:cover;
-}
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300x250?text=TP-Link+Router" alt="TP-Link Router">
+                    <h3>TP-Link High-Speed Router</h3>
+                    <p>Strong Network, Anti-Hack Features</p>
+                    <span class="price">From SAR 180</span>
+                    <a href="https://wa.me/966550898978?text=Please%20send%20details%20for%20TP-Link%20Router" class="btn">Ask on WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-.search{
-text-align:center;
-padding:20px;
-}
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <p>Fast Installation • 24/7 Support • Best Prices Guaranteed!</p>
+            <div class="contact-info">
+                <p><strong>WhatsApp / Call:</strong> <a href="tel:+966550898978">+966 550 898 978</a></p>
+                <p><strong>Email:</strong> <a href="mailto:admin@airtech.one">admin@airtech.one</a></p>
+                <p><strong>Location:</strong> Hafar Al-Batin, Eastern Province, Saudi Arabia</p>
+            </div>
+            <a href="https://wa.me/966550898978?text=Hello%20AirTech%20One%20Team" class="btn whatsapp-btn">Chat Now on WhatsApp</a>
+        </div>
+    </section>
 
-.search input{
-width:80%;
-padding:12px;
-border-radius:8px;
-border:none;
-font-size:16px;
-}
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 AirTech One. All Rights Reserved. | Leading Security Solutions Provider in Saudi Arabia</p>
+        </div>
+    </footer>
 
-.brands{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-gap:20px;
-padding:20px;
-}
-
-.card{
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(10px);
-border-radius:12px;
-padding:15px;
-text-align:center;
-transition:0.3s;
-cursor:pointer;
-}
-
-.card:hover{
-transform:scale(1.05);
-background:rgba(255,255,255,0.1);
-}
-
-.card img{
-width:100%;
-height:80px;
-object-fit:contain;
-}
-
-footer{
-text-align:center;
-padding:20px;
-background:#111;
-}
-
-.whatsapp{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-color:white;
-padding:14px 16px;
-border-radius:50%;
-font-size:22px;
-text-decoration:none;
-}
-
-</style></head><body><header><div class="logo">AirTechOne</div><nav><a href="index.html">Home</a>
-<a href="brands.html">Brands</a>
-<a href="contact.html">Contact</a>
-<a href="admin-login.html">Admin</a>
-
-</nav></header><div class="slider"><img id="slide" src="images/slider/slide1.jpg"></div><div class="search"><input placeholder="Search CCTV Brand"></div><section class="brands"><div class="card" onclick="go('hikvision')">
-<img src="images/brands/hikvision.jpg">
-<p>HIKVISION</p>
-</div><div class="card" onclick="go('dahua')">
-<img src="images/brands/dahua.jpg">
-<p>DAHUA</p>
-</div><div class="card" onclick="go('uniview')">
-<img src="images/brands/uniview.jpg">
-<p>UNIVIEW</p>
-</div><div class="card" onclick="go('hilook')">
-<img src="images/brands/hilook.jpg">
-<p>HILOOK</p>
-</div><div class="card" onclick="go('axis')">
-<img src="images/brands/axis.jpg">
-<p>AXIS</p>
-</div><div class="card" onclick="go('bosch')">
-<img src="images/brands/bosch.jpg">
-<p>BOSCH</p>
-</div><div class="card" onclick="go('honeywell')">
-<img src="images/brands/honeywell.jpg">
-<p>HONEYWELL</p>
-</div><div class="card" onclick="go('cpplus')">
-<img src="images/brands/cpplus.jpg">
-<p>CP PLUS</p>
-</div><div class="card" onclick="go('zkteco')">
-<img src="images/brands/zkteco.jpg">
-<p>ZKTECO</p>
-</div><div class="card" onclick="go('hanwha')">
-<img src="images/brands/hanwha.jpg">
-<p>HANWHA</p>
-</div><div class="card" onclick="go('tplink')">
-<img src="images/brands/tplink.jpg">
-<p>TP-LINK</p>
-</div><div class="card" onclick="go('tapo')">
-<img src="images/brands/tapo.jpg">
-<p>TAPO</p>
-</div><div class="card" onclick="go('mikrotik')">
-<img src="images/brands/mikrotik.jpg">
-<p>MIKROTIK</p>
-</div><div class="card" onclick="go('dlink')">
-<img src="images/brands/dlink.jpg">
-<p>D-LINK</p>
-</div><div class="card" onclick="go('netgear')">
-<img src="images/brands/netgear.jpg">
-<p>NETGEAR</p>
-</div></section><footer><p>AirTechOne CCTV & Networking</p><p>admin@airtech.one</p><p>+966 55 089 8978</p></footer><a class="whatsapp" href="https://wa.me/966550898978">W</a>
-
-<script>
-
-function go(brand){
-
-location.href="products.html?brand="+brand;
-
-}
-
-let slides=[
-
-"images/slider/slide1.jpg",
-"images/slider/slide2.jpg",
-"images/slider/slide3.jpg"
-
-];
-
-let s=0;
-
-setInterval(function(){
-
-s++;
-
-if(s>=slides.length){s=0;}
-
-document.getElementById("slide").src=slides[s];
-
-},3000);
-
-</script></body>
+</body>
 </html>
