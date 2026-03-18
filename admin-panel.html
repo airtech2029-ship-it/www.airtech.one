@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AirTech One — Admin Panel</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0e0e0e;
+  --surface: #161616;
+  --surface2: #1e1e1e;
+  --accent: #e63329;
+  --accent2: #ff6b35;
+  --green: #22c55e;
+  --blue: #3b82f6;
+  --yellow: #f59e0b;
+  --border: rgba(255,255,255,0.07);
+  --muted: rgba(255,255,255,0.4);
+  --text: #ffffff;
+  --sidebar-w: 250px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; display:flex; }
+
+/* SIDEBAR */
+.sidebar {
+  width:var(--sidebar-w); background:var(--surface);
+  min-height:100vh; position:fixed; left:0; top:0;
+  display:flex; flex-direction:column; z-index:50;
+  border-right:1px solid var(--border);
+}
+.sidebar-logo {
+  padding:24px 24px 18px;
+  font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:2px;
+  color:#fff; border-bottom:1px solid var(--border);
+}
+.sidebar-logo span { color:var(--accent); }
+.sidebar-logo small { display:block; font-family:'DM Sans',sans-serif; font-size:9px; letter-spacing:2px; color:var(--muted); margin-top:3px; text-transform:uppercase; }
+
+.admin-badge {
+  margin:14px 24px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border-radius:10px; padding:10px 14px;
+  display:flex; align-items:center; gap:10px;
+}
+.admin-av { width:32px; height:32px; border-radius:8px; background:rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; font-size:16px; }
+.admin-name { font-size:12px; font-weight:700; }
+.admin-role { font-size:10px; color:rgba(255,255,255,0.7); }
+
+.sidebar-nav { flex:1; padding:8px 0; overflow-y:auto; }
+.nav-group-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--muted); padding:14px 24px 6px; }
+.nav-item {
+  display:flex; align-items:center; gap:12px;
+  padding:10px 24px; color:var(--muted);
+  font-size:13px; font-weight:600; cursor:pointer;
+  transition:all 0.2s; border-left:3px solid transparent; text-decoration:none;
+}
+.nav-item:hover { color:#fff; background:rgba(255,255,255,0.04); }
+.nav-item.active { color:#fff; border-left-color:var(--accent); background:rgba(230,51,41,0.1); }
+.nav-item .ni { font-size:15px; width:20px; text-align:center; }
+.nav-badge { margin-left:auto; background:var(--accent); color:#fff; font-size:9px; font-weight:800; padding:2px 7px; border-radius:100px; }
+.nav-badge.blue { background:var(--blue); }
+.nav-badge.green { background:#16a34a; }
+
+.sidebar-footer { padding:14px 24px; border-top:1px solid var(--border); }
+.logout-btn { display:flex; align-items:center; gap:10px; color:var(--muted); font-size:12px; font-weight:600; cursor:pointer; transition:color 0.2s; background:none; border:none; width:100%; font-family:'DM Sans',sans-serif; }
+.logout-btn:hover { color:var(--accent); }
+
+/* MAIN */
+.main { margin-left:var(--sidebar-w); flex:1; }
+.topbar {
+  background:rgba(22,22,22,0.95); backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border); padding:0 28px; height:58px;
+  display:flex; align-items:center; justify-content:space-between;
+  position:sticky; top:0; z-index:40;
+}
+.topbar-left { display:flex; flex-direction:column; }
+.topbar-title { font-size:15px; font-weight:700; }
+.topbar-sub { font-size:11px; color:var(--muted); }
+.topbar-right { display:flex; align-items:center; gap:10px; }
+.tb-btn { background:var(--accent); color:#fff; border:none; border-radius:8px; padding:7px 16px; font-size:12px; font-weight:700; cursor:pointer; font-family:'DM Sans',sans-serif; transition:opacity 0.2s; }
+.tb-btn:hover { opacity:0.85; }
+.tb-search {
+  background:var(--surface2); border:1px solid var(--border); border-radius:8px;
+  padding:7px 14px; font-size:12px; color:#fff; outline:none;
+  font-family:'DM Sans',sans-serif; width:200px;
+}
+.tb-search::placeholder { color:var(--muted); }
+.tb-notif { width:34px; height:34px; border-radius:8px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:15px; cursor:pointer; position:relative; background:var(--surface2); }
+.notif-dot { position:absolute; top:5px; right:5px; width:6px; height:6px; border-radius:50%; background:var(--accent); border:1.5px solid var(--bg); }
+
+/* CONTENT */
+.content { padding:24px 28px; }
+
+/* KPI STATS */
+.kpi-row { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:20px; }
+.kpi {
+  background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:18px;
+  transition:transform 0.2s; cursor:pointer;
+}
+.kpi:hover { transform:translateY(-2px); border-color:rgba(255,255,255,0.12); }
+.kpi-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+.kpi-icon { width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px; }
+.kpi-change { font-size:11px; font-weight:700; padding:3px 8px; border-radius:100px; }
+.kpi-up   { background:rgba(34,197,94,0.15); color:#22c55e; }
+.kpi-down { background:rgba(239,68,68,0.15); color:#ef4444; }
+.kpi-val { font-size:26px; font-weight:800; margin-bottom:4px; }
+.kpi-lbl { font-size:11px; color:var(--muted); font-weight:600; }
+.kpi-sub { font-size:10px; color:var(--muted); margin-top:6px; }
+
+/* MAIN GRID */
+.main-grid { display:grid; grid-template-columns:1.5fr 1fr; gap:18px; margin-bottom:20px; }
+
+/* CARD */
+.card { background:var(--surface); border:1px solid var(--border); border-radius:14px; overflow:hidden; }
+.card-head { padding:16px 18px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+.card-title { font-size:13px; font-weight:700; }
+.card-action { font-size:11px; color:var(--accent); font-weight:700; cursor:pointer; text-decoration:none; }
+
+/* ORDERS TABLE */
+.orders-table { width:100%; border-collapse:collapse; }
+.orders-table th { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--muted); padding:10px 18px; text-align:left; border-bottom:1px solid var(--border); }
+.orders-table td { padding:12px 18px; font-size:12px; border-bottom:1px solid var(--border); }
+.orders-table tr:last-child td { border-bottom:none; }
+.orders-table tr:hover td { background:rgba(255,255,255,0.02); }
+.order-product { display:flex; align-items:center; gap:10px; }
+.op-img { width:34px; height:34px; border-radius:8px; background:rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.op-name { font-size:12px; font-weight:700; }
+.op-id { font-size:10px; color:var(--muted); }
+.sbadge { font-size:10px; font-weight:700; padding:3px 9px; border-radius:100px; }
+.s-new     { background:rgba(59,130,246,0.15); color:#60a5fa; }
+.s-process { background:rgba(245,158,11,0.15); color:#fbbf24; }
+.s-ship    { background:rgba(139,92,246,0.15); color:#a78bfa; }
+.s-done    { background:rgba(34,197,94,0.15); color:#4ade80; }
+.s-cancel  { background:rgba(239,68,68,0.15); color:#f87171; }
+
+/* RIGHT SIDE */
+.right-col { display:flex; flex-direction:column; gap:18px; }
+
+/* CHART MINI */
+.mini-chart { padding:16px 18px; }
+.mini-bars { display:flex; align-items:flex-end; gap:5px; height:80px; margin-top:10px; }
+.mb { flex:1; border-radius:4px 4px 0 0; background:rgba(255,255,255,0.08); min-height:6px; }
+.mb.accent { background:linear-gradient(to top,var(--accent),var(--accent2)); }
+.mb-labels { display:flex; gap:5px; margin-top:6px; }
+.mb-l { flex:1; font-size:9px; color:var(--muted); text-align:center; }
+
+/* TOP PRODUCTS */
+.top-prod { display:flex; align-items:center; gap:12px; padding:11px 18px; border-bottom:1px solid var(--border); }
+.top-prod:last-child { border-bottom:none; }
+.tp-rank { font-size:11px; font-weight:800; color:var(--muted); width:18px; }
+.tp-img { width:34px; height:34px; border-radius:8px; background:rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center; font-size:16px; }
+.tp-name { font-size:12px; font-weight:700; flex:1; }
+.tp-sales { font-size:11px; color:var(--muted); }
+.tp-rev { font-size:12px; font-weight:800; color:var(--green); }
+
+/* BOTTOM ROW */
+.bottom-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px; margin-bottom:20px; }
+
+/* VENDOR LIST */
+.vendor-row { display:flex; align-items:center; gap:12px; padding:11px 18px; border-bottom:1px solid var(--border); }
+.vendor-row:last-child { border-bottom:none; }
+.vendor-av { width:34px; height:34px; border-radius:8px; background:linear-gradient(135deg,#1d4ed8,#3b82f6); display:flex; align-items:center; justify-content:center; font-size:14px; }
+.vendor-name { font-size:12px; font-weight:700; flex:1; }
+.vendor-rev { font-size:11px; font-weight:800; color:var(--green); }
+.vendor-status { width:8px; height:8px; border-radius:50%; background:var(--green); flex-shrink:0; }
+
+/* RECENT CUSTOMERS */
+.cust-row { display:flex; align-items:center; gap:12px; padding:11px 18px; border-bottom:1px solid var(--border); }
+.cust-row:last-child { border-bottom:none; }
+.cust-av { width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:800; color:#fff; flex-shrink:0; }
+.cust-name { font-size:12px; font-weight:700; flex:1; }
+.cust-orders { font-size:10px; color:var(--muted); }
+.cust-spent { font-size:11px; font-weight:800; }
+
+/* ALERTS */
+.alert-item { display:flex; align-items:flex-start; gap:12px; padding:12px 18px; border-bottom:1px solid var(--border); }
+.alert-item:last-child { border-bottom:none; }
+.alert-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; margin-top:4px; }
+.alert-text { font-size:12px; font-weight:600; line-height:1.4; }
+.alert-time { font-size:10px; color:var(--muted); margin-top:2px; }
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-logo">Air<span>Tech</span> One<small>Admin Panel</small></div>
+
+  <div class="admin-badge">
+    <div class="admin-av">👑</div>
+    <div>
+      <div class="admin-name">Super Admin</div>
+      <div class="admin-role">Full Access · Riyadh HQ</div>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-group-label">Core</div>
+    <a href="#" class="nav-item active"><span class="ni">📊</span> Dashboard</a>
+    <a href="#" class="nav-item"><span class="ni">📦</span> Orders <span class="nav-badge">24</span></a>
+    <a href="#" class="nav-item"><span class="ni">🛍️</span> Products</a>
+    <a href="#" class="nav-item"><span class="ni">👥</span> Customers</a>
+
+    <div class="nav-group-label">Store Mgmt</div>
+    <a href="#" class="nav-item"><span class="ni">🏪</span> Vendors <span class="nav-badge blue">3</span></a>
+    <a href="#" class="nav-item"><span class="ni">📋</span> Catalog</a>
+    <a href="#" class="nav-item"><span class="ni">🏷️</span> Promotions</a>
+    <a href="#" class="nav-item"><span class="ni">📢</span> Banners</a>
+
+    <div class="nav-group-label">Finance</div>
+    <a href="#" class="nav-item"><span class="ni">💰</span> Revenue</a>
+    <a href="#" class="nav-item"><span class="ni">↩️</span> Refunds <span class="nav-badge">5</span></a>
+    <a href="#" class="nav-item"><span class="ni">💸</span> Payouts</a>
+
+    <div class="nav-group-label">System</div>
+    <a href="#" class="nav-item"><span class="ni">🔐</span> Users & Roles</a>
+    <a href="#" class="nav-item"><span class="ni">📈</span> Analytics</a>
+    <a href="#" class="nav-item"><span class="ni">⚙️</span> Settings</a>
+    <a href="#" class="nav-item"><span class="ni">🔔</span> Notifications <span class="nav-badge green">8</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <button class="logout-btn">🚪 &nbsp;Logout</button>
+  </div>
+</aside>
+
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-title">Admin Dashboard</div>
+      <div class="topbar-sub">Wednesday, 18 Mar 2026 · AirTech One HQ</div>
+    </div>
+    <div class="topbar-right">
+      <input class="tb-search" placeholder="🔍  Search orders, products...">
+      <div class="tb-notif">🔔<div class="notif-dot"></div></div>
+      <button class="tb-btn">+ Add Product</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- KPI -->
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="kpi-top">
+          <div class="kpi-icon" style="background:rgba(230,51,41,0.15)">💰</div>
+          <span class="kpi-change kpi-up">↑ 18%</span>
+        </div>
+        <div class="kpi-val">SAR 284K</div>
+        <div class="kpi-lbl">Total Revenue</div>
+        <div class="kpi-sub">vs SAR 241K last month</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-top">
+          <div class="kpi-icon" style="background:rgba(59,130,246,0.15)">📦</div>
+          <span class="kpi-change kpi-up">↑ 12%</span>
+        </div>
+        <div class="kpi-val">1,432</div>
+        <div class="kpi-lbl">Total Orders</div>
+        <div class="kpi-sub">24 new today</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-top">
+          <div class="kpi-icon" style="background:rgba(34,197,94,0.15)">👥</div>
+          <span class="kpi-change kpi-up">↑ 8%</span>
+        </div>
+        <div class="kpi-val">9,840</div>
+        <div class="kpi-lbl">Total Customers</div>
+        <div class="kpi-sub">+312 this month</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-top">
+          <div class="kpi-icon" style="background:rgba(245,158,11,0.15)">⭐</div>
+          <span class="kpi-change kpi-up">↑ 0.2</span>
+        </div>
+        <div class="kpi-val">4.87</div>
+        <div class="kpi-lbl">Avg Rating</div>
+        <div class="kpi-sub">From 3,204 reviews</div>
+      </div>
+    </div>
+
+    <!-- MAIN GRID -->
+    <div class="main-grid">
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">Recent Orders</div>
+          <a href="#" class="card-action">View All →</a>
+        </div>
+        <table class="orders-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Customer</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="order-product"><div class="op-img">📱</div><div><div class="op-name">iPhone 16 Pro Max</div><div class="op-id">#ORD-00441</div></div></div></td>
+              <td style="font-size:12px">Ali Hassan</td>
+              <td style="font-size:12px;font-weight:800">SAR 4,999</td>
+              <td><span class="sbadge s-new">New</span></td>
+            </tr>
+            <tr>
+              <td><div class="order-product"><div class="op-img">💻</div><div><div class="op-name">MacBook Pro M4</div><div class="op-id">#ORD-00439</div></div></div></td>
+              <td style="font-size:12px">Sara Q.</td>
+              <td style="font-size:12px;font-weight:800">SAR 8,999</td>
+              <td><span class="sbadge s-process">Processing</span></td>
+            </tr>
+            <tr>
+              <td><div class="order-product"><div class="op-img">🎧</div><div><div class="op-name">Sony WH-1000XM5</div><div class="op-id">#ORD-00436</div></div></div></td>
+              <td style="font-size:12px">Mohammed K.</td>
+              <td style="font-size:12px;font-weight:800">SAR 1,199</td>
+              <td><span class="sbadge s-ship">Shipped</span></td>
+            </tr>
+            <tr>
+              <td><div class="order-product"><div class="op-img">⌚</div><div><div class="op-name">Apple Watch Ultra 2</div><div class="op-id">#ORD-00431</div></div></div></td>
+              <td style="font-size:12px">Noura A.</td>
+              <td style="font-size:12px;font-weight:800">SAR 3,999</td>
+              <td><span class="sbadge s-done">Delivered</span></td>
+            </tr>
+            <tr>
+              <td><div class="order-product"><div class="op-img">📷</div><div><div class="op-name">Hikvision 4K Kit</div><div class="op-id">#ORD-00428</div></div></div></td>
+              <td style="font-size:12px">Khalid M.</td>
+              <td style="font-size:12px;font-weight:800">SAR 899</td>
+              <td><span class="sbadge s-cancel">Cancelled</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="right-col">
+        <div class="card">
+          <div class="card-head"><div class="card-title">Revenue (7 Days)</div></div>
+          <div class="mini-chart">
+            <div style="font-size:22px;font-weight:800">SAR 68,400</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:2px">↑ 18% vs last week</div>
+            <div class="mini-bars">
+              <div class="mb" style="height:50%"></div>
+              <div class="mb" style="height:70%"></div>
+              <div class="mb" style="height:45%"></div>
+              <div class="mb" style="height:80%"></div>
+              <div class="mb" style="height:60%"></div>
+              <div class="mb" style="height:90%"></div>
+              <div class="mb accent" style="height:100%"></div>
+            </div>
+            <div class="mb-labels">
+              <div class="mb-l">Mon</div><div class="mb-l">Tue</div><div class="mb-l">Wed</div>
+              <div class="mb-l">Thu</div><div class="mb-l">Fri</div><div class="mb-l">Sat</div>
+              <div class="mb-l">Sun</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><div class="card-title">Top Products</div><a href="#" class="card-action">View →</a></div>
+          <div class="top-prod"><div class="tp-rank">1</div><div class="tp-img">📱</div><div class="tp-name">iPhone 16 Pro Max</div><div class="tp-sales" style="margin-right:8px">234 sold</div><div class="tp-rev">SAR 68K</div></div>
+          <div class="top-prod"><div class="tp-rank">2</div><div class="tp-img">💻</div><div class="tp-name">MacBook Pro M4</div><div class="tp-sales" style="margin-right:8px">98 sold</div><div class="tp-rev">SAR 44K</div></div>
+          <div class="top-prod"><div class="tp-rank">3</div><div class="tp-img">🎧</div><div class="tp-name">Sony WH-1000XM5</div><div class="tp-sales" style="margin-right:8px">187 sold</div><div class="tp-rev">SAR 22K</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM ROW -->
+    <div class="bottom-row">
+      <div class="card">
+        <div class="card-head"><div class="card-title">Top Vendors</div><a href="#" class="card-action">Manage →</a></div>
+        <div class="vendor-row"><div class="vendor-av">🏪</div><div class="vendor-name">TechZone Store</div><div class="vendor-rev">SAR 18K</div><div class="vendor-status"></div></div>
+        <div class="vendor-row"><div class="vendor-av" style="background:linear-gradient(135deg,#16a34a,#22c55e)">📱</div><div class="vendor-name">Mobile World</div><div class="vendor-rev">SAR 14K</div><div class="vendor-status"></div></div>
+        <div class="vendor-row"><div class="vendor-av" style="background:linear-gradient(135deg,#7c3aed,#a78bfa)">💻</div><div class="vendor-name">LaptopHub KSA</div><div class="vendor-rev">SAR 11K</div><div class="vendor-status"></div></div>
+        <div class="vendor-row"><div class="vendor-av" style="background:linear-gradient(135deg,#c8102e,#ef4444)">📷</div><div class="vendor-name">SecureTech</div><div class="vendor-rev">SAR 8K</div><div class="vendor-status" style="background:#f59e0b"></div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-title">New Customers</div><a href="#" class="card-action">View All →</a></div>
+        <div class="cust-row"><div class="cust-av" style="background:#1d4ed8">A</div><div><div class="cust-name">Ahmed Al-Rashidi</div><div class="cust-orders">3 orders</div></div><div class="cust-spent">SAR 7.2K</div></div>
+        <div class="cust-row"><div class="cust-av" style="background:#16a34a">S</div><div><div class="cust-name">Sara Al-Qahtani</div><div class="cust-orders">1 order</div></div><div class="cust-spent">SAR 1.2K</div></div>
+        <div class="cust-row"><div class="cust-av" style="background:#7c3aed">M</div><div><div class="cust-name">Mohammed Khalid</div><div class="cust-orders">5 orders</div></div><div class="cust-spent">SAR 12K</div></div>
+        <div class="cust-row"><div class="cust-av" style="background:#c8102e">N</div><div><div class="cust-name">Noura Abdullah</div><div class="cust-orders">2 orders</div></div><div class="cust-spent">SAR 5K</div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-title">System Alerts</div><a href="#" class="card-action">Clear All</a></div>
+        <div class="alert-item"><div class="alert-dot" style="background:#f59e0b"></div><div><div class="alert-text">Low stock: Sony WH-1000XM5 (3 left)</div><div class="alert-time">10 mins ago</div></div></div>
+        <div class="alert-item"><div class="alert-dot" style="background:#ef4444"></div><div><div class="alert-text">Refund request #ORD-00428 by Khalid</div><div class="alert-time">32 mins ago</div></div></div>
+        <div class="alert-item"><div class="alert-dot" style="background:#22c55e"></div><div><div class="alert-text">New vendor: SecureTech applied</div><div class="alert-time">1 hr ago</div></div></div>
+        <div class="alert-item"><div class="alert-dot" style="background:#3b82f6"></div><div><div class="alert-text">24 new orders today · SAR 28K</div><div class="alert-time">Today</div></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
