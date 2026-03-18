@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AirTech One — Vendor Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f3ef;--dark:#0e0e0e;--accent:#e63329;--border:#e8e5e0;--muted:#888;--card:#fff;--blue:#1d4ed8;--text:#0e0e0e}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex}
+.left{width:52%;background:linear-gradient(160deg,#0f172a,#1d4ed8,#1e3a8a);min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;padding:40px 48px;position:relative;overflow:hidden}
+.left-glow{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(59,130,246,0.25),transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.left-top{position:relative;z-index:1}
+.left-logo{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:3px;color:#fff;text-decoration:none}
+.left-logo span{color:#60a5fa}
+.vendor-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);font-size:10px;font-weight:700;padding:4px 12px;border-radius:100px;margin-top:8px;letter-spacing:1.5px;text-transform:uppercase}
+.left-mid{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:center}
+.left-tag{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#60a5fa;margin-bottom:20px}
+.left-tag::before{content:'';width:24px;height:1.5px;background:#60a5fa}
+.left-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,5vw,74px);line-height:.92;color:#fff;margin-bottom:20px}
+.left-title em{color:#60a5fa;font-style:normal;display:block}
+.left-sub{font-size:14px;color:rgba(255,255,255,.45);line-height:1.7;max-width:340px;margin-bottom:36px}
+.left-features{display:flex;flex-direction:column;gap:14px}
+.feat{display:flex;align-items:center;gap:14px}
+.feat-ic{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.feat-text{font-size:13px;color:rgba(255,255,255,.6)}
+.feat-text strong{color:#fff;display:block;margin-bottom:1px}
+.left-bottom{position:relative;z-index:1;display:flex;gap:28px}
+.lstat-val{font-family:'Bebas Neue',sans-serif;font-size:28px;color:#fff;line-height:1}
+.lstat-lbl{font-size:10px;color:rgba(255,255,255,.35);margin-top:3px;font-weight:600}
+.right{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 48px}
+.form-box{width:100%;max-width:400px}
+.tabs{display:flex;background:rgba(0,0,0,.05);border-radius:12px;padding:4px;margin-bottom:28px}
+.tab{flex:1;padding:10px;border:none;background:none;border-radius:9px;font-size:13px;font-weight:700;font-family:'DM Sans',sans-serif;color:var(--muted);cursor:pointer;transition:all .2s}
+.tab.active{background:var(--card);color:var(--dark);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.form-title{font-size:22px;font-weight:800;margin-bottom:4px}
+.form-sub{font-size:13px;color:var(--muted);margin-bottom:24px}
+.form-group{margin-bottom:14px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+label{display:block;font-size:11px;font-weight:700;margin-bottom:6px}
+.input-wrap{position:relative}
+.input-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:15px;pointer-events:none}
+input[type=text],input[type=email],input[type=password],input[type=tel],select{width:100%;background:var(--card);border:1.5px solid var(--border);border-radius:9px;padding:11px 13px 11px 40px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--dark);outline:none;transition:border-color .2s}
+select{padding-left:13px}
+input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(29,78,216,.08)}
+input::placeholder{color:#bbb}
+.pass-toggle{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:15px;color:var(--muted)}
+.submit-btn{width:100%;background:var(--blue);color:#fff;border:none;border-radius:9px;padding:13px;font-size:14px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;transition:background .2s;margin-bottom:14px}
+.submit-btn:hover{background:#1e40af}
+.switch-text{text-align:center;font-size:12px;color:var(--muted)}
+.switch-text a{color:var(--blue);font-weight:700;text-decoration:none;cursor:pointer}
+.error-msg{background:#fce4ec;border:1px solid #f48fb1;color:#c62828;border-radius:8px;padding:10px 14px;font-size:12px;font-weight:600;margin-bottom:14px;display:none}
+.error-msg.show{display:block}
+.panel{display:none}.panel.active{display:block}
+.success-box{text-align:center;padding:20px 0}
+.success-icon{font-size:56px;margin-bottom:14px}
+.success-title{font-size:20px;font-weight:800;margin-bottom:8px}
+.success-sub{font-size:13px;color:var(--muted);margin-bottom:22px;line-height:1.6}
+.success-btn{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;border:none;border-radius:9px;padding:12px 26px;font-size:13px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;text-decoration:none}
+.divider{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.divider-line{flex:1;height:1px;background:var(--border)}
+.divider-text{font-size:11px;color:var(--muted);font-weight:600}
+.terms{font-size:11px;color:var(--muted);text-align:center;margin-top:12px;line-height:1.6}
+.terms a{color:var(--dark);font-weight:700;text-decoration:none}
+.back-home{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:var(--muted);text-decoration:none;margin-top:16px;transition:color .2s}
+.back-home:hover{color:var(--dark)}
+@media(max-width:768px){body{flex-direction:column}.left{width:100%;min-height:auto;padding:28px 24px 32px}.left-mid{padding:28px 0}.left-features{display:none}.right{padding:28px 24px}.form-row{grid-template-columns:1fr;gap:0}}
+</style>
+</head>
+<body>
+<div class="left">
+  <div class="left-glow"></div>
+  <div class="left-top">
+    <a href="airtech-homepage.html" class="left-logo">Air<span>Tech</span> One</a>
+    <div class="vendor-badge">🏪 Vendor Portal</div>
+  </div>
+  <div class="left-mid">
+    <div class="left-tag">Sell on AirTech</div>
+    <div class="left-title">Grow Your<br>Business<em>With Us</em></div>
+    <p class="left-sub">Join 200+ vendors selling to 50,000+ customers across Saudi Arabia. Fast payouts, zero hassle.</p>
+    <div class="left-features">
+      <div class="feat"><div class="feat-ic">💰</div><div class="feat-text"><strong>Weekly Payouts</strong>Get paid every week, guaranteed</div></div>
+      <div class="feat"><div class="feat-ic">📊</div><div class="feat-text"><strong>Live Analytics</strong>Track sales & revenue in real-time</div></div>
+      <div class="feat"><div class="feat-ic">🚚</div><div class="feat-text"><strong>Delivery Handled</strong>We deliver — you just pack</div></div>
+      <div class="feat"><div class="feat-ic">🛡️</div><div class="feat-text"><strong>Seller Protection</strong>Safe & secure transactions</div></div>
+    </div>
+  </div>
+  <div class="left-bottom">
+    <div><div class="lstat-val">200+</div><div class="lstat-lbl">Active Vendors</div></div>
+    <div style="width:1px;background:rgba(255,255,255,.1)"></div>
+    <div><div class="lstat-val">50K+</div><div class="lstat-lbl">Customers</div></div>
+    <div style="width:1px;background:rgba(255,255,255,.1)"></div>
+    <div><div class="lstat-val">98%</div><div class="lstat-lbl">Satisfaction</div></div>
+  </div>
+</div>
+
+<div class="right">
+  <div class="form-box">
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('login')">Sign In</button>
+      <button class="tab" onclick="switchTab('register')">Apply as Vendor</button>
+    </div>
+
+    <!-- LOGIN -->
+    <div class="panel active" id="panel-login">
+      <div class="form-title">Vendor Sign In 🏪</div>
+      <div class="form-sub">Access your vendor dashboard</div>
+      <div class="error-msg" id="login-error"></div>
+      <div class="form-group"><label>Business Email</label><div class="input-wrap"><span class="input-icon">📧</span><input type="email" id="login-email" placeholder="store@business.com"></div></div>
+      <div class="form-group"><label>Password</label><div class="input-wrap"><span class="input-icon">🔒</span><input type="password" id="login-pass" placeholder="Your password"><button class="pass-toggle" onclick="togglePass('login-pass',this)">👁️</button></div></div>
+      <div style="text-align:right;margin-bottom:16px"><a href="#" style="font-size:12px;font-weight:700;color:#1d4ed8;text-decoration:none">Forgot password?</a></div>
+      <button class="submit-btn" onclick="vendorLogin()">Sign In to Dashboard →</button>
+      <div class="switch-text">New vendor? <a onclick="switchTab('register')">Apply now — it's free</a></div>
+    </div>
+
+    <!-- REGISTER -->
+    <div class="panel" id="panel-register">
+      <div class="form-title">Become a Vendor 🚀</div>
+      <div class="form-sub">Start selling on AirTech One today</div>
+      <div class="error-msg" id="reg-error"></div>
+      <div class="form-row">
+        <div class="form-group" style="margin-bottom:0"><label>First Name</label><div class="input-wrap"><span class="input-icon">👤</span><input type="text" id="vfname" placeholder="Ahmed"></div></div>
+        <div class="form-group" style="margin-bottom:0"><label>Last Name</label><div class="input-wrap"><span class="input-icon">👤</span><input type="text" id="vlname" placeholder="Al-Rashidi"></div></div>
+      </div>
+      <div class="form-group" style="margin-top:14px"><label>Store / Business Name</label><div class="input-wrap"><span class="input-icon">🏪</span><input type="text" id="vstore" placeholder="TechZone Store"></div></div>
+      <div class="form-group"><label>Business Email</label><div class="input-wrap"><span class="input-icon">📧</span><input type="email" id="vemail" placeholder="store@business.com"></div></div>
+      <div class="form-group"><label>Phone</label><div class="input-wrap"><span class="input-icon">📱</span><input type="tel" id="vphone" placeholder="+966 5X XXX XXXX"></div></div>
+      <div class="form-group"><label>Business Category</label><select id="vcat"><option value="">Select category...</option><option>Smartphones & Tablets</option><option>Laptops & Computers</option><option>Audio & Headphones</option><option>Gaming</option><option>Security & CCTV</option><option>Networking</option><option>Wearables</option><option>Accessories</option></select></div>
+      <div class="form-group"><label>Password</label><div class="input-wrap"><span class="input-icon">🔒</span><input type="password" id="vpass" placeholder="Min 8 characters"><button class="pass-toggle" onclick="togglePass('vpass',this)">👁️</button></div></div>
+      <button class="submit-btn" onclick="vendorRegister()">Submit Application →</button>
+      <div class="terms">By applying you agree to our <a href="#">Vendor Terms</a> and <a href="#">Seller Policy</a></div>
+      <div class="switch-text" style="margin-top:14px">Already a vendor? <a onclick="switchTab('login')">Sign in</a></div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="panel" id="panel-success">
+      <div class="success-box">
+        <div class="success-icon">🎉</div>
+        <div class="success-title" id="success-title">Application Submitted!</div>
+        <div class="success-sub" id="success-sub">Your vendor application is under review. We'll contact you within 24 hours.</div>
+        <a href="vendor-panel.html" class="success-btn">Go to Dashboard →</a>
+      </div>
+    </div>
+
+    <a href="airtech-homepage.html" class="back-home">← Back to AirTech One</a>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+const app = initializeApp({apiKey:"AIzaSyCjr_7pP_yuBOiowOpGNRdDOlPOGy1ZBCo",authDomain:"airtech-one-23985.firebaseapp.com",projectId:"airtech-one-23985",storageBucket:"airtech-one-23985.firebasestorage.app",messagingSenderId:"132253722874",appId:"1:132253722874:web:34fe348d24fec8757d4143"});
+const auth = getAuth(app);
+window.vendorLogin = async function(){
+  const email=document.getElementById('login-email').value.trim();
+  const pass=document.getElementById('login-pass').value;
+  if(!email||!pass){showErr('login-error','Please fill all fields!');return;}
+  try{
+    const r=await signInWithEmailAndPassword(auth,email,pass);
+    localStorage.setItem('vendor_user',JSON.stringify({name:r.user.displayName||email,email:r.user.email,uid:r.user.uid}));
+    showSuccess('Welcome back! 👋','Redirecting to your dashboard...');
+    setTimeout(()=>window.location.href='vendor-panel.html',2000);
+  }catch(e){ showErr('login-error',getMsg(e.code)); }
+}
+window.vendorRegister = async function(){
+  const fname=document.getElementById('vfname').value.trim();
+  const email=document.getElementById('vemail').value.trim();
+  const pass=document.getElementById('vpass').value;
+  const store=document.getElementById('vstore').value.trim();
+  if(!fname||!email||!pass||!store){showErr('reg-error','Please fill all required fields!');return;}
+  if(pass.length<8){showErr('reg-error','Password must be at least 8 characters!');return;}
+  try{
+    const r=await createUserWithEmailAndPassword(auth,email,pass);
+    await updateProfile(r.user,{displayName:fname+' | '+store});
+    localStorage.setItem('vendor_user',JSON.stringify({name:fname,store,email,uid:r.user.uid}));
+    showSuccess('Application Submitted! 🎉','Your vendor account is ready. Welcome to AirTech One!');
+    setTimeout(()=>window.location.href='vendor-panel.html',2500);
+  }catch(e){ showErr('reg-error',getMsg(e.code)); }
+}
+function showErr(id,msg){const e=document.getElementById(id);e.textContent=msg;e.className='error-msg show';}
+function showSuccess(t,s){document.getElementById('success-title').textContent=t;document.getElementById('success-sub').textContent=s;document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.getElementById('panel-success').classList.add('active');}
+function getMsg(c){return{  'auth/user-not-found':'No vendor found with this email.','auth/wrong-password':'Incorrect password.','auth/email-already-in-use':'This email is already registered.','auth/weak-password':'Password too weak.','auth/invalid-credential':'Wrong email or password.'}[c]||'Something went wrong.';}
+</script>
+<script>
+function switchTab(t){document.querySelectorAll('.tab').forEach((b,i)=>b.classList.toggle('active',(t==='login'&&i===0)||(t==='register'&&i===1)));document.getElementById('panel-login').classList.toggle('active',t==='login');document.getElementById('panel-register').classList.toggle('active',t==='register');document.getElementById('panel-success').classList.remove('active');}
+function togglePass(id,btn){const i=document.getElementById(id);i.type=i.type==='password'?'text':'password';btn.textContent=i.type==='password'?'👁️':'🙈';}
+</script>
+</body>
+</html>
