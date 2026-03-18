@@ -1,0 +1,172 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>AirTech One — Analytics</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07070f;--surface:#0f0f1a;--surface2:#16162a;--accent:#e63329;--blue:#3b82f6;--green:#22c55e;--purple:#8b5cf6;--yellow:#f59e0b;--border:rgba(255,255,255,0.07);--muted:rgba(255,255,255,0.4);--text:#fff;--sw:240px}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh}
+.sidebar{width:var(--sw);background:var(--surface);min-height:100vh;position:fixed;left:0;top:0;display:flex;flex-direction:column;z-index:50;border-right:1px solid var(--border)}
+.logo{padding:24px 24px 16px;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:#fff;border-bottom:1px solid var(--border)}
+.logo span{color:var(--accent)}.logo small{display:block;font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:2px;color:var(--muted);margin-top:3px;text-transform:uppercase}
+.sb-user{padding:14px 24px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
+.sb-av{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#8b5cf6,#6d28d9);display:flex;align-items:center;justify-content:center;font-size:16px}
+.sb-name{font-size:12px;font-weight:700;color:#fff}.sb-role{font-size:10px;color:var(--muted)}
+.sb-nav{flex:1;padding:10px 0}
+.ng{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:12px 24px 5px}
+.ni{display:flex;align-items:center;gap:12px;padding:10px 24px;color:var(--muted);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;border-left:3px solid transparent;text-decoration:none}
+.ni:hover{color:#fff;background:rgba(255,255,255,0.04)}.ni.active{color:#fff;border-left-color:var(--accent);background:rgba(230,51,41,0.1)}
+.ni .ic{font-size:15px;width:20px;text-align:center}
+.nbadge{margin-left:auto;background:var(--accent);color:#fff;font-size:9px;font-weight:800;padding:2px 7px;border-radius:100px}
+.sb-foot{padding:14px 24px;border-top:1px solid var(--border)}
+.logout{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif}.logout:hover{color:var(--accent)}
+.main{margin-left:var(--sw);flex:1}
+.topbar{background:rgba(15,15,26,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 28px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:40}
+.tb-title{font-size:15px;font-weight:700}.tb-sub{font-size:11px;color:var(--muted)}
+.tb-r{display:flex;align-items:center;gap:10px}
+.btn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif}
+.tab-row{display:flex;gap:4px}
+.tab{font-size:11px;font-weight:700;padding:5px 14px;border-radius:8px;cursor:pointer;color:var(--muted);background:none;border:none;font-family:'DM Sans',sans-serif;transition:all .2s}
+.tab.active{background:var(--surface2);color:#fff;border:1px solid var(--border)}
+.content{padding:24px 28px}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px}
+.kpi-top{display:flex;justify-content:space-between;margin-bottom:12px}
+.kpi-ic{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.kbadge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:100px}
+.kb-g{background:rgba(34,197,94,0.15);color:#22c55e}.kb-b{background:rgba(59,130,246,0.15);color:#60a5fa}.kb-p{background:rgba(139,92,246,0.15);color:#a78bfa}
+.kpi-val{font-size:26px;font-weight:800;margin-bottom:4px}.kpi-lbl{font-size:11px;color:var(--muted);font-weight:600}
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:20px}
+.ch{padding:15px 18px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.ct{font-size:13px;font-weight:700}.ca{font-size:11px;color:var(--accent);font-weight:700;text-decoration:none}
+.chart-body{padding:20px}
+.bar-chart{display:flex;align-items:flex-end;gap:6px;height:160px}
+.bc-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+.bc-bar{width:100%;border-radius:5px 5px 0 0;min-height:6px;transition:opacity .2s}.bc-bar:hover{opacity:.8}
+.bc-lbl{font-size:10px;color:var(--muted);font-weight:600}.bc-val{font-size:9px;font-weight:700}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.ri{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--border)}.ri:last-child{border-bottom:none}.ri:hover{background:rgba(255,255,255,0.02)}
+.ri-rank{font-size:11px;font-weight:800;color:var(--muted);width:18px}
+.ri-ic{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.ri-name{font-size:12px;font-weight:700;flex:1}.ri-sub{font-size:10px;color:var(--muted);margin-top:2px}
+.ri-val{font-size:12px;font-weight:800}
+.progress-bg{height:4px;background:rgba(255,255,255,0.08);border-radius:2px;margin-top:4px;overflow:hidden}
+.progress-fill{height:100%;border-radius:2px}
+.map-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:20px}
+.geo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.geo-item{background:var(--surface);padding:14px 18px;display:flex;align-items:center;gap:10px}
+.geo-flag{font-size:22px}
+.geo-name{font-size:12px;font-weight:700;flex:1}.geo-pct{font-size:11px;color:var(--muted)}
+.geo-val{font-size:12px;font-weight:800}
+.bottom-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
+.funnel-step{padding:12px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}.funnel-step:last-child{border-bottom:none}
+.funnel-num{font-size:11px;font-weight:800;color:var(--muted);width:20px}
+.funnel-name{font-size:12px;font-weight:700;flex:1}
+.funnel-val{font-size:12px;font-weight:800;margin-right:8px}
+.funnel-pct{font-size:10px;color:var(--muted);background:rgba(255,255,255,0.06);padding:2px 8px;border-radius:100px}
+</style></head><body>
+<aside class="sidebar">
+  <div class="logo">Air<span>Tech</span> One<small>Analytics Panel</small></div>
+  <div class="sb-user"><div class="sb-av">📊</div><div><div class="sb-name">Analytics Manager</div><div class="sb-role">Business Intelligence</div></div></div>
+  <nav class="sb-nav">
+    <div class="ng">Overview</div>
+    <a href="#" class="ni active"><span class="ic">📊</span> Dashboard</a>
+    <a href="#" class="ni"><span class="ic">💰</span> Revenue Analytics</a>
+    <a href="#" class="ni"><span class="ic">📦</span> Order Analytics</a>
+    <div class="ng">Audience</div>
+    <a href="#" class="ni"><span class="ic">👥</span> Customer Insights</a>
+    <a href="#" class="ni"><span class="ic">🌍</span> Geographic</a>
+    <a href="#" class="ni"><span class="ic">📱</span> Device & Traffic</a>
+    <div class="ng">Products</div>
+    <a href="#" class="ni"><span class="ic">🏆</span> Top Products</a>
+    <a href="#" class="ni"><span class="ic">📉</span> Low Performers</a>
+    <div class="ng">Reports</div>
+    <a href="#" class="ni"><span class="ic">📋</span> Monthly Report</a>
+    <a href="#" class="ni"><span class="ic">📤</span> Export Data</a>
+  </nav>
+  <div class="sb-foot"><button class="logout">🚪 &nbsp;Logout</button></div>
+</aside>
+<div class="main">
+  <div class="topbar">
+    <div><div class="tb-title">Analytics Dashboard</div><div class="tb-sub">March 2026 · Real-time data</div></div>
+    <div class="tb-r">
+      <div class="tab-row"><button class="tab">7D</button><button class="tab active">1M</button><button class="tab">3M</button><button class="tab">1Y</button></div>
+      <button class="btn">📤 Export</button>
+    </div>
+  </div>
+  <div class="content">
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-top"><div class="kpi-ic" style="background:rgba(230,51,41,0.1)">💰</div><span class="kbadge kb-g">↑ 18%</span></div><div class="kpi-val">SAR 284K</div><div class="kpi-lbl">Total Revenue</div></div>
+      <div class="kpi"><div class="kpi-top"><div class="kpi-ic" style="background:rgba(59,130,246,0.1)">👁️</div><span class="kbadge kb-b">↑ 24%</span></div><div class="kpi-val">148,420</div><div class="kpi-lbl">Page Views</div></div>
+      <div class="kpi"><div class="kpi-top"><div class="kpi-ic" style="background:rgba(34,197,94,0.1)">👥</div><span class="kbadge kb-g">↑ 11%</span></div><div class="kpi-val">9,840</div><div class="kpi-lbl">Total Customers</div></div>
+      <div class="kpi"><div class="kpi-top"><div class="kpi-ic" style="background:rgba(139,92,246,0.1)">🔄</div><span class="kbadge kb-p">3.8%</span></div><div class="kpi-val">3.8%</div><div class="kpi-lbl">Conversion Rate</div></div>
+    </div>
+    <div class="chart-card">
+      <div class="ch"><div class="ct">Revenue & Orders — March 2026</div><a class="ca">Full Report →</a></div>
+      <div class="chart-body">
+        <div class="bar-chart">
+          <div class="bc-wrap"><div class="bc-val">8.2K</div><div class="bc-bar" style="height:50%;background:linear-gradient(to top,#3b82f6,#60a5fa)"></div><div class="bc-lbl">1</div></div>
+          <div class="bc-wrap"><div class="bc-val">6.1K</div><div class="bc-bar" style="height:38%;background:linear-gradient(to top,#3b82f6,#60a5fa)"></div><div class="bc-lbl">2</div></div>
+          <div class="bc-wrap"><div class="bc-val">9.4K</div><div class="bc-bar" style="height:58%;background:linear-gradient(to top,#3b82f6,#60a5fa)"></div><div class="bc-lbl">3</div></div>
+          <div class="bc-wrap"><div class="bc-val">11K</div><div class="bc-bar" style="height:68%;background:linear-gradient(to top,#3b82f6,#60a5fa)"></div><div class="bc-lbl">4</div></div>
+          <div class="bc-wrap"><div class="bc-val">7.8K</div><div class="bc-bar" style="height:48%;background:linear-gradient(to top,#3b82f6,#60a5fa)"></div><div class="bc-lbl">5</div></div>
+          <div class="bc-wrap"><div class="bc-val">13K</div><div class="bc-bar" style="height:80%;background:linear-gradient(to top,#3b82f6,#60a5fa)"></div><div class="bc-lbl">6</div></div>
+          <div class="bc-wrap"><div class="bc-val">9.2K</div><div class="bc-bar" style="height:57%;background:linear-gradient(to top,#3b82f6,#60a5fa)"></div><div class="bc-lbl">7</div></div>
+          <div class="bc-wrap"><div class="bc-val">10K</div><div class="bc-bar" style="height:62%;background:linear-gradient(to top,#3b82f6,#60a5fa)"></div><div class="bc-lbl">8</div></div>
+          <div class="bc-wrap"><div class="bc-val">14K</div><div class="bc-bar" style="height:86%;background:linear-gradient(to top,#3b82f6,#60a5fa)"></div><div class="bc-lbl">9</div></div>
+          <div class="bc-wrap"><div class="bc-val">12K</div><div class="bc-bar" style="height:74%;background:linear-gradient(to top,#3b82f6,#60a5fa)"></div><div class="bc-lbl">10</div></div>
+          <div class="bc-wrap"><div class="bc-val">8.9K</div><div class="bc-bar" style="height:55%;background:linear-gradient(to top,#3b82f6,#60a5fa)"></div><div class="bc-lbl">11</div></div>
+          <div class="bc-wrap"><div class="bc-val">11K</div><div class="bc-bar" style="height:68%;background:linear-gradient(to top,#3b82f6,#60a5fa)"></div><div class="bc-lbl">12</div></div>
+          <div class="bc-wrap"><div class="bc-val">15K</div><div class="bc-bar" style="height:93%;background:linear-gradient(to top,#3b82f6,#60a5fa)"></div><div class="bc-lbl">13</div></div>
+          <div class="bc-wrap"><div class="bc-val">16.2K</div><div class="bc-bar" style="height:100%;background:linear-gradient(to top,#e63329,#ff6b35)"></div><div class="bc-lbl">14</div></div>
+          <div class="bc-wrap"><div class="bc-val">14K</div><div class="bc-bar" style="height:86%;background:linear-gradient(to top,#3b82f6,#60a5fa)"></div><div class="bc-lbl">15</div></div>
+          <div class="bc-wrap"><div class="bc-val">13K</div><div class="bc-bar" style="height:80%;background:linear-gradient(to top,#3b82f6,#60a5fa)"></div><div class="bc-lbl">16</div></div>
+          <div class="bc-wrap"><div class="bc-val">11K</div><div class="bc-bar" style="height:68%;background:linear-gradient(to top,#3b82f6,#60a5fa)"></div><div class="bc-lbl">17</div></div>
+          <div class="bc-wrap"><div class="bc-val">12K</div><div class="bc-bar" style="height:74%;background:linear-gradient(to top,#3b82f6,#60a5fa)"></div><div class="bc-lbl">18</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="ch"><div class="ct">Top Products by Revenue</div><a class="ca">View All →</a></div>
+        <div class="ri"><div class="ri-rank">1</div><div class="ri-ic">📱</div><div><div class="ri-name">iPhone 16 Pro Max 256GB</div><div class="progress-bg"><div class="progress-fill" style="width:85%;background:#e63329"></div></div></div><div class="ri-val" style="color:#22c55e">SAR 68K</div></div>
+        <div class="ri"><div class="ri-rank">2</div><div class="ri-ic">💻</div><div><div class="ri-name">MacBook Pro M4 Max 16"</div><div class="progress-bg"><div class="progress-fill" style="width:72%;background:#3b82f6"></div></div></div><div class="ri-val" style="color:#22c55e">SAR 44K</div></div>
+        <div class="ri"><div class="ri-rank">3</div><div class="ri-ic">📱</div><div><div class="ri-name">Samsung Galaxy S25 Ultra</div><div class="progress-bg"><div class="progress-fill" style="width:58%;background:#8b5cf6"></div></div></div><div class="ri-val" style="color:#22c55e">SAR 32K</div></div>
+        <div class="ri"><div class="ri-rank">4</div><div class="ri-ic">🎧</div><div><div class="ri-name">Sony WH-1000XM5</div><div class="progress-bg"><div class="progress-fill" style="width:40%;background:#f59e0b"></div></div></div><div class="ri-val" style="color:#22c55e">SAR 22K</div></div>
+        <div class="ri"><div class="ri-rank">5</div><div class="ri-ic">⌚</div><div><div class="ri-name">Apple Watch Ultra 2</div><div class="progress-bg"><div class="progress-fill" style="width:32%;background:#22c55e"></div></div></div><div class="ri-val" style="color:#22c55e">SAR 18K</div></div>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ct">Traffic Sources</div></div>
+        <div class="ri"><div class="ri-ic">🔍</div><div><div class="ri-name">Organic Search</div><div class="progress-bg"><div class="progress-fill" style="width:42%;background:#22c55e"></div></div></div><div class="ri-val">42%</div></div>
+        <div class="ri"><div class="ri-ic">📱</div><div><div class="ri-name">Social Media</div><div class="progress-bg"><div class="progress-fill" style="width:28%;background:#3b82f6"></div></div></div><div class="ri-val">28%</div></div>
+        <div class="ri"><div class="ri-ic">🔗</div><div><div class="ri-name">Direct Link</div><div class="progress-bg"><div class="progress-fill" style="width:18%;background:#8b5cf6"></div></div></div><div class="ri-val">18%</div></div>
+        <div class="ri"><div class="ri-ic">📧</div><div><div class="ri-name">Email Campaign</div><div class="progress-bg"><div class="progress-fill" style="width:8%;background:#f59e0b"></div></div></div><div class="ri-val">8%</div></div>
+        <div class="ri"><div class="ri-ic">💰</div><div><div class="ri-name">Paid Ads</div><div class="progress-bg"><div class="progress-fill" style="width:4%;background:#e63329"></div></div></div><div class="ri-val">4%</div></div>
+      </div>
+    </div>
+    <div class="bottom-row">
+      <div class="card">
+        <div class="ch"><div class="ct">Sales Funnel</div></div>
+        <div class="funnel-step"><div class="funnel-num">1</div><div class="funnel-name">👁️ Page Views</div><div class="funnel-val">148,420</div><div class="funnel-pct">100%</div></div>
+        <div class="funnel-step"><div class="funnel-num">2</div><div class="funnel-name">🛍️ Product Views</div><div class="funnel-val">42,380</div><div class="funnel-pct">28.6%</div></div>
+        <div class="funnel-step"><div class="funnel-num">3</div><div class="funnel-name">🛒 Add to Cart</div><div class="funnel-val">8,840</div><div class="funnel-pct">5.9%</div></div>
+        <div class="funnel-step"><div class="funnel-num">4</div><div class="funnel-name">💳 Checkout</div><div class="funnel-val">2,180</div><div class="funnel-pct">1.5%</div></div>
+        <div class="funnel-step"><div class="funnel-num">5</div><div class="funnel-name">✅ Purchased</div><div class="funnel-val">1,432</div><div class="funnel-pct">0.96%</div></div>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ct">Geographic — KSA Cities</div></div>
+        <div class="ri"><div class="ri-ic">🏙️</div><div><div class="ri-name">Riyadh</div><div class="progress-bg"><div class="progress-fill" style="width:58%;background:#e63329"></div></div></div><div class="ri-val">58%</div></div>
+        <div class="ri"><div class="ri-ic">🏙️</div><div><div class="ri-name">Jeddah</div><div class="progress-bg"><div class="progress-fill" style="width:24%;background:#3b82f6"></div></div></div><div class="ri-val">24%</div></div>
+        <div class="ri"><div class="ri-ic">🏙️</div><div><div class="ri-name">Dammam</div><div class="progress-bg"><div class="progress-fill" style="width:10%;background:#22c55e"></div></div></div><div class="ri-val">10%</div></div>
+        <div class="ri"><div class="ri-ic">🏙️</div><div><div class="ri-name">Makkah</div><div class="progress-bg"><div class="progress-fill" style="width:5%;background:#f59e0b"></div></div></div><div class="ri-val">5%</div></div>
+        <div class="ri"><div class="ri-ic">🏙️</div><div><div class="ri-name">Other Cities</div><div class="progress-bg"><div class="progress-fill" style="width:3%;background:#8b5cf6"></div></div></div><div class="ri-val">3%</div></div>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ct">Customer Segments</div></div>
+        <div class="ri"><div class="ri-ic">🏆</div><div><div class="ri-name">VIP (SAR 10K+)</div><div class="ri-sub">312 customers</div><div class="progress-bg"><div class="progress-fill" style="width:3%;background:#f59e0b"></div></div></div><div class="ri-val">3%</div></div>
+        <div class="ri"><div class="ri-ic">⭐</div><div><div class="ri-name">Loyal (3+ orders)</div><div class="ri-sub">1,840 customers</div><div class="progress-bg"><div class="progress-fill" style="width:19%;background:#22c55e"></div></div></div><div class="ri-val">19%</div></div>
+        <div class="ri"><div class="ri-ic">🔄</div><div><div class="ri-name">Repeat (2 orders)</div><div class="ri-sub">2,960 customers</div><div class="progress-bg"><div class="progress-fill" style="width:30%;background:#3b82f6"></div></div></div><div class="ri-val">30%</div></div>
+        <div class="ri"><div class="ri-ic">👤</div><div><div class="ri-name">New (1 order)</div><div class="ri-sub">4,728 customers</div><div class="progress-bg"><div class="progress-fill" style="width:48%;background:#8b5cf6"></div></div></div><div class="ri-val">48%</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>
