@@ -1329,7 +1329,7 @@ footer {
 <nav>
   <!-- LEFT: Cart -->
   <div class="nav-left">
-    <a href="#" class="nav-cart">Cart (0)</a>
+    <a href="cart.html" class="nav-cart">Cart (0)</a>
   </div>
   <!-- CENTER: Logo -->
   <div class="nav-center">
@@ -1528,7 +1528,7 @@ footer {
       Discover the world's finest electronics — from flagship smartphones to premium audio. Shipped across Saudi Arabia in 24 hours.
     </p>
     <div class="hero-ctas">
-      <a href="#" class="btn-primary">
+      <a href="airtech-homepage.html#categories" class="btn-primary">
         Shop Now
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -2068,4 +2068,64 @@ const observer = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
 
-document.querySelectorAll('.cat-card, .product-
+document.querySelectorAll('.cat-card, .product-card, .promo-banner, .brand-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(el);
+});
+</script>
+
+<script>
+// Cart count update
+function updateCartCount(){
+  const cart = JSON.parse(localStorage.getItem('airtech_cart')||'[]');
+  const count = cart.reduce((a,i)=>a+i.qty,0);
+  const el = document.querySelector('.nav-cart');
+  if(el) el.innerHTML = '🛒 Cart (' + count + ')';
+}
+updateCartCount();
+
+// Add to cart for all Shop Now buttons
+function addToCartFromCard(btn) {
+  const card = btn.closest('.ceo-card') || btn.closest('.product-card') || btn.closest('.fb-slide') || btn.parentElement;
+  let name = 'Product';
+  let price = 999;
+  let emoji = '📱';
+  const nameEl = card.querySelector('.ceo-name, .prod-name, .fb-product, .product-name');
+  const priceEl = card.querySelector('.ceo-price, .prod-price, .fb-price, .product-price');
+  const emojiEl = card.querySelector('.ceo-emoji, .fb-emoji');
+  if(nameEl) name = nameEl.textContent.trim();
+  if(priceEl) price = parseInt(priceEl.textContent.replace(/[^0-9]/g,'')) || 999;
+  if(emojiEl) emoji = emojiEl.textContent.trim();
+  let cart = JSON.parse(localStorage.getItem('airtech_cart')||'[]');
+  const ex = cart.find(i=>i.name===name);
+  if(ex){ ex.qty++; } else { cart.push({name,price,emoji,qty:1}); }
+  localStorage.setItem('airtech_cart', JSON.stringify(cart));
+  updateCartCount();
+  showATToast('✅ ' + name + ' added to cart!');
+}
+
+function showATToast(msg) {
+  let t = document.getElementById('at-toast');
+  if(!t){
+    t = document.createElement('div');
+    t.id = 'at-toast';
+    t.style.cssText = 'position:fixed;bottom:24px;right:24px;background:#0e0e0e;color:#fff;padding:12px 20px;border-radius:10px;font-size:13px;font-weight:600;z-index:9999;transition:all .3s;opacity:0;transform:translateY(20px)';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.style.opacity = '1'; t.style.transform = 'translateY(0)';
+  setTimeout(()=>{ t.style.opacity='0'; t.style.transform='translateY(20px)'; }, 2500);
+}
+
+// Attach to all shop/cart buttons
+document.querySelectorAll('.ceo-btn, .prod-btn, .fb-btn').forEach(btn => {
+  btn.addEventListener('click', function(e){
+    e.preventDefault();
+    addToCartFromCard(this);
+  });
+});
+</script>
+</body>
+</html>
