@@ -1,0 +1,169 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>AirTech One — Finance</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0f;--surface:#13131a;--surface2:#1a1a24;--accent:#e63329;--green:#22c55e;--blue:#3b82f6;--yellow:#f59e0b;--border:rgba(255,255,255,0.07);--muted:rgba(255,255,255,0.4);--text:#fff;--sw:240px}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh}
+.sidebar{width:var(--sw);background:var(--surface);min-height:100vh;position:fixed;left:0;top:0;display:flex;flex-direction:column;z-index:50;border-right:1px solid var(--border)}
+.logo{padding:24px 24px 16px;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:#fff;border-bottom:1px solid var(--border)}
+.logo span{color:var(--accent)}.logo small{display:block;font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:2px;color:var(--muted);margin-top:3px;text-transform:uppercase}
+.sb-user{padding:14px 24px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
+.sb-av{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#22c55e,#16a34a);display:flex;align-items:center;justify-content:center;font-size:16px}
+.sb-name{font-size:12px;font-weight:700;color:#fff}.sb-role{font-size:10px;color:var(--muted)}
+.sb-nav{flex:1;padding:10px 0}
+.ng{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:12px 24px 5px}
+.ni{display:flex;align-items:center;gap:12px;padding:10px 24px;color:var(--muted);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;border-left:3px solid transparent;text-decoration:none}
+.ni:hover{color:#fff;background:rgba(255,255,255,0.04)}.ni.active{color:#fff;border-left-color:var(--accent);background:rgba(230,51,41,0.1)}
+.ni .ic{font-size:15px;width:20px;text-align:center}
+.nbadge{margin-left:auto;background:var(--accent);color:#fff;font-size:9px;font-weight:800;padding:2px 7px;border-radius:100px}
+.nb-g{background:#16a34a}.sb-foot{padding:14px 24px;border-top:1px solid var(--border)}
+.logout{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif}.logout:hover{color:var(--accent)}
+.main{margin-left:var(--sw);flex:1}
+.topbar{background:rgba(19,19,26,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 28px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:40}
+.tb-title{font-size:15px;font-weight:700}.tb-sub{font-size:11px;color:var(--muted)}
+.tb-r{display:flex;align-items:center;gap:10px}
+.btn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity .2s}.btn:hover{opacity:.85}
+.btn-g{background:#16a34a;color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif}
+.content{padding:24px 28px}
+.hero-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px}
+.hero-card{border-radius:16px;padding:22px;position:relative;overflow:hidden}
+.hc-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:10px}
+.hc-val{font-size:32px;font-weight:800;margin-bottom:6px}
+.hc-sub{font-size:12px;color:rgba(255,255,255,0.5)}
+.hc-badge{display:inline-flex;align-items:center;background:rgba(255,255,255,0.15);border-radius:100px;padding:3px 10px;font-size:11px;font-weight:700;margin-top:10px}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px}
+.kpi-top{display:flex;justify-content:space-between;margin-bottom:12px}
+.kpi-ic{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.kbadge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:100px}
+.kb-g{background:rgba(34,197,94,0.15);color:#22c55e}.kb-r{background:rgba(239,68,68,0.15);color:#ef4444}.kb-y{background:rgba(245,158,11,0.15);color:#f59e0b}
+.kpi-val{font-size:24px;font-weight:800;margin-bottom:4px}.kpi-lbl{font-size:11px;color:var(--muted);font-weight:600}
+.two-col{display:grid;grid-template-columns:1.5fr 1fr;gap:18px;margin-bottom:20px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.ch{padding:15px 18px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.ct{font-size:13px;font-weight:700}.ca{font-size:11px;color:var(--accent);font-weight:700;text-decoration:none}
+table{width:100%;border-collapse:collapse}
+th{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);padding:10px 18px;text-align:left;border-bottom:1px solid var(--border)}
+td{padding:11px 18px;font-size:12px;border-bottom:1px solid var(--border)}tr:last-child td{border-bottom:none}tr:hover td{background:rgba(255,255,255,0.02)}
+.sbadge{font-size:10px;font-weight:700;padding:3px 9px;border-radius:100px}
+.s-done{background:rgba(34,197,94,0.15);color:#4ade80}.s-pend{background:rgba(245,158,11,0.15);color:#fbbf24}.s-fail{background:rgba(239,68,68,0.15);color:#f87171}.s-ref{background:rgba(139,92,246,0.15);color:#a78bfa}
+.ri{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--border)}.ri:last-child{border-bottom:none}.ri:hover{background:rgba(255,255,255,0.02)}
+.ri-ic{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.ri-name{font-size:12px;font-weight:700;flex:1}.ri-sub{font-size:10px;color:var(--muted);margin-top:2px}
+.ri-amt{font-size:12px;font-weight:800}
+.bottom-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
+.payout-card{background:linear-gradient(135deg,#16a34a,#22c55e);border-radius:14px;padding:20px;color:#fff}
+.payout-lbl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:8px}
+.payout-val{font-size:30px;font-weight:800;margin-bottom:4px}
+.payout-row{display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,0.6);padding:8px 0;border-top:1px solid rgba(255,255,255,0.15)}
+.payout-row strong{color:#fff}
+.payout-btn{width:100%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);color:#fff;border-radius:8px;padding:10px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:10px}
+</style></head><body>
+<aside class="sidebar">
+  <div class="logo">Air<span>Tech</span> One<small>Finance Panel</small></div>
+  <div class="sb-user"><div class="sb-av">💰</div><div><div class="sb-name">Finance Manager</div><div class="sb-role">AirTech One · KSA</div></div></div>
+  <nav class="sb-nav">
+    <div class="ng">Overview</div>
+    <a href="#" class="ni active"><span class="ic">📊</span> Dashboard</a>
+    <a href="#" class="ni"><span class="ic">💳</span> Transactions</a>
+    <a href="#" class="ni"><span class="ic">📈</span> Revenue</a>
+    <div class="ng">Payments</div>
+    <a href="#" class="ni"><span class="ic">✅</span> Completed</a>
+    <a href="#" class="ni"><span class="ic">⏳</span> Pending <span class="nbadge">14</span></a>
+    <a href="#" class="ni"><span class="ic">❌</span> Failed <span class="nbadge">3</span></a>
+    <div class="ng">Manage</div>
+    <a href="#" class="ni"><span class="ic">↩️</span> Refunds <span class="nbadge">5</span></a>
+    <a href="#" class="ni"><span class="ic">💸</span> Vendor Payouts</a>
+    <a href="#" class="ni"><span class="ic">🧾</span> Invoices</a>
+    <a href="#" class="ni"><span class="ic">📤</span> Export Reports</a>
+  </nav>
+  <div class="sb-foot"><button class="logout">🚪 &nbsp;Logout</button></div>
+</aside>
+<div class="main">
+  <div class="topbar">
+    <div><div class="tb-title">Finance Dashboard</div><div class="tb-sub">March 2026 · AirTech One</div></div>
+    <div class="tb-r"><button class="btn-g">📤 Export Report</button><button class="btn">+ New Invoice</button></div>
+  </div>
+  <div class="content">
+    <div class="hero-cards">
+      <div class="hero-card" style="background:linear-gradient(135deg,#0f2027,#203a43,#2c5364)">
+        <div class="hc-label">Total Revenue</div>
+        <div class="hc-val">SAR 284,500</div>
+        <div class="hc-sub">March 2026</div>
+        <div class="hc-badge">↑ 18% vs Feb</div>
+      </div>
+      <div class="hero-card" style="background:linear-gradient(135deg,#134e5e,#71b280)">
+        <div class="hc-label">Net Profit</div>
+        <div class="hc-val">SAR 96,330</div>
+        <div class="hc-sub">After fees & refunds</div>
+        <div class="hc-badge">↑ 12% vs Feb</div>
+      </div>
+      <div class="hero-card" style="background:linear-gradient(135deg,#200122,#6f0000)">
+        <div class="hc-label">Pending Payouts</div>
+        <div class="hc-val">SAR 22,840</div>
+        <div class="hc-sub">To 4 vendors</div>
+        <div class="hc-badge">Due Mar 25</div>
+      </div>
+    </div>
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-top"><div class="kpi-ic" style="background:rgba(34,197,94,0.1)">✅</div><span class="kbadge kb-g">↑ 8%</span></div><div class="kpi-val">1,281</div><div class="kpi-lbl">Successful Payments</div></div>
+      <div class="kpi"><div class="kpi-top"><div class="kpi-ic" style="background:rgba(245,158,11,0.1)">⏳</div><span class="kbadge kb-y">Action</span></div><div class="kpi-val">14</div><div class="kpi-lbl">Pending Payments</div></div>
+      <div class="kpi"><div class="kpi-top"><div class="kpi-ic" style="background:rgba(239,68,68,0.1)">↩️</div><span class="kbadge kb-r">Review</span></div><div class="kpi-val">5</div><div class="kpi-lbl">Refund Requests</div></div>
+      <div class="kpi"><div class="kpi-top"><div class="kpi-ic" style="background:rgba(59,130,246,0.1)">📊</div><span class="kbadge" style="background:rgba(59,130,246,0.15);color:#60a5fa">SAR 197</span></div><div class="kpi-val">SAR 197</div><div class="kpi-lbl">Avg Order Value</div></div>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="ch"><div class="ct">Recent Transactions</div><a class="ca">View All →</a></div>
+        <table><thead><tr><th>Order</th><th>Customer</th><th>Method</th><th>Amount</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td style="font-size:11px;font-weight:700">#ORD-00441</td><td>Ali Hassan</td><td>💳 Visa</td><td style="font-weight:800">SAR 4,999</td><td><span class="sbadge s-done">Paid</span></td></tr>
+          <tr><td style="font-size:11px;font-weight:700">#ORD-00439</td><td>Sara Q.</td><td>📱 STC Pay</td><td style="font-weight:800">SAR 8,999</td><td><span class="sbadge s-pend">Pending</span></td></tr>
+          <tr><td style="font-size:11px;font-weight:700">#ORD-00436</td><td>Mohammed K.</td><td>💳 Mada</td><td style="font-weight:800">SAR 1,199</td><td><span class="sbadge s-done">Paid</span></td></tr>
+          <tr><td style="font-size:11px;font-weight:700">#ORD-00431</td><td>Noura A.</td><td>💳 Visa</td><td style="font-weight:800">SAR 3,999</td><td><span class="sbadge s-done">Paid</span></td></tr>
+          <tr><td style="font-size:11px;font-weight:700">#ORD-00428</td><td>Khalid M.</td><td>🏦 Bank</td><td style="font-weight:800">SAR 899</td><td><span class="sbadge s-ref">Refunded</span></td></tr>
+          <tr><td style="font-size:11px;font-weight:700">#ORD-00425</td><td>Fatima Y.</td><td>📱 Apple Pay</td><td style="font-weight:800">SAR 2,499</td><td><span class="sbadge s-fail">Failed</span></td></tr>
+        </tbody></table>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="payout-card">
+          <div class="payout-lbl">Pending Vendor Payouts</div>
+          <div class="payout-val">SAR 22,840</div>
+          <div class="payout-row"><span>TechZone Store</span><strong>SAR 9,840</strong></div>
+          <div class="payout-row"><span>Mobile World</span><strong>SAR 7,200</strong></div>
+          <div class="payout-row"><span>LaptopHub KSA</span><strong>SAR 3,800</strong></div>
+          <div class="payout-row"><span>SecureTech</span><strong>SAR 2,000</strong></div>
+          <button class="payout-btn">💸 Process All Payouts</button>
+        </div>
+        <div class="card">
+          <div class="ch"><div class="ct">Payment Methods</div></div>
+          <div class="ri"><div class="ri-ic">💳</div><div><div class="ri-name">Visa / Mastercard</div><div class="ri-sub">48% of transactions</div></div><div class="ri-amt" style="color:#22c55e">SAR 136K</div></div>
+          <div class="ri"><div class="ri-ic">📱</div><div><div class="ri-name">STC Pay</div><div class="ri-sub">28% of transactions</div></div><div class="ri-amt" style="color:#22c55e">SAR 79K</div></div>
+          <div class="ri"><div class="ri-ic">💳</div><div><div class="ri-name">Mada</div><div class="ri-sub">18% of transactions</div></div><div class="ri-amt" style="color:#22c55e">SAR 51K</div></div>
+          <div class="ri"><div class="ri-ic">🍎</div><div><div class="ri-name">Apple Pay</div><div class="ri-sub">6% of transactions</div></div><div class="ri-amt" style="color:#22c55e">SAR 17K</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-row">
+      <div class="card">
+        <div class="ch"><div class="ct">Refund Requests</div><a class="ca">Manage →</a></div>
+        <div class="ri"><div class="ri-ic">↩️</div><div><div class="ri-name">Khalid M. — Hikvision Kit</div><div class="ri-sub">#ORD-00428 · SAR 899 · Defective</div></div><span class="sbadge s-pend">Pending</span></div>
+        <div class="ri"><div class="ri-ic">↩️</div><div><div class="ri-name">Ahmed R. — iPhone 16</div><div class="ri-sub">#ORD-00412 · SAR 4,999 · Wrong item</div></div><span class="sbadge s-pend">Pending</span></div>
+        <div class="ri"><div class="ri-ic">↩️</div><div><div class="ri-name">Hana S. — Dell XPS</div><div class="ri-sub">#ORD-00398 · SAR 3,299 · Approved</div></div><span class="sbadge s-done">Approved</span></div>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ct">Failed Payments</div><a class="ca">Retry →</a></div>
+        <div class="ri"><div class="ri-ic">❌</div><div><div class="ri-name">Fatima Y. — Xiaomi 14 Ultra</div><div class="ri-sub">#ORD-00425 · SAR 2,499 · Card declined</div></div><button style="background:var(--accent);color:#fff;border:none;border-radius:6px;padding:4px 10px;font-size:10px;font-weight:700;cursor:pointer">Retry</button></div>
+        <div class="ri"><div class="ri-ic">❌</div><div><div class="ri-name">Omar K. — Sony WH5</div><div class="ri-sub">#ORD-00418 · SAR 1,199 · Timeout</div></div><button style="background:var(--accent);color:#fff;border:none;border-radius:6px;padding:4px 10px;font-size:10px;font-weight:700;cursor:pointer">Retry</button></div>
+        <div class="ri"><div class="ri-ic">❌</div><div><div class="ri-name">Lina M. — TP-Link Router</div><div class="ri-sub">#ORD-00410 · SAR 399 · Insufficient</div></div><button style="background:var(--accent);color:#fff;border:none;border-radius:6px;padding:4px 10px;font-size:10px;font-weight:700;cursor:pointer">Retry</button></div>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ct">Monthly Summary</div></div>
+        <div class="ri"><div class="ri-ic">💰</div><div><div class="ri-name">Gross Revenue</div></div><div class="ri-amt" style="color:#22c55e">SAR 284,500</div></div>
+        <div class="ri"><div class="ri-ic">🏪</div><div><div class="ri-name">Platform Fees (5%)</div></div><div class="ri-amt" style="color:#f87171">- SAR 14,225</div></div>
+        <div class="ri"><div class="ri-ic">↩️</div><div><div class="ri-name">Refunds</div></div><div class="ri-amt" style="color:#f87171">- SAR 9,120</div></div>
+        <div class="ri"><div class="ri-ic">💸</div><div><div class="ri-name">Vendor Payouts</div></div><div class="ri-amt" style="color:#f87171">- SAR 164,825</div></div>
+        <div class="ri" style="background:rgba(34,197,94,0.05)"><div class="ri-ic">🏆</div><div><div class="ri-name" style="font-size:13px;font-weight:800">Net Profit</div></div><div class="ri-amt" style="color:#22c55e;font-size:14px">SAR 96,330</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>
