@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AirTech One — Cart</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f3ef;--dark:#0e0e0e;--accent:#e63329;--border:#e8e5e0;--muted:#888;--card:#fff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--dark)}
+nav{position:sticky;top:0;z-index:100;background:rgba(245,243,239,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 16px;height:56px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:var(--dark);text-decoration:none;text-align:center;white-space:nowrap;justify-self:center}
+.nav-logo span{color:var(--accent)}
+.nav-back{font-size:11px;font-weight:700;color:var(--muted);text-decoration:none;white-space:nowrap;transition:color .2s}
+.nav-back:hover{color:var(--dark)}
+.nav-secure{font-size:11px;font-weight:700;color:var(--muted);white-space:nowrap;text-align:right;justify-self:end}
+.content{max-width:1100px;margin:0 auto;padding:32px 24px;display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start}
+.cart-title{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:-0.5px;margin-bottom:20px}
+.cart-count{font-size:13px;color:var(--muted);font-weight:600}
+.cart-items{display:flex;flex-direction:column;gap:14px}
+.cart-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;display:flex;gap:14px;align-items:center;transition:box-shadow .2s}
+.cart-item:hover{box-shadow:0 4px 16px rgba(0,0,0,.07)}
+.item-img{width:70px;height:70px;border-radius:12px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0}
+.item-info{flex:1}
+.item-name{font-size:14px;font-weight:700;margin-bottom:4px}
+.item-variant{font-size:11px;color:var(--muted);margin-bottom:8px}
+.item-price{font-size:16px;font-weight:800;color:var(--accent)}
+.item-controls{display:flex;align-items:center;gap:8px;margin-top:10px}
+.qty-btn{width:28px;height:28px;border:1.5px solid var(--border);background:var(--bg);border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.qty-btn:hover{background:var(--dark);color:#fff;border-color:var(--dark)}
+.qty-val{font-size:13px;font-weight:800;min-width:24px;text-align:center}
+.remove-btn{margin-left:auto;background:none;border:none;font-size:18px;cursor:pointer;color:var(--muted);transition:color .2s}
+.remove-btn:hover{color:var(--accent)}
+.empty-cart{text-align:center;padding:60px 20px;background:var(--card);border:1px solid var(--border);border-radius:14px}
+.empty-icon{font-size:64px;margin-bottom:16px}
+.empty-title{font-size:20px;font-weight:800;margin-bottom:8px}
+.empty-sub{font-size:13px;color:var(--muted);margin-bottom:24px}
+.shop-btn{display:inline-flex;align-items:center;gap:8px;background:var(--dark);color:#fff;border:none;border-radius:10px;padding:12px 28px;font-size:13px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;text-decoration:none;transition:background .2s}
+.shop-btn:hover{background:var(--accent)}
+/* SUMMARY */
+.summary{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;position:sticky;top:80px}
+.summary-title{font-size:16px;font-weight:800;margin-bottom:18px}
+.summary-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:8px 0;border-bottom:1px solid var(--border)}
+.summary-row:last-of-type{border-bottom:none}
+.summary-row.total{font-size:16px;font-weight:800;padding-top:14px;margin-top:4px}
+.summary-row.total span:last-child{color:var(--accent);font-size:18px}
+.coupon-row{margin:16px 0}
+.coupon-input{display:flex;gap:8px}
+.coupon-input input{flex:1;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;font-size:12px;outline:none;font-family:'DM Sans',sans-serif;transition:border-color .2s}
+.coupon-input input:focus{border-color:var(--dark)}
+.coupon-btn{background:var(--dark);color:#fff;border:none;border-radius:8px;padding:10px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s}
+.coupon-btn:hover{background:var(--accent)}
+.coupon-success{font-size:11px;color:#16a34a;font-weight:700;margin-top:6px;display:none}
+.checkout-btn{width:100%;background:var(--accent);color:#fff;border:none;border-radius:10px;padding:15px;font-size:15px;font-weight:800;font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:16px;transition:opacity .2s,transform .2s;display:flex;align-items:center;justify-content:center;gap:10px}
+.checkout-btn:hover{opacity:.88;transform:translateY(-2px)}
+.checkout-btn:disabled{background:#ccc;cursor:not-allowed;transform:none}
+.secure-note{display:flex;align-items:center;justify-content:center;gap:6px;font-size:11px;color:var(--muted);margin-top:12px}
+.payment-icons{display:flex;justify-content:center;gap:8px;margin-top:12px}
+.pay-ic{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:11px;font-weight:700;color:var(--muted)}
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--dark);color:#fff;padding:12px 20px;border-radius:10px;font-size:13px;font-weight:600;transform:translateY(100px);opacity:0;transition:all .3s;z-index:9999;display:flex;align-items:center;gap:10px}
+.toast.show{transform:translateY(0);opacity:1}
+@media(max-width:768px){.content{grid-template-columns:1fr}.summary{position:static}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="airtech-homepage.html" class="nav-back">← Shop</a>
+  <a href="airtech-homepage.html" class="nav-logo">Air<span>Tech</span> One</a>
+  <span class="nav-secure">🔒 Secure</span>
+</nav>
+
+<div class="content">
+  <div>
+    <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:20px">
+      <div class="cart-title">Your Cart</div>
+      <div class="cart-count" id="cart-count">0 items</div>
+    </div>
+    <div class="cart-items" id="cart-items">
+      <div class="empty-cart" id="empty-cart">
+        <div class="empty-icon">🛒</div>
+        <div class="empty-title">Your cart is empty</div>
+        <div class="empty-sub">Add some amazing tech products to get started!</div>
+        <a href="airtech-homepage.html" class="shop-btn">🛍️ Shop Now</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Order Summary</div>
+    <div class="summary-row"><span>Subtotal</span><span id="subtotal">SAR 0</span></div>
+    <div class="summary-row"><span>Shipping</span><span id="shipping" style="color:#16a34a">FREE</span></div>
+    <div class="summary-row"><span>VAT (15%)</span><span id="vat">SAR 0</span></div>
+    <div class="summary-row" id="discount-row" style="display:none"><span>Discount</span><span id="discount-val" style="color:#16a34a">- SAR 0</span></div>
+    <div class="summary-row total"><span>Total</span><span id="total">SAR 0</span></div>
+    <div class="coupon-row">
+      <div style="font-size:12px;font-weight:700;margin-bottom:8px">Have a coupon?</div>
+      <div class="coupon-input">
+        <input type="text" id="coupon-input" placeholder="e.g. RAMADAN25">
+        <button class="coupon-btn" onclick="applyCoupon()">Apply</button>
+      </div>
+      <div class="coupon-success" id="coupon-success">✅ Coupon applied!</div>
+    </div>
+    <button class="checkout-btn" id="checkout-btn" onclick="checkout()">
+      🛒 Proceed to Checkout
+    </button>
+    <div class="secure-note">🔒 Secured by SSL · Safe checkout</div>
+    <div class="payment-icons">
+      <div class="pay-ic">💳 Visa</div>
+      <div class="pay-ic">💳 Mada</div>
+      <div class="pay-ic">📱 STC</div>
+      <div class="pay-ic">🍎 Pay</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// CART SYSTEM
+let cart = JSON.parse(localStorage.getItem('airtech_cart') || '[]');
+let discount = 0;
+
+const coupons = {
+  'RAMADAN25': 25,
+  'NEWUSER15': 15,
+  'VIP50': 0,
+  'CCTV20': 20
+};
+
+function saveCart() {
+  localStorage.setItem('airtech_cart', JSON.stringify(cart));
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function updateCart() {
+  const container = document.getElementById('cart-items');
+  const empty = document.getElementById('empty-cart');
+  const count = document.getElementById('cart-count');
+
+  if (cart.length === 0) {
+    empty.style.display = 'block';
+    count.textContent = '0 items';
+    updateSummary();
+    return;
+  }
+
+  empty.style.display = 'none';
+  count.textContent = cart.reduce((a,i) => a + i.qty, 0) + ' items';
+
+  // Remove existing items (keep empty cart div)
+  Array.from(container.children).forEach(c => { if (!c.id) c.remove(); });
+
+  cart.forEach((item, idx) => {
+    const div = document.createElement('div');
+    div.className = 'cart-item';
+    div.innerHTML = `
+      <div class="item-img">${item.emoji}</div>
+      <div class="item-info">
+        <div class="item-name">${item.name}</div>
+        <div class="item-variant">${item.variant || 'Standard'}</div>
+        <div class="item-price">SAR ${(item.price * item.qty).toLocaleString()}</div>
+        <div class="item-controls">
+          <button class="qty-btn" onclick="changeQty(${idx}, -1)">−</button>
+          <span class="qty-val">${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty(${idx}, 1)">+</button>
+          <button class="remove-btn" onclick="removeItem(${idx})">🗑️</button>
+        </div>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+  updateSummary();
+}
+
+function changeQty(idx, delta) {
+  cart[idx].qty = Math.max(1, cart[idx].qty + delta);
+  saveCart();
+  updateCart();
+}
+
+function removeItem(idx) {
+  const name = cart[idx].name;
+  cart.splice(idx, 1);
+  saveCart();
+  updateCart();
+  showToast('🗑️ ' + name + ' removed');
+}
+
+function updateSummary() {
+  const subtotal = cart.reduce((a,i) => a + i.price * i.qty, 0);
+  const shipping = subtotal > 500 ? 0 : 25;
+  const discountAmt = Math.round(subtotal * discount / 100);
+  const vat = Math.round((subtotal - discountAmt) * 0.15);
+  const total = subtotal - discountAmt + vat + shipping;
+
+  document.getElementById('subtotal').textContent = 'SAR ' + subtotal.toLocaleString();
+  document.getElementById('shipping').textContent = shipping === 0 ? 'FREE' : 'SAR ' + shipping;
+  document.getElementById('shipping').style.color = shipping === 0 ? '#16a34a' : '';
+  document.getElementById('vat').textContent = 'SAR ' + vat.toLocaleString();
+  document.getElementById('total').textContent = 'SAR ' + total.toLocaleString();
+
+  if (discountAmt > 0) {
+    document.getElementById('discount-row').style.display = 'flex';
+    document.getElementById('discount-val').textContent = '- SAR ' + discountAmt.toLocaleString();
+  }
+
+  document.getElementById('checkout-btn').disabled = cart.length === 0;
+}
+
+function applyCoupon() {
+  const code = document.getElementById('coupon-input').value.trim().toUpperCase();
+  if (coupons[code] !== undefined) {
+    discount = coupons[code];
+    document.getElementById('coupon-success').style.display = 'block';
+    document.getElementById('coupon-success').textContent = '✅ ' + code + ' applied! ' + (discount > 0 ? discount + '% off' : 'SAR 50 off');
+    updateSummary();
+    showToast('🎟️ Coupon applied!');
+  } else {
+    showToast('❌ Invalid coupon code');
+  }
+}
+
+function checkout() {
+  const user = JSON.parse(localStorage.getItem('airtech_user') || 'null');
+  if (!user) {
+    showToast('🔒 Please sign in to checkout!');
+    setTimeout(() => window.location.href = 'login.html', 1500);
+    return;
+  }
+  showToast('✅ Redirecting to payment...');
+  setTimeout(() => { alert('Payment gateway integration coming soon!\n\nOrder placed successfully! 🎉'); }, 1500);
+}
+
+// Init
+updateCart();
+</script>
+</body>
+</html>
