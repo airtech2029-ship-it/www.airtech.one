@@ -1,0 +1,157 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>AirTech One — Marketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f3ef;--dark:#0e0e0e;--accent:#e63329;--border:#e8e5e0;--muted:#888;--card:#fff;--sw:240px}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--dark);display:flex;min-height:100vh}
+.sidebar{width:var(--sw);background:var(--dark);min-height:100vh;position:fixed;left:0;top:0;display:flex;flex-direction:column;z-index:50}
+.logo{padding:24px 24px 16px;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:#fff;border-bottom:1px solid rgba(255,255,255,0.07)}
+.logo span{color:var(--accent)}.logo small{display:block;font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.3);margin-top:3px;text-transform:uppercase}
+.sb-user{padding:14px 24px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,0.07)}
+.sb-av{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#ec4899,#f43f5e);display:flex;align-items:center;justify-content:center;font-size:16px}
+.sb-name{font-size:12px;font-weight:700;color:#fff}.sb-role{font-size:10px;color:rgba(255,255,255,0.4)}
+.sb-nav{flex:1;padding:10px 0}
+.ng{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);padding:12px 24px 5px}
+.ni{display:flex;align-items:center;gap:12px;padding:10px 24px;color:rgba(255,255,255,0.5);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;border-left:3px solid transparent;text-decoration:none}
+.ni:hover{color:#fff;background:rgba(255,255,255,0.05)}.ni.active{color:#fff;border-left-color:var(--accent);background:rgba(230,51,41,0.08)}
+.ni .ic{font-size:15px;width:20px;text-align:center}
+.nbadge{margin-left:auto;background:var(--accent);color:#fff;font-size:9px;font-weight:800;padding:2px 7px;border-radius:100px}
+.nb-g{background:#16a34a}.nb-y{background:#f59e0b}.sb-foot{padding:14px 24px;border-top:1px solid rgba(255,255,255,0.07)}
+.logout{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.4);font-size:12px;font-weight:600;cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif}.logout:hover{color:var(--accent)}
+.main{margin-left:var(--sw);flex:1}
+.topbar{background:rgba(245,243,239,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 28px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:40}
+.tb-title{font-size:15px;font-weight:700}.tb-sub{font-size:11px;color:var(--muted)}
+.tb-r{display:flex;align-items:center;gap:10px}
+.btn{background:var(--dark);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s}.btn:hover{background:var(--accent)}
+.btn-p{background:linear-gradient(135deg,#ec4899,#f43f5e);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif}
+.content{padding:24px 28px}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;transition:transform .2s}.kpi:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,0.07)}
+.kpi-top{display:flex;justify-content:space-between;margin-bottom:12px}
+.kpi-ic{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.kbadge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:100px}
+.kb-ok{background:#e8f5e9;color:#16a34a}.kb-warn{background:#fff8e1;color:#f59e0b}
+.kpi-val{font-size:26px;font-weight:800;margin-bottom:4px}.kpi-lbl{font-size:11px;color:var(--muted);font-weight:600}
+.two-col{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.ch{padding:15px 18px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.ct{font-size:13px;font-weight:700}.ca{font-size:11px;color:var(--accent);font-weight:700;text-decoration:none}
+.camp-item{padding:14px 18px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s}.camp-item:last-child{border-bottom:none}.camp-item:hover{background:#fafaf8}
+.camp-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.camp-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.camp-name{font-size:13px;font-weight:700;flex:1}
+.camp-status{font-size:10px;font-weight:700;padding:3px 9px;border-radius:100px}
+.cs-live{background:#e8f5e9;color:#16a34a}.cs-sched{background:#e3f2fd;color:#1565c0}.cs-end{background:#f3f4f6;color:#6b7280}.cs-draft{background:#fff8e1;color:#f59e0b}
+.camp-stats{display:flex;gap:16px}
+.cstat{font-size:11px;color:var(--muted)}
+.cstat strong{display:block;font-size:13px;font-weight:800;color:var(--dark)}
+.coupon-item{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--border)}.coupon-item:last-child{border-bottom:none}
+.coup-code{font-family:monospace;font-size:13px;font-weight:800;background:var(--bg);padding:5px 10px;border-radius:8px;border:1.5px dashed var(--border);letter-spacing:1px}
+.coup-info{flex:1}
+.coup-name{font-size:12px;font-weight:700}
+.coup-used{font-size:10px;color:var(--muted);margin-top:2px}
+.coup-val{font-size:13px;font-weight:800;color:var(--accent)}
+.banner-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px}
+.banner-card{border-radius:12px;overflow:hidden;position:relative;cursor:pointer;transition:transform .2s;aspect-ratio:16/5}.banner-card:hover{transform:scale(1.02)}
+.banner-inner{position:absolute;inset:0;display:flex;align-items:center;padding:14px}
+.banner-text{font-size:11px;font-weight:700;color:#fff}
+.banner-title{font-size:14px;font-weight:800;color:#fff}
+.banner-badge{position:absolute;top:8px;right:8px;font-size:9px;font-weight:700;padding:2px 8px;border-radius:100px}
+.b-live{background:rgba(34,197,94,0.9);color:#fff}.b-sched{background:rgba(59,130,246,0.9);color:#fff}
+.bottom-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.loyalty-stat{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--border)}.loyalty-stat:last-child{border-bottom:none}
+.ls-icon{width:34px;height:34px;border-radius:8px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.ls-name{font-size:12px;font-weight:700;flex:1}.ls-sub{font-size:10px;color:var(--muted);margin-top:2px}
+.ls-val{font-size:12px;font-weight:800}
+</style></head><body>
+<aside class="sidebar">
+  <div class="logo">Air<span>Tech</span> One<small>Marketing Panel</small></div>
+  <div class="sb-user"><div class="sb-av">📢</div><div><div class="sb-name">Marketing Manager</div><div class="sb-role">AirTech One · Campaigns</div></div></div>
+  <nav class="sb-nav">
+    <div class="ng">Overview</div>
+    <a href="#" class="ni active"><span class="ic">🏠</span> Dashboard</a>
+    <a href="#" class="ni"><span class="ic">📢</span> Campaigns <span class="nbadge nb-g">3 Live</span></a>
+    <div class="ng">Promotions</div>
+    <a href="#" class="ni"><span class="ic">🎟️</span> Coupons <span class="nbadge">12</span></a>
+    <a href="#" class="ni"><span class="ic">🏷️</span> Flash Sales</a>
+    <a href="#" class="ni"><span class="ic">🖼️</span> Banners</a>
+    <a href="#" class="ni"><span class="ic">🎁</span> Bundles</a>
+    <div class="ng">Loyalty</div>
+    <a href="#" class="ni"><span class="ic">⭐</span> Points Program</a>
+    <a href="#" class="ni"><span class="ic">🏆</span> Rewards</a>
+    <a href="#" class="ni"><span class="ic">📧</span> Email / SMS</a>
+    <div class="ng">Analytics</div>
+    <a href="#" class="ni"><span class="ic">📊</span> Campaign Stats</a>
+    <a href="#" class="ni"><span class="ic">🔄</span> Conversion Rate</a>
+  </nav>
+  <div class="sb-foot"><button class="logout">🚪 &nbsp;Logout</button></div>
+</aside>
+<div class="main">
+  <div class="topbar">
+    <div><div class="tb-title">Marketing Dashboard</div><div class="tb-sub">3 live campaigns · 12 active coupons</div></div>
+    <div class="tb-r"><button class="btn">+ New Coupon</button><button class="btn-p">🚀 New Campaign</button></div>
+  </div>
+  <div class="content">
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-top"><div class="kpi-ic" style="background:#fce4ec">📢</div><span class="kbadge nb-g" style="color:#fff;font-size:10px">3 Live</span></div><div class="kpi-val">8</div><div class="kpi-lbl">Active Campaigns</div></div>
+      <div class="kpi"><div class="kpi-top"><div class="kpi-ic" style="background:#fff8e1">🎟️</div><span class="kbadge kb-ok">Active</span></div><div class="kpi-val">12</div><div class="kpi-lbl">Active Coupons</div></div>
+      <div class="kpi"><div class="kpi-top"><div class="kpi-ic" style="background:#e8f5e9">🔄</div><span class="kbadge kb-ok">↑ 3.2%</span></div><div class="kpi-val">3.8%</div><div class="kpi-lbl">Conversion Rate</div></div>
+      <div class="kpi"><div class="kpi-top"><div class="kpi-ic" style="background:#e3f2fd">💰</div><span class="kbadge kb-ok">↑ 22%</span></div><div class="kpi-val">SAR 42K</div><div class="kpi-lbl">Campaign Revenue</div></div>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="ch"><div class="ct">Active Campaigns</div><a class="ca">+ New Campaign →</a></div>
+        <div class="camp-item">
+          <div class="camp-top"><div class="camp-icon" style="background:#fce4ec">🔥</div><div class="camp-name">Ramadan Mega Sale 2026</div><span class="camp-status cs-live">● Live</span></div>
+          <div class="camp-stats"><div class="cstat"><strong>12,480</strong>Reached</div><div class="cstat"><strong>SAR 18K</strong>Revenue</div><div class="cstat"><strong>4.2%</strong>CTR</div><div class="cstat"><strong>Mar 31</strong>Ends</div></div>
+        </div>
+        <div class="camp-item">
+          <div class="camp-top"><div class="camp-icon" style="background:#e3f2fd">⚡</div><div class="camp-name">Flash Sale — iPhone 16 Series</div><span class="camp-status cs-live">● Live</span></div>
+          <div class="camp-stats"><div class="cstat"><strong>8,210</strong>Reached</div><div class="cstat"><strong>SAR 12K</strong>Revenue</div><div class="cstat"><strong>5.8%</strong>CTR</div><div class="cstat"><strong>Mar 20</strong>Ends</div></div>
+        </div>
+        <div class="camp-item">
+          <div class="camp-top"><div class="camp-icon" style="background:#e8f5e9">🎧</div><div class="camp-name">Audio Week — Sony & Beats</div><span class="camp-status cs-live">● Live</span></div>
+          <div class="camp-stats"><div class="cstat"><strong>5,600</strong>Reached</div><div class="cstat"><strong>SAR 8K</strong>Revenue</div><div class="cstat"><strong>3.1%</strong>CTR</div><div class="cstat"><strong>Mar 22</strong>Ends</div></div>
+        </div>
+        <div class="camp-item">
+          <div class="camp-top"><div class="camp-icon" style="background:#f3f4f6">💻</div><div class="camp-name">Back to School Laptops</div><span class="camp-status cs-sched">Scheduled</span></div>
+          <div class="camp-stats"><div class="cstat"><strong>—</strong>Reached</div><div class="cstat"><strong>—</strong>Revenue</div><div class="cstat"><strong>—</strong>CTR</div><div class="cstat"><strong>Apr 1</strong>Starts</div></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="card">
+          <div class="ch"><div class="ct">Active Coupons</div><a class="ca">+ Add →</a></div>
+          <div class="coupon-item"><div class="coup-code">RAMADAN25</div><div class="coup-info"><div class="coup-name">Ramadan Special</div><div class="coup-used">Used: 840 times</div></div><div class="coup-val">25% OFF</div></div>
+          <div class="coupon-item"><div class="coup-code">NEWUSER15</div><div class="coup-info"><div class="coup-name">New User Discount</div><div class="coup-used">Used: 1,230 times</div></div><div class="coup-val">15% OFF</div></div>
+          <div class="coupon-item"><div class="coup-code">VIP50</div><div class="coup-info"><div class="coup-name">VIP Customer</div><div class="coup-used">Used: 120 times</div></div><div class="coup-val">SAR 50 OFF</div></div>
+          <div class="coupon-item"><div class="coup-code">CCTV20</div><div class="coup-info"><div class="coup-name">Security Products</div><div class="coup-used">Used: 340 times</div></div><div class="coup-val">20% OFF</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:20px">
+      <div class="ch"><div class="ct">Homepage Banners</div><a class="ca">+ Add Banner →</a></div>
+      <div class="banner-grid">
+        <div class="banner-card" style="background:linear-gradient(120deg,#1a1a1a,#2d2d2d)"><div class="banner-inner"><div><div class="banner-text">Apple</div><div class="banner-title">iPhone 16 Pro Max</div><div class="banner-text">15% OFF · From SAR 4,999</div></div></div><span class="banner-badge b-live">● Live</span></div>
+        <div class="banner-card" style="background:linear-gradient(120deg,#7a0010,#c8102e)"><div class="banner-inner"><div><div class="banner-text">Hikvision</div><div class="banner-title">4K CCTV Pro System</div><div class="banner-text">25% OFF · From SAR 899</div></div></div><span class="banner-badge b-live">● Live</span></div>
+        <div class="banner-card" style="background:linear-gradient(120deg,#060c3a,#1a2ea0)"><div class="banner-inner"><div><div class="banner-text">Samsung</div><div class="banner-title">Galaxy S25 Ultra</div><div class="banner-text">20% OFF · From SAR 3,799</div></div></div><span class="banner-badge b-sched">Scheduled</span></div>
+        <div class="banner-card" style="background:linear-gradient(120deg,#1a5c1a,#4caf50)"><div class="banner-inner"><div><div class="banner-text">TP-Link</div><div class="banner-title">WiFi 7 AXE5400</div><div class="banner-text">22% OFF · From SAR 399</div></div></div><span class="banner-badge b-sched">Scheduled</span></div>
+      </div>
+    </div>
+    <div class="bottom-row">
+      <div class="card">
+        <div class="ch"><div class="ct">Loyalty Program</div><a class="ca">Manage →</a></div>
+        <div class="loyalty-stat"><div class="ls-icon">👥</div><div><div class="ls-name">Total Members</div><div class="ls-sub">Loyalty program</div></div><div class="ls-val">4,280</div></div>
+        <div class="loyalty-stat"><div class="ls-icon">⭐</div><div><div class="ls-name">Points Issued</div><div class="ls-sub">This month</div></div><div class="ls-val">284,500 pts</div></div>
+        <div class="loyalty-stat"><div class="ls-icon">🎁</div><div><div class="ls-name">Rewards Redeemed</div><div class="ls-sub">This month</div></div><div class="ls-val">SAR 8,420</div></div>
+        <div class="loyalty-stat"><div class="ls-icon">🏆</div><div><div class="ls-name">VIP Members (Gold)</div><div class="ls-sub">5000+ pts</div></div><div class="ls-val">312</div></div>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ct">Email / SMS Campaigns</div><a class="ca">+ New →</a></div>
+        <div class="loyalty-stat"><div class="ls-icon">📧</div><div><div class="ls-name">Ramadan Offer Email</div><div class="ls-sub">Sent to 9,840 customers</div></div><span class="kbadge kb-ok">38% Open</span></div>
+        <div class="loyalty-stat"><div class="ls-icon">📱</div><div><div class="ls-name">Flash Sale SMS</div><div class="ls-sub">Sent to 6,200 customers</div></div><span class="kbadge kb-ok">62% Click</span></div>
+        <div class="loyalty-stat"><div class="ls-icon">📧</div><div><div class="ls-name">New Arrivals Newsletter</div><div class="ls-sub">Sent to 9,840 customers</div></div><span class="kbadge kb-warn">24% Open</span></div>
+        <div class="loyalty-stat"><div class="ls-icon">📱</div><div><div class="ls-name">Abandoned Cart SMS</div><div class="ls-sub">Auto · 1,240 triggered</div></div><span class="kbadge kb-ok">44% Recovery</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>
