@@ -1,0 +1,176 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>AirTech One — Support</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f3ef;--dark:#0e0e0e;--accent:#e63329;--border:#e8e5e0;--muted:#888;--card:#fff;--sw:240px}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--dark);display:flex;min-height:100vh}
+.sidebar{width:var(--sw);background:var(--dark);min-height:100vh;position:fixed;left:0;top:0;display:flex;flex-direction:column;z-index:50}
+.logo{padding:24px 24px 16px;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:#fff;border-bottom:1px solid rgba(255,255,255,0.07)}
+.logo span{color:var(--accent)}.logo small{display:block;font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.3);margin-top:3px;text-transform:uppercase}
+.sb-user{padding:14px 24px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,0.07)}
+.sb-av{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#7c3aed,#a78bfa);display:flex;align-items:center;justify-content:center;font-size:16px}
+.sb-name{font-size:12px;font-weight:700;color:#fff}.sb-role{font-size:10px;color:rgba(255,255,255,0.4)}
+.sb-nav{flex:1;padding:10px 0}
+.ng{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);padding:12px 24px 5px}
+.ni{display:flex;align-items:center;gap:12px;padding:10px 24px;color:rgba(255,255,255,0.5);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;border-left:3px solid transparent;text-decoration:none}
+.ni:hover{color:#fff;background:rgba(255,255,255,0.05)}.ni.active{color:#fff;border-left-color:var(--accent);background:rgba(230,51,41,0.08)}
+.ni .ic{font-size:15px;width:20px;text-align:center}
+.nbadge{margin-left:auto;background:var(--accent);color:#fff;font-size:9px;font-weight:800;padding:2px 7px;border-radius:100px}
+.nb-y{background:#f59e0b}.nb-g{background:#16a34a}.sb-foot{padding:14px 24px;border-top:1px solid rgba(255,255,255,0.07)}
+.logout{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.4);font-size:12px;font-weight:600;cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif}.logout:hover{color:var(--accent)}
+.main{margin-left:var(--sw);flex:1}
+.topbar{background:rgba(245,243,239,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 28px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:40}
+.tb-title{font-size:15px;font-weight:700}.tb-sub{font-size:11px;color:var(--muted)}
+.tb-r{display:flex;align-items:center;gap:10px}
+.btn{background:var(--dark);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s}.btn:hover{background:var(--accent)}
+.srch{background:#fff;border:1.5px solid var(--border);border-radius:8px;padding:7px 14px;font-size:12px;outline:none;font-family:'DM Sans',sans-serif;width:220px}
+.content{padding:24px 28px}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;transition:transform .2s}.kpi:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,0.07)}
+.kpi-top{display:flex;justify-content:space-between;margin-bottom:12px}
+.kpi-ic{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.kbadge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:100px}
+.kb-ok{background:#e8f5e9;color:#16a34a}.kb-warn{background:#fff8e1;color:#f59e0b}.kb-r{background:#fce4ec;color:#ef4444}
+.kpi-val{font-size:26px;font-weight:800;margin-bottom:4px}.kpi-lbl{font-size:11px;color:var(--muted);font-weight:600}
+.main-grid{display:grid;grid-template-columns:1fr 340px;gap:18px;margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.ch{padding:15px 18px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.ct{font-size:13px;font-weight:700}.ca{font-size:11px;color:var(--accent);font-weight:700;text-decoration:none}
+.ticket{padding:14px 18px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s}.ticket:last-child{border-bottom:none}.ticket:hover{background:#fafaf8}
+.ticket-top{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.ticket-av{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;flex-shrink:0}
+.ticket-name{font-size:12px;font-weight:700;flex:1}
+.ticket-time{font-size:10px;color:var(--muted)}
+.ticket-subject{font-size:13px;font-weight:700;margin-bottom:4px}
+.ticket-preview{font-size:11px;color:var(--muted);line-height:1.4}
+.ticket-footer{display:flex;align-items:center;gap:8px;margin-top:8px}
+.tbadge{font-size:10px;font-weight:700;padding:3px 9px;border-radius:100px}
+.t-open{background:#e3f2fd;color:#1565c0}.t-pend{background:#fff8e1;color:#f57f17}.t-closed{background:#e8f5e9;color:#2e7d32}.t-urgent{background:#fce4ec;color:#c62828}
+.tcat{font-size:10px;color:var(--muted);background:var(--bg);padding:3px 8px;border-radius:100px}
+.chat-panel{display:flex;flex-direction:column;height:420px}
+.chat-info{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.chat-av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#1d4ed8,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff}
+.chat-name{font-size:12px;font-weight:700}
+.chat-status{font-size:10px;color:#16a34a;font-weight:600}
+.chat-msgs{flex:1;padding:14px;display:flex;flex-direction:column;gap:10px;overflow-y:auto}
+.msg{max-width:85%}
+.msg-bubble{padding:9px 13px;border-radius:12px;font-size:12px;line-height:1.5}
+.msg-cust .msg-bubble{background:var(--bg);border-radius:12px 12px 12px 2px}
+.msg-agent{align-self:flex-end}.msg-agent .msg-bubble{background:var(--dark);color:#fff;border-radius:12px 12px 2px 12px}
+.msg-time{font-size:10px;color:var(--muted);margin-top:3px;padding:0 4px}
+.msg-agent .msg-time{text-align:right}
+.chat-input{padding:12px;border-top:1px solid var(--border);display:flex;gap:8px}
+.cinput{flex:1;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;outline:none;font-family:'DM Sans',sans-serif}
+.csend{background:var(--dark);color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif}
+.bottom-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.agent-row{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--border)}.agent-row:last-child{border-bottom:none}
+.agent-av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0}
+.agent-name{font-size:12px;font-weight:700;flex:1}
+.agent-tickets{font-size:10px;color:var(--muted)}
+.agent-status{font-size:10px;font-weight:700;padding:3px 8px;border-radius:100px}
+.as-online{background:#e8f5e9;color:#16a34a}.as-busy{background:#fff8e1;color:#f59e0b}.as-off{background:#f3f4f6;color:#6b7280}
+</style></head><body>
+<aside class="sidebar">
+  <div class="logo">Air<span>Tech</span> One<small>Support Panel</small></div>
+  <div class="sb-user"><div class="sb-av">🎫</div><div><div class="sb-name">Support Manager</div><div class="sb-role">Helpdesk · AirTech One</div></div></div>
+  <nav class="sb-nav">
+    <div class="ng">Tickets</div>
+    <a href="#" class="ni active"><span class="ic">🏠</span> Dashboard</a>
+    <a href="#" class="ni"><span class="ic">🔴</span> Open Tickets <span class="nbadge">18</span></a>
+    <a href="#" class="ni"><span class="ic">⏳</span> Pending <span class="nbadge nb-y">7</span></a>
+    <a href="#" class="ni"><span class="ic">✅</span> Resolved</a>
+    <a href="#" class="ni"><span class="ic">🚨</span> Urgent <span class="nbadge">3</span></a>
+    <div class="ng">Channels</div>
+    <a href="#" class="ni"><span class="ic">💬</span> Live Chat <span class="nbadge nb-g">4 Live</span></a>
+    <a href="#" class="ni"><span class="ic">📧</span> Email Tickets</a>
+    <a href="#" class="ni"><span class="ic">📱</span> WhatsApp</a>
+    <div class="ng">Manage</div>
+    <a href="#" class="ni"><span class="ic">👥</span> Agents</a>
+    <a href="#" class="ni"><span class="ic">📊</span> Reports</a>
+    <a href="#" class="ni"><span class="ic">📚</span> Knowledge Base</a>
+  </nav>
+  <div class="sb-foot"><button class="logout">🚪 &nbsp;Logout</button></div>
+</aside>
+<div class="main">
+  <div class="topbar">
+    <div><div class="tb-title">Support Dashboard</div><div class="tb-sub">18 open · 3 urgent · 4 live chats</div></div>
+    <div class="tb-r"><input class="srch" placeholder="🔍 Search tickets..."><button class="btn">+ New Ticket</button></div>
+  </div>
+  <div class="content">
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-top"><div class="kpi-ic" style="background:#fce4ec">🎫</div><span class="kbadge kb-r">Needs Attention</span></div><div class="kpi-val">18</div><div class="kpi-lbl">Open Tickets</div></div>
+      <div class="kpi"><div class="kpi-top"><div class="kpi-ic" style="background:#e8f5e9">✅</div><span class="kbadge kb-ok">Great</span></div><div class="kpi-val">94%</div><div class="kpi-lbl">Resolution Rate</div></div>
+      <div class="kpi"><div class="kpi-top"><div class="kpi-ic" style="background:#e3f2fd">⏱️</div><span class="kbadge kb-ok">Fast</span></div><div class="kpi-val">1.4h</div><div class="kpi-lbl">Avg Response Time</div></div>
+      <div class="kpi"><div class="kpi-top"><div class="kpi-ic" style="background:#fff8e1">⭐</div><span class="kbadge kb-ok">Excellent</span></div><div class="kpi-val">4.8</div><div class="kpi-lbl">Customer Satisfaction</div></div>
+    </div>
+    <div class="main-grid">
+      <div class="card">
+        <div class="ch"><div class="ct">Recent Tickets</div><a class="ca">View All →</a></div>
+        <div class="ticket">
+          <div class="ticket-top"><div class="ticket-av" style="background:#e63329">K</div><div class="ticket-name">Khalid Mansoor</div><div class="ticket-time">10 mins ago</div></div>
+          <div class="ticket-subject">Order not received — Hikvision Kit #ORD-00428</div>
+          <div class="ticket-preview">I placed the order 5 days ago but still haven't received my package...</div>
+          <div class="ticket-footer"><span class="tbadge t-urgent">🚨 Urgent</span><span class="tcat">Delivery</span></div>
+        </div>
+        <div class="ticket">
+          <div class="ticket-top"><div class="ticket-av" style="background:#1d4ed8">S</div><div class="ticket-name">Sara Al-Qahtani</div><div class="ticket-time">34 mins ago</div></div>
+          <div class="ticket-subject">Refund request for MacBook Pro M4</div>
+          <div class="ticket-preview">The laptop has a defect on the screen, I would like to request a refund...</div>
+          <div class="ticket-footer"><span class="tbadge t-open">Open</span><span class="tcat">Returns</span></div>
+        </div>
+        <div class="ticket">
+          <div class="ticket-top"><div class="ticket-av" style="background:#16a34a">A</div><div class="ticket-name">Ahmed Al-Rashidi</div><div class="ticket-time">1 hr ago</div></div>
+          <div class="ticket-subject">Cannot track my iPhone 16 Pro order</div>
+          <div class="ticket-preview">The tracking link is not working, it says order not found...</div>
+          <div class="ticket-footer"><span class="tbadge t-pend">Pending</span><span class="tcat">Tracking</span></div>
+        </div>
+        <div class="ticket">
+          <div class="ticket-top"><div class="ticket-av" style="background:#7c3aed">N</div><div class="ticket-name">Noura Abdullah</div><div class="ticket-time">2 hrs ago</div></div>
+          <div class="ticket-subject">Apple Watch Ultra 2 — wrong color delivered</div>
+          <div class="ticket-preview">I ordered the black titanium but received the orange one instead...</div>
+          <div class="ticket-footer"><span class="tbadge t-urgent">🚨 Urgent</span><span class="tcat">Wrong Item</span></div>
+        </div>
+        <div class="ticket">
+          <div class="ticket-top"><div class="ticket-av" style="background:#f59e0b">M</div><div class="ticket-name">Mohammed Khalid</div><div class="ticket-time">3 hrs ago</div></div>
+          <div class="ticket-subject">Payment failed but amount was deducted</div>
+          <div class="ticket-preview">My order failed but the bank shows SAR 3,299 was charged...</div>
+          <div class="ticket-footer"><span class="tbadge t-open">Open</span><span class="tcat">Payments</span></div>
+        </div>
+      </div>
+      <div class="card chat-panel">
+        <div class="chat-info">
+          <div class="chat-av">K</div>
+          <div><div class="chat-name">Khalid Mansoor</div><div class="chat-status">● Live Chat — Active now</div></div>
+        </div>
+        <div class="chat-msgs">
+          <div class="msg msg-cust"><div class="msg-bubble">Hi, I placed order #ORD-00428 5 days ago and still no delivery.</div><div class="msg-time">10:02 AM</div></div>
+          <div class="msg msg-agent"><div class="msg-bubble">Hello Khalid! I'm so sorry for the inconvenience. Let me check your order status right away.</div><div class="msg-time">10:03 AM</div></div>
+          <div class="msg msg-cust"><div class="msg-bubble">The tracking link also shows "Not Found"</div><div class="msg-time">10:04 AM</div></div>
+          <div class="msg msg-agent"><div class="msg-bubble">I can see your order is with the courier. There was a delay due to customs. New ETA is today by 6PM. I've escalated this and you'll get a call soon. 🙏</div><div class="msg-time">10:05 AM</div></div>
+          <div class="msg msg-cust"><div class="msg-bubble">Okay, thank you. I hope it arrives today.</div><div class="msg-time">10:06 AM</div></div>
+        </div>
+        <div class="chat-input"><input class="cinput" placeholder="Type a reply..."><button class="csend">Send</button></div>
+      </div>
+    </div>
+    <div class="bottom-row">
+      <div class="card">
+        <div class="ch"><div class="ct">Support Agents</div><a class="ca">Manage →</a></div>
+        <div class="agent-row"><div class="agent-av" style="background:#e63329">F</div><div><div class="agent-name">Fatima Al-Zahrani</div><div class="agent-tickets">6 open tickets</div></div><span class="agent-status as-busy">Busy</span></div>
+        <div class="agent-row"><div class="agent-av" style="background:#1d4ed8">O</div><div><div class="agent-name">Omar Al-Ghamdi</div><div class="agent-tickets">4 open tickets</div></div><span class="agent-status as-online">Online</span></div>
+        <div class="agent-row"><div class="agent-av" style="background:#16a34a">R</div><div><div class="agent-name">Reem Al-Harbi</div><div class="agent-tickets">3 open tickets</div></div><span class="agent-status as-online">Online</span></div>
+        <div class="agent-row"><div class="agent-av" style="background:#7c3aed">Y</div><div><div class="agent-name">Yousef Al-Otaibi</div><div class="agent-tickets">5 open tickets</div></div><span class="agent-status as-busy">Busy</span></div>
+        <div class="agent-row"><div class="agent-av" style="background:#888">N</div><div><div class="agent-name">Nora Al-Shehri</div><div class="agent-tickets">0 open tickets</div></div><span class="agent-status as-off">Offline</span></div>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ct">Ticket Categories</div></div>
+        <div style="padding:16px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;gap:10px"><span style="font-size:12px;flex:1;font-weight:600">🚚 Delivery Issues</span><span style="font-size:12px;font-weight:800">38%</span><div style="flex:1;height:5px;background:#eee;border-radius:3px;overflow:hidden"><div style="width:38%;height:100%;background:#e63329;border-radius:3px"></div></div></div>
+          <div style="display:flex;align-items:center;gap:10px"><span style="font-size:12px;flex:1;font-weight:600">↩️ Returns & Refunds</span><span style="font-size:12px;font-weight:800">26%</span><div style="flex:1;height:5px;background:#eee;border-radius:3px;overflow:hidden"><div style="width:26%;height:100%;background:#3b82f6;border-radius:3px"></div></div></div>
+          <div style="display:flex;align-items:center;gap:10px"><span style="font-size:12px;flex:1;font-weight:600">💳 Payment Issues</span><span style="font-size:12px;font-weight:800">18%</span><div style="flex:1;height:5px;background:#eee;border-radius:3px;overflow:hidden"><div style="width:18%;height:100%;background:#f59e0b;border-radius:3px"></div></div></div>
+          <div style="display:flex;align-items:center;gap:10px"><span style="font-size:12px;flex:1;font-weight:600">📦 Wrong/Damaged Item</span><span style="font-size:12px;font-weight:800">12%</span><div style="flex:1;height:5px;background:#eee;border-radius:3px;overflow:hidden"><div style="width:12%;height:100%;background:#7c3aed;border-radius:3px"></div></div></div>
+          <div style="display:flex;align-items:center;gap:10px"><span style="font-size:12px;flex:1;font-weight:600">❓ General Inquiry</span><span style="font-size:12px;font-weight:800">6%</span><div style="flex:1;height:5px;background:#eee;border-radius:3px;overflow:hidden"><div style="width:6%;height:100%;background:#16a34a;border-radius:3px"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>
