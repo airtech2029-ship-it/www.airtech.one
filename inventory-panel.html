@@ -1,0 +1,131 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>AirTech One — Inventory</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f3ef;--dark:#0e0e0e;--accent:#e63329;--border:#e8e5e0;--muted:#888;--card:#fff;--sw:240px}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--dark);display:flex;min-height:100vh}
+.sidebar{width:var(--sw);background:var(--dark);min-height:100vh;position:fixed;left:0;top:0;display:flex;flex-direction:column;z-index:50}
+.logo{padding:24px 24px 16px;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:#fff;border-bottom:1px solid rgba(255,255,255,0.07)}
+.logo span{color:var(--accent)}.logo small{display:block;font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.3);margin-top:3px;text-transform:uppercase}
+.sb-user{padding:14px 24px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,0.07)}
+.sb-av{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#f59e0b,#f97316);display:flex;align-items:center;justify-content:center;font-size:16px}
+.sb-name{font-size:12px;font-weight:700;color:#fff}.sb-role{font-size:10px;color:rgba(255,255,255,0.4)}
+.sb-nav{flex:1;padding:10px 0}
+.ng{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);padding:12px 24px 5px}
+.ni{display:flex;align-items:center;gap:12px;padding:10px 24px;color:rgba(255,255,255,0.5);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;border-left:3px solid transparent;text-decoration:none}
+.ni:hover{color:#fff;background:rgba(255,255,255,0.05)}.ni.active{color:#fff;border-left-color:var(--accent);background:rgba(230,51,41,0.08)}
+.ni .ic{font-size:15px;width:20px;text-align:center}
+.nbadge{margin-left:auto;background:var(--accent);color:#fff;font-size:9px;font-weight:800;padding:2px 7px;border-radius:100px}
+.nb-y{background:#f59e0b}.sb-foot{padding:14px 24px;border-top:1px solid rgba(255,255,255,0.07)}
+.logout{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.4);font-size:12px;font-weight:600;cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif}.logout:hover{color:var(--accent)}
+.main{margin-left:var(--sw);flex:1}
+.topbar{background:rgba(245,243,239,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 28px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:40}
+.tb-title{font-size:15px;font-weight:700}.tb-sub{font-size:11px;color:var(--muted)}
+.tb-r{display:flex;align-items:center;gap:10px}
+.btn{background:var(--dark);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s}.btn:hover{background:var(--accent)}
+.btn-y{background:#f59e0b;color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif}
+.srch{background:#fff;border:1.5px solid var(--border);border-radius:8px;padding:7px 14px;font-size:12px;outline:none;font-family:'DM Sans',sans-serif;width:200px}
+.content{padding:24px 28px}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;transition:transform .2s}.kpi:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,0.07)}
+.kpi-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.kpi-ic{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.kbadge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:100px}
+.kb-ok{background:#e8f5e9;color:#16a34a}.kb-warn{background:#fff8e1;color:#f59e0b}.kb-danger{background:#fce4ec;color:#ef4444}
+.kpi-val{font-size:26px;font-weight:800;margin-bottom:4px}.kpi-lbl{font-size:11px;color:var(--muted);font-weight:600}
+.two-col{display:grid;grid-template-columns:1.4fr 1fr;gap:18px;margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.ch{padding:15px 18px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.ct{font-size:13px;font-weight:700}.ca{font-size:11px;color:var(--accent);font-weight:700;text-decoration:none}
+table{width:100%;border-collapse:collapse}
+th{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);padding:10px 18px;text-align:left;border-bottom:1px solid var(--border)}
+td{padding:11px 18px;font-size:12px;border-bottom:1px solid var(--border)}tr:last-child td{border-bottom:none}tr:hover td{background:#fafaf8}
+.pc{display:flex;align-items:center;gap:10px}.pi{width:34px;height:34px;border-radius:8px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.pn{font-size:12px;font-weight:700}.ps{font-size:10px;color:var(--muted)}
+.stk{font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px}
+.s-ok{background:#e8f5e9;color:#16a34a}.s-low{background:#fff8e1;color:#f59e0b}.s-out{background:#fce4ec;color:#ef4444}
+.zone-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:14px}
+.zone{border:1.5px solid var(--border);border-radius:12px;padding:12px;text-align:center;cursor:pointer;transition:all .2s}.zone:hover{border-color:var(--dark);transform:translateY(-2px)}
+.zi{font-size:26px;margin-bottom:6px}.zn{font-size:11px;font-weight:700}.zc{font-size:10px;color:var(--muted);margin-top:2px}
+.zcap{height:4px;background:#eee;border-radius:2px;margin-top:8px;overflow:hidden}.zcapf{height:100%;border-radius:2px}
+.bottom-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.ri{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--border)}.ri:last-child{border-bottom:none}.ri:hover{background:#fafaf8}
+.ri-ic{width:34px;height:34px;border-radius:8px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.ri-name{font-size:12px;font-weight:700;flex:1}.ri-sub{font-size:10px;color:var(--muted);margin-top:2px}
+</style></head><body>
+<aside class="sidebar">
+  <div class="logo">Air<span>Tech</span> One<small>Inventory Panel</small></div>
+  <div class="sb-user"><div class="sb-av">📦</div><div><div class="sb-name">Warehouse Manager</div><div class="sb-role">Riyadh Warehouse</div></div></div>
+  <nav class="sb-nav">
+    <div class="ng">Overview</div>
+    <a href="#" class="ni active"><span class="ic">🏠</span> Dashboard</a>
+    <a href="#" class="ni"><span class="ic">📦</span> Stock List <span class="nbadge nb-y">8 Low</span></a>
+    <a href="#" class="ni"><span class="ic">📋</span> Purchase Orders</a>
+    <div class="ng">Warehouse</div>
+    <a href="#" class="ni"><span class="ic">🗂️</span> Zones & Bins</a>
+    <a href="#" class="ni"><span class="ic">🔄</span> Stock Transfers</a>
+    <a href="#" class="ni"><span class="ic">📥</span> Receive Stock</a>
+    <a href="#" class="ni"><span class="ic">📤</span> Dispatch</a>
+    <div class="ng">Reports</div>
+    <a href="#" class="ni"><span class="ic">📊</span> Stock Report</a>
+    <a href="#" class="ni"><span class="ic">⚠️</span> Low Stock Alerts <span class="nbadge">8</span></a>
+  </nav>
+  <div class="sb-foot"><button class="logout">🚪 &nbsp;Logout</button></div>
+</aside>
+<div class="main">
+  <div class="topbar">
+    <div><div class="tb-title">Inventory Dashboard</div><div class="tb-sub">Riyadh Warehouse · Synced 2 mins ago</div></div>
+    <div class="tb-r"><input class="srch" placeholder="🔍 Search SKU, product..."><button class="btn-y">+ Receive Stock</button><button class="btn">📤 Dispatch</button></div>
+  </div>
+  <div class="content">
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-top"><div class="kpi-ic" style="background:#e3f2fd">📦</div><span class="kbadge kb-ok">Healthy</span></div><div class="kpi-val">4,280</div><div class="kpi-lbl">Total SKUs in Stock</div></div>
+      <div class="kpi"><div class="kpi-top"><div class="kpi-ic" style="background:#fff8e1">⚠️</div><span class="kbadge kb-warn">Action Needed</span></div><div class="kpi-val">8</div><div class="kpi-lbl">Low Stock Items</div></div>
+      <div class="kpi"><div class="kpi-top"><div class="kpi-ic" style="background:#fce4ec">🚫</div><span class="kbadge kb-danger">Critical</span></div><div class="kpi-val">3</div><div class="kpi-lbl">Out of Stock</div></div>
+      <div class="kpi"><div class="kpi-top"><div class="kpi-ic" style="background:#e8f5e9">🚚</div><span class="kbadge kb-ok">On the Way</span></div><div class="kpi-val">12</div><div class="kpi-lbl">Incoming POs</div></div>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="ch"><div class="ct">Stock Inventory</div><a class="ca">Export CSV →</a></div>
+        <table><thead><tr><th>Product</th><th>Category</th><th>Qty</th><th>Reorder At</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><div class="pc"><div class="pi">📱</div><div><div class="pn">iPhone 16 Pro Max 256GB</div><div class="ps">SKU: APL-IP16PM-256</div></div></div></td><td>Smartphones</td><td><b>14</b></td><td>10</td><td><span class="stk s-ok">In Stock</span></td></tr>
+          <tr><td><div class="pc"><div class="pi">📱</div><div><div class="pn">Samsung Galaxy S25 Ultra</div><div class="ps">SKU: SAM-S25U-256</div></div></div></td><td>Smartphones</td><td><b>3</b></td><td>5</td><td><span class="stk s-low">Low Stock</span></td></tr>
+          <tr><td><div class="pc"><div class="pi">💻</div><div><div class="pn">MacBook Pro M4 16"</div><div class="ps">SKU: APL-MBP-M4-16</div></div></div></td><td>Laptops</td><td><b>8</b></td><td>5</td><td><span class="stk s-ok">In Stock</span></td></tr>
+          <tr><td><div class="pc"><div class="pi">🎧</div><div><div class="pn">Sony WH-1000XM5</div><div class="ps">SKU: SNY-WH1000XM5</div></div></div></td><td>Audio</td><td><b>2</b></td><td>5</td><td><span class="stk s-low">Low Stock</span></td></tr>
+          <tr><td><div class="pc"><div class="pi">📷</div><div><div class="pn">Hikvision 4K 8CH Kit</div><div class="ps">SKU: HIK-4K-8CH</div></div></div></td><td>Security</td><td><b>0</b></td><td>3</td><td><span class="stk s-out">Out of Stock</span></td></tr>
+          <tr><td><div class="pc"><div class="pi">⌚</div><div><div class="pn">Apple Watch Ultra 2</div><div class="ps">SKU: APL-AW-ULTRA2</div></div></div></td><td>Wearables</td><td><b>6</b></td><td>4</td><td><span class="stk s-ok">In Stock</span></td></tr>
+        </tbody></table>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="card">
+          <div class="ch"><div class="ct">Warehouse Zones</div><a class="ca">Manage →</a></div>
+          <div class="zone-grid">
+            <div class="zone"><div class="zi">📱</div><div class="zn">Zone A</div><div class="zc">Smartphones · 72%</div><div class="zcap"><div class="zcapf" style="width:72%;background:#3b82f6"></div></div></div>
+            <div class="zone"><div class="zi">💻</div><div class="zn">Zone B</div><div class="zc">Laptops · 55%</div><div class="zcap"><div class="zcapf" style="width:55%;background:#16a34a"></div></div></div>
+            <div class="zone"><div class="zi">🎧</div><div class="zn">Zone C</div><div class="zc">Audio · 40%</div><div class="zcap"><div class="zcapf" style="width:40%;background:#f59e0b"></div></div></div>
+            <div class="zone"><div class="zi">📷</div><div class="zn">Zone D</div><div class="zc">Security · 20%</div><div class="zcap"><div class="zcapf" style="width:20%;background:#ef4444"></div></div></div>
+            <div class="zone"><div class="zi">🌐</div><div class="zn">Zone E</div><div class="zc">Network · 60%</div><div class="zcap"><div class="zcapf" style="width:60%;background:#8b5cf6"></div></div></div>
+            <div class="zone"><div class="zi">⌚</div><div class="zn">Zone F</div><div class="zc">Wearables · 45%</div><div class="zcap"><div class="zcapf" style="width:45%;background:#ec4899"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-row">
+      <div class="card">
+        <div class="ch"><div class="ct">Incoming Purchase Orders</div><a class="ca">View All →</a></div>
+        <div class="ri"><div class="ri-ic">🚚</div><div><div class="ri-name">Apple iPhone 16 Pro Max ×50</div><div class="ri-sub">PO-2025-0441 · ETA: Mar 20</div></div><span class="stk s-ok">Confirmed</span></div>
+        <div class="ri"><div class="ri-ic">🚚</div><div><div class="ri-name">Sony WH-1000XM5 ×30</div><div class="ri-sub">PO-2025-0438 · ETA: Mar 22</div></div><span class="stk s-ok">Confirmed</span></div>
+        <div class="ri"><div class="ri-ic">🚚</div><div><div class="ri-name">Hikvision 4K Kit ×20</div><div class="ri-sub">PO-2025-0435 · ETA: Mar 25</div></div><span class="stk s-low">Pending</span></div>
+        <div class="ri"><div class="ri-ic">🚚</div><div><div class="ri-name">Samsung Galaxy S25 Ultra ×15</div><div class="ri-sub">PO-2025-0430 · ETA: Mar 28</div></div><span class="stk s-low">Pending</span></div>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ct">Recent Dispatches</div><a class="ca">View All →</a></div>
+        <div class="ri"><div class="ri-ic">📤</div><div><div class="ri-name">iPhone 16 Pro Max — 3 units</div><div class="ri-sub">Order #ORD-00441 · Today 09:30</div></div><span class="stk s-ok">Done</span></div>
+        <div class="ri"><div class="ri-ic">📤</div><div><div class="ri-name">Dell XPS 15 — 1 unit</div><div class="ri-sub">Order #ORD-00438 · Today 10:15</div></div><span class="stk s-ok">Done</span></div>
+        <div class="ri"><div class="ri-ic">📤</div><div><div class="ri-name">Apple Watch Ultra 2 — 2 units</div><div class="ri-sub">Order #ORD-00431 · Yesterday</div></div><span class="stk s-ok">Done</span></div>
+        <div class="ri"><div class="ri-ic">📤</div><div><div class="ri-name">TP-Link WiFi 7 — 5 units</div><div class="ri-sub">Order #ORD-00428 · Yesterday</div></div><span class="stk s-ok">Done</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>
