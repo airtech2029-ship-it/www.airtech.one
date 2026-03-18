@@ -1,0 +1,2079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AirTech One — Next-Gen Electronics</title>
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f5f3ef;
+  --dark: #0e0e0e;
+  --accent: #e63329;
+  --accent2: #1a1aff;
+  --muted: #8a8a8a;
+  --card: #ffffff;
+  --border: #e0ddd8;
+  --warm: #f0ebe3;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--dark);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── CUSTOM CURSOR ── */
+.cursor {
+  width: 12px; height: 12px;
+  background: var(--accent);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s;
+  mix-blend-mode: multiply;
+}
+.cursor-ring {
+  width: 40px; height: 40px;
+  border: 1.5px solid var(--dark);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: all 0.12s ease;
+}
+body:has(a:hover) .cursor { width: 6px; height: 6px; }
+body:has(a:hover) .cursor-ring { width: 56px; height: 56px; border-color: var(--accent); }
+body:has(button:hover) .cursor { width: 6px; height: 6px; background: var(--accent2); }
+
+/* ── NAVBAR ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 16px;
+  height: 56px;
+  background: rgba(245,243,239,0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-left {
+  display: flex; align-items: center; justify-content: flex-start;
+}
+.nav-center {
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 12px;
+}
+.nav-right {
+  display: flex; align-items: center; justify-content: flex-end;
+}
+
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: var(--dark);
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 1;
+}
+.nav-logo span { color: var(--accent); }
+
+.nav-links {
+  display: flex; gap: 36px; list-style: none;
+}
+.nav-links a {
+  font-size: 13px; font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute; bottom: -3px; left: 0; right: 0;
+  height: 1.5px; background: var(--accent);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.25s ease;
+}
+.nav-links a:hover { color: var(--dark); }
+.nav-links a:hover::after { transform: scaleX(1); }
+
+.nav-actions { display: flex; align-items: center; gap: 20px; }
+
+.nav-cart {
+  display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+  font-size: 11px; font-weight: 600;
+  color: var(--dark);
+  text-decoration: none;
+  border: 1.5px solid var(--dark);
+  border-radius: 100px;
+  transition: all 0.2s;
+  white-space: nowrap;
+  width: 90px;
+  height: 34px;
+  box-sizing: border-box;
+}
+.nav-cart:hover { background: var(--dark); color: #fff; }
+
+.nav-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--accent);
+  color: #fff;
+  border: 1.5px solid var(--accent);
+  border-radius: 100px;
+  font-size: 11px; font-weight: 600;
+  cursor: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
+  width: 90px;
+  height: 34px;
+  box-sizing: border-box;
+}
+.nav-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(230,51,41,0.35); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 80px;
+  overflow: hidden;
+}
+
+.hero-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px 48px 80px 48px;
+  position: relative;
+}
+
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'DM Sans', monospace;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 28px;
+  animation: fadeUp 0.8s 0.1s both;
+}
+.hero-tag::before {
+  content: '';
+  width: 28px; height: 1.5px;
+  background: var(--accent);
+}
+
+.hero-h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(72px, 8vw, 110px);
+  line-height: 0.92;
+  color: var(--dark);
+  letter-spacing: -1px;
+  margin-bottom: 28px;
+  animation: fadeUp 0.8s 0.2s both;
+}
+.hero-h1 em {
+  font-style: normal;
+  color: var(--accent);
+  display: block;
+}
+
+.hero-sub {
+  font-size: 15px; color: var(--muted);
+  line-height: 1.7; max-width: 380px;
+  margin-bottom: 44px;
+  animation: fadeUp 0.8s 0.3s both;
+}
+
+.hero-ctas {
+  display: flex; align-items: center; gap: 20px;
+  animation: fadeUp 0.8s 0.4s both;
+}
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--dark);
+  color: #fff;
+  padding: 16px 32px;
+  border-radius: 100px;
+  font-size: 14px; font-weight: 500;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.25); }
+.btn-primary svg { transition: transform 0.2s; }
+.btn-primary:hover svg { transform: translateX(4px); }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--muted); font-size: 14px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.btn-ghost:hover { color: var(--dark); }
+
+.hero-stats {
+  display: flex; gap: 40px;
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  animation: fadeUp 0.8s 0.5s both;
+}
+.stat-item {}
+.stat-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px; letter-spacing: 1px;
+  color: var(--dark);
+}
+.stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; }
+
+/* ── HERO RIGHT ── */
+.hero-right {
+  background: var(--dark);
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+
+.hero-right::before {
+  content: 'AT1';
+  position: absolute;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 300px;
+  color: rgba(255,255,255,0.03);
+  letter-spacing: -10px;
+  user-select: none;
+}
+
+.hero-product {
+  position: relative; z-index: 2;
+  animation: float 4s ease-in-out infinite;
+}
+
+.product-blob {
+  width: 420px; height: 420px;
+  background: radial-gradient(circle at 40% 40%, #ff4a3d 0%, #1a1aff 60%, transparent 80%);
+  border-radius: 50%;
+  opacity: 0.15;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(40px);
+}
+
+.phone-mockup {
+  width: 220px;
+  background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+  border-radius: 32px;
+  padding: 12px;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.1);
+  position: relative; z-index: 2;
+}
+.phone-screen {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a00 50%, #000510 100%);
+  border-radius: 22px;
+  height: 380px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 12px;
+  overflow: hidden;
+  position: relative;
+}
+.phone-screen::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(230,51,41,0.3) 0%, transparent 60%);
+}
+.phone-icon {
+  font-size: 64px; position: relative; z-index: 1;
+  animation: pulse 2s ease-in-out infinite;
+}
+.phone-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px; letter-spacing: 3px;
+  color: #fff; position: relative; z-index: 1;
+}
+.phone-sub {
+  font-size: 11px; color: rgba(255,255,255,0.4);
+  position: relative; z-index: 1;
+}
+
+/* Floating badges */
+.badge-float {
+  position: absolute;
+  background: #fff;
+  border-radius: 16px;
+  padding: 12px 18px;
+  display: flex; align-items: center; gap: 10px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  animation: float2 3s ease-in-out infinite;
+  z-index: 10;
+}
+.badge-float.b1 { top: 20%; left: 8%; animation-delay: 0s; }
+.badge-float.b2 { bottom: 25%; right: 6%; animation-delay: 1.5s; }
+.badge-float.b3 { top: 55%; left: 5%; animation-delay: 0.8s; }
+.bf-icon { font-size: 22px; }
+.bf-text { font-size: 11px; font-weight: 600; color: var(--dark); }
+.bf-sub { font-size: 10px; color: var(--muted); }
+
+/* ── MARQUEE ── */
+.marquee-section {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 0;
+  overflow: hidden;
+  background: var(--dark);
+}
+.marquee-track {
+  display: flex;
+  gap: 0;
+  animation: marquee 20s linear infinite;
+  white-space: nowrap;
+}
+.marquee-item {
+  display: inline-flex; align-items: center; gap: 16px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px; letter-spacing: 2px;
+  color: rgba(255,255,255,0.6);
+  padding: 0 40px;
+  flex-shrink: 0;
+}
+.marquee-dot { width: 5px; height: 5px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+
+/* ── FULL WIDTH BRAND OFFER BANNER ── */
+.fullbanner-section {
+  width: 100%;
+  background: var(--dark);
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  margin-top: 60px;
+}
+.fullbanner-wrap {
+  position: relative;
+}
+.fullbanner-track {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+.fb-slide {
+  min-width: 100vw;
+  height: 280px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 768px) {
+  .fb-slide { height: 220px; padding: 0 20px; }
+}
+.fb-glow {
+  position: absolute; inset: 0;
+  pointer-events: none; z-index: 0;
+}
+.fb-left {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column;
+  gap: 5px;
+  max-width: 60%;
+}
+.fb-right {
+  position: relative; z-index: 1;
+  flex-shrink: 0;
+}
+.fb-badge {
+  display: inline-flex; align-items: center;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 5px 12px;
+  border-radius: 100px;
+  width: fit-content;
+  margin-bottom: 4px;
+  backdrop-filter: blur(4px);
+}
+.fb-brand {
+  font-size: 11px; font-weight: 700;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+.fb-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 5vw, 48px);
+  color: #fff;
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+.fb-desc {
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
+  margin-top: 2px;
+}
+.fb-off {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(36px, 6vw, 56px);
+  color: #fff;
+  line-height: 1;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+.fb-price {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+}
+.fb-price span {
+  color: #fff; font-weight: 700; font-size: 15px;
+}
+.fb-btn {
+  display: inline-flex; align-items: center;
+  background: #fff;
+  color: var(--dark);
+  font-size: 12px; font-weight: 800;
+  padding: 10px 22px;
+  border-radius: 100px;
+  text-decoration: none;
+  margin-top: 8px;
+  width: fit-content;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.fb-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255,255,255,0.2);
+}
+.fb-emoji {
+  font-size: clamp(80px, 12vw, 140px);
+  filter: drop-shadow(0 12px 32px rgba(0,0,0,0.4));
+  animation: float 3s ease-in-out infinite;
+  line-height: 1;
+}
+.fb-dots {
+  position: absolute;
+  bottom: 14px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; gap: 7px;
+  z-index: 10;
+}
+.fb-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  cursor: pointer;
+  transition: background 0.3s, width 0.3s;
+}
+.fb-dot.active {
+  background: #fff;
+  width: 22px;
+  border-radius: 4px;
+}
+
+/* ── HERO BANNER SLIDER ── */
+.hero-banner-slider {
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 28px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+}
+.hero-banner-track {
+  display: flex;
+  animation: heroBannerScroll 24s linear infinite;
+  width: max-content;
+}
+.hero-banner-track:hover { animation-play-state: paused; }
+@keyframes heroBannerScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.hb-slide {
+  width: 320px;
+  height: 180px;
+  flex-shrink: 0;
+  margin-right: 12px;
+  border-radius: 18px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.hb-slide:hover { transform: scale(1.02); }
+.hb-glow {
+  position: absolute; inset: 0;
+  pointer-events: none;
+}
+.hb-badge {
+  position: absolute;
+  top: 14px; left: 14px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 100px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.hb-content {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column;
+  gap: 4px;
+  padding-top: 22px;
+}
+.hb-brand {
+  font-size: 10px; font-weight: 700;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.hb-name {
+  font-size: 16px; font-weight: 800;
+  color: #fff;
+  line-height: 1.2;
+  max-width: 160px;
+}
+.hb-off {
+  font-size: 22px; font-weight: 900;
+  color: #fff;
+  opacity: 0.95;
+}
+.hb-price {
+  font-size: 11px;
+  color: rgba(255,255,255,0.65);
+}
+.hb-price strong { color: #fff; font-size: 13px; }
+.hb-btn {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  font-size: 11px; font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 100px;
+  text-decoration: none;
+  margin-top: 4px;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s;
+  width: fit-content;
+}
+.hb-btn:hover { background: rgba(255,255,255,0.3); }
+.hb-img {
+  font-size: 68px;
+  position: relative; z-index: 1;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.3));
+  flex-shrink: 0;
+  animation: float 3s ease-in-out infinite;
+}
+.hb-dots {
+  display: flex; gap: 6px;
+  justify-content: center;
+  padding: 10px 0 4px;
+}
+.hb-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: background 0.3s, width 0.3s;
+  cursor: pointer;
+}
+.hb-dot.active {
+  background: var(--accent);
+  width: 18px;
+  border-radius: 3px;
+}
+@media (max-width: 768px) {
+  .hb-slide { width: 260px; height: 160px; }
+  .hb-name { font-size: 14px; max-width: 130px; }
+  .hb-off { font-size: 18px; }
+  .hb-img { font-size: 52px; }
+}
+
+/* ── HERO OFFER SLIDER (old - keep for reference) ── */
+.hero-offer-slider {
+  width: 100%;
+  overflow: hidden;
+  margin: 24px 0 32px;
+  position: relative;
+  border-radius: 16px;
+}
+.hero-offer-slider::before,
+.hero-offer-slider::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 40px; z-index: 2;
+  pointer-events: none;
+}
+.hero-offer-slider::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg), transparent);
+}
+.hero-offer-slider::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg), transparent);
+}
+.offer-track {
+  display: flex;
+  gap: 12px;
+  animation: offerScroll 30s linear infinite;
+  width: max-content;
+}
+.offer-track:hover { animation-play-state: paused; }
+@keyframes offerScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.offer-card {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  width: 160px;
+  flex-shrink: 0;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  cursor: pointer;
+}
+.offer-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+  border-color: var(--oc, var(--accent));
+}
+.offer-img-wrap {
+  height: 90px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.offer-img-wrap img {
+  width: 70px; height: 70px;
+  object-fit: contain;
+  position: relative; z-index: 1;
+}
+.offer-emoji {
+  font-size: 40px;
+  display: flex; align-items: center; justify-content: center;
+}
+.offer-info {
+  padding: 10px 12px 12px;
+}
+.offer-brand {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--oc, var(--accent));
+  margin-bottom: 3px;
+}
+.offer-name {
+  font-size: 12px; font-weight: 700;
+  color: var(--dark);
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+.offer-deal {
+  font-size: 11px; color: var(--muted);
+  margin-bottom: 2px;
+}
+.offer-deal strong {
+  color: var(--accent); font-weight: 800;
+}
+.offer-price {
+  font-size: 11px; font-weight: 700;
+  color: var(--dark);
+}
+
+/* ── BRAND SLIDER ── */
+.brand-slider-section {
+  padding: 32px 0;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  position: relative;
+}
+.brand-slider-label {
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+.brand-slider-track-wrap {
+  overflow: hidden;
+  position: relative;
+}
+.brand-slider-track-wrap::before,
+.brand-slider-track-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 60px;
+  z-index: 2;
+}
+.brand-slider-track-wrap::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg), transparent);
+}
+.brand-slider-track-wrap::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg), transparent);
+}
+.brand-slider-track {
+  display: flex;
+  gap: 0;
+  animation: brandScroll 28s linear infinite;
+  width: max-content;
+}
+.brand-slider-track:hover { animation-play-state: paused; }
+.brand-slide {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 20px;
+  margin: 0 8px;
+  min-width: 130px;
+  flex-shrink: 0;
+  transition: border-color 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+.brand-slide:hover {
+  border-color: var(--slide-color, var(--accent));
+  transform: translateY(-3px);
+}
+.brand-slide-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.brand-slide-name {
+  font-size: 12px; font-weight: 700;
+  color: var(--dark);
+  white-space: nowrap;
+}
+@keyframes brandScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ── CATEGORIES ── */
+.section { padding: 100px 48px; }
+.section-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 56px;
+}
+.section-label {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 10px;
+}
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 0.95;
+  color: var(--dark);
+  letter-spacing: -0.5px;
+}
+.section-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 500; color: var(--muted);
+  text-decoration: none; transition: color 0.2s;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+}
+.section-link:hover { color: var(--dark); border-color: var(--dark); }
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 280px 280px;
+  gap: 16px;
+}
+.cat-card {
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  cursor: none;
+  group: true;
+}
+.cat-card.big { grid-row: 1 / 3; }
+
+.cat-inner {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 28px;
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s ease;
+}
+.cat-card:hover .cat-inner { transform: scale(1.02); }
+
+.cat-bg {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 120px;
+  opacity: 0.12;
+  transition: opacity 0.3s, transform 0.4s;
+}
+.cat-card:hover .cat-bg { opacity: 0.2; transform: scale(1.1) rotate(5deg); }
+
+.cat-bg-gradient {
+  position: absolute; inset: 0;
+  opacity: 0.4;
+}
+.cat1 .cat-bg-gradient { background: radial-gradient(circle at 70% 30%, #e63329 0%, transparent 60%); }
+.cat2 .cat-bg-gradient { background: radial-gradient(circle at 30% 70%, #1a1aff 0%, transparent 60%); }
+.cat3 .cat-bg-gradient { background: radial-gradient(circle at 60% 40%, #00c851 0%, transparent 60%); }
+.cat4 .cat-bg-gradient { background: radial-gradient(circle at 40% 60%, #ff9f1c 0%, transparent 60%); }
+.cat5 .cat-bg-gradient { background: radial-gradient(circle at 50% 50%, #c084fc 0%, transparent 60%); }
+
+.cat-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px; letter-spacing: 1px;
+  color: #fff; position: relative; z-index: 1;
+}
+.cat-count { font-size: 12px; color: rgba(255,255,255,0.5); position: relative; z-index: 1; margin-bottom: 6px; }
+.cat-arrow {
+  position: absolute; top: 24px; right: 24px;
+  width: 40px; height: 40px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 16px;
+  transition: background 0.2s, transform 0.2s;
+  z-index: 1;
+}
+.cat-card:hover .cat-arrow { background: var(--accent); transform: rotate(45deg); }
+
+/* ── FEATURED PRODUCTS ── */
+.products-section { background: var(--warm); padding: 100px 48px; }
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: none;
+}
+.product-card:hover { transform: translateY(-8px); box-shadow: 0 24px 56px rgba(0,0,0,0.12); }
+
+.product-img {
+  height: 200px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 72px;
+  position: relative;
+  overflow: hidden;
+}
+.p1 .product-img { background: linear-gradient(135deg, #fff5f5, #ffe0e0); }
+.p2 .product-img { background: linear-gradient(135deg, #f0f5ff, #e0e8ff); }
+.p3 .product-img { background: linear-gradient(135deg, #f0fff5, #d0ffe0); }
+.p4 .product-img { background: linear-gradient(135deg, #fffff0, #fff0c0); }
+
+.product-badge {
+  position: absolute; top: 14px; left: 14px;
+  background: var(--accent);
+  color: #fff; font-size: 10px; font-weight: 700;
+  padding: 4px 10px; border-radius: 100px;
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.product-badge.blue { background: var(--accent2); }
+.product-badge.green { background: #00c851; }
+
+.product-info { padding: 20px; }
+.product-brand { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; }
+.product-name { font-size: 15px; font-weight: 600; color: var(--dark); margin-bottom: 12px; line-height: 1.4; }
+.product-footer { display: flex; align-items: center; justify-content: space-between; }
+.product-price { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--dark); letter-spacing: 1px; }
+.product-old { font-size: 12px; color: var(--muted); text-decoration: line-through; display: block; }
+.product-add {
+  width: 36px; height: 36px;
+  background: var(--dark);
+  color: #fff; border: none;
+  border-radius: 50%; font-size: 18px;
+  cursor: none; display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+.product-add:hover { background: var(--accent); transform: rotate(90deg); }
+
+/* ── PROMO BANNER ── */
+.promo-section { padding: 0 48px 100px; }
+
+.promo-banner {
+  background: var(--dark);
+  border-radius: 28px;
+  padding: 72px 80px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.promo-banner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 80% 50%, rgba(230,51,41,0.25) 0%, transparent 60%),
+              radial-gradient(circle at 20% 80%, rgba(26,26,255,0.15) 0%, transparent 50%);
+}
+.promo-eyebrow {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 16px;
+}
+.promo-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(48px, 5vw, 72px);
+  line-height: 0.9;
+  color: #fff;
+  letter-spacing: -1px;
+  position: relative; z-index: 1;
+  margin-bottom: 20px;
+}
+.promo-title span { color: var(--accent); }
+.promo-sub {
+  font-size: 14px; color: rgba(255,255,255,0.5);
+  max-width: 360px; line-height: 1.7;
+  position: relative; z-index: 1;
+  margin-bottom: 32px;
+}
+.promo-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--accent);
+  color: #fff; text-decoration: none;
+  padding: 16px 32px; border-radius: 100px;
+  font-size: 14px; font-weight: 500;
+  position: relative; z-index: 1;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.promo-cta:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(230,51,41,0.4); }
+
+.promo-timer {
+  display: flex; gap: 16px;
+  position: relative; z-index: 1;
+}
+.timer-box {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 20px 24px;
+  text-align: center; min-width: 80px;
+}
+.timer-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 40px; color: #fff; line-height: 1;
+}
+.timer-label { font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; }
+
+/* ── BRANDS ── */
+.brands-section {
+  padding: 60px 20px 80px;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+}
+.brands-label {
+  text-align: center;
+  font-size: 11px; color: var(--muted);
+  letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 36px;
+}
+.brands-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.brand-card {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 10px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+  text-decoration: none;
+}
+.brand-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+  border-color: var(--bc, #ccc);
+}
+.brand-logo {
+  width: 50px; height: 50px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.brand-name {
+  font-size: 11px; font-weight: 700;
+  color: var(--dark);
+  text-align: center;
+  letter-spacing: 0.3px;
+  font-family: 'DM Sans', sans-serif;
+}
+@media (max-width: 600px) {
+  .brands-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .brand-logo { width: 42px; height: 42px; border-radius: 10px; }
+  .brand-name { font-size: 10px; }
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark);
+  color: rgba(255,255,255,0.5);
+  padding: 80px 48px 40px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 64px;
+}
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px; letter-spacing: 2px;
+  color: #fff; margin-bottom: 16px;
+}
+.footer-logo span { color: var(--accent); }
+.footer-desc { font-size: 13px; line-height: 1.8; max-width: 240px; margin-bottom: 28px; }
+.footer-contact { font-size: 12px; line-height: 2; }
+.footer-contact a { color: rgba(255,255,255,0.5); text-decoration: none; display: block; transition: color 0.2s; }
+.footer-contact a:hover { color: #fff; }
+.footer-h { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #fff; margin-bottom: 20px; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: #fff; }
+.footer-bottom {
+  padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.07);
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12px;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-18px); }
+}
+@keyframes float2 {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ── SEARCH BAR ── */
+.search-section {
+  background: var(--bg);
+  padding: 20px 16px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.search-wrap {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 0 6px 0 16px;
+  height: 50px;
+  gap: 10px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-bar:focus-within {
+  border-color: var(--dark);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+.search-icon {
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--dark);
+  background: transparent;
+}
+.search-input::placeholder { color: #bbb; }
+.search-btn {
+  background: var(--dark);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0 20px;
+  height: 38px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+.search-btn:hover { background: var(--accent); }
+.search-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.stag {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  padding: 5px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.stag:hover {
+  border-color: var(--dark);
+  color: var(--dark);
+  background: var(--warm);
+}
+
+/* ── CEO COLLECTION ── */
+.ceo-section {
+  padding: 80px 48px;
+  background: var(--dark);
+}
+.ceo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+}
+.ceo-header .section-link { color: rgba(255,255,255,0.5); }
+.ceo-header .section-link:hover { color: #fff; }
+.ceo-label {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.ceo-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(48px, 7vw, 80px);
+  color: #fff;
+  line-height: 0.9;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+}
+.ceo-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  max-width: 280px;
+  line-height: 1.6;
+}
+.ceo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.ceo-card {
+  border-radius: 20px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.07);
+  transition: transform 0.25s, box-shadow 0.25s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ceo-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  border-color: rgba(255,255,255,0.15);
+}
+.ceo-card-label {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 4px;
+}
+.ceo-card-emoji {
+  font-size: 44px;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4));
+}
+.ceo-card-brand {
+  font-size: 9px; font-weight: 800;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+.ceo-card-name {
+  font-size: 15px; font-weight: 800;
+  color: #fff;
+  line-height: 1.2;
+}
+.ceo-card-spec {
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  line-height: 1.5;
+}
+.ceo-card-price {
+  font-size: 16px; font-weight: 800;
+  color: #fff;
+  margin-top: 6px;
+}
+.ceo-card-btn {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  font-size: 11px; font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 100px;
+  text-decoration: none;
+  margin-top: 8px;
+  width: fit-content;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s;
+}
+.ceo-card-btn:hover { background: var(--accent); border-color: var(--accent); }
+@media (max-width: 1024px) { .ceo-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) {
+  .ceo-section { padding: 60px 20px; }
+  .ceo-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .ceo-card { padding: 18px; }
+  .ceo-card-emoji { font-size: 34px; }
+  .ceo-card-name { font-size: 13px; }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-right { display: none; }
+  .cat-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .cat-card.big { grid-row: auto; grid-column: 1 / -1; height: 300px; }
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  nav { padding: 16px 20px; }
+  .nav-links { display: none; }
+  .section { padding: 60px 20px; }
+  .products-section, .promo-section, .brands-section { padding: 60px 20px; }
+  .hero-left { padding: 60px 20px; }
+  .promo-banner { grid-template-columns: 1fr; padding: 48px 32px; }
+  .promo-timer { flex-wrap: wrap; }
+  .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  body { cursor: auto; }
+  .cursor, .cursor-ring { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAVBAR -->
+<nav>
+  <!-- LEFT: Cart -->
+  <div class="nav-left">
+    <a href="#" class="nav-cart">Cart (0)</a>
+  </div>
+  <!-- CENTER: Logo -->
+  <div class="nav-center">
+    <a href="#" class="nav-logo">Air<span>Tech</span> One</a>
+  </div>
+  <!-- RIGHT: Sign In -->
+  <div class="nav-right">
+    <button class="nav-btn">Sign In</button>
+  </div>
+</nav>
+
+<!-- FULL WIDTH BRAND OFFER SLIDER (replaces hero heading) -->
+<section class="fullbanner-section">
+  <div class="fullbanner-wrap">
+    <div class="fullbanner-track" id="fullbannerTrack">
+
+      <div class="fb-slide" style="background:linear-gradient(120deg,#0d0d0d 0%,#1c1c1c 60%,#2a1a00 100%)">
+        <div class="fb-left">
+          <div class="fb-badge">🔥 Hot Deal</div>
+          <div class="fb-brand">Apple</div>
+          <div class="fb-name">iPhone 16 Pro Max</div>
+          <div class="fb-desc">Titanium · A18 Pro · 48MP Camera</div>
+          <div class="fb-off">15% OFF</div>
+          <div class="fb-price">From <span>SAR 4,999</span></div>
+          <a href="#" class="fb-btn">Shop Now →</a>
+        </div>
+        <div class="fb-right">
+          <div class="fb-emoji">📱</div>
+        </div>
+        <div class="fb-glow" style="background:radial-gradient(circle at 80% 50%,rgba(255,180,50,0.18),transparent 60%)"></div>
+      </div>
+
+      <div class="fb-slide" style="background:linear-gradient(120deg,#060c3a 0%,#0f1e80 60%,#1a0060 100%)">
+        <div class="fb-left">
+          <div class="fb-badge">⚡ Flash Sale</div>
+          <div class="fb-brand">Samsung</div>
+          <div class="fb-name">Galaxy S25 Ultra</div>
+          <div class="fb-desc">200MP · AI · S-Pen · 5000mAh</div>
+          <div class="fb-off">20% OFF</div>
+          <div class="fb-price">From <span>SAR 3,799</span></div>
+          <a href="#" class="fb-btn">Shop Now →</a>
+        </div>
+        <div class="fb-right">
+          <div class="fb-emoji">📱</div>
+        </div>
+        <div class="fb-glow" style="background:radial-gradient(circle at 80% 50%,rgba(80,120,255,0.25),transparent 60%)"></div>
+      </div>
+
+      <div class="fb-slide" style="background:linear-gradient(120deg,#5a0010 0%,#aa0020 60%,#c8102e 100%)">
+        <div class="fb-left">
+          <div class="fb-badge">📷 New Stock</div>
+          <div class="fb-brand">Hikvision</div>
+          <div class="fb-name">4K CCTV Pro System</div>
+          <div class="fb-desc">8CH DVR · Night Vision · Remote View</div>
+          <div class="fb-off">25% OFF</div>
+          <div class="fb-price">From <span>SAR 899</span></div>
+          <a href="#" class="fb-btn">Shop Now →</a>
+        </div>
+        <div class="fb-right">
+          <div class="fb-emoji">📹</div>
+        </div>
+        <div class="fb-glow" style="background:radial-gradient(circle at 80% 50%,rgba(255,80,80,0.2),transparent 60%)"></div>
+      </div>
+
+      <div class="fb-slide" style="background:linear-gradient(120deg,#050505 0%,#111 60%,#1a1a1a 100%)">
+        <div class="fb-left">
+          <div class="fb-badge">🎧 Best Seller</div>
+          <div class="fb-brand">Sony</div>
+          <div class="fb-name">WH-1000XM5</div>
+          <div class="fb-desc">Active Noise Cancel · 30hr Battery</div>
+          <div class="fb-off">30% OFF</div>
+          <div class="fb-price">From <span>SAR 1,199</span></div>
+          <a href="#" class="fb-btn">Shop Now →</a>
+        </div>
+        <div class="fb-right">
+          <div class="fb-emoji">🎧</div>
+        </div>
+        <div class="fb-glow" style="background:radial-gradient(circle at 80% 50%,rgba(255,255,255,0.08),transparent 60%)"></div>
+      </div>
+
+      <div class="fb-slide" style="background:linear-gradient(120deg,#7a2a00 0%,#c84a00 60%,#ff6900 100%)">
+        <div class="fb-left">
+          <div class="fb-badge">🚀 Trending</div>
+          <div class="fb-brand">Xiaomi</div>
+          <div class="fb-name">14 Ultra 5G</div>
+          <div class="fb-desc">Leica Camera · Snapdragon 8 Gen 3</div>
+          <div class="fb-off">18% OFF</div>
+          <div class="fb-price">From <span>SAR 2,499</span></div>
+          <a href="#" class="fb-btn">Shop Now →</a>
+        </div>
+        <div class="fb-right">
+          <div class="fb-emoji">📱</div>
+        </div>
+        <div class="fb-glow" style="background:radial-gradient(circle at 80% 50%,rgba(255,200,80,0.2),transparent 60%)"></div>
+      </div>
+
+      <div class="fb-slide" style="background:linear-gradient(120deg,#0a3a0a 0%,#1a6a1a 60%,#4caf50 100%)">
+        <div class="fb-left">
+          <div class="fb-badge">🌐 Network Deal</div>
+          <div class="fb-brand">TP-Link</div>
+          <div class="fb-name">WiFi 7 AXE5400</div>
+          <div class="fb-desc">Tri-Band · MU-MIMO · 5400Mbps</div>
+          <div class="fb-off">22% OFF</div>
+          <div class="fb-price">From <span>SAR 399</span></div>
+          <a href="#" class="fb-btn">Shop Now →</a>
+        </div>
+        <div class="fb-right">
+          <div class="fb-emoji">📡</div>
+        </div>
+        <div class="fb-glow" style="background:radial-gradient(circle at 80% 50%,rgba(80,255,80,0.15),transparent 60%)"></div>
+      </div>
+
+      <div class="fb-slide" style="background:linear-gradient(120deg,#002040 0%,#004080 60%,#007db8 100%)">
+        <div class="fb-left">
+          <div class="fb-badge">💻 Laptop Deal</div>
+          <div class="fb-brand">Dell</div>
+          <div class="fb-name">XPS 15 Intel i9</div>
+          <div class="fb-desc">15.6" OLED · RTX 4060 · 32GB RAM</div>
+          <div class="fb-off">12% OFF</div>
+          <div class="fb-price">From <span>SAR 3,299</span></div>
+          <a href="#" class="fb-btn">Shop Now →</a>
+        </div>
+        <div class="fb-right">
+          <div class="fb-emoji">💻</div>
+        </div>
+        <div class="fb-glow" style="background:radial-gradient(circle at 80% 50%,rgba(80,180,255,0.2),transparent 60%)"></div>
+      </div>
+
+      <div class="fb-slide" style="background:linear-gradient(120deg,#002a40 0%,#004a70 60%,#0096d6 100%)">
+        <div class="fb-left">
+          <div class="fb-badge">🖥️ Office Pick</div>
+          <div class="fb-brand">HP</div>
+          <div class="fb-name">EliteBook 840 G11</div>
+          <div class="fb-desc">14" · Intel Core Ultra · 16GB · 512GB</div>
+          <div class="fb-off">16% OFF</div>
+          <div class="fb-price">From <span>SAR 2,199</span></div>
+          <a href="#" class="fb-btn">Shop Now →</a>
+        </div>
+        <div class="fb-right">
+          <div class="fb-emoji">🖥️</div>
+        </div>
+        <div class="fb-glow" style="background:radial-gradient(circle at 80% 50%,rgba(0,200,255,0.2),transparent 60%)"></div>
+      </div>
+
+      <!-- DUPLICATE for seamless loop -->
+      <div class="fb-slide" style="background:linear-gradient(120deg,#0d0d0d,#1c1c1c,#2a1a00)"><div class="fb-left"><div class="fb-badge">🔥 Hot Deal</div><div class="fb-brand">Apple</div><div class="fb-name">iPhone 16 Pro Max</div><div class="fb-desc">Titanium · A18 Pro · 48MP</div><div class="fb-off">15% OFF</div><div class="fb-price">From <span>SAR 4,999</span></div><a href="#" class="fb-btn">Shop Now →</a></div><div class="fb-right"><div class="fb-emoji">📱</div></div></div>
+      <div class="fb-slide" style="background:linear-gradient(120deg,#060c3a,#0f1e80,#1a0060)"><div class="fb-left"><div class="fb-badge">⚡ Flash Sale</div><div class="fb-brand">Samsung</div><div class="fb-name">Galaxy S25 Ultra</div><div class="fb-desc">200MP · AI · S-Pen</div><div class="fb-off">20% OFF</div><div class="fb-price">From <span>SAR 3,799</span></div><a href="#" class="fb-btn">Shop Now →</a></div><div class="fb-right"><div class="fb-emoji">📱</div></div></div>
+      <div class="fb-slide" style="background:linear-gradient(120deg,#5a0010,#aa0020,#c8102e)"><div class="fb-left"><div class="fb-badge">📷 New Stock</div><div class="fb-brand">Hikvision</div><div class="fb-name">4K CCTV Pro</div><div class="fb-desc">8CH DVR · Night Vision</div><div class="fb-off">25% OFF</div><div class="fb-price">From <span>SAR 899</span></div><a href="#" class="fb-btn">Shop Now →</a></div><div class="fb-right"><div class="fb-emoji">📹</div></div></div>
+      <div class="fb-slide" style="background:linear-gradient(120deg,#050505,#111,#1a1a1a)"><div class="fb-left"><div class="fb-badge">🎧 Best Seller</div><div class="fb-brand">Sony</div><div class="fb-name">WH-1000XM5</div><div class="fb-desc">ANC · 30hr Battery</div><div class="fb-off">30% OFF</div><div class="fb-price">From <span>SAR 1,199</span></div><a href="#" class="fb-btn">Shop Now →</a></div><div class="fb-right"><div class="fb-emoji">🎧</div></div></div>
+      <div class="fb-slide" style="background:linear-gradient(120deg,#7a2a00,#c84a00,#ff6900)"><div class="fb-left"><div class="fb-badge">🚀 Trending</div><div class="fb-brand">Xiaomi</div><div class="fb-name">14 Ultra 5G</div><div class="fb-desc">Leica · Snapdragon 8 Gen 3</div><div class="fb-off">18% OFF</div><div class="fb-price">From <span>SAR 2,499</span></div><a href="#" class="fb-btn">Shop Now →</a></div><div class="fb-right"><div class="fb-emoji">📱</div></div></div>
+      <div class="fb-slide" style="background:linear-gradient(120deg,#0a3a0a,#1a6a1a,#4caf50)"><div class="fb-left"><div class="fb-badge">🌐 Network</div><div class="fb-brand">TP-Link</div><div class="fb-name">WiFi 7 AXE5400</div><div class="fb-desc">Tri-Band · 5400Mbps</div><div class="fb-off">22% OFF</div><div class="fb-price">From <span>SAR 399</span></div><a href="#" class="fb-btn">Shop Now →</a></div><div class="fb-right"><div class="fb-emoji">📡</div></div></div>
+      <div class="fb-slide" style="background:linear-gradient(120deg,#002040,#004080,#007db8)"><div class="fb-left"><div class="fb-badge">💻 Laptop</div><div class="fb-brand">Dell</div><div class="fb-name">XPS 15 Intel i9</div><div class="fb-desc">OLED · RTX 4060 · 32GB</div><div class="fb-off">12% OFF</div><div class="fb-price">From <span>SAR 3,299</span></div><a href="#" class="fb-btn">Shop Now →</a></div><div class="fb-right"><div class="fb-emoji">💻</div></div></div>
+      <div class="fb-slide" style="background:linear-gradient(120deg,#002a40,#004a70,#0096d6)"><div class="fb-left"><div class="fb-badge">🖥️ Office</div><div class="fb-brand">HP</div><div class="fb-name">EliteBook 840 G11</div><div class="fb-desc">Core Ultra · 16GB · 512GB</div><div class="fb-off">16% OFF</div><div class="fb-price">From <span>SAR 2,199</span></div><a href="#" class="fb-btn">Shop Now →</a></div><div class="fb-right"><div class="fb-emoji">🖥️</div></div></div>
+
+    </div>
+
+    <!-- Dots indicator -->
+    <div class="fb-dots">
+      <span class="fb-dot active" onclick="fbGoTo(0)"></span>
+      <span class="fb-dot" onclick="fbGoTo(1)"></span>
+      <span class="fb-dot" onclick="fbGoTo(2)"></span>
+      <span class="fb-dot" onclick="fbGoTo(3)"></span>
+      <span class="fb-dot" onclick="fbGoTo(4)"></span>
+      <span class="fb-dot" onclick="fbGoTo(5)"></span>
+      <span class="fb-dot" onclick="fbGoTo(6)"></span>
+      <span class="fb-dot" onclick="fbGoTo(7)"></span>
+    </div>
+  </div>
+</section>
+
+<!-- SEARCH BAR -->
+<div class="search-section">
+  <div class="search-wrap">
+    <div class="search-bar">
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="text" class="search-input" placeholder="Search phones, laptops, cameras...">
+      <button class="search-btn">Search</button>
+    </div>
+    <div class="search-tags">
+      <span class="stag">📱 iPhone 16</span>
+      <span class="stag">💻 MacBook</span>
+      <span class="stag">🎧 Sony XM5</span>
+      <span class="stag">📷 Hikvision</span>
+      <span class="stag">⌚ Apple Watch</span>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">New Arrivals 2025</div>
+    <p class="hero-sub">
+      Discover the world's finest electronics — from flagship smartphones to premium audio. Shipped across Saudi Arabia in 24 hours.
+    </p>
+    <div class="hero-ctas">
+      <a href="#" class="btn-primary">
+        Shop Now
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="#" class="btn-ghost">▶ Watch Demo</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-val">50K+</div>
+        <div class="stat-label">Happy Customers</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">2K+</div>
+        <div class="stat-label">Products</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">24H</div>
+        <div class="stat-label">Fast Delivery</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="product-blob"></div>
+    <div class="badge-float b1">
+      <div class="bf-icon">⭐</div>
+      <div><div class="bf-text">4.9 Rating</div><div class="bf-sub">12,400+ Reviews</div></div>
+    </div>
+    <div class="badge-float b2">
+      <div class="bf-icon">🚀</div>
+      <div><div class="bf-text">Fast Delivery</div><div class="bf-sub">Across KSA</div></div>
+    </div>
+    <div class="badge-float b3">
+      <div class="bf-icon">🔒</div>
+      <div><div class="bf-text">Secure Pay</div><div class="bf-sub">STC Pay · Visa · Mada</div></div>
+    </div>
+    <div class="hero-product">
+      <div class="phone-mockup">
+        <div class="phone-screen">
+          <div class="phone-icon">📱</div>
+          <div class="phone-text">AIRTECH ONE</div>
+          <div class="phone-sub">airtech.one</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="marquee-dot"></span> Smartphones</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Laptops & Tablets</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Audio & Earbuds</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Gaming</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Smart Home</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Cameras</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Wearables</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Accessories</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Smartphones</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Laptops & Tablets</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Audio & Earbuds</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Gaming</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Smart Home</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Cameras</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Wearables</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Accessories</span>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="section">
+  <div class="section-header">
+    <div>
+      <div class="section-label">Browse</div>
+      <div class="section-title">Shop By<br>Category</div>
+    </div>
+    <a href="#" class="section-link">All Categories →</a>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card cat1 big"><div class="cat-inner"><div class="cat-bg">📱</div><div class="cat-bg-gradient"></div><div class="cat-arrow">↗</div><div class="cat-count">480+ Products</div><div class="cat-name">Smartphones</div></div></div>
+    <div class="cat-card cat2"><div class="cat-inner"><div class="cat-bg">💻</div><div class="cat-bg-gradient"></div><div class="cat-arrow">↗</div><div class="cat-count">210+ Products</div><div class="cat-name">Laptops</div></div></div>
+    <div class="cat-card cat3"><div class="cat-inner"><div class="cat-bg">🎧</div><div class="cat-bg-gradient"></div><div class="cat-arrow">↗</div><div class="cat-count">340+ Products</div><div class="cat-name">Audio</div></div></div>
+    <div class="cat-card cat4"><div class="cat-inner"><div class="cat-bg">🎮</div><div class="cat-bg-gradient"></div><div class="cat-arrow">↗</div><div class="cat-count">180+ Products</div><div class="cat-name">Gaming</div></div></div>
+    <div class="cat-card cat5"><div class="cat-inner"><div class="cat-bg">⌚</div><div class="cat-bg-gradient"></div><div class="cat-arrow">↗</div><div class="cat-count">120+ Products</div><div class="cat-name">Wearables</div></div></div>
+  </div>
+</section>
+
+<!-- CEO COLLECTION -->
+<section class="ceo-section">
+  <div class="ceo-header">
+    <div class="ceo-left-head">
+      <div class="ceo-label">✦ Exclusive</div>
+      <div class="ceo-title">CEO<br>Collection</div>
+      <div class="ceo-sub">Hand-picked premium tech for leaders, executives & power users.</div>
+    </div>
+    <a href="#" class="section-link">View All →</a>
+  </div>
+
+  <div class="ceo-grid">
+
+    <div class="ceo-card" style="background:linear-gradient(135deg,#0a0a0a,#1a1a1a)">
+      <div class="ceo-card-label">💼 Executive Pick</div>
+      <div class="ceo-card-emoji">💻</div>
+      <div class="ceo-card-brand">Apple</div>
+      <div class="ceo-card-name">MacBook Pro M4 Max</div>
+      <div class="ceo-card-spec">16" · 48GB RAM · 1TB SSD</div>
+      <div class="ceo-card-price">SAR 12,999</div>
+      <a href="#" class="ceo-card-btn">Shop Now →</a>
+    </div>
+
+    <div class="ceo-card" style="background:linear-gradient(135deg,#0a0030,#1a0060)">
+      <div class="ceo-card-label">👑 CEO Favorite</div>
+      <div class="ceo-card-emoji">📱</div>
+      <div class="ceo-card-brand">Samsung</div>
+      <div class="ceo-card-name">Galaxy Z Fold 6</div>
+      <div class="ceo-card-spec">7.6" Fold · S-Pen · 12GB RAM</div>
+      <div class="ceo-card-price">SAR 6,499</div>
+      <a href="#" class="ceo-card-btn">Shop Now →</a>
+    </div>
+
+    <div class="ceo-card" style="background:linear-gradient(135deg,#1a0a00,#3a1500)">
+      <div class="ceo-card-label">🎧 Premium Audio</div>
+      <div class="ceo-card-emoji">🎧</div>
+      <div class="ceo-card-brand">Sony</div>
+      <div class="ceo-card-name">WF-1000XM5 Pro</div>
+      <div class="ceo-card-spec">ANC · Hi-Res · LDAC · 36hr</div>
+      <div class="ceo-card-price">SAR 1,799</div>
+      <a href="#" class="ceo-card-btn">Shop Now →</a>
+    </div>
+
+    <div class="ceo-card" style="background:linear-gradient(135deg,#001a10,#003020)">
+      <div class="ceo-card-label">⌚ Luxury Wearable</div>
+      <div class="ceo-card-emoji">⌚</div>
+      <div class="ceo-card-brand">Apple</div>
+      <div class="ceo-card-name">Apple Watch Ultra 2</div>
+      <div class="ceo-card-spec">49mm · Titanium · GPS+Cell</div>
+      <div class="ceo-card-price">SAR 3,999</div>
+      <a href="#" class="ceo-card-btn">Shop Now →</a>
+    </div>
+
+    <div class="ceo-card" style="background:linear-gradient(135deg,#0a001a,#200040)">
+      <div class="ceo-card-label">🖥️ Power Setup</div>
+      <div class="ceo-card-emoji">🖥️</div>
+      <div class="ceo-card-brand">Dell</div>
+      <div class="ceo-card-name">UltraSharp 32" 6K</div>
+      <div class="ceo-card-spec">6K Display · USB-C · IPS Black</div>
+      <div class="ceo-card-price">SAR 8,499</div>
+      <a href="#" class="ceo-card-btn">Shop Now →</a>
+    </div>
+
+    <div class="ceo-card" style="background:linear-gradient(135deg,#1a1000,#302000)">
+      <div class="ceo-card-label">🔐 Security Pro</div>
+      <div class="ceo-card-emoji">🔒</div>
+      <div class="ceo-card-brand">Cisco</div>
+      <div class="ceo-card-name">Meraki MX Security</div>
+      <div class="ceo-card-spec">Enterprise · VPN · Cloud Mgmt</div>
+      <div class="ceo-card-price">SAR 4,299</div>
+      <a href="#" class="ceo-card-btn">Shop Now →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="products-section">
+  <div class="section-header">
+    <div>
+      <div class="section-label">Trending</div>
+      <div class="section-title">Featured<br>Products</div>
+    </div>
+    <a href="#" class="section-link">View All →</a>
+  </div>
+
+  <div class="products-grid">
+
+    <div class="product-card p1">
+      <div class="product-img">
+        📱
+        <div class="product-badge">HOT</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">Apple</div>
+        <div class="product-name">iPhone 16 Pro Max 256GB</div>
+        <div class="product-footer">
+          <div>
+            <div class="product-old">SAR 5,499</div>
+            <div class="product-price">SAR 4,999</div>
+          </div>
+          <button class="product-add">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card p2">
+      <div class="product-img">
+        💻
+        <div class="product-badge blue">NEW</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">Samsung</div>
+        <div class="product-name">Galaxy Book4 Pro 14"</div>
+        <div class="product-footer">
+          <div>
+            <div class="product-old">SAR 4,299</div>
+            <div class="product-price">SAR 3,799</div>
+          </div>
+          <button class="product-add">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card p3">
+      <div class="product-img">
+        🎧
+        <div class="product-badge green">SALE</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">Sony</div>
+        <div class="product-name">WH-1000XM5 Noise Cancelling</div>
+        <div class="product-footer">
+          <div>
+            <div class="product-old">SAR 1,599</div>
+            <div class="product-price">SAR 1,199</div>
+          </div>
+          <button class="product-add">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card p4">
+      <div class="product-img">
+        ⌚
+        <div class="product-badge">TOP</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">Apple</div>
+        <div class="product-name">Apple Watch Series 10 GPS</div>
+        <div class="product-footer">
+          <div>
+            <div class="product-old">SAR 1,899</div>
+            <div class="product-price">SAR 1,599</div>
+          </div>
+          <button class="product-add">+</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROMO BANNER -->
+<section class="promo-section">
+  <div class="promo-banner">
+    <div>
+      <div class="promo-eyebrow">⚡ Flash Sale — Limited Time</div>
+      <div class="promo-title">Up To <span>50%</span><br>Off Today</div>
+      <p class="promo-sub">Don't miss our biggest sale of the year. Top brands, lowest prices, shipped fast across Saudi Arabia.</p>
+      <a href="#" class="promo-cta">Grab The Deal →</a>
+    </div>
+    <div class="promo-timer">
+      <div class="timer-box">
+        <div class="timer-val" id="hours">08</div>
+        <div class="timer-label">Hours</div>
+      </div>
+      <div class="timer-box">
+        <div class="timer-val" id="minutes">34</div>
+        <div class="timer-label">Mins</div>
+      </div>
+      <div class="timer-box">
+        <div class="timer-val" id="seconds">00</div>
+        <div class="timer-label">Secs</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section class="brands-section">
+  <div class="brands-label">Official Authorized Reseller · 20 Top Brands</div>
+  <div class="brands-grid">
+
+    <div class="brand-card" style="--bc:#000">
+      <div class="brand-logo" style="background:#000;color:#fff">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      </div>
+      <div class="brand-name">Apple</div>
+    </div>
+
+    <div class="brand-card" style="--bc:#1428A0">
+      <div class="brand-logo" style="background:#1428A0;color:#fff">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M7.501 21.5H4l3.5-7L4 7.5h3.5L9 11l1.5-3.5H14L11 14.5l3 7h-3.5L9 18z"/><path d="M17 7.5h-3l4 7-4 7h3l4-7z"/></svg>
+      </div>
+      <div class="brand-name">Samsung</div>
+    </div>
+
+    <div class="brand-card" style="--bc:#C8102E">
+      <div class="brand-logo" style="background:#C8102E;color:#fff">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+      </div>
+      <div class="brand-name">Hikvision</div>
+    </div>
+
+    <div class="brand-card" style="--bc:#00A8E0">
+      <div class="brand-logo" style="background:#00A8E0;color:#fff">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm-1-5h2v2h-2zm0-8h2v6h-2z"/></svg>
+      </div>
+      <div class="brand-name">Ezviz</div>
+    </div>
+
+    <div class="brand-card" style="--bc:#000">
+      <div class="brand-logo" style="background:#000;color:#fff">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      </div>
+      <div class="brand-name">Sony</div>
+    </div>
+
+    <div class="brand-card" style="--bc:#FF6900">
+      <div class="brand-logo" style="background:#FF6900;color:#fff">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="brand-name">Xiaomi</div>
+    </div>
+
+    <div class="brand-card" style="--bc:#005BAC">
+      <div class="brand-logo" style="background:#005BAC;color:#fff">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l11 6 11-6-11-6zM1 15l11 6 11-6M1 12l11 6 11-6"/></svg>
+      </div>
+      <div class="brand-name">Dahua</div>
+    </div>
+
+    <div class="brand-card" style="--bc:#E4002B">
+      <div class="brand-logo" style="background:#E4002B;color:#fff">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17 8C8 10 5.9 16.17 3.82 19.82L5.71 21l1-1.54C8 18 9.07 16.86 10 16c3-3 5-5 7-8z"/><path d="M10.5 9.5C10.5 7 11 4.5 16 3c0 3.5-2 6.5-5.5 6.5z"/></svg>
+      </div>
+      <div class="brand-name">IMOU</div>
+    </div>
+
+    <div class="brand-card" style="--bc:#CF0A2C">
+      <div class="brand-logo" style="background:#CF0A2C;color:#fff">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm1 14.93V16h-2v.93A8.01 8.01 0 0 1 4 9h.93v-2H4a8 8 0 0 1 7-6.93V1h2v1.07A8 8 0 0 1 20 9h-.93v2H20a8.01 8.01 0 0 1-7 6.93z"/></svg>
+      </div>
+      <div class="brand-name">Huawei</div>
+    </div>
+
+    <div class="brand-card" style="--bc:#E2231A">
+      <div class="brand-logo" style="background:#E2231A;color:#fff">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
+      </div>
+      <div class="brand-name">Lenovo</div>
+    </div>
+
+    <div class="brand-card" style="--bc:#4CAF50">
+      <div class="brand-logo" style="background:#4CAF50;color:#fff">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M1 6l5 4-5 4V6zm6 0h16v2H7V6zm0 10h16v-2H7v2zm0-5h10v-2H7v2z"/></svg>
+      </div>
+      <div class="brand-name">TP-Link</div>
+    </div>
+
+    <div class="brand-card" style="--bc:#00B4D8">
+      <div class="brand-logo" style="background:#00B4D8;color:#fff">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+      </div>
+      <div class="brand-name">Tapo</div>
+    </div>
+
+    <div class="brand-card" style="--bc:#007DB8">
+      <div class="brand-logo" style="background:#007DB8;color:#fff">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-9 3h2v2h-2V7zm0 4h2v6h-2v-6zM7 7h2v2H7V7zm0 4h2v6H7v-6z"/></svg>
+      </div>
+      <div class="brand-name">Dell</div>
+    </div>
+
+    <div class="brand-card" style="--bc:#0096D6">
+      <div class="brand-logo" style="background:#0096D6;color:#fff">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C7.03 3 3 7.03 3 12s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/><path d="M9 9h6v6H9z"/></svg>
+      </div>
+      <div class="brand-name">HP</div>
+    </div>
+
+    <div class="brand-card" style="--bc:#2C2C2C">
+      <div class="brand-logo" style="background:#2C2C2C;color:#fff">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M2 6h20v3H2zm0 4h20v3H2zm0 4h20v3H2z"/></svg>
+      </div>
+      <div class="brand-name">HDD Store</div>
+    </div>
+
+    <div class="brand-card" style="--bc:#00529B">
+      <div class="brand-logo" style="background:#00529B;color:#fff">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M1 6l5 4-5 4V6zm7 1h14v2H8V7zm0 8h14v2H8v-2zm0-4h9v2H8v-2z"/></svg>
+      </div>
+      <div class="brand-name">Tenda</div>
+    </div>
+
+    <div class="brand-card" style="--bc:#83B81A">
+      <div class="brand-logo" style="background:#83B81A;color:#fff">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM8 17l-5-5 1.41-1.41L8 14.17l7.59-7.59L17 8l-9 9z"/></svg>
+      </div>
+      <div class="brand-name">Acer</div>
+    </div>
+
+    <div class="brand-card" style="--bc:#00539B">
+      <div class="brand-logo" style="background:#00539B;color:#fff">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="brand-name">Asus</div>
+    </div>
+
+    <div class="brand-card" style="--bc:#1BA0D7">
+      <div class="brand-logo" style="background:#1BA0D7;color:#fff">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+      </div>
+      <div class="brand-name">Cisco</div>
+    </div>
+
+    <div class="brand-card" style="--bc:#0559C9">
+      <div class="brand-logo" style="background:#0559C9;color:#fff">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 4a6 6 0 0 1 0 12A6 6 0 0 1 12 6zm0 2a4 4 0 0 0 0 8 4 4 0 0 0 0-8zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg>
+      </div>
+      <div class="brand-name">Ubiquiti</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">Air<span>Tech</span> One</div>
+      <p class="footer-desc">Saudi Arabia's premium destination for the latest electronics and tech gadgets. Fast delivery, authentic products, best prices.</p>
+      <div class="footer-contact">
+        <a href="mailto:admin@airtech.one">admin@airtech.one</a>
+        <a href="tel:+966550898978">+966 550 898 978</a>
+        <a href="#">airtech.one</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-h">Shop</div>
+      <ul class="footer-links">
+        <li><a href="#">Smartphones</a></li>
+        <li><a href="#">Laptops</a></li>
+        <li><a href="#">Audio</a></li>
+        <li><a href="#">Gaming</a></li>
+        <li><a href="#">Wearables</a></li>
+        <li><a href="#">Accessories</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-h">Support</div>
+      <ul class="footer-links">
+        <li><a href="#">Track Order</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Warranty</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-h">Company</div>
+      <ul class="footer-links">
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Become a Vendor</a></li>
+        <li><a href="#">Affiliate Program</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 AirTech One. All rights reserved.</span>
+    <span>🇸🇦 Riyadh, Saudi Arabia · VAT Registered</span>
+  </div>
+</footer>
+
+<script>
+// Full Banner Auto Slider
+const fbTrack = document.getElementById('fullbannerTrack');
+const fbDots = document.querySelectorAll('.fb-dot');
+let fbCurrent = 0;
+const fbTotal = 8;
+
+function fbGoTo(index) {
+  fbCurrent = index;
+  fbTrack.style.transform = `translateX(-${fbCurrent * 100}vw)`;
+  fbDots.forEach((d, i) => d.classList.toggle('active', i === fbCurrent));
+}
+
+let fbTimer = setInterval(() => {
+  fbCurrent = (fbCurrent + 1) % fbTotal;
+  fbGoTo(fbCurrent);
+}, 3500);
+
+fbTrack.addEventListener('mouseenter', () => clearInterval(fbTimer));
+fbTrack.addEventListener('mouseleave', () => {
+  fbTimer = setInterval(() => {
+    fbCurrent = (fbCurrent + 1) % fbTotal;
+    fbGoTo(fbCurrent);
+  }, 3500);
+});
+
+// Custom cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+  setTimeout(() => {
+    ring.style.left = e.clientX + 'px';
+    ring.style.top = e.clientY + 'px';
+  }, 60);
+});
+
+// Countdown timer
+function startTimer() {
+  let total = 8 * 3600 + 34 * 60;
+  setInterval(() => {
+    total--;
+    if (total < 0) total = 8 * 3600;
+    const h = Math.floor(total / 3600);
+    const m = Math.floor((total % 3600) / 60);
+    const s = total % 60;
+    document.getElementById('hours').textContent = String(h).padStart(2, '0');
+    document.getElementById('minutes').textContent = String(m).padStart(2, '0');
+    document.getElementById('seconds').textContent = String(s).padStart(2, '0');
+  }, 1000);
+}
+startTimer();
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+
+document.querySelectorAll('.cat-card, .product-card, .promo-banner, .brand-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
