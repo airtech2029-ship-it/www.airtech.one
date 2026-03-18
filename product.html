@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AirTech One — Product</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f3ef;--dark:#0e0e0e;--accent:#e63329;--border:#e8e5e0;--muted:#888;--card:#fff;--text:#0e0e0e}
+[data-theme="dark"]{--bg:#0e0e0e;--dark:#fff;--border:#222;--muted:#666;--card:#151515;--text:#fff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s}
+nav{position:sticky;top:0;z-index:100;background:rgba(245,243,239,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 20px;height:56px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+[data-theme="dark"] nav{background:rgba(14,14,14,.96)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:var(--text);text-decoration:none;justify-self:center}
+.nav-logo span{color:var(--accent)}
+.nav-back{font-size:11px;font-weight:700;color:var(--muted);text-decoration:none}
+.nav-actions{display:flex;align-items:center;gap:10px;justify-self:end}
+.dark-btn{background:none;border:1.5px solid var(--border);border-radius:8px;padding:5px 10px;font-size:14px;cursor:pointer;transition:all .2s}
+.cart-ico{font-size:11px;font-weight:700;color:var(--text);text-decoration:none;border:1.5px solid var(--border);border-radius:100px;padding:5px 12px;white-space:nowrap}
+.content{max-width:1100px;margin:0 auto;padding:28px 20px}
+.breadcrumb{font-size:11px;color:var(--muted);margin-bottom:20px}
+.breadcrumb a{color:var(--muted);text-decoration:none}.breadcrumb a:hover{color:var(--accent)}
+.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:40px}
+/* GALLERY */
+.gallery{}
+.main-img{background:var(--card);border:1px solid var(--border);border-radius:16px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:120px;margin-bottom:12px;position:relative;overflow:hidden}
+.img-badge{position:absolute;top:14px;left:14px;background:var(--accent);color:#fff;font-size:10px;font-weight:800;padding:4px 10px;border-radius:100px}
+.thumbs{display:flex;gap:8px}
+.thumb{width:60px;height:60px;border-radius:10px;background:var(--card);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:26px;cursor:pointer;transition:all .2s}
+.thumb.active{border-color:var(--accent)}
+.thumb:hover{border-color:var(--dark)}
+/* INFO */
+.product-info{}
+.brand-tag{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.prod-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,42px);line-height:1;margin-bottom:12px;color:var(--text)}
+.rating-row{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.stars{color:#f59e0b;font-size:14px}
+.rating-val{font-size:13px;font-weight:700}
+.rating-count{font-size:12px;color:var(--muted)}
+.price-row{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+.price-now{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--accent)}
+.price-was{font-size:16px;color:var(--muted);text-decoration:line-through}
+.price-save{background:#e8f5e9;color:#16a34a;font-size:11px;font-weight:800;padding:3px 10px;border-radius:100px}
+.delivery-tag{font-size:12px;color:#16a34a;font-weight:700;margin-bottom:20px}
+/* VARIANTS */
+.var-label{font-size:12px;font-weight:700;margin-bottom:8px}
+.var-options{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.var-opt{padding:7px 16px;border:1.5px solid var(--border);border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;background:var(--card);color:var(--text)}
+.var-opt.active{border-color:var(--dark);background:var(--dark);color:#fff}
+.var-opt:hover{border-color:var(--dark)}
+.color-opt{width:32px;height:32px;border-radius:50%;border:3px solid var(--border);cursor:pointer;transition:all .2s}
+.color-opt.active{border-color:var(--dark);box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--dark)}
+/* QTY & CTA */
+.qty-row{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.qty-label{font-size:12px;font-weight:700}
+.qty-ctrl{display:flex;align-items:center;gap:0;border:1.5px solid var(--border);border-radius:10px;overflow:hidden}
+.qty-btn{width:36px;height:36px;background:var(--bg);border:none;font-size:16px;font-weight:700;cursor:pointer;transition:background .2s;color:var(--text)}
+.qty-btn:hover{background:var(--dark);color:#fff}
+.qty-num{width:40px;text-align:center;font-size:14px;font-weight:800;background:var(--card);color:var(--text);border:none;border-left:1.5px solid var(--border);border-right:1.5px solid var(--border);height:36px}
+.cta-row{display:flex;gap:10px;margin-bottom:20px}
+.add-cart-btn{flex:1;background:var(--dark);color:#fff;border:none;border-radius:10px;padding:14px;font-size:14px;font-weight:800;font-family:'DM Sans',sans-serif;cursor:pointer;transition:background .2s}
+.add-cart-btn:hover{background:var(--accent)}
+.wishlist-btn{width:48px;height:48px;border:1.5px solid var(--border);border-radius:10px;background:var(--card);font-size:20px;cursor:pointer;transition:all .2s}
+.wishlist-btn:hover{border-color:var(--accent);color:var(--accent)}
+.buy-now-btn{width:100%;background:var(--accent);color:#fff;border:none;border-radius:10px;padding:14px;font-size:14px;font-weight:800;font-family:'DM Sans',sans-serif;cursor:pointer;margin-bottom:16px;transition:opacity .2s}
+.buy-now-btn:hover{opacity:.85}
+/* FEATURES */
+.features{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
+.feat-item{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--muted)}
+.feat-item span:first-child{font-size:16px}
+/* SPECS */
+.specs-table{width:100%;border-collapse:collapse;margin-top:8px}
+.specs-table td{padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border)}
+.specs-table td:first-child{font-weight:700;color:var(--muted);width:40%}
+.specs-table tr:last-child td{border-bottom:none}
+.specs-table tr:hover td{background:var(--bg)}
+/* TABS */
+.tabs-row{display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:24px}
+.tab-btn{padding:12px 20px;font-size:13px;font-weight:700;background:none;border:none;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab-content{display:none}.tab-content.active{display:block}
+/* REVIEWS */
+.review-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px}
+.rev-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.rev-av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0}
+.rev-name{font-size:13px;font-weight:700}
+.rev-date{font-size:11px;color:var(--muted)}
+.rev-stars{color:#f59e0b;font-size:13px;margin-bottom:6px}
+.rev-text{font-size:13px;color:var(--muted);line-height:1.6}
+/* RELATED */
+.related-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:16px}
+.rel-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;cursor:pointer;transition:all .2s;text-decoration:none;display:block}
+.rel-card:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.08)}
+.rel-emoji{font-size:36px;text-align:center;margin-bottom:10px}
+.rel-name{font-size:12px;font-weight:700;margin-bottom:4px;color:var(--text)}
+.rel-price{font-size:13px;font-weight:800;color:var(--accent)}
+/* SECTION */
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:28px;margin-bottom:4px;color:var(--text)}
+/* WHATSAPP */
+.wa-btn{position:fixed;bottom:24px;right:24px;width:54px;height:54px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;text-decoration:none;box-shadow:0 4px 16px rgba(37,211,102,.4);z-index:999;transition:transform .2s}
+.wa-btn:hover{transform:scale(1.1)}
+/* TOAST */
+.toast{position:fixed;bottom:90px;right:24px;background:var(--dark);color:#fff;padding:12px 20px;border-radius:10px;font-size:13px;font-weight:600;opacity:0;transform:translateY(20px);transition:all .3s;z-index:9999}
+.toast.show{opacity:1;transform:translateY(0)}
+@media(max-width:768px){.product-grid{grid-template-columns:1fr}.related-grid{grid-template-columns:repeat(2,1fr)}.features{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="airtech-homepage.html" class="nav-back">← Back</a>
+  <a href="airtech-homepage.html" class="nav-logo">Air<span>Tech</span> One</a>
+  <div class="nav-actions">
+    <button class="dark-btn" onclick="toggleDark()" id="dark-btn">🌙</button>
+    <a href="cart.html" class="cart-ico" id="cart-nav">🛒 (0)</a>
+  </div>
+</nav>
+
+<div class="content">
+  <div class="breadcrumb">
+    <a href="airtech-homepage.html">Home</a> › <a href="search.html">Smartphones</a> › iPhone 16 Pro Max
+  </div>
+
+  <div class="product-grid">
+    <!-- GALLERY -->
+    <div class="gallery">
+      <div class="main-img" id="main-img">
+        <span class="img-badge">🔥 Hot Deal</span>
+        <span id="main-emoji">📱</span>
+      </div>
+      <div class="thumbs">
+        <div class="thumb active" onclick="setImg('📱',this)">📱</div>
+        <div class="thumb" onclick="setImg('🖥️',this)">🖥️</div>
+        <div class="thumb" onclick="setImg('🔋',this)">🔋</div>
+        <div class="thumb" onclick="setImg('📷',this)">📷</div>
+      </div>
+    </div>
+
+    <!-- INFO -->
+    <div class="product-info">
+      <div class="brand-tag">Apple</div>
+      <div class="prod-title">iPhone 16 Pro Max</div>
+      <div class="rating-row">
+        <span class="stars">★★★★★</span>
+        <span class="rating-val">4.9</span>
+        <span class="rating-count">(1,284 reviews)</span>
+      </div>
+      <div class="price-row">
+        <div class="price-now">SAR 4,999</div>
+        <div class="price-was">SAR 5,899</div>
+        <span class="price-save">Save 15%</span>
+      </div>
+      <div class="delivery-tag">⚡ Same-day delivery in Riyadh</div>
+
+      <div class="var-label">Storage</div>
+      <div class="var-options">
+        <div class="var-opt" onclick="selectVar(this)">256GB</div>
+        <div class="var-opt active" onclick="selectVar(this)">512GB</div>
+        <div class="var-opt" onclick="selectVar(this)">1TB</div>
+      </div>
+
+      <div class="var-label">Color</div>
+      <div class="var-options">
+        <div class="color-opt active" style="background:#1c1c1e" title="Black Titanium" onclick="selectColor(this)"></div>
+        <div class="color-opt" style="background:#e8d5b7" title="Natural Titanium" onclick="selectColor(this)"></div>
+        <div class="color-opt" style="background:#c0c0c0" title="White Titanium" onclick="selectColor(this)"></div>
+        <div class="color-opt" style="background:#4a3728" title="Desert Titanium" onclick="selectColor(this)"></div>
+      </div>
+
+      <div class="qty-row">
+        <span class="qty-label">Quantity</span>
+        <div class="qty-ctrl">
+          <button class="qty-btn" onclick="changeQty(-1)">−</button>
+          <input class="qty-num" type="text" value="1" id="qty" readonly>
+          <button class="qty-btn" onclick="changeQty(1)">+</button>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <button class="add-cart-btn" onclick="addToCart()">🛒 Add to Cart</button>
+        <button class="wishlist-btn" onclick="toggleWish(this)">🤍</button>
+      </div>
+      <button class="buy-now-btn" onclick="buyNow()">⚡ Buy Now</button>
+
+      <div class="features">
+        <div class="feat-item"><span>🚚</span> Free Shipping</div>
+        <div class="feat-item"><span>↩️</span> 14-Day Returns</div>
+        <div class="feat-item"><span>🛡️</span> 1 Year Warranty</div>
+        <div class="feat-item"><span>✅</span> 100% Authentic</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs-row">
+    <button class="tab-btn active" onclick="switchTab('specs',this)">Specifications</button>
+    <button class="tab-btn" onclick="switchTab('reviews',this)">Reviews (1,284)</button>
+    <button class="tab-btn" onclick="switchTab('delivery',this)">Delivery & Returns</button>
+  </div>
+
+  <div class="tab-content active" id="tab-specs">
+    <table class="specs-table">
+      <tr><td>Display</td><td>6.9" Super Retina XDR OLED, 2868×1320, 460 ppi</td></tr>
+      <tr><td>Chip</td><td>Apple A18 Pro — 6-core CPU, 6-core GPU</td></tr>
+      <tr><td>Camera</td><td>48MP Main + 48MP Ultra Wide + 12MP 5x Telephoto</td></tr>
+      <tr><td>Front Camera</td><td>12MP TrueDepth with Face ID</td></tr>
+      <tr><td>Battery</td><td>4685 mAh, 27W Fast Charging, MagSafe 25W</td></tr>
+      <tr><td>Storage</td><td>256GB / 512GB / 1TB</td></tr>
+      <tr><td>OS</td><td>iOS 18 with Apple Intelligence</td></tr>
+      <tr><td>Connectivity</td><td>5G, WiFi 7, Bluetooth 5.3, USB-C 3</td></tr>
+      <tr><td>Water Resistance</td><td>IP68 — 6m for 30 mins</td></tr>
+      <tr><td>Colors</td><td>Black / Natural / White / Desert Titanium</td></tr>
+    </table>
+  </div>
+
+  <div class="tab-content" id="tab-reviews">
+    <div class="review-card">
+      <div class="rev-top"><div class="rev-av" style="background:#e63329">A</div><div><div class="rev-name">Ahmed Al-Rashidi</div><div class="rev-date">March 2026</div></div></div>
+      <div class="rev-stars">★★★★★</div>
+      <div class="rev-text">Amazing phone! Camera quality is unbelievable. Delivery was same-day in Riyadh. Highly recommend AirTech One!</div>
+    </div>
+    <div class="review-card">
+      <div class="rev-top"><div class="rev-av" style="background:#1d4ed8">S</div><div><div class="rev-name">Sara Al-Qahtani</div><div class="rev-date">March 2026</div></div></div>
+      <div class="rev-stars">★★★★★</div>
+      <div class="rev-text">Best iPhone ever. Battery lasts all day. The titanium design is premium. Very happy with my purchase!</div>
+    </div>
+    <div class="review-card">
+      <div class="rev-top"><div class="rev-av" style="background:#16a34a">M</div><div><div class="rev-name">Mohammed Khalid</div><div class="rev-date">Feb 2026</div></div></div>
+      <div class="rev-stars">★★★★☆</div>
+      <div class="rev-text">Great phone overall. A18 Pro chip is blazing fast. Only wish the price was a bit lower. 4 stars.</div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-delivery">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px">
+        <div style="font-size:20px;margin-bottom:8px">🚚</div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:6px">Delivery</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.7">Riyadh: Same Day<br>Jeddah / Dammam: Next Day<br>Other KSA: 3–5 Days<br>Free shipping on orders over SAR 500</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px">
+        <div style="font-size:20px;margin-bottom:8px">↩️</div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:6px">Returns</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.7">14-day free returns<br>Original packaging required<br>Refund in 3–5 business days<br>WhatsApp: +966 550 898 978</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RELATED -->
+  <div style="margin-top:40px">
+    <div class="section-title">Related Products</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:16px">You might also like</p>
+    <div class="related-grid">
+      <a href="product.html" class="rel-card"><div class="rel-emoji">📱</div><div class="rel-name">Samsung Galaxy S25 Ultra</div><div class="rel-price">SAR 3,799</div></a>
+      <a href="product.html" class="rel-card"><div class="rel-emoji">💻</div><div class="rel-name">MacBook Pro M4</div><div class="rel-price">SAR 12,999</div></a>
+      <a href="product.html" class="rel-card"><div class="rel-emoji">⌚</div><div class="rel-name">Apple Watch Ultra 2</div><div class="rel-price">SAR 3,999</div></a>
+      <a href="product.html" class="rel-card"><div class="rel-emoji">🎧</div><div class="rel-name">AirPods Pro 2</div><div class="rel-price">SAR 899</div></a>
+    </div>
+  </div>
+</div>
+
+<a href="https://wa.me/966550898978" class="wa-btn" target="_blank">💬</a>
+<div class="toast" id="toast"></div>
+
+<script>
+let qty = 1;
+function changeQty(d){ qty = Math.max(1, qty+d); document.getElementById('qty').value = qty; }
+function setImg(e, el){ document.getElementById('main-emoji').textContent = e; document.querySelectorAll('.thumb').forEach(t=>t.classList.remove('active')); el.classList.add('active'); }
+function selectVar(el){ el.closest('.var-options').querySelectorAll('.var-opt').forEach(v=>v.classList.remove('active')); el.classList.add('active'); }
+function selectColor(el){ el.closest('.var-options').querySelectorAll('.color-opt').forEach(v=>v.classList.remove('active')); el.classList.add('active'); }
+function toggleWish(btn){ btn.textContent = btn.textContent==='🤍'?'❤️':'🤍'; showToast(btn.textContent==='❤️'?'❤️ Added to Wishlist!':'Removed from Wishlist'); }
+function switchTab(id, btn){ document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active')); document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active')); document.getElementById('tab-'+id).classList.add('active'); btn.classList.add('active'); }
+function updateCartNav(){ const c=JSON.parse(localStorage.getItem('airtech_cart')||'[]'); const n=c.reduce((a,i)=>a+i.qty,0); document.getElementById('cart-nav').textContent='🛒 ('+n+')'; }
+function addToCart(){
+  let cart=JSON.parse(localStorage.getItem('airtech_cart')||'[]');
+  const name='iPhone 16 Pro Max'; const price=4999; const emoji='📱';
+  const ex=cart.find(i=>i.name===name);
+  if(ex){ ex.qty+=qty; } else { cart.push({name,price,emoji,qty}); }
+  localStorage.setItem('airtech_cart',JSON.stringify(cart));
+  updateCartNav();
+  showToast('✅ Added to cart!');
+}
+function buyNow(){ addToCart(); window.location.href='cart.html'; }
+function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2500); }
+function toggleDark(){ const h=document.getElementById('html-root'); const isDark=h.getAttribute('data-theme')==='dark'; h.setAttribute('data-theme',isDark?'':'dark'); document.getElementById('dark-btn').textContent=isDark?'🌙':'☀️'; localStorage.setItem('theme',isDark?'':'dark'); }
+const saved=localStorage.getItem('theme'); if(saved==='dark'){ document.getElementById('html-root').setAttribute('data-theme','dark'); document.getElementById('dark-btn').textContent='☀️'; }
+updateCartNav();
+</script>
+</body>
+</html>
