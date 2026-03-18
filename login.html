@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AirTech One — Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f3ef;
+  --dark: #0e0e0e;
+  --accent: #e63329;
+  --border: #e8e5e0;
+  --muted: #888;
+  --card: #ffffff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--dark);
+  min-height: 100vh;
+  display: flex;
+}
+
+/* LEFT PANEL */
+.left {
+  width: 52%;
+  background: var(--dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.left-glow {
+  position: absolute;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(230,51,41,0.18), transparent 65%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.left-top { position: relative; z-index: 1; }
+.left-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px; letter-spacing: 3px;
+  color: #fff; text-decoration: none;
+}
+.left-logo span { color: var(--accent); }
+
+.left-mid {
+  position: relative; z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.left-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 20px;
+}
+.left-tag::before {
+  content: ''; width: 24px; height: 1.5px;
+  background: var(--accent);
+}
+.left-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 5vw, 80px);
+  line-height: 0.92; color: #fff;
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+}
+.left-title em { color: var(--accent); font-style: normal; display: block; }
+.left-sub {
+  font-size: 14px; color: rgba(255,255,255,0.4);
+  line-height: 1.7; max-width: 340px;
+  margin-bottom: 36px;
+}
+.left-features { display: flex; flex-direction: column; gap: 14px; }
+.feat {
+  display: flex; align-items: center; gap: 14px;
+}
+.feat-ic {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.feat-text { font-size: 13px; color: rgba(255,255,255,0.6); font-weight: 500; }
+.feat-text strong { color: #fff; display: block; font-size: 13px; margin-bottom: 1px; }
+
+.left-bottom {
+  position: relative; z-index: 1;
+  display: flex; gap: 24px;
+}
+.lstat-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px; color: #fff; line-height: 1;
+}
+.lstat-lbl { font-size: 10px; color: rgba(255,255,255,0.35); margin-top: 3px; font-weight: 600; }
+
+/* RIGHT PANEL */
+.right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 48px;
+}
+
+.form-box {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* TABS */
+.tabs {
+  display: flex;
+  background: rgba(0,0,0,0.05);
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 32px;
+}
+.tab {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: none;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.tab.active {
+  background: var(--card);
+  color: var(--dark);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* FORM TITLE */
+.form-title { font-size: 24px; font-weight: 800; margin-bottom: 6px; }
+.form-sub { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
+
+/* SOCIAL LOGIN */
+.social-row { display: flex; gap: 10px; margin-bottom: 24px; }
+.social-btn {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 11px;
+  font-size: 12px; font-weight: 700;
+  color: var(--dark);
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+.social-btn:hover { border-color: var(--dark); background: #fafaf8; }
+
+/* DIVIDER */
+.divider {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 24px;
+}
+.divider-line { flex: 1; height: 1px; background: var(--border); }
+.divider-text { font-size: 11px; color: var(--muted); font-weight: 600; }
+
+/* FORM FIELDS */
+.form-group { margin-bottom: 16px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+label {
+  display: block;
+  font-size: 12px; font-weight: 700;
+  margin-bottom: 7px; color: var(--dark);
+}
+.input-wrap { position: relative; }
+.input-icon {
+  position: absolute; left: 14px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px; pointer-events: none;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"] {
+  width: 100%;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px 12px 42px;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--dark);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+input:focus {
+  border-color: var(--dark);
+  box-shadow: 0 0 0 3px rgba(14,14,14,0.06);
+}
+input::placeholder { color: #bbb; }
+
+.pass-toggle {
+  position: absolute; right: 14px; top: 50%;
+  transform: translateY(-50%);
+  background: none; border: none; cursor: pointer;
+  font-size: 16px; color: var(--muted);
+}
+
+/* FORGOT */
+.form-options {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 20px;
+}
+.remember {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; color: var(--muted); cursor: pointer;
+}
+.remember input[type="checkbox"] {
+  width: 16px; height: 16px;
+  border-radius: 4px;
+  padding: 0; margin: 0;
+  accent-color: var(--dark);
+}
+.forgot {
+  font-size: 12px; font-weight: 700;
+  color: var(--accent); text-decoration: none;
+}
+.forgot:hover { text-decoration: underline; }
+
+/* SUBMIT BTN */
+.submit-btn {
+  width: 100%;
+  background: var(--dark);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 14px; font-weight: 700;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  margin-bottom: 16px;
+}
+.submit-btn:hover { background: var(--accent); transform: translateY(-2px); }
+
+/* SWITCH */
+.switch-text {
+  text-align: center;
+  font-size: 12px; color: var(--muted);
+}
+.switch-text a {
+  color: var(--accent); font-weight: 700;
+  text-decoration: none; cursor: pointer;
+}
+.switch-text a:hover { text-decoration: underline; }
+
+/* TERMS */
+.terms {
+  font-size: 11px; color: var(--muted);
+  text-align: center; margin-top: 12px; line-height: 1.6;
+}
+.terms a { color: var(--dark); font-weight: 700; text-decoration: none; }
+
+/* PASSWORD STRENGTH */
+.pass-strength { margin-top: 8px; }
+.strength-bar {
+  height: 4px; background: var(--border);
+  border-radius: 2px; overflow: hidden; margin-bottom: 4px;
+}
+.strength-fill {
+  height: 100%; border-radius: 2px;
+  transition: width 0.3s, background 0.3s;
+  width: 0%;
+}
+.strength-label { font-size: 10px; color: var(--muted); font-weight: 600; }
+
+/* PHONE INPUT */
+.phone-wrap { display: flex; gap: 8px; }
+.phone-code {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 10px;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--dark);
+  outline: none;
+  width: 90px;
+  flex-shrink: 0;
+  transition: border-color 0.2s;
+}
+.phone-code:focus { border-color: var(--dark); }
+.phone-wrap .input-wrap { flex: 1; }
+.phone-wrap input { padding-left: 14px; }
+
+/* SUCCESS STATE */
+.success-msg {
+  display: none;
+  text-align: center;
+  padding: 20px 0;
+}
+.success-icon { font-size: 56px; margin-bottom: 16px; }
+.success-title { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+.success-sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; line-height: 1.6; }
+.success-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--dark); color: #fff;
+  border: none; border-radius: 10px;
+  padding: 12px 28px;
+  font-size: 13px; font-weight: 700;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer; text-decoration: none;
+  transition: background 0.2s;
+}
+.success-btn:hover { background: var(--accent); }
+
+/* PANEL VISIBILITY */
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  body { flex-direction: column; }
+  .left {
+    width: 100%; min-height: auto;
+    padding: 28px 24px 32px;
+  }
+  .left-mid { padding: 32px 0; }
+  .left-features { display: none; }
+  .right { padding: 32px 24px; }
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- LEFT -->
+<div class="left">
+  <div class="left-glow"></div>
+  <div class="left-top">
+    <a href="airtech-homepage.html" class="left-logo">Air<span>Tech</span> One</a>
+  </div>
+
+  <div class="left-mid">
+    <div class="left-tag">Customer Portal</div>
+    <div class="left-title">
+      Welcome<br>Back to
+      <em>AirTech</em>
+    </div>
+    <p class="left-sub">Sign in to track your orders, manage wishlist, redeem loyalty points and get exclusive deals.</p>
+    <div class="left-features">
+      <div class="feat">
+        <div class="feat-ic">📦</div>
+        <div class="feat-text">
+          <strong>Track Your Orders</strong>
+          Real-time delivery updates
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-ic">⭐</div>
+        <div class="feat-text">
+          <strong>Loyalty Points</strong>
+          Earn & redeem on every purchase
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-ic">🎟️</div>
+        <div class="feat-text">
+          <strong>Exclusive Offers</strong>
+          Member-only deals & discounts
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-ic">🚚</div>
+        <div class="feat-text">
+          <strong>Fast Delivery KSA</strong>
+          Same-day Riyadh · Next-day KSA
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="left-bottom">
+    <div><div class="lstat-val">50K+</div><div class="lstat-lbl">Happy Customers</div></div>
+    <div style="width:1px;background:rgba(255,255,255,0.1)"></div>
+    <div><div class="lstat-val">2K+</div><div class="lstat-lbl">Products</div></div>
+    <div style="width:1px;background:rgba(255,255,255,0.1)"></div>
+    <div><div class="lstat-val">4.9★</div><div class="lstat-lbl">Avg Rating</div></div>
+  </div>
+</div>
+
+<!-- RIGHT -->
+<div class="right">
+  <div class="form-box">
+
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('login')">Sign In</button>
+      <button class="tab" onclick="switchTab('register')">Create Account</button>
+    </div>
+
+    <!-- LOGIN PANEL -->
+    <div class="panel active" id="panel-login">
+      <div class="form-title">Welcome back! 👋</div>
+      <div class="form-sub">Sign in to your AirTech One account</div>
+
+      <div class="social-row">
+        <button class="social-btn">🍎 Apple</button>
+        <button class="social-btn">🔵 Google</button>
+      </div>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <div class="divider-text">or continue with email</div>
+        <div class="divider-line"></div>
+      </div>
+
+      <div class="form-group">
+        <label>Email Address</label>
+        <div class="input-wrap">
+          <span class="input-icon">📧</span>
+          <input type="email" id="login-email" placeholder="you@example.com">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <div class="input-wrap">
+          <span class="input-icon">🔒</span>
+          <input type="password" id="login-pass" placeholder="Enter your password">
+          <button class="pass-toggle" onclick="togglePass('login-pass', this)">👁️</button>
+        </div>
+      </div>
+
+      <div class="form-options">
+        <label class="remember">
+          <input type="checkbox"> Remember me
+        </label>
+        <a href="#" class="forgot">Forgot password?</a>
+      </div>
+
+      <button class="submit-btn" onclick="doLogin()">Sign In →</button>
+
+      <div class="switch-text">
+        Don't have an account? <a onclick="switchTab('register')">Create one free</a>
+      </div>
+    </div>
+
+    <!-- REGISTER PANEL -->
+    <div class="panel" id="panel-register">
+      <div class="form-title">Join AirTech One 🚀</div>
+      <div class="form-sub">Create your free account in seconds</div>
+
+      <div class="social-row">
+        <button class="social-btn">🍎 Apple</button>
+        <button class="social-btn">🔵 Google</button>
+      </div>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <div class="divider-text">or fill the form</div>
+        <div class="divider-line"></div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group" style="margin-bottom:0">
+          <label>First Name</label>
+          <div class="input-wrap">
+            <span class="input-icon">👤</span>
+            <input type="text" placeholder="Ahmed">
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label>Last Name</label>
+          <div class="input-wrap">
+            <span class="input-icon">👤</span>
+            <input type="text" placeholder="Al-Rashidi">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-top:16px">
+        <label>Email Address</label>
+        <div class="input-wrap">
+          <span class="input-icon">📧</span>
+          <input type="email" placeholder="you@example.com">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Phone Number</label>
+        <div class="phone-wrap">
+          <input class="phone-code" type="text" value="🇸🇦 +966">
+          <div class="input-wrap">
+            <input type="tel" placeholder="5X XXX XXXX">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <div class="input-wrap">
+          <span class="input-icon">🔒</span>
+          <input type="password" id="reg-pass" placeholder="Min 8 characters" oninput="checkStrength(this.value)">
+          <button class="pass-toggle" onclick="togglePass('reg-pass', this)">👁️</button>
+        </div>
+        <div class="pass-strength">
+          <div class="strength-bar"><div class="strength-fill" id="strength-fill"></div></div>
+          <div class="strength-label" id="strength-label">Enter a password</div>
+        </div>
+      </div>
+
+      <button class="submit-btn" onclick="doRegister()">Create Account →</button>
+
+      <div class="terms">
+        By creating an account you agree to our
+        <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+      </div>
+
+      <div class="switch-text" style="margin-top:16px">
+        Already have an account? <a onclick="switchTab('login')">Sign in</a>
+      </div>
+    </div>
+
+    <!-- SUCCESS PANEL -->
+    <div class="panel" id="panel-success">
+      <div class="success-msg" style="display:block">
+        <div class="success-icon">🎉</div>
+        <div class="success-title">Welcome to AirTech One!</div>
+        <div class="success-sub">Your account is ready. Start exploring the latest tech deals and exclusive offers.</div>
+        <a href="customer-panel.html" class="success-btn">Go to My Account →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach((t, i) => {
+    t.classList.toggle('active', (tab === 'login' && i === 0) || (tab === 'register' && i === 1));
+  });
+  document.getElementById('panel-login').classList.toggle('active', tab === 'login');
+  document.getElementById('panel-register').classList.toggle('active', tab === 'register');
+  document.getElementById('panel-success').classList.remove('active');
+}
+
+function togglePass(id, btn) {
+  const inp = document.getElementById(id);
+  if (inp.type === 'password') { inp.type = 'text'; btn.textContent = '🙈'; }
+  else { inp.type = 'password'; btn.textContent = '👁️'; }
+}
+
+function checkStrength(val) {
+  const fill = document.getElementById('strength-fill');
+  const lbl = document.getElementById('strength-label');
+  let score = 0;
+  if (val.length >= 8) score++;
+  if (/[A-Z]/.test(val)) score++;
+  if (/[0-9]/.test(val)) score++;
+  if (/[^A-Za-z0-9]/.test(val)) score++;
+  const levels = [
+    { w: '0%', c: '#ddd', t: 'Enter a password' },
+    { w: '25%', c: '#ef4444', t: 'Weak' },
+    { w: '50%', c: '#f59e0b', t: 'Fair' },
+    { w: '75%', c: '#3b82f6', t: 'Good' },
+    { w: '100%', c: '#16a34a', t: 'Strong ✓' },
+  ];
+  const l = levels[score];
+  fill.style.width = l.w;
+  fill.style.background = l.c;
+  lbl.textContent = l.t;
+  lbl.style.color = l.c;
+}
+
+function doLogin() {
+  const email = document.getElementById('login-email').value;
+  const pass = document.getElementById('login-pass').value;
+  if (!email || !pass) {
+    alert('Please fill all fields!');
+    return;
+  }
+  document.getElementById('panel-login').classList.remove('active');
+  document.getElementById('panel-success').classList.add('active');
+}
+
+function doRegister() {
+  document.getElementById('panel-register').classList.remove('active');
+  document.getElementById('panel-success').classList.add('active');
+}
+</script>
+</body>
+</html>
